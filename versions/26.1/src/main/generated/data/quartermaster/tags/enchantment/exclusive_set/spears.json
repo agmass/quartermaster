@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:pogo",
+      "required": false
+    },
+    {
+      "id": "quartermaster:puncture",
+      "required": false
+    }
+  ]
+}

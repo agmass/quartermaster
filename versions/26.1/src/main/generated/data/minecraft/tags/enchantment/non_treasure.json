@@ -1,0 +1,68 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:homerun",
+      "required": false
+    },
+    {
+      "id": "quartermaster:pogo",
+      "required": false
+    },
+    {
+      "id": "quartermaster:pull",
+      "required": false
+    },
+    {
+      "id": "quartermaster:buster",
+      "required": false
+    },
+    {
+      "id": "quartermaster:charged",
+      "required": false
+    },
+    {
+      "id": "quartermaster:fling",
+      "required": false
+    },
+    {
+      "id": "quartermaster:puncture",
+      "required": false
+    },
+    {
+      "id": "quartermaster:splinter",
+      "required": false
+    },
+    {
+      "id": "quartermaster:takedown",
+      "required": false
+    },
+    {
+      "id": "quartermaster:shield_bash",
+      "required": false
+    },
+    {
+      "id": "quartermaster:brittle",
+      "required": false
+    },
+    {
+      "id": "quartermaster:impact_protection",
+      "required": false
+    },
+    {
+      "id": "quartermaster:frost_protection",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stun_protection",
+      "required": false
+    },
+    {
+      "id": "quartermaster:magic_protection",
+      "required": false
+    },
+    {
+      "id": "quartermaster:siesmic",
+      "required": false
+    }
+  ]
+}

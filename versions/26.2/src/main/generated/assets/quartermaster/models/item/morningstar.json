@@ -1,0 +1,6 @@
+{
+  "parent": "quartermaster:item/greataxe_template",
+  "textures": {
+    "layer0": "quartermaster:item/morningstar"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "values": [
+    "quartermaster:estoc",
+    "quartermaster:wooden_estoc",
+    "quartermaster:stone_estoc",
+    "quartermaster:copper_estoc",
+    "quartermaster:iron_estoc",
+    "quartermaster:golden_estoc",
+    "quartermaster:diamond_estoc",
+    "quartermaster:netherite_estoc"
+  ]
+}

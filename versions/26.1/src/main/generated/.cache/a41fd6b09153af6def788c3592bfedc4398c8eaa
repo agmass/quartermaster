@@ -1,0 +1,10 @@
+// 26.1.2	-999999999-01-01T00:00:00	Quartermaster/Tags for minecraft:enchantment
+e638a9221fcad9be6bfcba348c874d4f42c1d5b4 data/minecraft/tags/enchantment/non_treasure.json
+32cf63718be8c736bd04d167e722e7040f3769a5 data/quartermaster/tags/enchantment/exclusive_set/fall_prot.json
+01d1c66afe139ab5e448953fa9148c30b5d838fb data/quartermaster/tags/enchantment/exclusive_set/greataxe.json
+da4c0e4f85f97dc547ba5e3e0fbbbdb551741cd8 data/quartermaster/tags/enchantment/exclusive_set/knockback.json
+c7f6d14b2cb8d94780ac34f6fda97fe75da7abc8 data/quartermaster/tags/enchantment/exclusive_set/shield.json
+0d42e16691a767baf44162b7b6413de5fa3f08d5 data/quartermaster/tags/enchantment/exclusive_set/shield_disable.json
+bfd9268be3222969e9a416774563130130a6204b data/quartermaster/tags/enchantment/exclusive_set/spears.json
+0a77014d2e2e01300712788dd64a3a14496250b3 data/quartermaster/tags/enchantment/exclusive_set/warhammer.json
+17e590de73b82caaf371abb682e1316e73a04aed data/quartermaster/tags/enchantment/you_two_should_just_kiss_already.json

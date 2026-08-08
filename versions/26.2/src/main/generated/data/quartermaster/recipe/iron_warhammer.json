@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": "minecraft:stick",
+    "N": "minecraft:iron_block"
+  },
+  "pattern": [
+    "   ",
+    " N ",
+    "H  "
+  ],
+  "result": {
+    "id": "quartermaster:iron_warhammer"
+  }
+}

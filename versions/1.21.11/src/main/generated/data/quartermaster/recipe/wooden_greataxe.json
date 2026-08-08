@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": "minecraft:stick",
+    "N": "#minecraft:planks"
+  },
+  "pattern": [
+    " NN",
+    "NH ",
+    "H  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "quartermaster:wooden_greataxe"
+  }
+}

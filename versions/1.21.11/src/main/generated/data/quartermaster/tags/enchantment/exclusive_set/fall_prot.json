@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:impact_protection",
+      "required": false
+    },
+    {
+      "id": "minecraft:feather_falling",
+      "required": false
+    }
+  ]
+}

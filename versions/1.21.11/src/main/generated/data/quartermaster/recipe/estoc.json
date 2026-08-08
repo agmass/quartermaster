@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": "quartermaster:relic_handle",
+    "N": "minecraft:netherite_scrap"
+  },
+  "pattern": [
+    " N ",
+    " N ",
+    "H  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "quartermaster:estoc"
+  }
+}

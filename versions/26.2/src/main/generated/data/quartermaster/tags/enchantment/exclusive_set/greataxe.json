@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:charged",
+      "required": false
+    },
+    {
+      "id": "quartermaster:buster",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "required": true,
+  "package": "org.agmas.client.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "mixins": [
+    "ChangeCritParticleColorsMixin",
+    "ExtractAvatarRenderStateMixin",
+    "FirstPersonAnimatorMixin",
+    "FlintlockReloadAnimationMixin",
+    "QMExtractRenderStateMixin",
+    "WarhammerAnimationMixin",
+    "WarhammerAnimationZombieMixin",
+    "WarhammerForceThirdPersonMixin"
+  ]
+}

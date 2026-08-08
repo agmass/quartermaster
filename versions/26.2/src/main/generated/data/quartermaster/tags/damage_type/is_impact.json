@@ -1,0 +1,32 @@
+{
+  "values": [
+    {
+      "id": "minecraft:mace_smash",
+      "required": false
+    },
+    {
+      "id": "minecraft:fall",
+      "required": false
+    },
+    {
+      "id": "minecraft:falling_anvil",
+      "required": false
+    },
+    {
+      "id": "minecraft:falling_block",
+      "required": false
+    },
+    {
+      "id": "minecraft:falling_stalactite",
+      "required": false
+    },
+    {
+      "id": "minecraft:stalagmite",
+      "required": false
+    },
+    {
+      "id": "quartermaster:shockwave",
+      "required": false
+    }
+  ]
+}

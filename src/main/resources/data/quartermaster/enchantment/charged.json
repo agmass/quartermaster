@@ -1,0 +1,24 @@
+{
+  "anvil_cost": 1,
+  "description": {
+    "translate": "enchantment.quartermaster.charged"
+  },
+  "effects": {
+  },
+  "max_cost": {
+    "base": 300,
+    "per_level_above_first": 0
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 11
+  },
+  "primary_items": "#quartermaster:greataxes",
+  "slots": [
+    "mainhand"
+  ],
+  "exclusive_set": "#quartermaster:exclusive_set/greataxe",
+  "supported_items": "#quartermaster:greataxes",
+  "weight": 10
+}

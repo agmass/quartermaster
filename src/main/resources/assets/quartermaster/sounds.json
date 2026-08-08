@@ -1,0 +1,30 @@
+{
+  "cutlass_crit": {
+    "subtitle": "sound.quartermaster.cutlass_crit",
+    "sounds": ["quartermaster:cutlass_crit"]
+  },
+  "strong_shield_break": {
+    "subtitle": "sound.quartermaster.strong_shield_break",
+    "sounds": ["quartermaster:strong_shield_break"]
+  },
+  "cutlass_sweep": {
+    "subtitle": "sound.quartermaster.cutlass_sweep",
+    "sounds": ["quartermaster:cutlass_sweep"]
+  },
+  "parry": {
+    "subtitle": "sound.quartermaster.parry",
+    "sounds": ["quartermaster:parry"]
+  },
+  "greataxe_hit": {
+    "subtitle": "sound.quartermaster.greataxe_hit",
+    "sounds": ["quartermaster:greataxe_hit"]
+  },
+  "greataxe_use": {
+    "subtitle": "sound.quartermaster.greataxe_use",
+    "sounds": ["quartermaster:greataxe_use"]
+  },
+  "whatsappdanger": {
+    "subtitle": "sound.quartermaster.whatsappdanger",
+    "sounds": ["quartermaster:whatsappdanger"]
+  }
+}
