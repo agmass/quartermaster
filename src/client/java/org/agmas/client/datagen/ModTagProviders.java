@@ -108,11 +108,15 @@ public class ModTagProviders {
             addList(ModItemLists.netherite_heavy, ModTags.NETHERITE_HEAVY_WEAPONS);
             addList(ModItemLists.netherite_light, ModTags.NETHERITE_LIGHT_WEAPONS);
 
+            addList(ModItemLists.ranged, ModTags.RANGED);
+
             add(ModItems.RAPIER, net.minecraft.tags.ItemTags.SWORDS);
             add(ModItems.RAPIER, net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
             add(ModItems.RAPIER, net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
             add(ModItems.RAPIER, net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
             add(ModItems.RAPIER, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
+
+            add(ModItems.FLINTLOCK, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
 
         }
 
@@ -121,7 +125,7 @@ public class ModTagProviders {
             /*tag(tag)
                     .add(ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)));
             *///? } else {
-            valueLookupBuilder(net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE)
+            valueLookupBuilder(tag)
                     .add(item);
              //? }
         }
@@ -177,6 +181,14 @@ public class ModTagProviders {
                     .addOptional(ModEnchants.FROST_PROTECTION)
                     .addOptional(ModEnchants.STUN_PROTECTION)
                     .addOptional(ModEnchants.MAGIC_PROTECTION)
+                    .addOptional(ModEnchants.GLACIAL)
+                    .addOptional(ModEnchants.HEATWAVE)
+                    .addOptional(ModEnchants.TIDAL_CHILL)
+                    .addOptional(ModEnchants.HELLFORK)
+                    .addOptional(ModEnchants.CHILL)
+                    .addOptional(ModEnchants.SINGLEHANDED)
+                    .addOptional(ModEnchants.EXPLOSIVE_KINECTIVITY)
+                    .addOptional(ModEnchants.BLADEDANCE)
                     .addOptional(ModEnchants.SIESMIC);
 
             builder(ModTags.EXCLUSIVE_SET_SHIELD_DISABLE)
@@ -210,10 +222,16 @@ public class ModTagProviders {
             builder(ModTags.YOU_TWO_SHOULD_JUST_KISS_ALREADY)
                     .addOptional(Enchantments.BLAST_PROTECTION)
                     .addOptional(Enchantments.FIRE_PROTECTION)
-                    .addOptional(Enchantments.PROJECTILE_PROTECTION)
-                    .addOptional(Enchantments.PROTECTION);
+                    .addOptional(Enchantments.PROJECTILE_PROTECTION);
 
-
+            builder(ModTags.EXCLUSIVE_SET_ELEMENTAL)
+                    .addOptional(ModEnchants.GLACIAL)
+                    .addOptional(ModEnchants.HEATWAVE)
+                    .addOptional(ModEnchants.TIDAL_CHILL)
+                    .addOptional(ModEnchants.HELLFORK)
+                    .addOptional(ModEnchants.CHILL)
+                    .addOptional(Enchantments.FIRE_ASPECT)
+                    .addOptional(Enchantments.FLAME);
         }
     }
 
@@ -245,11 +263,14 @@ public class ModTagProviders {
                     .addOptional(DamageTypes.MAGIC)
                     .addOptional(DamageTypes.INDIRECT_MAGIC)
                     .addOptional(DamageTypes.FIREBALL)
+                    .addOptional(DamageTypes.DRAGON_BREATH)
+                    .addOptional(ModDamageTypes.RUDE_DAMAGE)
                     .addOptional(DamageTypes.SONIC_BOOM);
 
             builder(ModTags.IS_IMPACT)
                     .addOptional(DamageTypes.MACE_SMASH)
                     .addOptional(DamageTypes.FALL)
+                    .addOptional(DamageTypes.THORNS)
                     .addOptional(DamageTypes.FALLING_ANVIL)
                     .addOptional(DamageTypes.FALLING_BLOCK)
                     .addOptional(DamageTypes.FALLING_STALACTITE)

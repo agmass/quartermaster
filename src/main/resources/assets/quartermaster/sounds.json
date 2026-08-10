@@ -26,5 +26,13 @@
   "whatsappdanger": {
     "subtitle": "sound.quartermaster.whatsappdanger",
     "sounds": ["quartermaster:whatsappdanger"]
+  },
+  "flintlock_load_0": {
+    "subtitle": "sound.quartermaster.flintlock_load_0",
+    "sounds": ["quartermaster:flintlock_load_0"]
+  },
+  "flintlock_load_1": {
+    "subtitle": "sound.quartermaster.flintlock_load_1",
+    "sounds": ["quartermaster:flintlock_load_1"]
   }
 }

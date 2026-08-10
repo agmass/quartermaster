@@ -34,9 +34,9 @@ public class GunpowderEntityRenderer extends EntityRenderer<GunpowderEntity, Ent
             int fullbright = entityRenderState.lightCoords;
 
             pose.scale(0.4f,0.4f,0.4f);
+            pose.translate(0,0.6f,0);
             pose.rotate(Axis.XP.rotationDegrees(entityRenderState.ageInTicks*60));
             pose.rotate(Axis.YP.rotationDegrees(entityRenderState.ageInTicks*60));
-            pose.rotate(Axis.ZP.rotationDegrees(entityRenderState.ageInTicks*60));
 
             buildCube(pose,vertexConsumer,fullbright);
         }));

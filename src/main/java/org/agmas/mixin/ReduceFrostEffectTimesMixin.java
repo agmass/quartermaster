@@ -15,7 +15,8 @@ public abstract class ReduceFrostEffectTimesMixin {
 	@WrapMethod(method = "setTicksFrozen")
 	private void reduceTime(int i, Operation<Void> original) {
 		if (((Entity) (Object) this) instanceof LivingEntity instance) {
-			original.call((int)(i * (float)Math.max(instance.getAttribute(ModAttributes.FROST_TIME).getValue(), 0)));
+			float f = (float)Math.max(instance.getAttribute(ModAttributes.FROST_TIME).getValue(), 0);
+			original.call((int)Math.ceil(i * f));
 			return;
 		}
 		original.call(i);

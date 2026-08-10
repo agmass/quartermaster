@@ -72,6 +72,7 @@ public abstract class GiveMoreWeaponsMixin extends Entity {
         } else if (itemStack.is(ModTags.DIAMOND_LIGHT_WEAPONS)) {
             replaceItems = ModItemLists.diamond_light;
         }
+
         if (replaceItems != null) {
             original.call(EquipmentSlot.MAINHAND,replaceItems.get(random.nextInt(0,replaceItems.size())).getDefaultInstance());
         } else {

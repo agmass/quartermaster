@@ -124,6 +124,8 @@ public class ModItems {
                     creativeTab.accept(ModItems.RELIC_HANDLE);
                     creativeTab.accept(ModItems.RUINED_HANDLE);
                     creativeTab.accept(ModItems.COMBAT_EFFECT_SMITHING_TEMPLATE);
+                    creativeTab.accept(ModItems.PELLET);
+                    creativeTab.accept(ModItems.AMMUNITION);
                 });
 
         //? if >=26.1 {
@@ -132,6 +134,7 @@ public class ModItems {
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COMBAT)
          //? }
                 .register((creativeTab) -> {
+                    creativeTab.accept(ModItems.FLINTLOCK);
                     //? if >=26.1 {
                     
                     /*ItemStack coralRapier = ModItems.RAPIER.getDefaultInstance();

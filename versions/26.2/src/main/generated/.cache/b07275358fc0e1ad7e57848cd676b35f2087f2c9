@@ -1,6 +1,6 @@
 // 26.2	-999999999-01-01T00:00:00	Quartermaster/Tags for minecraft:item
 1f6e1ba7495b6761cc9cbc83dc4278c935fccbe3 data/minecraft/tags/item/axes.json
-1608428f70429737d5281e2cc2e3c65ac57cac10 data/minecraft/tags/item/enchantable/durability.json
+abacee044847da2cb9ebe7671e936538538865d0 data/minecraft/tags/item/enchantable/durability.json
 1f6e1ba7495b6761cc9cbc83dc4278c935fccbe3 data/minecraft/tags/item/enchantable/mining.json
 1608428f70429737d5281e2cc2e3c65ac57cac10 data/minecraft/tags/item/enchantable/sharp_weapon.json
 b3864425bb723a93ca6d9b77a6a87580e8ca4964 data/minecraft/tags/item/enchantable/sweeping.json
@@ -20,6 +20,7 @@ ed7079f52ee0c68a6712a2e3b6fdcf82b9066042 data/quartermaster/tags/item/copper_hea
 339009d60e9b74039959396b33b78aaa6ab8cc70 data/quartermaster/tags/item/morningstars.json
 e7086f192d0b1b03f30c476cbd871183d638d234 data/quartermaster/tags/item/netherite_heavy_weapons.json
 a672a622086094eca2ebbba73a1ec2552b5b1ea5 data/quartermaster/tags/item/netherite_light_weapons.json
+b16ec88ff4bb1aa3cd6e01c0273afb536106019d data/quartermaster/tags/item/ranged.json
 5a64c40074ac6e197bea8217e68f00f88eaf2f92 data/quartermaster/tags/item/stone_heavy_weapons.json
 c7eb832a588284aab5f253fed9b3f315225a5729 data/quartermaster/tags/item/stone_light_weapons.json
 7358cf49c666517b3c5ae3b8b06355ad5555fef4 data/quartermaster/tags/item/warhammers.json

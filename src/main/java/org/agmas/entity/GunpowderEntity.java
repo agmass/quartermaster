@@ -40,10 +40,9 @@ public class GunpowderEntity extends Projectile {
         this.hitTargetOrDeflectSelf(hitResult);
 
         setDeltaMovement(getDeltaMovement().scale(0.9f));
-        setPos(getPosition(0f).add(getDeltaMovement()).add(0,-0.2f,0));
+        setPos(getPosition(0f).add(getDeltaMovement()).add(0,-0.25f,0));
         super.tick();
     }
-
 
     @Override
     public boolean canBeHitByProjectile() {
@@ -60,7 +59,7 @@ public class GunpowderEntity extends Projectile {
 
     @Override
     protected void onHitEntity(EntityHitResult entityHitResult) {
-        if (!level().isClientSide()) {
+        if (!level().isClientSide() && !entityHitResult.getEntity().equals(getOwner())) {
             entityHitResult.getEntity().hurt(entityHitResult.getEntity().level().damageSources().explosion(this,(LivingEntity) getOwner()), attackPower);
 
             discard();

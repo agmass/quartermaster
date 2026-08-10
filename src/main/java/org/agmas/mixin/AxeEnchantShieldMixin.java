@@ -28,11 +28,11 @@ public abstract class AxeEnchantShieldMixin extends LivingEntity {
 
 
     @WrapOperation(method = "blockUsingItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getSecondsToDisableBlocking()F"))
-    public float alwaysDisarmed(LivingEntity attacker, Operation<Float> original) {
+    public float axeEnchants(LivingEntity attacker, Operation<Float> original) {
         LivingEntity instance = this;
-        boolean splinter = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.SPLINTER),attacker.getWeaponItem()) > 0;
+        boolean splinter = EnchantmentHelper.getEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.SPLINTER),attacker) > 0;
 
-        boolean takedown = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.TAKEDOWN),attacker.getWeaponItem()) > 0;
+        boolean takedown = EnchantmentHelper.getEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.TAKEDOWN),attacker) > 0;
         if (takedown) {
             CutlassItem.disarm(instance,1);
         }
@@ -42,25 +42,28 @@ public abstract class AxeEnchantShieldMixin extends LivingEntity {
             EstocItem.wound(instance);
         }
 
-        boolean brittle = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.BRITTLE),getItemBlockingWith()) > 0;
-        if (brittle) {
-            float attackDamage = (float)(attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue())/3.5f;
-            instance.setDeltaMovement(getViewVector(0f).multiply(-attackDamage,-attackDamage,-attackDamage));
-            //? if >=1.21.11 {
-            instance.needsSync = true;
-            //? } else {
-            /*instance.hasImpulse = true;
-             *///? }
-            if (instance instanceof ServerPlayer player2) {
-                player2.connection.send(new ClientboundSetEntityMotionPacket(player2));
+        if (getItemBlockingWith() != null) {
+            boolean brittle = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.BRITTLE),getItemBlockingWith()) > 0;
+            if (brittle) {
+                float attackDamage = (float)(attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue())/3.5f;
+                instance.setDeltaMovement(getViewVector(0f).multiply(-attackDamage,-attackDamage,-attackDamage));
+                //? if >=1.21.11 {
+                instance.needsSync = true;
+                //? } else {
+                /*instance.hasImpulse = true;
+                 *///? }
+                if (instance instanceof ServerPlayer player2) {
+                    player2.connection.send(new ClientboundSetEntityMotionPacket(player2));
+                }
             }
-            return 3.5f;
+
+            boolean shieldBash = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.SHIELD_BASH),getItemBlockingWith()) > 0;
+            if (shieldBash)
+                return original.call(attacker)*2f;
+            if (brittle) {
+                return 3.5f;
+            }
         }
-
-        boolean shieldBash = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.SHIELD_BASH),getItemBlockingWith()) > 0;
-        if (shieldBash)
-            return original.call(attacker)*2f;
-
         if (takedown)
             return Quartermaster.DISARMED_TICKS/20f;
         if (splinter)

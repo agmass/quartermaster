@@ -28,7 +28,7 @@ public abstract class MorningstarShieldDisableMixin extends LivingEntity {
 
 
     @WrapOperation(method = "blockUsingItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;getSecondsToDisableBlocking()F"))
-    public float alwaysDisarmed(LivingEntity attacker, Operation<Float> original) {
+    public float morningstarMixin(LivingEntity attacker, Operation<Float> original) {
         if (attacker.getMainHandItem().has(ModComponents.FALL_DAMAGE_SHIELD_DISABLE_MULTIPLIER)) {
             float multiplier = attacker.getMainHandItem().get(ModComponents.FALL_DAMAGE_SHIELD_DISABLE_MULTIPLIER);
             float amount = (float) ((MorningstarItem.BASE_DISABLE_TICKS + (attacker.fallDistance*(multiplier*5))) / 20f);

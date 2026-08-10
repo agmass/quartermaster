@@ -17,6 +17,7 @@ public class Quartermaster implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static final QMIdentifier ALL_DISARMED_ID = QMIdentifier.of("all");
 
+	public static int timeSinceShooting = 0;
 	public static int STUNNED_TICKS = 20*5;
 	public static int DISARMED_TICKS = 20*2;
 	@Override
@@ -43,6 +44,12 @@ public class Quartermaster implements ModInitializer {
 							|| key.equals(BuiltInLootTables.BURIED_TREASURE))) {
 				builder.modifyPools((m)->{
 					m.add(LootItem.lootTableItem(ModItems.RUINED_HANDLE));
+				});
+			}
+			if (lootTableSource.isBuiltin() && key.equals(BuiltInLootTables.BURIED_TREASURE)) {
+				builder.modifyPools((m)->{
+					m.add(LootItem.lootTableItem(ModItems.FLINTLOCK).setWeight(4));
+					m.add(LootItem.lootTableItem(ModItems.AMMUNITION).setWeight(7));
 				});
 			}
 			if (lootTableSource.isBuiltin() &&

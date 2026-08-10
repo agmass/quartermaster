@@ -3,15 +3,23 @@
 package org.agmas.client.mixin;
 
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.ItemInHandRenderer;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
+import net.minecraft.client.renderer.entity.player.AvatarRenderer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import org.agmas.client.render.entity.FlintlockAnimator;
 import org.agmas.client.render.entity.InspectAnimator;
 import org.agmas.init.ModAttachments;
+import org.agmas.init.ModItems;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,6 +32,10 @@ public abstract class FirstPersonAnimatorMixin {
 	@Shadow
 	@Final
 	private Minecraft minecraft;
+
+	@Shadow
+	@Final
+	private EntityRenderDispatcher entityRenderDispatcher;
 
 	@WrapOperation(method = "renderArmWithItem", at= @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"))
 	public boolean undoCrossbow(ItemStack instance, Item item, Operation<Boolean> original) {
@@ -40,5 +52,17 @@ public abstract class FirstPersonAnimatorMixin {
 			return InspectAnimator.poseHeldItem(par1, inspectTime, minecraft.player.tickCount);
 		}
 		return par1;
+	}
+
+	@WrapMethod(method = "renderArmWithItem")
+	public void renderFlintlockFirstPerson(AbstractClientPlayer abstractClientPlayer, float f, float g, InteractionHand interactionHand, float h, ItemStack itemStack, float i, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int j, Operation<Void> original) {
+		if (minecraft.player.isHolding(ModItems.FLINTLOCK)) {
+			if (minecraft.player.isUsingItem() || (minecraft.player.getMainHandItem().is(ModItems.FLINTLOCK) && interactionHand.equals(InteractionHand.MAIN_HAND))) {
+				AvatarRenderer<AbstractClientPlayer> avatarRenderer = entityRenderDispatcher.getPlayerRenderer(abstractClientPlayer);
+				FlintlockAnimator.animateHeld(avatarRenderer.getModel(), abstractClientPlayer.getSkin().body().texturePath(), submitNodeCollector, poseStack, f,j);
+				return;
+			}
+		}
+		original.call(abstractClientPlayer, f, g, interactionHand, h, itemStack, i, poseStack, submitNodeCollector, j);
 	}
 }

@@ -25,6 +25,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CoralBlock;
 import org.agmas.QMIdentifier;
+import org.agmas.Quartermaster;
 import org.agmas.entity.GunpowderEntity;
 import org.agmas.init.ModComponents;
 import org.agmas.init.ModEntities;
@@ -49,7 +50,17 @@ public class FlintlockItem extends CrossbowItem {
 
     @Override
     public int getUseDuration(ItemStack itemStack, LivingEntity livingEntity) {
-        return 15;
+        return getChargeDuration(itemStack,livingEntity);
+    }
+
+    @Override
+    public InteractionResult use(Level level, Player player, InteractionHand interactionHand) {
+        ItemStack itemStack = player.getItemInHand(interactionHand);
+        ChargedProjectiles chargedProjectiles = itemStack.get(DataComponents.CHARGED_PROJECTILES);
+        if (chargedProjectiles != null && !chargedProjectiles.isEmpty()) {
+            Quartermaster.timeSinceShooting = 15;
+        }
+        return super.use(level, player, interactionHand);
     }
 
     @Override
@@ -61,7 +72,8 @@ public class FlintlockItem extends CrossbowItem {
     @Override
     protected Projectile createProjectile(Level level, LivingEntity livingEntity, ItemStack itemStack, ItemStack itemStack2, boolean bl) {
         GunpowderEntity gunpowderEntity = ModEntities.GUNPOWDER.create(level, EntitySpawnReason.TRIGGERED);
-        gunpowderEntity.setPos(livingEntity.getPosition(0f).x,livingEntity.getEyePosition(0f).y,livingEntity.getPosition(0f).z);
+        gunpowderEntity.setPos(livingEntity.getPosition(0f).x,livingEntity.getEyePosition(0f).y-0.25f,livingEntity.getPosition(0f).z);
+        gunpowderEntity.setOwner(livingEntity);
         return gunpowderEntity;
     }
 }

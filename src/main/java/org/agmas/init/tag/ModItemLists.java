@@ -173,4 +173,13 @@ public class ModItemLists {
             ModItems.NETHERITE_ESTOC,
             Items.NETHERITE_SWORD
     );
+
+
+
+    public static List<Item> ranged = List.of(
+            ModItems.FLINTLOCK,
+            Items.BOW,
+            Items.CROSSBOW
+    );
+
 }

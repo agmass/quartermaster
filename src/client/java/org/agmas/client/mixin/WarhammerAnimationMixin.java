@@ -11,8 +11,10 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.HumanoidArm;
 import org.agmas.client.QuartermasterClient;
 import org.agmas.client.render.entity.DisarmedAnimator;
+import org.agmas.client.render.entity.FlintlockAnimator;
 import org.agmas.client.render.entity.InspectAnimator;
 import org.agmas.client.render.entity.WarhammerAnimator;
+import org.agmas.init.ModItems;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -48,10 +50,13 @@ public abstract class WarhammerAnimationMixin {
 			ci.cancel();
 		}
 
+
 		float castTime = state.getDataOrDefault(QuartermasterClient.warhammerCastTimeTicks,0f).floatValue();
 		if (castTime != 0) {
 			WarhammerAnimator.poseRightArm(rightArm,castTime);
 			ci.cancel();
+		} else if (!state.isUsingItem) {
+			FlintlockAnimator.poseMainArm(rightArm,state.rightHandItemStack);
 		}
 
 	}
@@ -74,6 +79,8 @@ public abstract class WarhammerAnimationMixin {
 		if (castTime != 0) {
 			WarhammerAnimator.poseLeftArm(leftArm,castTime);
 			ci.cancel();
+		} else if (!state.isUsingItem) {
+			FlintlockAnimator.poseMainArm(leftArm,state.leftHandItemStack);
 		}
 
 	}

@@ -39,6 +39,7 @@ public class ModTags {
     public static final TagKey<Item> NETHERITE_LIGHT_WEAPONS = TagKey.create(Registries.ITEM, QMIdentifier.of("netherite_light_weapons").id);
     public static final TagKey<Item> NETHERITE_HEAVY_WEAPONS = TagKey.create(Registries.ITEM, QMIdentifier.of("netherite_heavy_weapons").id);
 
+    public static final TagKey<Item> RANGED = TagKey.create(Registries.ITEM, QMIdentifier.of("ranged").id);
 
     public static final TagKey<Enchantment> EXCLUSIVE_SET_SPEARS = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/spears").id);
     public static final TagKey<Enchantment> EXCLUSIVE_SET_SHIELD_DISABLE = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/shield_disable").id);
@@ -47,6 +48,7 @@ public class ModTags {
     public static final TagKey<Enchantment> EXCLUSIVE_SET_KNOCKBACK = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/knockback").id);
     public static final TagKey<Enchantment> EXCLUSIVE_SET_FALL_PROTECTION = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/fall_prot").id);
     public static final TagKey<Enchantment> EXCLUSIVE_SET_SHIELD = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/shield").id);
+    public static final TagKey<Enchantment> EXCLUSIVE_SET_ELEMENTAL = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/elemental").id);
     public static final TagKey<Enchantment> YOU_TWO_SHOULD_JUST_KISS_ALREADY = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("you_two_should_just_kiss_already").id);
 
     public static final TagKey<DamageType> IS_MAGIC = TagKey.create(Registries.DAMAGE_TYPE, QMIdentifier.of("is_magic").id);

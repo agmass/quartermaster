@@ -61,6 +61,38 @@
       "required": false
     },
     {
+      "id": "quartermaster:glacial",
+      "required": false
+    },
+    {
+      "id": "quartermaster:heatwave",
+      "required": false
+    },
+    {
+      "id": "quartermaster:tidal_chill",
+      "required": false
+    },
+    {
+      "id": "quartermaster:hellfork",
+      "required": false
+    },
+    {
+      "id": "quartermaster:chill",
+      "required": false
+    },
+    {
+      "id": "quartermaster:singlehanded",
+      "required": false
+    },
+    {
+      "id": "quartermaster:explosive_kinectivity",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bladedance",
+      "required": false
+    },
+    {
       "id": "quartermaster:siesmic",
       "required": false
     }

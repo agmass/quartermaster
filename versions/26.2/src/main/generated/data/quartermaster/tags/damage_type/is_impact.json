@@ -9,6 +9,10 @@
       "required": false
     },
     {
+      "id": "minecraft:thorns",
+      "required": false
+    },
+    {
       "id": "minecraft:falling_anvil",
       "required": false
     },

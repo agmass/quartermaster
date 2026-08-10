@@ -19,6 +19,9 @@ public class ModSounds {
 
     public static final SoundEvent WHATSAPP = registerSound("whatsappdanger");
 
+    public static final SoundEvent FLINTLOCK_LOAD_0 = registerSound("flintlock_load_0");
+    public static final SoundEvent FLINTLOCK_LOAD_1 = registerSound("flintlock_load_1");
+
     private static SoundEvent registerSound(String id) {
         return Registry.register(BuiltInRegistries.SOUND_EVENT, QMIdentifier.of(id).id, SoundEvent.createVariableRangeEvent(QMIdentifier.of(id).id));
     }

@@ -27,10 +27,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import org.agmas.init.ModComponents;
-import org.agmas.init.ModEnchants;
-import org.agmas.init.ModEntities;
-import org.agmas.init.ModSounds;
+import org.agmas.init.*;
 
 import java.awt.*;
 import java.util.List;
@@ -137,7 +134,7 @@ public class GreataxeProjectileEntity extends Projectile {
                 }
             }
             if (isHit) {
-                DamageSource source = entityHitResult.getEntity().level().damageSources().source(DamageTypes.MAGIC, getOwner());
+                DamageSource source = level().damageSources().source(ModDamageTypes.RUDE_DAMAGE, this);
                 entityHitResult.getEntity().hurt(source, attackPower);
                 Entity hit = entityHitResult.getEntity();
                 ((ServerLevel) level()).sendParticles(SpellParticleOption.create(ParticleTypes.INSTANT_EFFECT, getColor(), 4f), hit.getX(), hit.getEyeY(), hit.getZ(), 20, 0.5f, 0.5f, 0.5f, 0.5f);

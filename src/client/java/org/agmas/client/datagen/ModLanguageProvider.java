@@ -76,8 +76,29 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("enchantment.quartermaster.stun_protection", "Stun Protection");
         translationBuilder.add("enchantment.quartermaster.stun_protection.desc", "Reduces stun time");
 
-        translationBuilder.add("enchantment.quartermaster.whatsapp", "Whatsapp");
-        translationBuilder.add("enchantment.quartermaster.whatsapp.desc", "I'm like whatsapp danger");
+        translationBuilder.add("enchantment.quartermaster.bladedance", "Bladedance");
+        translationBuilder.add("enchantment.quartermaster.bladedance.desc", "Does more damage to victims mid-air.");
+
+        translationBuilder.add("enchantment.quartermaster.singlehanded", "Singlehanded");
+        translationBuilder.add("enchantment.quartermaster.singlehanded.desc", "Deals more damage when not holding any off-hand items.");
+
+        translationBuilder.add("enchantment.quartermaster.glacial", "Glacial");
+        translationBuilder.add("enchantment.quartermaster.glacial.desc", "Deals frost damage to all entities hit.");
+
+        translationBuilder.add("enchantment.quartermaster.heatwave", "Heatwave");
+        translationBuilder.add("enchantment.quartermaster.heatwave.desc", "Sets all entities hit on fire.");
+
+        translationBuilder.add("enchantment.quartermaster.tidal_chill", "Tidal Chill");
+        translationBuilder.add("enchantment.quartermaster.tidal_chill.desc", "Freezes victims.");
+
+        translationBuilder.add("enchantment.quartermaster.hellfork", "Hellfork");
+        translationBuilder.add("enchantment.quartermaster.hellfork.desc", "Sets victims on fire.");
+
+        translationBuilder.add("enchantment.quartermaster.chill", "Chill");
+        translationBuilder.add("enchantment.quartermaster.chill.desc", "Freezes victims.");
+
+        translationBuilder.add("enchantment.quartermaster.explosive_kinectivity", "Explosive Kinectivity");
+        translationBuilder.add("enchantment.quartermaster.explosive_kinectivity.desc", "Kaboom.");
 
         translationBuilder.add("death.attack.bleed", "%1$s bled out");
         translationBuilder.add("death.attack.bleed.player", "%1$s bled out because of %2$s");
@@ -99,6 +120,8 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(ModSounds.PARRY, "PARRY");
         translationBuilder.add(ModSounds.GREATAXE_HIT, "Greataxe Ability Hit");
         translationBuilder.add(ModSounds.GREATAXE_USE, "Greataxe Ability Used");
+        translationBuilder.add(ModSounds.FLINTLOCK_LOAD_0, "Flintlock Loading");
+        translationBuilder.add(ModSounds.FLINTLOCK_LOAD_1, "Flintlock Loaded");
 
         translationBuilder.add(ModEffects.WOUNDED.value(), "Wounded");
         translationBuilder.add(ModEffects.FROST_PROTECTION.value(), "Frost Protection");
@@ -114,6 +137,7 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(ModItems.RAPIER, "Rapier");
         translationBuilder.add(ModItems.GREATAXE, "Greataxe");
         translationBuilder.add(ModItems.WARHAMMER, "Warhammer");
+        translationBuilder.add(ModItems.FLINTLOCK, "Flintlock");
 
         generateTiered(translationBuilder, "cutlass", "Cutlass");
         generateTiered(translationBuilder, "morningstar", "Morningstar");

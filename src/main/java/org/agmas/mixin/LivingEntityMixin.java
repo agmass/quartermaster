@@ -118,6 +118,8 @@ public abstract class LivingEntityMixin extends Entity {
 						boolean siesmic = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.SIESMIC),getMainHandItem()) > 0;
 						boolean pull = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.PULL),getMainHandItem()) > 0;
 						boolean homerun = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.HOMERUN),getMainHandItem()) > 0;
+						boolean glacial = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.HEATWAVE),getMainHandItem()) > 0;
+						boolean heatwave = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.GLACIAL),getMainHandItem()) > 0;
 
 						for (Entity entity : level.getEntities(((LivingEntity) (Object) this), getBoundingBox().inflate(power * 1.5f))) {
 							if (entity instanceof LivingEntity livingEntity) {
@@ -125,6 +127,12 @@ public abstract class LivingEntityMixin extends Entity {
 								livingEntity.hurtServer(level,source, siesmic ? (float) getAttribute(Attributes.ATTACK_DAMAGE).getValue()*2f : 4f);
 								if (!siesmic && livingEntity.isBlocking()) {
 									livingEntity.getItemBlockingWith().get(DataComponents.BLOCKS_ATTACKS).disable(level,livingEntity,power,livingEntity.getItemBlockingWith());
+								}
+								if (heatwave) {
+									livingEntity.setRemainingFireTicks(120);
+								}
+								if (glacial) {
+									livingEntity.setTicksFrozen(480);
 								}
 								if (pull) {
 									livingEntity.setDeltaMovement(livingEntity.getPosition(0f).subtract(getPosition(0f)).normalize().multiply(-2,-2,-2));
@@ -135,7 +143,7 @@ public abstract class LivingEntityMixin extends Entity {
 									 *///? }
 								}
 
-								if (pull) {
+								if (homerun) {
 									livingEntity.setDeltaMovement(new Vec3(0,0.5f,0));
 									//? if >=1.21.11 {
 									livingEntity.needsSync = true;

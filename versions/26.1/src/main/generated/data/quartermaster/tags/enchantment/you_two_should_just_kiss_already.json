@@ -11,10 +11,6 @@
     {
       "id": "minecraft:projectile_protection",
       "required": false
-    },
-    {
-      "id": "minecraft:protection",
-      "required": false
     }
   ]
 }

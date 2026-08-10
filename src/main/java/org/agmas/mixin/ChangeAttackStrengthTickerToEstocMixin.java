@@ -75,11 +75,6 @@ public abstract class ChangeAttackStrengthTickerToEstocMixin extends LivingEntit
         lastEstocTicks = estocTicks;
     }
 
-    @Inject(method = "resetAttackStrengthTicker", at = @At("TAIL"))
-    public void attackStrengthReset(CallbackInfo ci) {
-        setAttached(ModAttachments.STORED_ESTOC_TICKS, 0);
-    }
-
     @Inject(method = "resetOnlyAttackStrengthTicker", at = @At("TAIL"))
     public void attackStrengthResetAgain(CallbackInfo ci) {
         setAttached(ModAttachments.STORED_ESTOC_TICKS, 0);

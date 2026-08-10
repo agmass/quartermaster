@@ -18,13 +18,17 @@ import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.particle.CritParticle;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Items;
 import org.agmas.QMIdentifier;
+import org.agmas.Quartermaster;
 import org.agmas.client.item.CoralRapierBooleanProperty;
+import org.agmas.client.render.animations.HandsModel;
 import org.agmas.client.render.entity.GreataxeProjectileEntityRenderer;
 import org.agmas.client.render.entity.GunpowderEntityRenderer;
 import org.agmas.client.render.hud.DisarmedHudElement;
@@ -36,8 +40,8 @@ import org.agmas.client.render.particle.ColorCritParticle;
 import org.agmas.client.render.particle.WarhammerLandingParticle;
 import org.agmas.init.ModEntities;
 import org.agmas.init.ModParticles;
-//? if <26.3 {
 import org.agmas.network.ServerboundInspectPacket;
+//? if <26.3 {
 import org.lwjgl.glfw.GLFW;
 //? }
 
@@ -49,6 +53,8 @@ public class QuartermasterClient implements ClientModInitializer {
 	public static RenderStateDataKey<Float> inspectTicks = RenderStateDataKey.create(()->"inspectTicks");
 
 	public static KeyMapping inspectAnimation;
+	public static LayerDefinition firstPersonHands;
+	public static ModelPart handsRoot;
 	@Override
 	public void onInitializeClient() {
 		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
@@ -58,6 +64,9 @@ public class QuartermasterClient implements ClientModInitializer {
 		EntityRenderers.register(ModEntities.GUNPOWDER, GunpowderEntityRenderer::new);
 
 		EntityRenderers.register(ModEntities.GREATAXE_PROJECTILE, GreataxeProjectileEntityRenderer::new);
+
+		firstPersonHands = HandsModel.createBodyLayer();
+		handsRoot =QuartermasterClient.firstPersonHands.bakeRoot();
 
 		//? if <26.1 {
 		ParticleFactoryRegistry.getInstance().register(ModParticles.COLOR_CRIT, ColorCritParticle.InstantProvider::new);
@@ -112,6 +121,8 @@ public class QuartermasterClient implements ClientModInitializer {
 		);
 
 		ClientTickEvents.START_CLIENT_TICK.register((m)->{
+			Quartermaster.timeSinceShooting--;
+			if (Quartermaster.timeSinceShooting < 0) Quartermaster.timeSinceShooting = 0;
 			if (m.player != null) {
 				if (m.player.getItemBlockingWith() != null) {
 					if (m.player.getItemBlockingWith().is(Items.SHIELD)) {

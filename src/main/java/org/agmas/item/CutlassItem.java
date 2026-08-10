@@ -2,7 +2,10 @@ package org.agmas.item;
 
 import net.fabricmc.loader.impl.util.log.Log;
 import net.fabricmc.loader.impl.util.log.LogCategory;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -17,10 +20,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.block.Blocks;
 import org.agmas.Quartermaster;
 import org.agmas.init.*;
 import org.agmas.item.util.CustomHitSounds;
+
+import java.util.List;
 
 import static net.minecraft.world.item.ToolMaterial.*;
 
@@ -71,6 +78,17 @@ public class CutlassItem extends net.minecraft.world.item.Item implements Custom
         return new Item.Properties()
                 .component(ModComponents.COMBO_TO_DISABLE, comboToDisable)
                 .stacksTo(1)
+                .component(
+                        DataComponents.TOOL,
+                        new Tool(
+                                List.of(
+                                        Tool.Rule.minesAndDrops(HolderSet.direct(Blocks.COBWEB.builtInRegistryHolder()), 15.0F)
+                                ),
+                                1.0F,
+                                2,
+                                false
+                        )
+                )
                 .attributes(CutlassItem.createAttributes(material))
                 .enchantable(material.enchantmentValue())
                 .durability(material.durability());

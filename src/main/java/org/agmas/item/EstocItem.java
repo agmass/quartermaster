@@ -1,5 +1,7 @@
 package org.agmas.item;
 
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -12,11 +14,15 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.Tool;
+import net.minecraft.world.level.block.Blocks;
 import org.agmas.duck.PlayerAcessor;
 import org.agmas.init.ModAttachments;
 import org.agmas.init.ModComponents;
 import org.agmas.init.ModEffects;
 import org.agmas.mixin.ChangeAttackStrengthTickerToEstocMixin;
+
+import java.util.List;
 
 public class EstocItem extends Item {
     public EstocItem(Properties properties) {
@@ -69,6 +75,17 @@ public class EstocItem extends Item {
     public static Properties createSettings(ToolMaterial material) {
         return new Properties()
                 .stacksTo(1)
+                .component(
+                        DataComponents.TOOL,
+                        new Tool(
+                                List.of(
+                                        Tool.Rule.minesAndDrops(HolderSet.direct(Blocks.COBWEB.builtInRegistryHolder()), 15.0F)
+                                ),
+                                1.0F,
+                                2,
+                                false
+                        )
+                )
                 .attributes(EstocItem.createAttributes(material))
                 .enchantable(material.enchantmentValue())
                 .durability(material.durability());
