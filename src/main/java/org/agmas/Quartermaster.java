@@ -3,11 +3,14 @@ package org.agmas;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import org.agmas.init.ModEnchants;
 import org.agmas.init.*;
+import org.agmas.init.tag.ModItemLists;
 import org.agmas.init.tag.ModTags;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +40,7 @@ public class Quartermaster implements ModInitializer {
 		ModEffects.init();
 		ModDamageTypes.init();
 		ModAttributes.init();
+		ModTrades.init();
 
 		LootTableEvents.MODIFY.register((key, builder, lootTableSource, provider)->{
 			if (lootTableSource.isBuiltin() &&

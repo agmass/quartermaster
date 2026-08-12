@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": "minecraft:stick",
+    "N": "minecraft:gold_ingot"
+  },
+  "pattern": [
+    " NN",
+    " HN",
+    "H  "
+  ],
+  "result": {
+    "id": "quartermaster:golden_morningstar"
+  }
+}

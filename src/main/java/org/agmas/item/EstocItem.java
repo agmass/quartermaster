@@ -75,17 +75,7 @@ public class EstocItem extends Item {
     public static Properties createSettings(ToolMaterial material) {
         return new Properties()
                 .stacksTo(1)
-                .component(
-                        DataComponents.TOOL,
-                        new Tool(
-                                List.of(
-                                        Tool.Rule.minesAndDrops(HolderSet.direct(Blocks.COBWEB.builtInRegistryHolder()), 15.0F)
-                                ),
-                                1.0F,
-                                2,
-                                false
-                        )
-                )
+                .sword(material,0f,0f)
                 .attributes(EstocItem.createAttributes(material))
                 .enchantable(material.enchantmentValue())
                 .durability(material.durability());

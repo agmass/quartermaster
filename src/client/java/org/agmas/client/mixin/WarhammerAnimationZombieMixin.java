@@ -35,6 +35,7 @@ public abstract class WarhammerAnimationZombieMixin {
 
 		float disarmedTime = undeadRenderState.getDataOrDefault(QuartermasterClient.disarmedTimeTicks,0f).floatValue();
 		if (disarmedTime != 0) {
+			DisarmedAnimator.poseMainArm(leftArm, disarmedTime,undeadRenderState.ageInTicks);
 			DisarmedAnimator.poseMainArm(rightArm, disarmedTime,undeadRenderState.ageInTicks);
 			ci.cancel();
 		}

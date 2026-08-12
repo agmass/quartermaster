@@ -68,6 +68,9 @@ public abstract class LivingEntityMixin extends Entity {
 			setAttached(ModAttachments.INSPECT_ANIMATION_TICKS,ticks);
 			if (ticks <= 0) {
 				setAttached(ModAttachments.INSPECT_ANIMATION_TICKS,80);
+				if (getMainHandItem().is(ModItems.FLINTLOCK)) {
+					setAttached(ModAttachments.INSPECT_ANIMATION_TICKS,90);
+				}
 			}
 		}
 

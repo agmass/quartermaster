@@ -64,14 +64,16 @@ public class ModEnchants {
         ServerLivingEntityEvents.AFTER_DAMAGE.register(((entity, source, baseDamageTaken, damageTaken, blocked) -> {
 
             if (source.getWeaponItem() != null) {
-                if (EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), ModEnchants.HELLFORK), source.getWeaponItem()) > 0) {
-                    entity.setRemainingFireTicks(90);
-                }
-                if (EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), ModEnchants.TIDAL_CHILL), source.getWeaponItem()) > 0) {
-                    entity.setTicksFrozen(300);
-                }
-                if (EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), ModEnchants.CHILL), source.getWeaponItem()) > 0) {
-                    entity.setTicksFrozen(300);
+                if (!blocked) {
+                    if (EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), ModEnchants.HELLFORK), source.getWeaponItem()) > 0) {
+                        entity.setRemainingFireTicks(90);
+                    }
+                    if (EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), ModEnchants.TIDAL_CHILL), source.getWeaponItem()) > 0) {
+                        entity.setTicksFrozen(300);
+                    }
+                    if (EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), ModEnchants.CHILL), source.getWeaponItem()) > 0) {
+                        entity.setTicksFrozen(300);
+                    }
                 }
             }
             if (source.getDirectEntity() instanceof LivingEntity livingEntity) {

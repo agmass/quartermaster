@@ -78,17 +78,7 @@ public class CutlassItem extends net.minecraft.world.item.Item implements Custom
         return new Item.Properties()
                 .component(ModComponents.COMBO_TO_DISABLE, comboToDisable)
                 .stacksTo(1)
-                .component(
-                        DataComponents.TOOL,
-                        new Tool(
-                                List.of(
-                                        Tool.Rule.minesAndDrops(HolderSet.direct(Blocks.COBWEB.builtInRegistryHolder()), 15.0F)
-                                ),
-                                1.0F,
-                                2,
-                                false
-                        )
-                )
+                .sword(material,0f,0f)
                 .attributes(CutlassItem.createAttributes(material))
                 .enchantable(material.enchantmentValue())
                 .durability(material.durability());

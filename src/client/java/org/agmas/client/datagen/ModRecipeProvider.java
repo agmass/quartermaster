@@ -10,10 +10,12 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import org.agmas.init.ModItems;
@@ -122,10 +124,71 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy("has_ingredient", has(ModItems.PELLET))
                         .save(recipeOutput);
 
+                SimpleCookingRecipeBuilder
+                        .smelting(Ingredient.of(ModItems.GOLDEN_CUTLASS),
+                                RecipeCategory.TOOLS,
+                                //? if >=26.1 {
+                                /*CookingBookCategory.MISC,
+                                *///?}
+                                Items.GOLD_NUGGET,
+                                0.1F,
+                                200)
+                        .unlockedBy("has_ingredient", has(ModItems.GOLDEN_CUTLASS))
+                        .save(this.output);
+
+                SimpleCookingRecipeBuilder
+                        .smelting(Ingredient.of(ModItems.GOLDEN_ESTOC),
+                                RecipeCategory.TOOLS,
+                                //? if >=26.1 {
+                                /*CookingBookCategory.MISC,
+                                 *///?}
+                                Items.GOLD_NUGGET,
+                                0.1F,
+                                200)
+                        .unlockedBy("has_ingredient", has(ModItems.GOLDEN_ESTOC))
+                        .save(this.output);
+
+                SimpleCookingRecipeBuilder
+                        .smelting(Ingredient.of(ModItems.GOLDEN_GREATAXE),
+                                RecipeCategory.TOOLS,
+                                //? if >=26.1 {
+                                /*CookingBookCategory.MISC,
+                                 *///?}
+                                Items.GOLD_INGOT,
+                                0.1F,
+                                200)
+                        .unlockedBy("has_ingredient", has(ModItems.GOLDEN_GREATAXE))
+                        .save(this.output);
+
+                SimpleCookingRecipeBuilder
+                        .smelting(Ingredient.of(ModItems.GOLDEN_MORNINGSTAR),
+                                RecipeCategory.TOOLS,
+                                //? if >=26.1 {
+                                /*CookingBookCategory.MISC,
+                                 *///?}
+                                Items.GOLD_INGOT,
+                                0.1F,
+                                200)
+                        .unlockedBy("has_ingredient", has(ModItems.GOLDEN_MORNINGSTAR))
+                        .save(this.output);
+
+                SimpleCookingRecipeBuilder
+                        .smelting(Ingredient.of(ModItems.GOLDEN_WARHAMMER),
+                                RecipeCategory.TOOLS,
+                                //? if >=26.1 {
+                                /*CookingBookCategory.MISC,
+                                 *///?}
+                                Items.GOLD_INGOT,
+                                0.1F,
+                                200)
+                        .unlockedBy("has_ingredient", has(ModItems.GOLDEN_WARHAMMER))
+                        .save(this.output);
+
                 buildCutlass(ModItems.WOODEN_CUTLASS, tag(ItemTags.PLANKS), Items.STICK);
                 buildCutlass(ModItems.STONE_CUTLASS, tag(ItemTags.STONE_TOOL_MATERIALS), Items.COBBLESTONE);
                 buildCutlass(ModItems.COPPER_CUTLASS, Ingredient.of(Items.COPPER_INGOT), Items.COPPER_INGOT);
                 buildCutlass(ModItems.IRON_CUTLASS, Ingredient.of(Items.IRON_INGOT), Items.IRON_INGOT);
+                buildCutlass(ModItems.GOLDEN_CUTLASS, Ingredient.of(Items.GOLD_INGOT), Items.GOLD_INGOT);
                 buildCutlass(ModItems.DIAMOND_CUTLASS, Ingredient.of(Items.DIAMOND), Items.DIAMOND);
                 netheriteSmithing(ModItems.DIAMOND_CUTLASS, RecipeCategory.COMBAT, ModItems.NETHERITE_CUTLASS);
 
@@ -133,6 +196,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 buildMorningstar(ModItems.STONE_MORNINGSTAR, tag(ItemTags.STONE_TOOL_MATERIALS), Items.COBBLESTONE);
                 buildMorningstar(ModItems.COPPER_MORNINGSTAR, Ingredient.of(Items.COPPER_INGOT), Items.COPPER_INGOT);
                 buildMorningstar(ModItems.IRON_MORNINGSTAR, Ingredient.of(Items.IRON_INGOT), Items.IRON_INGOT);
+                buildMorningstar(ModItems.GOLDEN_MORNINGSTAR, Ingredient.of(Items.GOLD_INGOT), Items.GOLD_INGOT);
                 buildMorningstar(ModItems.DIAMOND_MORNINGSTAR, Ingredient.of(Items.DIAMOND), Items.DIAMOND);
                 netheriteSmithing(ModItems.DIAMOND_MORNINGSTAR, RecipeCategory.COMBAT, ModItems.NETHERITE_MORNINGSTAR);
 
@@ -140,6 +204,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 buildEstoc(ModItems.STONE_ESTOC, tag(ItemTags.STONE_TOOL_MATERIALS), Items.COBBLESTONE);
                 buildEstoc(ModItems.COPPER_ESTOC, Ingredient.of(Items.COPPER_INGOT), Items.COPPER_INGOT);
                 buildEstoc(ModItems.IRON_ESTOC, Ingredient.of(Items.IRON_INGOT), Items.IRON_INGOT);
+                buildEstoc(ModItems.GOLDEN_ESTOC, Ingredient.of(Items.GOLD_INGOT), Items.GOLD_INGOT);
                 buildEstoc(ModItems.DIAMOND_ESTOC, Ingredient.of(Items.DIAMOND), Items.DIAMOND);
                 netheriteSmithing(ModItems.DIAMOND_ESTOC, RecipeCategory.COMBAT, ModItems.NETHERITE_ESTOC);
 
@@ -147,6 +212,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 buildGreataxe(ModItems.STONE_GREATAXE, tag(ItemTags.STONE_TOOL_MATERIALS), Items.COBBLESTONE);
                 buildGreataxe(ModItems.COPPER_GREATAXE, Ingredient.of(Items.COPPER_INGOT), Items.COPPER_INGOT);
                 buildGreataxe(ModItems.IRON_GREATAXE, Ingredient.of(Items.IRON_INGOT), Items.IRON_INGOT);
+                buildGreataxe(ModItems.GOLDEN_GREATAXE, Ingredient.of(Items.GOLD_INGOT), Items.GOLD_INGOT);
                 buildGreataxe(ModItems.DIAMOND_GREATAXE, Ingredient.of(Items.DIAMOND), Items.DIAMOND);
                 netheriteSmithing(ModItems.DIAMOND_GREATAXE, RecipeCategory.COMBAT, ModItems.NETHERITE_GREATAXE);
 
@@ -158,6 +224,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 buildWarhammers(ModItems.COPPER_WARHAMMER, Ingredient.of(Items.COPPER_BLOCK), Items.COPPER_INGOT);
                 //? }
                 buildWarhammers(ModItems.IRON_WARHAMMER, Ingredient.of(Items.IRON_BLOCK), Items.IRON_INGOT);
+                buildWarhammers(ModItems.GOLDEN_WARHAMMER, Ingredient.of(Items.GOLD_BLOCK), Items.GOLD_INGOT);
                 buildWarhammers(ModItems.DIAMOND_WARHAMMER, Ingredient.of(Items.DIAMOND_BLOCK), Items.DIAMOND);
                 netheriteSmithing(ModItems.DIAMOND_WARHAMMER, RecipeCategory.COMBAT, ModItems.NETHERITE_WARHAMMER);
 

@@ -85,4 +85,26 @@ public class FlintlockFirstPersonAnim {
 			new Keyframe(2.0F, KeyframeAnimations.posVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)
 		))
 		.build();
+	public static final AnimationDefinition INSPECT = AnimationDefinition.Builder.withLength(4.4583F).looping()
+			.addAnimation("rightarm", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+					new Keyframe(0.0F, KeyframeAnimations.degreeVec(-90.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM),
+					new Keyframe(0.0833F, KeyframeAnimations.degreeVec(-55.7661F, -16.3073F, -11.9784F), AnimationChannel.Interpolations.CATMULLROM),
+					new Keyframe(0.25F, KeyframeAnimations.degreeVec(-76.5322F, -32.6146F, -23.9568F), AnimationChannel.Interpolations.CATMULLROM),
+					new Keyframe(0.5F, KeyframeAnimations.degreeVec(-71.2755F, -30.3022F, -35.529F), AnimationChannel.Interpolations.CATMULLROM),
+					new Keyframe(3.9167F, KeyframeAnimations.degreeVec(-69.1514F, -31.7893F, -29.9562F), AnimationChannel.Interpolations.LINEAR),
+					new Keyframe(4.1667F, KeyframeAnimations.degreeVec(-41.9095F, -18.3114F, -0.0676F), AnimationChannel.Interpolations.CATMULLROM),
+					new Keyframe(4.4167F, KeyframeAnimations.degreeVec(-90.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.CATMULLROM)
+			))
+			.addAnimation("rightarm", new AnimationChannel(AnimationChannel.Targets.POSITION,
+					new Keyframe(0.0F, KeyframeAnimations.posVec(-3.0F, -2.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
+					new Keyframe(0.9583F, KeyframeAnimations.posVec(-3.0F, -3.0F, -1.0F), AnimationChannel.Interpolations.LINEAR)
+			))
+			.addAnimation("gun", new AnimationChannel(AnimationChannel.Targets.ROTATION,
+					new Keyframe(0.0F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
+					new Keyframe(0.5833F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR),
+					new Keyframe(3.9167F, KeyframeAnimations.degreeVec(2045.0F, 0,0), AnimationChannel.Interpolations.LINEAR),
+					new Keyframe(4.1667F, KeyframeAnimations.degreeVec(2045.0F, 0,0), AnimationChannel.Interpolations.LINEAR),
+					new Keyframe(4.25F, KeyframeAnimations.degreeVec(0.0F, 0.0F, 0.0F), AnimationChannel.Interpolations.LINEAR)
+			))
+			.build();
 }

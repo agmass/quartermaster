@@ -29,6 +29,7 @@ import org.agmas.client.QuartermasterClient;
 import org.agmas.client.render.animations.FlintlockAnimationState;
 import org.agmas.client.render.animations.FlintlockFirstPersonAnim;
 import org.agmas.client.render.animations.HandsModel;
+import org.agmas.init.ModAttachments;
 import org.agmas.init.ModItems;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
@@ -68,12 +69,15 @@ public class FlintlockAnimator {
         int i = Minecraft.getInstance().player.getUseItem().getUseDuration(Minecraft.getInstance().player);
 
         boolean useLH = false;
+        float inspectTime = Minecraft.getInstance().player.getAttachedOrElse(ModAttachments.INSPECT_ANIMATION_TICKS, 0)-Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false);
 
         if (Minecraft.getInstance().player.isUsingItem()) {
             FlintlockFirstPersonAnim.RELOAD.bake(QuartermasterClient.handsRoot).apply(state, ((Minecraft.getInstance().player.getTicksUsingItem() + delta) / i) * 40);
             useLH = true;
         } else if (Quartermaster.timeSinceShooting > 0) {
             FlintlockFirstPersonAnim.SHOOT.bake(QuartermasterClient.handsRoot).apply(state, 15-(Quartermaster.timeSinceShooting - delta));
+        } else if (inspectTime > 0) {
+            FlintlockFirstPersonAnim.INSPECT.bake(QuartermasterClient.handsRoot).apply(state, 90-(inspectTime));
         } else {
             FlintlockFirstPersonAnim.RELOAD.bake(QuartermasterClient.handsRoot).apply(state, 40);
         }
