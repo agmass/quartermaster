@@ -164,7 +164,6 @@ public class ModTagProviders {
         @Override
         protected void addTags(HolderLookup.Provider provider) {
 
-
             builder(EnchantmentTags.NON_TREASURE)
                     .addOptional(ModEnchants.HOMERUN)
                     .addOptional(ModEnchants.POGO)

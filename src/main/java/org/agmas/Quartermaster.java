@@ -3,11 +3,17 @@ package org.agmas;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import org.agmas.init.ModEnchants;
 import org.agmas.init.*;
 import org.agmas.init.tag.ModItemLists;
@@ -67,6 +73,110 @@ public class Quartermaster implements ModInitializer {
 				builder.modifyPools((m)->{
 					m.add(LootItem.lootTableItem(ModItems.COMBAT_EFFECT_SMITHING_TEMPLATE));
 				});
+			}
+
+			// Guarantee Shield Books in Bastions
+
+			if (lootTableSource.isBuiltin() &&
+					key.equals(BuiltInLootTables.BASTION_BRIDGE) || key.equals(BuiltInLootTables.BASTION_OTHER) || key.equals(BuiltInLootTables.BASTION_HOGLIN_STABLE)) {
+				builder.withPool(LootPool.lootPool()
+						.setRolls(ConstantValue.exactly(1))
+						.add(
+								LootItem.lootTableItem(Items.BOOK)
+										.setWeight(1)
+										.apply(new EnchantRandomlyFunction.Builder().withOneOf(
+												HolderSet.direct(
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.BRITTLE),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.SHIELD_BASH)
+												)
+										))
+						));
+			}
+
+			// Guaranteed Books for Enchancements
+
+			if (lootTableSource.isBuiltin() &&
+					key.equals(BuiltInLootTables.END_CITY_TREASURE)) {
+				builder.withPool(LootPool.lootPool()
+						.setRolls(ConstantValue.exactly(1))
+						.add(
+								LootItem.lootTableItem(Items.BOOK)
+										.setWeight(1)
+										.apply(new EnchantRandomlyFunction.Builder().withOneOf(
+												HolderSet.direct(
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.EXPLOSIVE_KINECTIVITY)
+												)
+										))
+						));
+			}
+			if (lootTableSource.isBuiltin() &&
+					key.equals(BuiltInLootTables.PILLAGER_OUTPOST)) {
+				builder.withPool(LootPool.lootPool()
+						.setRolls(ConstantValue.exactly(1))
+						.add(
+								LootItem.lootTableItem(Items.BOOK)
+										.setWeight(1)
+										.apply(new EnchantRandomlyFunction.Builder().withOneOf(
+												HolderSet.direct(
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.FLING)
+												)
+										))
+						));
+			}
+			if (lootTableSource.isBuiltin() &&
+					key.equals(BuiltInLootTables.WOODLAND_MANSION)) {
+				builder.withPool(LootPool.lootPool()
+						.setRolls(ConstantValue.exactly(1))
+						.add(
+								LootItem.lootTableItem(Items.BOOK)
+										.setWeight(1)
+										.apply(new EnchantRandomlyFunction.Builder().withOneOf(
+												HolderSet.direct(
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.PULL),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.SIESMIC),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.HEATWAVE),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.GLACIAL)
+												)
+										))
+						));
+			}
+			if (lootTableSource.isBuiltin() &&
+					key.equals(BuiltInLootTables.ABANDONED_MINESHAFT)) {
+				builder.withPool(LootPool.lootPool()
+						.setRolls(UniformGenerator.between(0,1))
+						.add(
+								LootItem.lootTableItem(Items.BOOK)
+										.setWeight(1)
+										.apply(new EnchantRandomlyFunction.Builder().withOneOf(
+												HolderSet.direct(
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.BUSTER),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.CHARGED)
+												)
+										))
+						));
+			}
+			if (lootTableSource.isBuiltin() &&
+					key.equals(BuiltInLootTables.TRIAL_CHAMBERS_REWARD) || key.equals(BuiltInLootTables.TRIAL_CHAMBERS_REWARD_OMINOUS)) {
+				builder.withPool(LootPool.lootPool()
+						.setRolls(UniformGenerator.between(0,2))
+						.add(
+								LootItem.lootTableItem(Items.BOOK)
+										.setWeight(1)
+										.apply(new EnchantRandomlyFunction.Builder().withOneOf(
+												HolderSet.direct(
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.BRITTLE),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.SHIELD_BASH),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.BUSTER),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.CHARGED),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.FLING),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.GLACIAL),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.SIESMIC),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.PUNCTURE),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.PULL),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.HEATWAVE)
+												)
+										))
+						));
 			}
 		});
 

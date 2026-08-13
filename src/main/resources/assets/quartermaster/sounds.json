@@ -1,38 +1,38 @@
 {
   "cutlass_crit": {
-    "subtitle": "sound.quartermaster.cutlass_crit",
+    "subtitle": "subtitles.quartermaster.cutlass_crit",
     "sounds": ["quartermaster:cutlass_crit"]
   },
   "strong_shield_break": {
-    "subtitle": "sound.quartermaster.strong_shield_break",
+    "subtitle": "subtitles.quartermaster.strong_shield_break",
     "sounds": ["quartermaster:strong_shield_break"]
   },
   "cutlass_sweep": {
-    "subtitle": "sound.quartermaster.cutlass_sweep",
+    "subtitle": "subtitles.quartermaster.cutlass_sweep",
     "sounds": ["quartermaster:cutlass_sweep"]
   },
   "parry": {
-    "subtitle": "sound.quartermaster.parry",
+    "subtitle": "subtitles.quartermaster.parry",
     "sounds": ["quartermaster:parry"]
   },
   "greataxe_hit": {
-    "subtitle": "sound.quartermaster.greataxe_hit",
+    "subtitle": "subtitles.quartermaster.greataxe_hit",
     "sounds": ["quartermaster:greataxe_hit"]
   },
   "greataxe_use": {
-    "subtitle": "sound.quartermaster.greataxe_use",
+    "subtitle": "subtitles.quartermaster.greataxe_use",
     "sounds": ["quartermaster:greataxe_use"]
   },
   "whatsappdanger": {
-    "subtitle": "sound.quartermaster.whatsappdanger",
+    "subtitle": "subtitles.quartermaster.whatsappdanger",
     "sounds": ["quartermaster:whatsappdanger"]
   },
   "flintlock_load_0": {
-    "subtitle": "sound.quartermaster.flintlock_load_0",
+    "subtitle": "subtitles.quartermaster.flintlock_load_0",
     "sounds": ["quartermaster:flintlock_load_0"]
   },
   "flintlock_load_1": {
-    "subtitle": "sound.quartermaster.flintlock_load_1",
+    "subtitle": "subtitles.quartermaster.flintlock_load_1",
     "sounds": ["quartermaster:flintlock_load_1"]
   }
 }

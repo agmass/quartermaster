@@ -117,7 +117,7 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(ModSounds.CUTLASS_CRIT, "Cutlass Critical Hit");
         translationBuilder.add(ModSounds.CUTLASS_SWEEP, "Cutlass Sweep");
         translationBuilder.add(ModSounds.STRONG_SHIELD_BREAK, "Strong Shield Break");
-        translationBuilder.add(ModSounds.PARRY, "PARRY");
+        translationBuilder.add(ModSounds.PARRY, "Parry");
         translationBuilder.add(ModSounds.GREATAXE_HIT, "Greataxe Ability Hit");
         translationBuilder.add(ModSounds.GREATAXE_USE, "Greataxe Ability Used");
         translationBuilder.add(ModSounds.FLINTLOCK_LOAD_0, "Flintlock Loading");
