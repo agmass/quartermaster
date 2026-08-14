@@ -21,6 +21,10 @@
       "required": false
     },
     {
+      "id": "quartermaster:earthquake",
+      "required": false
+    },
+    {
       "id": "quartermaster:fling",
       "required": false
     },

@@ -61,13 +61,15 @@ public class EstocItem extends Item {
     }
     @Override
     public void hurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity attacker) {
-        if (attacker instanceof Player player) {
-            if (((PlayerAcessor)attacker).quartermaster$getEstocWoundChanceTicks() > 0) {
-                ((PlayerAcessor)attacker).quartermaster$setEstocWoundChanceTicks(0);
+        if (!livingEntity.isBlocking()) {
+            if (attacker instanceof Player player) {
+                if (((PlayerAcessor) attacker).quartermaster$getEstocWoundChanceTicks() > 0) {
+                    ((PlayerAcessor) attacker).quartermaster$setEstocWoundChanceTicks(0);
+                    wound(livingEntity);
+                }
+            } else {
                 wound(livingEntity);
             }
-        } else {
-            wound(livingEntity);
         }
         super.hurtEnemy(itemStack, livingEntity, attacker);
     }

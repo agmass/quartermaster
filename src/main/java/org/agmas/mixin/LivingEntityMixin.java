@@ -26,6 +26,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.agmas.Quartermaster;
 import org.agmas.init.*;
 import org.agmas.init.tag.ModTags;
 import org.jspecify.annotations.Nullable;
@@ -123,6 +124,7 @@ public abstract class LivingEntityMixin extends Entity {
 						boolean homerun = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.HOMERUN),getMainHandItem()) > 0;
 						boolean glacial = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.HEATWAVE),getMainHandItem()) > 0;
 						boolean heatwave = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.GLACIAL),getMainHandItem()) > 0;
+						boolean earthquake = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.EARTHQUAKE),getMainHandItem()) > 0;
 
 						for (Entity entity : level.getEntities(((LivingEntity) (Object) this), getBoundingBox().inflate(power * 1.5f))) {
 							if (entity instanceof LivingEntity livingEntity) {
@@ -136,6 +138,9 @@ public abstract class LivingEntityMixin extends Entity {
 								}
 								if (glacial) {
 									livingEntity.setTicksFrozen(480);
+								}
+								if (earthquake) {
+									livingEntity.addEffect(new MobEffectInstance(ModEffects.STUNNED, Quartermaster.STUNNED_TICKS));
 								}
 								if (pull) {
 									livingEntity.setDeltaMovement(livingEntity.getPosition(0f).subtract(getPosition(0f)).normalize().multiply(-2,-2,-2));

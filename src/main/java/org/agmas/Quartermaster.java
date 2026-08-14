@@ -135,6 +135,7 @@ public class Quartermaster implements ModInitializer {
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.PULL),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.SIESMIC),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.HEATWAVE),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.EARTHQUAKE),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.GLACIAL)
 												)
 										))
@@ -166,6 +167,7 @@ public class Quartermaster implements ModInitializer {
 												HolderSet.direct(
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.BRITTLE),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.SHIELD_BASH),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.EARTHQUAKE),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.BUSTER),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.CHARGED),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.FLING),

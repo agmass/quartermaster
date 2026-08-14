@@ -42,6 +42,7 @@ public class ModEnchants {
     public static final ResourceKey<Enchantment> EXPLOSIVE_KINECTIVITY = of("explosive_kinectivity");
     public static final ResourceKey<Enchantment> GLACIAL = of("glacial");
     public static final ResourceKey<Enchantment> HEATWAVE = of("heatwave");
+    public static final ResourceKey<Enchantment> EARTHQUAKE = of("earthquake");
     public static final ResourceKey<Enchantment> HELLFORK = of("hellfork");
     public static final ResourceKey<Enchantment> SINGLEHANDED = of("singlehanded");
     public static final ResourceKey<Enchantment> TIDAL_CHILL = of("tidal_chill");

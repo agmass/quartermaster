@@ -19,6 +19,8 @@
   "enchantment.quartermaster.charged.desc": "Lowers damage of the Ranged ability, but adds extra charges depending on level.",
   "enchantment.quartermaster.chill": "Chill",
   "enchantment.quartermaster.chill.desc": "Freezes victims.",
+  "enchantment.quartermaster.earthquake": "Earthquake",
+  "enchantment.quartermaster.earthquake.desc": "Victims hit by the right-click ability are Stunned.",
   "enchantment.quartermaster.explosive_kinectivity": "Explosive Kinectivity",
   "enchantment.quartermaster.explosive_kinectivity.desc": "Kaboom.",
   "enchantment.quartermaster.fling": "Fling",
@@ -117,6 +119,6 @@
   "subtitles.quartermaster.flintlock_load_1": "Flintlock Loaded",
   "subtitles.quartermaster.greataxe_hit": "Greataxe Ability Hit",
   "subtitles.quartermaster.greataxe_use": "Greataxe Ability Used",
-  "subtitles.quartermaster.parry": "PARRY",
+  "subtitles.quartermaster.parry": "Parry",
   "subtitles.quartermaster.strong_shield_break": "Strong Shield Break"
 }

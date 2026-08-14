@@ -170,6 +170,7 @@ public class ModTagProviders {
                     .addOptional(ModEnchants.PULL)
                     .addOptional(ModEnchants.BUSTER)
                     .addOptional(ModEnchants.CHARGED)
+                    .addOptional(ModEnchants.EARTHQUAKE)
                     .addOptional(ModEnchants.FLING)
                     .addOptional(ModEnchants.PUNCTURE)
                     .addOptional(ModEnchants.SPLINTER)

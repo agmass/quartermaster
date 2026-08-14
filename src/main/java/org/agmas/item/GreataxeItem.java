@@ -63,10 +63,12 @@ public class GreataxeItem extends Item {
 
     public static float modifyBlockDamage(LivingEntity livingEntity, ServerLevel serverLevel, DamageSource damageSource, float original) {
         if (damageSource.getWeaponItem() != null) {
-            boolean busterEnchant = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(serverLevel, ModEnchants.BUSTER),damageSource.getWeaponItem()) > 0;
-            if (damageSource.getWeaponItem().is(ModTags.GREATAXES) && !busterEnchant) {
-                serverLevel.broadcastDamageEvent(livingEntity, damageSource); // make the player RED WITH RAGE!!!!!!!!!!!!!!!!!!
-                return original * 0.75f;
+            if (original > 1) {
+                boolean busterEnchant = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(serverLevel, ModEnchants.BUSTER), damageSource.getWeaponItem()) > 0;
+                if (damageSource.getWeaponItem().is(ModTags.GREATAXES) && !busterEnchant) {
+                    serverLevel.broadcastDamageEvent(livingEntity, damageSource); // make the player RED WITH RAGE!!!!!!!!!!!!!!!!!!
+                    return original * 0.75f;
+                }
             }
         }
         return original;

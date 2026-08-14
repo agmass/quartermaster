@@ -97,6 +97,9 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("enchantment.quartermaster.chill", "Chill");
         translationBuilder.add("enchantment.quartermaster.chill.desc", "Freezes victims.");
 
+        translationBuilder.add("enchantment.quartermaster.earthquake", "Earthquake");
+        translationBuilder.add("enchantment.quartermaster.earthquake.desc", "Victims hit by the right-click ability are Stunned.");
+
         translationBuilder.add("enchantment.quartermaster.explosive_kinectivity", "Explosive Kinectivity");
         translationBuilder.add("enchantment.quartermaster.explosive_kinectivity.desc", "Kaboom.");
 
