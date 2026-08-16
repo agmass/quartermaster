@@ -25,6 +25,10 @@
       "required": false
     },
     {
+      "id": "minecraft:spear",
+      "required": false
+    },
+    {
       "id": "minecraft:stalagmite",
       "required": false
     },

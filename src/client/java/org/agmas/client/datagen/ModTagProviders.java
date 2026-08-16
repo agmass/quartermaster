@@ -274,6 +274,7 @@ public class ModTagProviders {
                     .addOptional(DamageTypes.FALLING_ANVIL)
                     .addOptional(DamageTypes.FALLING_BLOCK)
                     .addOptional(DamageTypes.FALLING_STALACTITE)
+                    .addOptional(DamageTypes.SPEAR)
                     .addOptional(DamageTypes.STALAGMITE)
                     .addOptional(ModDamageTypes.SHOCKWAVE);
         }
