@@ -17,7 +17,8 @@ public class ModItemLists {
             ModItems.IRON_CUTLASS,
             ModItems.GOLDEN_CUTLASS,
             ModItems.DIAMOND_CUTLASS,
-            ModItems.NETHERITE_CUTLASS
+            ModItems.NETHERITE_CUTLASS,
+            ModItems.BAMBOO_CUTLASS
     );
 
     public static List<Item> morningstar = List.of(
@@ -30,7 +31,8 @@ public class ModItemLists {
             ModItems.IRON_MORNINGSTAR,
             ModItems.GOLDEN_MORNINGSTAR,
             ModItems.DIAMOND_MORNINGSTAR,
-            ModItems.NETHERITE_MORNINGSTAR
+            ModItems.NETHERITE_MORNINGSTAR,
+            ModItems.BAMBOO_MORNINGSTAR
     );
 
     public static List<Item> estoc = List.of(
@@ -43,7 +45,8 @@ public class ModItemLists {
             ModItems.IRON_ESTOC,
             ModItems.GOLDEN_ESTOC,
             ModItems.DIAMOND_ESTOC,
-            ModItems.NETHERITE_ESTOC
+            ModItems.NETHERITE_ESTOC,
+            ModItems.BAMBOO_ESTOC
     );
 
     public static List<Item> greataxes = List.of(
@@ -56,7 +59,8 @@ public class ModItemLists {
             ModItems.IRON_GREATAXE,
             ModItems.GOLDEN_GREATAXE,
             ModItems.DIAMOND_GREATAXE,
-            ModItems.NETHERITE_GREATAXE
+            ModItems.NETHERITE_GREATAXE,
+            ModItems.BAMBOO_GREATAXE
     );
 
     public static List<Item> warhammers = List.of(
@@ -69,7 +73,8 @@ public class ModItemLists {
             ModItems.IRON_WARHAMMER,
             ModItems.GOLDEN_WARHAMMER,
             ModItems.DIAMOND_WARHAMMER,
-            ModItems.NETHERITE_WARHAMMER
+            ModItems.NETHERITE_WARHAMMER,
+            ModItems.BAMBOO_WARHAMMER
     );
 
     // Heavies
@@ -172,6 +177,18 @@ public class ModItemLists {
             ModItems.NETHERITE_CUTLASS,
             ModItems.NETHERITE_ESTOC,
             Items.NETHERITE_SWORD
+    );
+
+    public static List<Item> bamboo_weapons = List.of(
+            ModItems.BAMBOO_GREATAXE,
+            ModItems.BAMBOO_WARHAMMER,
+            ModItems.BAMBOO_CUTLASS,
+            ModItems.BAMBOO_ESTOC,
+            ModItems.BAMBOO_MORNINGSTAR,
+            ModItems.BAMBOO_AXE,
+            ModItems.BAMBOO_SWORD,
+            ModItems.BAMBOO_SPEAR,
+            ModItems.BAMBOO_MACE
     );
 
 

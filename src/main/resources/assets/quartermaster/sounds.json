@@ -34,5 +34,9 @@
   "flintlock_load_1": {
     "subtitle": "subtitles.quartermaster.flintlock_load_1",
     "sounds": ["quartermaster:flintlock_load_1"]
+  },
+  "flintlock_shoot": {
+    "subtitle": "subtitles.quartermaster.flintlock_shoot",
+    "sounds": ["quartermaster:flintlock_shoot"]
   }
 }

@@ -1,5 +1,5 @@
 // 26.1.2	-999999999-01-01T00:00:00	Quartermaster/Tags for minecraft:enchantment
-57169c04744324d2817e755aa1414c70e6005bc8 data/minecraft/tags/enchantment/non_treasure.json
+2e6592ada607aaf8f47cb319442e44d577a271e6 data/minecraft/tags/enchantment/non_treasure.json
 35f571a26d86d4723cdd2f6ae18ff28055f06f6a data/quartermaster/tags/enchantment/exclusive_set/elemental.json
 32cf63718be8c736bd04d167e722e7040f3769a5 data/quartermaster/tags/enchantment/exclusive_set/fall_prot.json
 01d1c66afe139ab5e448953fa9148c30b5d838fb data/quartermaster/tags/enchantment/exclusive_set/greataxe.json

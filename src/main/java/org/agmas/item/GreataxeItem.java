@@ -44,7 +44,7 @@ public class GreataxeItem extends Item {
                         Attributes.ATTACK_DAMAGE,
                         new AttributeModifier(
                                 BASE_ATTACK_DAMAGE_ID,
-                                6.5F + material.attackDamageBonus(),
+                                (material == ModItems.BAMBOO  ? 0.01 : 6.5F) + material.attackDamageBonus(),
                                 AttributeModifier.Operation.ADD_VALUE
                         ),
                         EquipmentSlotGroup.MAINHAND
@@ -179,7 +179,8 @@ public class GreataxeItem extends Item {
                                                 material == ToolMaterial.GOLD ? ModColors.GOLD :
                                                         material == ToolMaterial.COPPER ? ModColors.COPPER :
                                                                 material == ToolMaterial.STONE ? ModColors.STONE :
-                                                                        ModColors.NETHERITE
+                                                                        material == ModItems.BAMBOO ? ModColors.BAMBOO :
+                                                                            ModColors.NETHERITE
                         )
                 .enchantable(material.enchantmentValue())
                 .component(DataComponents.WEAPON, new Weapon(1))

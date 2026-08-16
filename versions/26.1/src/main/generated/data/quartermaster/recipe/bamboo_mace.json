@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": "minecraft:breeze_rod",
+    "N": "minecraft:bamboo_block"
+  },
+  "pattern": [
+    "   ",
+    " N ",
+    "H  "
+  ],
+  "result": {
+    "id": "quartermaster:bamboo_mace"
+  }
+}

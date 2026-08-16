@@ -21,6 +21,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import org.agmas.init.ModDamageTypes;
@@ -117,6 +118,8 @@ public class ModTagProviders {
             add(ModItems.RAPIER, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
 
             add(ModItems.FLINTLOCK, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
+
+            add(Items.BAMBOO, ModTags.BAMBOO_REPAIR_MATERIALS);
 
         }
 

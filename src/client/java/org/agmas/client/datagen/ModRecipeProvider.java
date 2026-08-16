@@ -124,6 +124,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                         .unlockedBy("has_ingredient", has(ModItems.PELLET))
                         .save(recipeOutput);
 
+                shaped(RecipeCategory.COMBAT, ModItems.COMBAT_EFFECT_SMITHING_TEMPLATE, 2)
+                        .pattern("DAD")
+                        .pattern("DBD")
+                        .pattern("DDD")
+                        .define('D', Items.DIAMOND)
+                        .define('B', Items.BLACKSTONE)
+                        .define('A', ModItems.COMBAT_EFFECT_SMITHING_TEMPLATE)
+                        .unlockedBy("has_ingredient", has(ModItems.COMBAT_EFFECT_SMITHING_TEMPLATE))
+                        .save(recipeOutput);
+
                 SimpleCookingRecipeBuilder
                         .smelting(Ingredient.of(ModItems.GOLDEN_CUTLASS),
                                 RecipeCategory.TOOLS,
@@ -134,7 +144,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                                 0.1F,
                                 200)
                         .unlockedBy("has_ingredient", has(ModItems.GOLDEN_CUTLASS))
-                        .save(this.output);
+                        .save(this.output, "cutlass_smelt");
 
                 SimpleCookingRecipeBuilder
                         .smelting(Ingredient.of(ModItems.GOLDEN_ESTOC),
@@ -146,7 +156,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                                 0.1F,
                                 200)
                         .unlockedBy("has_ingredient", has(ModItems.GOLDEN_ESTOC))
-                        .save(this.output);
+                        .save(this.output, "estoc_smelt");
 
                 SimpleCookingRecipeBuilder
                         .smelting(Ingredient.of(ModItems.GOLDEN_GREATAXE),
@@ -158,7 +168,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                                 0.1F,
                                 200)
                         .unlockedBy("has_ingredient", has(ModItems.GOLDEN_GREATAXE))
-                        .save(this.output);
+                        .save(this.output, "greataxe_smelt");
 
                 SimpleCookingRecipeBuilder
                         .smelting(Ingredient.of(ModItems.GOLDEN_MORNINGSTAR),
@@ -170,7 +180,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                                 0.1F,
                                 200)
                         .unlockedBy("has_ingredient", has(ModItems.GOLDEN_MORNINGSTAR))
-                        .save(this.output);
+                        .save(this.output, "morningstar_smelt");
 
                 SimpleCookingRecipeBuilder
                         .smelting(Ingredient.of(ModItems.GOLDEN_WARHAMMER),
@@ -182,7 +192,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                                 0.1F,
                                 200)
                         .unlockedBy("has_ingredient", has(ModItems.GOLDEN_WARHAMMER))
-                        .save(this.output);
+                        .save(this.output, "warhammer_smelt");
+
 
                 buildCutlass(ModItems.WOODEN_CUTLASS, tag(ItemTags.PLANKS), Items.STICK);
                 buildCutlass(ModItems.STONE_CUTLASS, tag(ItemTags.STONE_TOOL_MATERIALS), Items.COBBLESTONE);
@@ -228,6 +239,48 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 buildWarhammers(ModItems.DIAMOND_WARHAMMER, Ingredient.of(Items.DIAMOND_BLOCK), Items.DIAMOND);
                 netheriteSmithing(ModItems.DIAMOND_WARHAMMER, RecipeCategory.COMBAT, ModItems.NETHERITE_WARHAMMER);
 
+                shaped(RecipeCategory.COMBAT, ModItems.BAMBOO_MACE)
+                        .pattern("   ")
+                        .pattern(" N ")
+                        .pattern("H  ")
+                        .define('N', Items.BAMBOO_BLOCK)
+                        .define('H', Items.BREEZE_ROD)
+                        .unlockedBy("has_ingredient", has(Items.BREEZE_ROD))
+                        .save(recipeOutput);
+
+                shaped(RecipeCategory.COMBAT, ModItems.BAMBOO_SPEAR)
+                        .pattern("  N")
+                        .pattern(" H ")
+                        .pattern("H  ")
+                        .define('N', Items.BAMBOO)
+                        .define('H', Items.STICK)
+                        .unlockedBy("has_ingredient", has(Items.BAMBOO))
+                        .save(recipeOutput);
+
+                shaped(RecipeCategory.COMBAT, ModItems.BAMBOO_SWORD)
+                        .pattern("N")
+                        .pattern("N")
+                        .pattern("H")
+                        .define('N', Items.BAMBOO)
+                        .define('H', Items.STICK)
+                        .unlockedBy("has_ingredient", has(Items.BAMBOO))
+                        .save(recipeOutput);
+
+                shaped(RecipeCategory.COMBAT, ModItems.BAMBOO_AXE)
+                        .pattern("NN")
+                        .pattern("NH")
+                        .pattern(" H")
+                        .define('N', Items.BAMBOO)
+                        .define('H', Items.STICK)
+                        .unlockedBy("has_ingredient", has(Items.BAMBOO))
+                        .save(recipeOutput);
+
+
+                buildEstoc(ModItems.BAMBOO_ESTOC, Ingredient.of(Items.BAMBOO), Items.BAMBOO);
+                buildCutlass(ModItems.BAMBOO_CUTLASS, Ingredient.of(Items.BAMBOO), Items.BAMBOO);
+                buildMorningstar(ModItems.BAMBOO_MORNINGSTAR, Ingredient.of(Items.BAMBOO), Items.BAMBOO);
+                buildGreataxe(ModItems.BAMBOO_GREATAXE, Ingredient.of(Items.BAMBOO), Items.BAMBOO);
+                buildWarhammers(ModItems.BAMBOO_WARHAMMER, Ingredient.of(Items.BAMBOO), Items.BAMBOO);
             }
 
             public void buildWarhammers(Item cutlass, Ingredient material, Item unlock) {

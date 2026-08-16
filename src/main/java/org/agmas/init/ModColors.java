@@ -18,6 +18,8 @@ public class ModColors {
     public static HashMap<Ingredient, Integer> trimColors = new HashMap<>();
     public static HashMap<TagKey<Item>, Integer> tagTrimColors = new HashMap<>();
 
+    public static int BAMBOO = new Color(146, 184, 19).getRGB();
+
     public static int WOOD = new Color(148,115,64).getRGB();
     public static int STONE = new Color(134,134,134).getRGB();
     public static int COPPER = new Color(208,110,81).getRGB();
@@ -48,6 +50,7 @@ public class ModColors {
         trimColors.put(Ingredient.of(Items.REDSTONE), Color.RED.getRGB());
         trimColors.put(Ingredient.of(Items.EMERALD), Color.GREEN.getRGB());
         trimColors.put(Ingredient.of(Items.QUARTZ), Color.WHITE.getRGB());
+        trimColors.put(Ingredient.of(Items.BAMBOO), BAMBOO);
         tagTrimColors.put(ItemTags.STONE_CRAFTING_MATERIALS, STONE);
         tagTrimColors.put(ItemTags.PLANKS, WOOD);
 

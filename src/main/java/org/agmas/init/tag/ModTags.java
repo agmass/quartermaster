@@ -41,6 +41,10 @@ public class ModTags {
 
     public static final TagKey<Item> RANGED = TagKey.create(Registries.ITEM, QMIdentifier.of("ranged").id);
 
+    public static final TagKey<Item> BAMBOO_REPAIR_MATERIALS = TagKey.create(Registries.ITEM, QMIdentifier.of("bamboo_repair_materials").id);
+    public static final TagKey<Item> NON_DAMAGING = TagKey.create(Registries.ITEM, QMIdentifier.of("non_damaging").id);
+
+
     public static final TagKey<Enchantment> EXCLUSIVE_SET_SPEARS = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/spears").id);
     public static final TagKey<Enchantment> EXCLUSIVE_SET_SHIELD_DISABLE = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/shield_disable").id);
     public static final TagKey<Enchantment> EXCLUSIVE_SET_GREATAXE = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/greataxe").id);

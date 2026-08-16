@@ -110,6 +110,21 @@ public class ModModelProvider extends FabricModelProvider {
         create32X(itemModelGenerator, ModItems.NETHERITE_WARHAMMER, greataxeTemplate);
 
 
+        // Bamboo
+
+        itemModelGenerator.generateFlatItem(ModItems.BAMBOO_AXE, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.BAMBOO_SWORD, ModelTemplates.FLAT_HANDHELD_ITEM);
+        itemModelGenerator.generateFlatItem(ModItems.BAMBOO_MACE, ModelTemplates.FLAT_HANDHELD_MACE_ITEM);
+
+        create32XSpear(itemModelGenerator, ModItems.BAMBOO_SPEAR);
+        create32X(itemModelGenerator, ModItems.BAMBOO_GREATAXE, greataxeTemplate);
+        create32X(itemModelGenerator, ModItems.BAMBOO_WARHAMMER, greataxeTemplate);
+        create32X(itemModelGenerator, ModItems.BAMBOO_MORNINGSTAR, greataxeTemplate);
+
+        create32X(itemModelGenerator, ModItems.BAMBOO_ESTOC, cutlassTemplate);
+        create32X(itemModelGenerator, ModItems.BAMBOO_CUTLASS, cutlassTemplate);
+
+
     }
 
     /// Credit: Originally from AcornLib by AcoYT, ported to Mojmaps, added the ability to use templates
@@ -133,6 +148,25 @@ public class ModModelProvider extends FabricModelProvider {
         );
     }
 
+    public void create32XSpear(ItemModelGenerators itemModelGenerator, Item item) {
+        Identifier world_id = itemModelGenerator.createFlatItemModel(item, ModelTemplates.SPEAR_IN_HAND);
+        Identifier gui_id = ModelTemplates.FLAT_HANDHELD_ITEM.create(
+                world_id.withPath(world_id.getPath()+"_16"),
+                TextureMapping.layer0(TextureMapping.getItemTexture(item, "_16")),
+                itemModelGenerator.modelOutput
+        );
+
+        itemModelGenerator.itemModelOutput.accept(item,
+                ItemModelUtils.select(
+                        new DisplayContext(),
+                        ItemModelUtils.plainModel(world_id),
+                        ItemModelUtils.when(
+                                Arrays.asList(ItemDisplayContext.GUI, ItemDisplayContext.GROUND, ItemDisplayContext.FIXED),
+                                ItemModelUtils.plainModel(gui_id)
+                        )
+                )
+        );
+    }
     public void createRapier(ItemModelGenerators itemModelGenerator, Item item, ModelTemplate template) {
         Identifier world_id = itemModelGenerator.createFlatItemModel(item, template);
         Identifier gui_id = template.create(

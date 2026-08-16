@@ -125,6 +125,7 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(ModSounds.GREATAXE_USE, "Greataxe Ability Used");
         translationBuilder.add(ModSounds.FLINTLOCK_LOAD_0, "Flintlock Loading");
         translationBuilder.add(ModSounds.FLINTLOCK_LOAD_1, "Flintlock Loaded");
+        translationBuilder.add(ModSounds.FLINTLOCK_SHOOT, "Flintlock Shot");
 
         translationBuilder.add(ModEffects.WOUNDED.value(), "Wounded");
         translationBuilder.add(ModEffects.FROST_PROTECTION.value(), "Frost Protection");
@@ -141,6 +142,11 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(ModItems.GREATAXE, "Greataxe");
         translationBuilder.add(ModItems.WARHAMMER, "Warhammer");
         translationBuilder.add(ModItems.FLINTLOCK, "Flintlock");
+
+        translationBuilder.add(ModItems.BAMBOO_MACE, "Bamboo Mace");
+        translationBuilder.add(ModItems.BAMBOO_AXE, "Bamboo Axe");
+        translationBuilder.add(ModItems.BAMBOO_SWORD, "Bamboo Sword");
+        translationBuilder.add(ModItems.BAMBOO_SPEAR, "Bamboo Spear");
 
         generateTiered(translationBuilder, "cutlass", "Cutlass");
         generateTiered(translationBuilder, "morningstar", "Morningstar");
@@ -164,6 +170,7 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("item.quartermaster.golden_" + toolName, "Golden " + fancyName);
         translationBuilder.add("item.quartermaster.diamond_" + toolName, "Diamond " + fancyName);
         translationBuilder.add("item.quartermaster.netherite_" + toolName, "Netherite " + fancyName);
+        translationBuilder.add("item.quartermaster.bamboo_" + toolName, "Bamboo " + fancyName);
     }
 
 }

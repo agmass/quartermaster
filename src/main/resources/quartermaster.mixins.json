@@ -5,6 +5,7 @@
   "mixins": [
     "AddAttributesMixin",
     "AxeEnchantShieldMixin",
+    "BambooWeaponsDoNoDamageMixin",
     "BusterAlwaysAccurateMixin",
     "ChangeAttackStrengthTickerToEstocMixin",
     "DisarmedCooldownMixin",

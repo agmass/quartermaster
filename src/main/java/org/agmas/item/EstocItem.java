@@ -20,6 +20,7 @@ import org.agmas.duck.PlayerAcessor;
 import org.agmas.init.ModAttachments;
 import org.agmas.init.ModComponents;
 import org.agmas.init.ModEffects;
+import org.agmas.init.ModItems;
 import org.agmas.mixin.ChangeAttackStrengthTickerToEstocMixin;
 
 import java.util.List;
@@ -35,7 +36,7 @@ public class EstocItem extends Item {
                         Attributes.ATTACK_DAMAGE,
                         new AttributeModifier(
                                 BASE_ATTACK_DAMAGE_ID,
-                                2.4F + material.attackDamageBonus(),
+                                (material == ModItems.BAMBOO  ? 0.01 : 2.4F) + material.attackDamageBonus(),
                                 AttributeModifier.Operation.ADD_VALUE
                         ),
                         EquipmentSlotGroup.MAINHAND

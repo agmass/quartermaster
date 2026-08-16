@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": "minecraft:stick",
+    "N": "minecraft:bamboo"
+  },
+  "pattern": [
+    " NN",
+    "NH ",
+    "H  "
+  ],
+  "result": {
+    "id": "quartermaster:bamboo_greataxe"
+  }
+}

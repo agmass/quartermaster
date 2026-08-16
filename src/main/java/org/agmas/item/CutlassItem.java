@@ -45,7 +45,7 @@ public class CutlassItem extends net.minecraft.world.item.Item implements Custom
                         Attributes.ATTACK_DAMAGE,
                         new AttributeModifier(
                                 BASE_ATTACK_DAMAGE_ID,
-                                2.4F + material.attackDamageBonus(),
+                                (material == ModItems.BAMBOO  ? 0.01 : 2.4F) + material.attackDamageBonus(),
                                 AttributeModifier.Operation.ADD_VALUE
                         ),
                         EquipmentSlotGroup.MAINHAND
@@ -121,7 +121,7 @@ public class CutlassItem extends net.minecraft.world.item.Item implements Custom
                                 int freeSlot =player.getInventory().getFreeSlot();
                                 if (freeSlot != -1) {
                                     ItemStack stack = player.getMainHandItem().copy();
-                                    player.setItemSlot(EquipmentSlot.MAINHAND, ItemStack.EMPTY);
+                                    player.getInventory().setSelectedItem(ItemStack.EMPTY);
                                     player.getInventory().setItem(freeSlot,stack);
                                 }
                             } else {

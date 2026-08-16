@@ -14,10 +14,7 @@ import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import org.agmas.Quartermaster;
-import org.agmas.init.ModAttachments;
-import org.agmas.init.ModComponents;
-import org.agmas.init.ModEffects;
-import org.agmas.init.ModSounds;
+import org.agmas.init.*;
 import org.agmas.item.util.CustomHitSounds;
 
 import static net.minecraft.world.item.ToolMaterial.*;
@@ -35,7 +32,7 @@ public class MorningstarItem extends Item {
                         Attributes.ATTACK_DAMAGE,
                         new AttributeModifier(
                                 BASE_ATTACK_DAMAGE_ID,
-                                5.5F + material.attackDamageBonus(),
+                                (material == ModItems.BAMBOO  ? 0.01 : 5.5F) + material.attackDamageBonus(),
                                 AttributeModifier.Operation.ADD_VALUE
                         ),
                         EquipmentSlotGroup.MAINHAND

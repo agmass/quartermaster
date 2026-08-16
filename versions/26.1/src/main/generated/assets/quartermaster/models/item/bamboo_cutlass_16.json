@@ -1,0 +1,6 @@
+{
+  "parent": "quartermaster:item/cutlass_template",
+  "textures": {
+    "layer0": "quartermaster:item/bamboo_cutlass_16"
+  }
+}

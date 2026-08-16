@@ -40,7 +40,7 @@ public class WarhammerItem extends Item {
                         Attributes.ATTACK_DAMAGE,
                         new AttributeModifier(
                                 BASE_ATTACK_DAMAGE_ID,
-                                6.5F + material.attackDamageBonus(),
+                                (material == ModItems.BAMBOO  ? 0.01 : 6.5F) + material.attackDamageBonus(),
                                 AttributeModifier.Operation.ADD_VALUE
                         ),
                         EquipmentSlotGroup.MAINHAND

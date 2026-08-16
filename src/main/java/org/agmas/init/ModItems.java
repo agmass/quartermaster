@@ -7,18 +7,29 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 /*import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 *///? }
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.Weapon;
 import org.agmas.QMIdentifier;
 import org.agmas.Quartermaster;
 import org.agmas.init.tag.ModItemLists;
+import org.agmas.init.tag.ModTags;
 import org.agmas.item.*;
 
 import java.util.function.Function;
 
 public class ModItems {
+    public static final ToolMaterial BAMBOO = new ToolMaterial(BlockTags.INCORRECT_FOR_WOODEN_TOOL, 9999999, 0.0F, 0.0F, 15, ModTags.BAMBOO_REPAIR_MATERIALS);
+
 
     public static Item RELIC_HANDLE = register("relic_handle", Item::new, new Item.Properties().stacksTo(1).rarity(Rarity.RARE));
     public static Item RUINED_HANDLE = register("ruined_handle", RapierHandleItem::new, new Item.Properties().stacksTo(1).rarity(Rarity.RARE));
@@ -95,6 +106,26 @@ public class ModItems {
     public static Item DIAMOND_WARHAMMER = register("diamond_warhammer", WarhammerItem::new, WarhammerItem.createSettings(ToolMaterial.DIAMOND));
     public static Item NETHERITE_WARHAMMER = register("netherite_warhammer", WarhammerItem::new, WarhammerItem.createSettings(ToolMaterial.NETHERITE));
 
+    // Bamboo Toolset
+    public static Item BAMBOO_WARHAMMER = register("bamboo_warhammer", WarhammerItem::new, WarhammerItem.createSettings(BAMBOO).rarity(Rarity.RARE));
+    public static Item BAMBOO_GREATAXE = register("bamboo_greataxe", GreataxeItem::new, GreataxeItem.createSettings(BAMBOO).rarity(Rarity.RARE));
+    public static Item BAMBOO_ESTOC = register("bamboo_estoc", EstocItem::new, EstocItem.createSettings(BAMBOO).rarity(Rarity.RARE));
+    public static Item BAMBOO_MORNINGSTAR = register("bamboo_morningstar", MorningstarItem::new, MorningstarItem.createSettings(BAMBOO).rarity(Rarity.RARE));
+    public static Item BAMBOO_CUTLASS = register("bamboo_cutlass", CutlassItem::new, CutlassItem.createSettings(BAMBOO).rarity(Rarity.RARE));
+    public static Item BAMBOO_SWORD = register("bamboo_sword", Item::new, new Item.Properties().sword(BAMBOO, 0.01F, -2.4F));
+    public static Item BAMBOO_AXE = register("bamboo_axe", properties -> new AxeItem(BAMBOO, 0.01F, -3.2F, properties), new Item.Properties());
+    public static Item BAMBOO_MACE = register("bamboo_mace", MaceItem::new, (new Item.Properties()).rarity(Rarity.EPIC).durability(500).component(DataComponents.TOOL, MaceItem.createToolProperties()).repairable(Items.BAMBOO).attributes(createBambooMaceAttributes()).enchantable(15).component(DataComponents.WEAPON, new Weapon(1)));
+    public static Item BAMBOO_SPEAR = register(
+            "bamboo_spear", Item::new, new Item.Properties().spear(BAMBOO, 0.65F, 0.01F, 0.75F, 5.0F, 14.0F, 10.0F, 5.1F, 15.0F, 0F)
+    );
+
+
+    public static ItemAttributeModifiers createBambooMaceAttributes() {
+        return ItemAttributeModifiers.builder()
+                .add(Attributes.ATTACK_SPEED, new AttributeModifier(Item.BASE_ATTACK_SPEED_ID, -3.4F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
+                .build();
+    }
+
 
     public static <T extends Item> T register(String name, Function<Item.Properties, T> itemFactory, Item.Properties settings) {
         // Create the item key.
@@ -156,6 +187,9 @@ public class ModItems {
                     coralRapier.set(ModComponents.IS_CORAL, true);
                     creativeTab.addAfter(Items.NETHERITE_SWORD, ModItems.RAPIER);
                     creativeTab.addAfter(Items.NETHERITE_SWORD, coralRapier);
+                    creativeTab.addAfter(Items.NETHERITE_AXE, ModItems.BAMBOO_AXE);
+                    creativeTab.addAfter(Items.NETHERITE_SWORD, ModItems.BAMBOO_SWORD);
+                    creativeTab.addAfter(Items.NETHERITE_SPEAR, ModItems.BAMBOO_SPEAR);
 
                     // Heavies
                     creativeTab.addAfter(Items.NETHERITE_AXE, ModItemLists.greataxes.toArray(new Item[0]));

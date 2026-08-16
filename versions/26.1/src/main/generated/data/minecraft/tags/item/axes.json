@@ -8,6 +8,7 @@
     "quartermaster:golden_morningstar",
     "quartermaster:diamond_morningstar",
     "quartermaster:netherite_morningstar",
+    "quartermaster:bamboo_morningstar",
     "quartermaster:greataxe",
     "quartermaster:wooden_greataxe",
     "quartermaster:stone_greataxe",
@@ -16,6 +17,7 @@
     "quartermaster:golden_greataxe",
     "quartermaster:diamond_greataxe",
     "quartermaster:netherite_greataxe",
+    "quartermaster:bamboo_greataxe",
     "quartermaster:warhammer",
     "quartermaster:wooden_warhammer",
     "quartermaster:stone_warhammer",
@@ -23,6 +25,7 @@
     "quartermaster:iron_warhammer",
     "quartermaster:golden_warhammer",
     "quartermaster:diamond_warhammer",
-    "quartermaster:netherite_warhammer"
+    "quartermaster:netherite_warhammer",
+    "quartermaster:bamboo_warhammer"
   ]
 }

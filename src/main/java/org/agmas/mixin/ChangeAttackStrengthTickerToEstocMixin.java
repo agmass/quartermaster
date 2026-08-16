@@ -61,24 +61,20 @@ public abstract class ChangeAttackStrengthTickerToEstocMixin extends LivingEntit
     @WrapOperation(method = "tick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/player/Player;resetAttackStrengthTicker()V"))
     public void dontResetOnSwap(Player instance, Operation<Void> original) {
         int estocTicks = instance.getAttachedOrElse(ModAttachments.STORED_ESTOC_TICKS,0);
-        original.call(instance);
         if (instance.getMainHandItem().is(ModTags.ESTOCS)) {
             if (!instance.level().isClientSide()) {
-                if (lastEstocTicks < 10 && ((ServerLevel)instance.level()).getGameRules().get(ModGameRule.WOUND_WHEN_ESTOC_UNCHARGED_BOOLEAN_GAMERULE).booleanValue())
-                {
+                if (lastEstocTicks < 10 && ((ServerLevel)instance.level()).getGameRules().get(ModGameRule.WOUND_WHEN_ESTOC_UNCHARGED_BOOLEAN_GAMERULE).booleanValue()) {
                     EstocItem.wound(instance);
                 }
             }
             estocWoundChanceTicks = 20;
+        } else {
+            original.call(instance);
         }
         instance.setAttached(ModAttachments.STORED_ESTOC_TICKS, estocTicks);
         lastEstocTicks = estocTicks;
     }
 
-    @Inject(method = "resetOnlyAttackStrengthTicker", at = @At("TAIL"))
-    public void attackStrengthResetAgain(CallbackInfo ci) {
-        setAttached(ModAttachments.STORED_ESTOC_TICKS, 0);
-    }
 
 
 }
