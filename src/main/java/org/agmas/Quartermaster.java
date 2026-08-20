@@ -28,7 +28,7 @@ public class Quartermaster implements ModInitializer {
 
 	public static int timeSinceShooting = 0;
 	public static int STUNNED_TICKS = 20*5;
-	public static int DISARMED_TICKS = 20*2;
+	public static int DISARMED_TICKS = 50;
 	@Override
 	public void onInitialize() {
 		ModItems.init();

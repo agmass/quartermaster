@@ -121,6 +121,8 @@ public class ModTagProviders {
 
             add(Items.BAMBOO, ModTags.BAMBOO_REPAIR_MATERIALS);
 
+            addList(ModItemLists.bamboo_weapons, ModTags.NON_DAMAGING);
+
         }
 
         public void add(Item item,TagKey<Item> tag) {

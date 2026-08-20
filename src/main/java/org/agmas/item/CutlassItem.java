@@ -121,7 +121,7 @@ public class CutlassItem extends net.minecraft.world.item.Item implements Custom
                                 int freeSlot =player.getInventory().getFreeSlot();
                                 if (freeSlot != -1) {
                                     ItemStack stack = player.getMainHandItem().copy();
-                                    player.getInventory().setSelectedItem(ItemStack.EMPTY);
+                                    player.getItemInHand(InteractionHand.MAIN_HAND).shrink(100);
                                     player.getInventory().setItem(freeSlot,stack);
                                 }
                             } else {

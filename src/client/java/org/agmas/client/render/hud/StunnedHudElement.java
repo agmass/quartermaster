@@ -31,7 +31,7 @@ public class StunnedHudElement implements HudElement {
         Player player = Minecraft.getInstance().player;
         if (player == null) return;
 
-        int y = guiGraphics.guiHeight() / 2 + 16;
+        int y = guiGraphics.guiHeight() / 2 + (player.hasEffect(ModEffects.DISARMED)  ? 40 : 24);
         int x = guiGraphics.guiWidth() / 2;
 
         if (player.hasEffect(ModEffects.STUNNED)) {
