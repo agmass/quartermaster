@@ -3,11 +3,13 @@ package org.agmas.item;
 import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -15,21 +17,21 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import net.minecraft.world.item.component.TooltipDisplay;
+//? if >1.21.1
+//import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CoralBlock;
-import org.agmas.QMIdentifier;
-import org.agmas.Quartermaster;
-import org.agmas.init.ModAttachments;
+import org.agmas.porting.QMIdentifier;
 import org.agmas.init.ModComponents;
-import org.agmas.init.ModGameRule;
 import org.agmas.init.ModSounds;
 import org.agmas.init.tag.ModTags;
 import org.agmas.item.util.CustomHitSounds;
+import org.agmas.porting.QMPToolMaterial;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class RapierItem extends Item implements CustomHitSounds {
@@ -40,7 +42,7 @@ public class RapierItem extends Item implements CustomHitSounds {
     /**
      * @author Chemthunder
      */
-    public static ItemAttributeModifiers createAttributes(ToolMaterial material) {
+    public static ItemAttributeModifiers createAttributes(QMPToolMaterial material) {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_DAMAGE,
                         new AttributeModifier(
@@ -74,24 +76,41 @@ public class RapierItem extends Item implements CustomHitSounds {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
+    //? if >1.21.1
+    //public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
+    //? if <=1.21.1
+    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> consumer, TooltipFlag tooltipFlag) {
         if (itemStack.get(ModComponents.IS_CORAL)) {
-            consumer.accept(Component.translatable("item.quartermaster.rapier.coral").withStyle(ChatFormatting.GRAY));
+
+            //? if >1.21.1
+            //consumer.accept
+            //? if <=1.21.1
+            consumer.add
+                    (Component.translatable("item.quartermaster.rapier.coral").withStyle(ChatFormatting.GRAY));
         }
-        super.appendHoverText(itemStack, tooltipContext, tooltipDisplay, consumer, tooltipFlag);
+        //? if >1.21.1
+        //super.appendHoverText(itemStack, tooltipContext, tooltipDisplay, consumer, tooltipFlag);
+        //? if <=1.21.1
+        super.appendHoverText(itemStack, tooltipContext, consumer, tooltipFlag);
     }
 
+
     @Override
-    public InteractionResult use(Level level, Player user, InteractionHand interactionHand) {
+    //? if >1.21.1
+    //public InteractionResult use(Level level, Player user, InteractionHand interactionHand) {
+    //? if <=1.21.1
+    public InteractionResultHolder<ItemStack> use(Level level, Player user, InteractionHand interactionHand) {
         ItemStack stack = user.getItemInHand(interactionHand);
 
         user.startUsingItem(interactionHand);
         if (!user.isCreative()) {
-            user.getCooldowns().addCooldown(stack, 20*6);
+            user.getCooldowns().addCooldown(stack
+                    //? if <=1.21.1
+                            .getItem()
+                    , 20*6);
         }
         return super.use(level, user, interactionHand);
     }
-
 
     @Override
     public int getUseDuration(ItemStack itemStack, LivingEntity livingEntity) {
@@ -102,10 +121,12 @@ public class RapierItem extends Item implements CustomHitSounds {
     }
 
     @Override
-    public ItemUseAnimation getUseAnimation(ItemStack itemStack) {
-        return ItemUseAnimation.BLOCK;
+    //? if >1.21.1
+    //public ItemUseAnimation getUseAnimation(ItemStack itemStack) { return ItemUseAnimation.BLOCK; }
+    //? if <=1.21.1
+    public UseAnim getUseAnimation(ItemStack itemStack) {
+        return UseAnim.BLOCK;
     }
-
 
     @Override
     public InteractionResult useOn(UseOnContext useOnContext) {
@@ -120,12 +141,15 @@ public class RapierItem extends Item implements CustomHitSounds {
         return super.useOn(useOnContext);
     }
 
-    public static Properties createSettings(ToolMaterial material) {
+    public static Properties createSettings(QMPToolMaterial material) {
         return new Properties()
                 .component(ModComponents.IS_CORAL, false)
                 .stacksTo(1)
                 .attributes(RapierItem.createAttributes(material))
-                .enchantable(material.enchantmentValue())
+                //? if >1.21.1
+                //.enchantable(material.enchantability())
+                //? if <=1.21.1
+                .component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.SWORD_EFFICIENT))
                 .durability(material.durability());
     }
 

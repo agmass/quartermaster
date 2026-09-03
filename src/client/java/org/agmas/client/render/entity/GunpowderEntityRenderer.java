@@ -15,12 +15,8 @@ import net.minecraft.client.renderer.state.CameraRenderState;
 /*import net.minecraft.client.renderer.state.level.CameraRenderState;
  *///? }
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import org.agmas.QMIdentifier;
-import org.agmas.client.render.state.GreataxeProjectileRenderState;
-import org.agmas.entity.GreataxeProjectileEntity;
+import org.agmas.porting.QMIdentifier;
 import org.agmas.entity.GunpowderEntity;
-
-import java.awt.*;
 
 public class GunpowderEntityRenderer extends EntityRenderer<GunpowderEntity, EntityRenderState> {
     public GunpowderEntityRenderer(EntityRendererProvider.Context context) {

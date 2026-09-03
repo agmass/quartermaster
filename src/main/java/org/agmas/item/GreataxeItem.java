@@ -11,6 +11,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -19,9 +20,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import net.minecraft.world.item.component.Weapon;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
@@ -29,16 +28,19 @@ import org.agmas.duck.PlayerAcessor;
 import org.agmas.entity.GreataxeProjectileEntity;
 import org.agmas.init.*;
 import org.agmas.init.tag.ModTags;
+import org.agmas.porting.QMPToolMaterial;
+//? if >1.21.1 {
+/*import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.component.Weapon;
 import org.jspecify.annotations.Nullable;
-
+*///? }
 import java.awt.*;
 
-public class GreataxeItem extends Item {
-    public GreataxeItem(Properties properties) {
-        super(properties);
+public class GreataxeItem extends EnchantableQMItem {
+    public GreataxeItem(QMPToolMaterial toolMaterial, Item.Properties properties) {
+        super(toolMaterial, properties);
     }
-
-    public static ItemAttributeModifiers createAttributes(ToolMaterial material) {
+    public static ItemAttributeModifiers createAttributes(QMPToolMaterial material) {
         return ItemAttributeModifiers.builder()
                 .add(
                         Attributes.ATTACK_DAMAGE,
@@ -75,30 +77,45 @@ public class GreataxeItem extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack itemStack, ServerLevel serverLevel, Entity entity, @Nullable EquipmentSlot equipmentSlot) {
+    //? if >1.21.1
+    //public void inventoryTick(ItemStack itemStack, ServerLevel serverLevel, Entity entity, @Nullable EquipmentSlot equipmentSlot) {
+    //? if <=1.21.1
+    public void inventoryTick(ItemStack itemStack, Level serverLevel, Entity entity, int i, boolean bl) {
         int charges = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(serverLevel, ModEnchants.CHARGED),itemStack);
         if (charges > 0) {
             itemStack.set(ModComponents.MAX_CHARGES, charges+1);
             if (!itemStack.has(ModComponents.CHARGES)) itemStack.set(ModComponents.CHARGES, charges+1);
             if (entity instanceof Player player) {
-                if (player.getCooldowns().getCooldownPercent(itemStack,1f) <= 0.0f && itemStack.get(ModComponents.CHARGES).intValue() < (charges+1)) {
+                if (player.getCooldowns().getCooldownPercent(itemStack
+                        //? if <=1.21.1
+                                .getItem()
+                        ,1f) <= 0.0f && itemStack.get(ModComponents.CHARGES).intValue() < (charges+1)) {
                     itemStack.set(ModComponents.CHARGES, itemStack.get(ModComponents.CHARGES).intValue()+1);
                     if (itemStack.get(ModComponents.CHARGES) < charges+1)
-                        player.getCooldowns().addCooldown(itemStack,20*8);
+                        player.getCooldowns().addCooldown(itemStack
+                                //? if <=1.21.1
+                                .getItem()
+                                ,20*8);
                 }
             }
         } else {
             itemStack.remove(ModComponents.MAX_CHARGES);
             itemStack.remove(ModComponents.CHARGES);
         }
-        super.inventoryTick(itemStack, serverLevel, entity, equipmentSlot);
+        //? if >1.21.1
+        //super.inventoryTick(itemStack, serverLevel, entity, equipmentSlot);
+        //? if <=1.21.1
+        super.inventoryTick(itemStack, serverLevel, entity, i, bl);
     }
 
     boolean canBeUsed(Player player, ItemStack stack) {
         if ((stack.has(ModComponents.CHARGES) && stack.get(ModComponents.CHARGES).intValue() > 0)) {
             return true;
         }
-        return !player.getCooldowns().isOnCooldown(stack);
+        return !player.getCooldowns().isOnCooldown(stack
+                //? if <=1.21.1
+                .getItem()
+        );
     }
 
     @Override
@@ -132,11 +149,17 @@ public class GreataxeItem extends Item {
     }
 
     @Override
-    public InteractionResult use(Level level, Player player, InteractionHand interactionHand) {
+    //? if >1.21.1
+    //public InteractionResult use(Level level, Player player, InteractionHand interactionHand) {
+    //? if <=1.21.1
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         ItemStack stack = player.getItemInHand(interactionHand);
         if (!level.isClientSide()) {
             if (canBeUsed(player,stack)) {
-                GreataxeProjectileEntity buster = ModEntities.GREATAXE_PROJECTILE.create(level, EntitySpawnReason.TRIGGERED);
+                GreataxeProjectileEntity buster = ModEntities.GREATAXE_PROJECTILE.create(level
+                        //? if >1.21.1
+                        //, EntitySpawnReason.TRIGGERED
+                );
                 buster.setOwner(player);
                 buster.setColor(stack.get(ModComponents.BUSTER_COLOR).intValue());
                 buster.attackPower = (float) (player.getAttribute(Attributes.ATTACK_DAMAGE).getValue());
@@ -155,9 +178,17 @@ public class GreataxeItem extends Item {
                 }
                 buster.setPos(player.getEyePosition().add(0,-0.1f,0));
                 level.addFreshEntity(buster);
-                stack.hurtAndBreak(2,player,interactionHand);
+                stack.hurtAndBreak(2,player,
+                        //? if >1.21.1
+                        //interactionHand
+                        //? if <=1.21.1
+                        interactionHand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND
+                );
                 level.playSound(null,player.getX(),player.getY(),player.getZ(), ModSounds.GREATAXE_USE, player.getSoundSource());
-                if (!player.isCreative()) player.getCooldowns().addCooldown(stack,20*8);
+                if (!player.isCreative()) player.getCooldowns().addCooldown(stack
+                        //? if <=1.21.1
+                                .getItem()
+                        ,20*8);
             }
         }
         if (canBeUsed(player,stack)) {
@@ -167,23 +198,29 @@ public class GreataxeItem extends Item {
         return super.use(level, player, interactionHand);
     }
 
-    public static Properties createSettings(ToolMaterial material) {
+    public static Properties createSettings(QMPToolMaterial material) {
         return new Properties()
                 .stacksTo(1)
-                .tool(material, BlockTags.MINEABLE_WITH_AXE, 0, 0, 5.0F)
+                //? if >1.21.1
+                //.tool(material, BlockTags.MINEABLE_WITH_AXE, 0, 0, 5.0F)
                 .attributes(GreataxeItem.createAttributes(material))
                 .component(ModComponents.BUSTER_COLOR,
-                        material == ToolMaterial.WOOD ? ModColors.WOOD :
-                                material == ToolMaterial.DIAMOND ? ModColors.DIAMOND :
-                                        material == ToolMaterial.IRON ? ModColors.IRON :
-                                                material == ToolMaterial.GOLD ? ModColors.GOLD :
-                                                        material == ToolMaterial.COPPER ? ModColors.COPPER :
-                                                                material == ToolMaterial.STONE ? ModColors.STONE :
+                        material == QMPToolMaterial.WOOD ? ModColors.WOOD :
+                                material == QMPToolMaterial.DIAMOND ? ModColors.DIAMOND :
+                                        material == QMPToolMaterial.IRON ? ModColors.IRON :
+                                                material == QMPToolMaterial.GOLD ? ModColors.GOLD :
+                                                        //? if >=1.21.10
+                                                        //material == QMPToolMaterial.COPPER ? ModColors.COPPER :
+                                                                material == QMPToolMaterial.STONE ? ModColors.STONE :
                                                                         material == ModItems.BAMBOO ? ModColors.BAMBOO :
                                                                             ModColors.NETHERITE
                         )
-                .enchantable(material.enchantmentValue())
-                .component(DataComponents.WEAPON, new Weapon(1))
+                //? if >1.21.1
+                //.enchantable(material.enchantmentValue())
+                //? if >1.21.1
+                //.component(DataComponents.WEAPON, new Weapon(1))
+                //? if <=1.21.1
+                .component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.MINEABLE_WITH_AXE))
                 .durability(material.durability());
     }
 

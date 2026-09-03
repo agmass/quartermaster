@@ -117,15 +117,15 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(ModAttributes.STUN_TIME, "Stun Time");
 
         translationBuilder.add("item.quartermaster.rapier.coral", "Coral");
-        translationBuilder.add(ModSounds.CUTLASS_CRIT, "Cutlass Critical Hit");
-        translationBuilder.add(ModSounds.CUTLASS_SWEEP, "Cutlass Sweep");
-        translationBuilder.add(ModSounds.STRONG_SHIELD_BREAK, "Strong Shield Break");
-        translationBuilder.add(ModSounds.PARRY, "Parry");
-        translationBuilder.add(ModSounds.GREATAXE_HIT, "Greataxe Ability Hit");
-        translationBuilder.add(ModSounds.GREATAXE_USE, "Greataxe Ability Used");
-        translationBuilder.add(ModSounds.FLINTLOCK_LOAD_0, "Flintlock Loading");
-        translationBuilder.add(ModSounds.FLINTLOCK_LOAD_1, "Flintlock Loaded");
-        translationBuilder.add(ModSounds.FLINTLOCK_SHOOT, "Flintlock Shot");
+        translationBuilder.add("subtitles.quartermaster.cutlass_crit", "Cutlass Critical Hit");
+        translationBuilder.add("subtitles.quartermaster.cutlass_sweep", "Cutlass Sweep");
+        translationBuilder.add("subtitles.quartermaster.strong_shield_break", "Strong Shield Break");
+        translationBuilder.add("subtitles.quartermaster.parry", "Parry");
+        translationBuilder.add("subtitles.quartermaster.greataxe_hit", "Greataxe Ability Hit");
+        translationBuilder.add("subtitles.quartermaster.greataxe_use","Greataxe Ability Used");
+        translationBuilder.add("subtitles.quartermaster.flintlock_load_0", "Flintlock Loading");
+        translationBuilder.add("subtitles.quartermaster.flintlock_load_1", "Flintlock Loaded");
+        translationBuilder.add("subtitles.quartermaster.flintlock_shoot", "Flintlock Shot");
 
         translationBuilder.add(ModEffects.WOUNDED.value(), "Wounded");
         translationBuilder.add(ModEffects.FROST_PROTECTION.value(), "Frost Protection");
@@ -146,7 +146,8 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(ModItems.BAMBOO_MACE, "Bamboo Mace");
         translationBuilder.add(ModItems.BAMBOO_AXE, "Bamboo Axe");
         translationBuilder.add(ModItems.BAMBOO_SWORD, "Bamboo Sword");
-        translationBuilder.add(ModItems.BAMBOO_SPEAR, "Bamboo Spear");
+        //? if >=1.21.11
+        //translationBuilder.add(ModItems.BAMBOO_SPEAR, "Bamboo Spear");
 
         generateTiered(translationBuilder, "cutlass", "Cutlass");
         generateTiered(translationBuilder, "morningstar", "Morningstar");

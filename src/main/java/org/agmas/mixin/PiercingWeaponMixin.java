@@ -26,10 +26,10 @@ public abstract class PiercingWeaponMixin {
         if (pogo &&!ProjectileUtil.getHitResultOnViewVector(livingEntity, Predicates.truePredicate(),4).getType().equals(HitResult.Type.MISS)) {
             livingEntity.setDeltaMovement(livingEntity.getViewVector(0f).multiply(-1.5f,-0.75f,-1.5f));
             //? if >=1.21.11 {
-            livingEntity.needsSync = true;
-            //? } else {
-            /*livingEntity.hasImpulse = true;
-             *///? }
+            /*livingEntity.needsSync = true;
+            *///? } else {
+            livingEntity.hasImpulse = true;
+             //? }
             if (livingEntity instanceof ServerPlayer player2) {
                 player2.connection.send(new ClientboundSetEntityMotionPacket(player2));
             }

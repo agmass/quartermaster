@@ -4,8 +4,7 @@ import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.minecraft.network.codec.ByteBufCodecs;
-import org.agmas.QMIdentifier;
-import org.agmas.Quartermaster;
+import org.agmas.porting.QMIdentifier;
 
 public class ModAttachments {
 

@@ -3,8 +3,7 @@ package org.agmas.init;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvent;
-import org.agmas.QMIdentifier;
-import org.agmas.Quartermaster;
+import org.agmas.porting.QMIdentifier;
 
 public class ModSounds {
     public static final SoundEvent CUTLASS_CRIT = registerSound("cutlass_crit");

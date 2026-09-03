@@ -1,7 +1,6 @@
 package org.agmas.client.render.hud;
 
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 //? if <26.1 {
@@ -10,20 +9,14 @@ import net.minecraft.client.gui.GuiGraphics;
 /*import net.minecraft.client.gui.GuiGraphicsExtractor;
 *///? }
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.network.chat.Component;
 import net.minecraft.util.EasingType;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
-import org.agmas.QMIdentifier;
-import org.agmas.Quartermaster;
+import org.agmas.porting.QMIdentifier;
 import org.agmas.duck.PlayerAcessor;
-import org.agmas.init.ModAttachments;
-import org.agmas.init.ModComponents;
-import org.agmas.init.ModEffects;
 import org.agmas.item.EstocItem;
 
 import java.awt.*;
-import java.util.Random;
 
 /**
  * @author Chemthunder

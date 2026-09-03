@@ -36,10 +36,10 @@ public abstract class StabAttackMixin extends LivingEntity {
                 EstocItem.wound(livingEntity);
             entity.setDeltaMovement(getViewVector(0f).multiply(-1f,-1f,-1f));
             //? if >=1.21.11 {
-            entity.needsSync = true;
-            //? } else {
-            /*entity.hasImpulse = true;
-             *///? }
+            /*entity.needsSync = true;
+            *///? } else {
+            entity.hasImpulse = true;
+             //? }
             if (entity instanceof ServerPlayer player2) {
                 player2.connection.send(new ClientboundSetEntityMotionPacket(player2));
             }

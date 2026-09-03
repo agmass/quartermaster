@@ -48,10 +48,10 @@ public abstract class AxeEnchantShieldMixin extends LivingEntity {
                 float attackDamage = (float)(attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue())/3.5f;
                 instance.setDeltaMovement(getViewVector(0f).multiply(-attackDamage,-attackDamage,-attackDamage));
                 //? if >=1.21.11 {
-                instance.needsSync = true;
-                //? } else {
-                /*instance.hasImpulse = true;
-                 *///? }
+                /*instance.needsSync = true;
+                *///? } else {
+                instance.hasImpulse = true;
+                 //? }
                 if (instance instanceof ServerPlayer player2) {
                     player2.connection.send(new ClientboundSetEntityMotionPacket(player2));
                 }

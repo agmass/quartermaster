@@ -51,10 +51,10 @@ public abstract class ShieldBashMixin extends Entity {
                 addDeltaMovement(getViewVector(0f).multiply(1,0,1));
 
                 //? if >=1.21.11 {
-                needsSync = true;
-                //? } else {
-                /*hasImpulse = true;
-                 *///? }
+                /*needsSync = true;
+                *///? } else {
+                hasImpulse = true;
+                 //? }
                 if (((LivingEntity)(Object)this) instanceof ServerPlayer player2) {
                     player2.connection.send(new ClientboundSetEntityMotionPacket(player2));
                 }

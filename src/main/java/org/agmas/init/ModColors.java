@@ -8,7 +8,6 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.equipment.trim.TrimMaterials;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -45,7 +44,8 @@ public class ModColors {
         trimColors.put(Ingredient.of(Items.IRON_INGOT), IRON);
         trimColors.put(Ingredient.of(Items.COPPER_INGOT), COPPER);
         trimColors.put(Ingredient.of(Items.LAPIS_LAZULI), LAPIS);
-        trimColors.put(Ingredient.of(Items.RESIN_CLUMP), RESIN);
+        //? if >1.21.4
+        //trimColors.put(Ingredient.of(Items.RESIN_CLUMP), RESIN);
         trimColors.put(Ingredient.of(Items.AMETHYST_SHARD), AMETHYST);
         trimColors.put(Ingredient.of(Items.REDSTONE), Color.RED.getRGB());
         trimColors.put(Ingredient.of(Items.EMERALD), Color.GREEN.getRGB());

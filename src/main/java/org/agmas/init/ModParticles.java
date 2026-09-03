@@ -6,7 +6,7 @@ import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SpellParticleOption;
 import net.minecraft.core.registries.BuiltInRegistries;
-import org.agmas.QMIdentifier;
+import org.agmas.porting.QMIdentifier;
 
 public class ModParticles {
 

@@ -12,8 +12,8 @@ public class ModItemLists {
             ModItems.WOODEN_CUTLASS,
             ModItems.STONE_CUTLASS,
             //? if >=1.21.10 {
-            ModItems.COPPER_CUTLASS,
-            //? }
+            /*ModItems.COPPER_CUTLASS,
+            *///? }
             ModItems.IRON_CUTLASS,
             ModItems.GOLDEN_CUTLASS,
             ModItems.DIAMOND_CUTLASS,
@@ -26,8 +26,8 @@ public class ModItemLists {
             ModItems.WOODEN_MORNINGSTAR,
             ModItems.STONE_MORNINGSTAR,
             //? if >=1.21.10 {
-            ModItems.COPPER_MORNINGSTAR,
-            //? }
+            /*ModItems.COPPER_MORNINGSTAR,
+            *///? }
             ModItems.IRON_MORNINGSTAR,
             ModItems.GOLDEN_MORNINGSTAR,
             ModItems.DIAMOND_MORNINGSTAR,
@@ -40,8 +40,8 @@ public class ModItemLists {
             ModItems.WOODEN_ESTOC,
             ModItems.STONE_ESTOC,
             //? if >=1.21.10 {
-            ModItems.COPPER_ESTOC,
-            //? }
+            /*ModItems.COPPER_ESTOC,
+            *///? }
             ModItems.IRON_ESTOC,
             ModItems.GOLDEN_ESTOC,
             ModItems.DIAMOND_ESTOC,
@@ -54,8 +54,8 @@ public class ModItemLists {
             ModItems.WOODEN_GREATAXE,
             ModItems.STONE_GREATAXE,
             //? if >=1.21.10 {
-            ModItems.COPPER_GREATAXE,
-            //? }
+            /*ModItems.COPPER_GREATAXE,
+            *///? }
             ModItems.IRON_GREATAXE,
             ModItems.GOLDEN_GREATAXE,
             ModItems.DIAMOND_GREATAXE,
@@ -68,8 +68,8 @@ public class ModItemLists {
             ModItems.WOODEN_WARHAMMER,
             ModItems.STONE_WARHAMMER,
             //? if >=1.21.10 {
-            ModItems.COPPER_WARHAMMER,
-            //? }
+            /*ModItems.COPPER_WARHAMMER,
+            *///? }
             ModItems.IRON_WARHAMMER,
             ModItems.GOLDEN_WARHAMMER,
             ModItems.DIAMOND_WARHAMMER,

@@ -1,22 +1,18 @@
 package org.agmas.init;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
-import net.fabricmc.loader.impl.util.log.Log;
-import net.fabricmc.loader.impl.util.log.LogCategory;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
-import org.agmas.QMIdentifier;
-import org.agmas.Quartermaster;
+import org.agmas.porting.QMIdentifier;
 
 public class ModEnchants {
 
@@ -88,10 +84,10 @@ public class ModEnchants {
                     if (EnchantmentHelper.getEnchantmentLevel(enchantHolder((ServerLevel) player.level(),ModEnchants.HOMERUN), player) > 0 && entity.onGround()) {
                         entity.setDeltaMovement(0, 0.5f, 0);
                         //? if >=1.21.11 {
-                        entity.needsSync = true;
-                        //? } else {
-                        /*entity.hasImpulse = true;
-                         *///? }
+                        /*entity.needsSync = true;
+                        *///? } else {
+                        entity.hasImpulse = true;
+                         //? }
                         if (entity instanceof ServerPlayer player2) {
                             player2.connection.send(new ClientboundSetEntityMotionPacket(player2));
                         }

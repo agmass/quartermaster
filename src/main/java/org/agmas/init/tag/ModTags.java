@@ -6,8 +6,7 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
-import org.agmas.QMIdentifier;
-import org.agmas.Quartermaster;
+import org.agmas.porting.QMIdentifier;
 
 public class ModTags {
     public static final TagKey<Item> CUTLASSES = TagKey.create(Registries.ITEM, QMIdentifier.of("cutlasses").id);

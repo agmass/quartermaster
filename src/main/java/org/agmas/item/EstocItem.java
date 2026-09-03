@@ -1,9 +1,7 @@
 package org.agmas.item;
 
-import net.minecraft.core.HolderSet;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,25 +10,20 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import net.minecraft.world.item.component.Tool;
-import net.minecraft.world.level.block.Blocks;
 import org.agmas.duck.PlayerAcessor;
 import org.agmas.init.ModAttachments;
-import org.agmas.init.ModComponents;
 import org.agmas.init.ModEffects;
 import org.agmas.init.ModItems;
-import org.agmas.mixin.ChangeAttackStrengthTickerToEstocMixin;
+import org.agmas.porting.QMPToolMaterial;
 
 import java.util.List;
 
-public class EstocItem extends Item {
-    public EstocItem(Properties properties) {
-        super(properties);
+public class EstocItem extends EnchantableQMItem {
+    public EstocItem(QMPToolMaterial toolMaterial, Item.Properties properties) {
+        super(toolMaterial, properties);
     }
-
-    public static ItemAttributeModifiers createAttributes(ToolMaterial material) {
+    public static ItemAttributeModifiers createAttributes(QMPToolMaterial material) {
         return ItemAttributeModifiers.builder()
                 .add(
                         Attributes.ATTACK_DAMAGE,
@@ -60,8 +53,12 @@ public class EstocItem extends Item {
             livingEntity.addEffect(new MobEffectInstance(ModEffects.WOUNDED, 20*5,livingEntity.getEffect(ModEffects.WOUNDED).getAmplifier()+1));
         }
     }
+
     @Override
-    public void hurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity attacker) {
+    //? if >1.21.1
+    //public void hurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity attacker) {
+    //? if <=1.21.1
+    public boolean hurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity attacker) {
         if (!livingEntity.isBlocking()) {
             if (attacker instanceof Player player) {
                 if (((PlayerAcessor) attacker).quartermaster$getEstocWoundChanceTicks() > 0) {
@@ -72,15 +69,21 @@ public class EstocItem extends Item {
                 wound(livingEntity);
             }
         }
+        //? if <=1.21.1
+        return
         super.hurtEnemy(itemStack, livingEntity, attacker);
     }
 
-    public static Properties createSettings(ToolMaterial material) {
+    public static Properties createSettings(QMPToolMaterial material) {
         return new Properties()
                 .stacksTo(1)
-                .sword(material,0f,0f)
+                //? if >1.21.1
+                //.sword(material,0f,0f)
                 .attributes(EstocItem.createAttributes(material))
-                .enchantable(material.enchantmentValue())
+                //? if >1.21.1
+                //.enchantable(material.enchantmentValue())
+                //? if <=1.21.1
+                .component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.SWORD_EFFICIENT))
                 .durability(material.durability());
     }
 

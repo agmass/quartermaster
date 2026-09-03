@@ -1,32 +1,25 @@
 package org.agmas.item;
 
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlotGroup;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ToolMaterial;
-import net.minecraft.world.item.component.BlocksAttacks;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
-import org.agmas.Quartermaster;
 import org.agmas.init.*;
-import org.agmas.item.util.CustomHitSounds;
+import org.agmas.porting.QMPToolMaterial;
 
-import static net.minecraft.world.item.ToolMaterial.*;
 
-public class MorningstarItem extends Item {
-    public MorningstarItem(Properties properties) {
-        super(properties);
+public class MorningstarItem extends EnchantableQMItem {
+    public MorningstarItem(QMPToolMaterial toolMaterial, Properties properties) {
+        super(toolMaterial, properties);
     }
 
     public static int BASE_DISABLE_TICKS = 15;
 
-    public static ItemAttributeModifiers createAttributes(ToolMaterial material) {
+
+    public static ItemAttributeModifiers createAttributes(QMPToolMaterial material) {
         return ItemAttributeModifiers.builder()
                 .add(
                         Attributes.ATTACK_DAMAGE,
@@ -50,12 +43,15 @@ public class MorningstarItem extends Item {
     }
 
 
-    public static Properties createSettings(ToolMaterial material) {
+    public static Properties createSettings(QMPToolMaterial material) {
         return new Properties()
                 .stacksTo(1)
                 .attributes(MorningstarItem.createAttributes(material))
                 .component(ModComponents.FALL_DAMAGE_SHIELD_DISABLE_MULTIPLIER, material.attackDamageBonus())
-                .enchantable(material.enchantmentValue())
+                //? if >1.21.1
+                //.enchantable(material.enchantability())
+                //? if <=1.21.1
+                .component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.MINEABLE_WITH_AXE))
                 .durability(material.durability());
     }
 

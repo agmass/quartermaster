@@ -14,8 +14,7 @@ import net.minecraft.client.renderer.item.properties.select.DisplayContext;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
-import org.agmas.QMIdentifier;
-import org.agmas.Quartermaster;
+import org.agmas.porting.QMIdentifier;
 import org.agmas.client.item.CoralRapierBooleanProperty;
 import org.agmas.init.ModItems;
 
@@ -58,8 +57,8 @@ public class ModModelProvider extends FabricModelProvider {
         create32X(itemModelGenerator, ModItems.WOODEN_CUTLASS, cutlassTemplate);
         create32X(itemModelGenerator, ModItems.STONE_CUTLASS, cutlassTemplate);
         //? if >=1.21.10 {
-        create32X(itemModelGenerator, ModItems.COPPER_CUTLASS, cutlassTemplate);
-        //? }
+        /*create32X(itemModelGenerator, ModItems.COPPER_CUTLASS, cutlassTemplate);
+        *///? }
         create32X(itemModelGenerator, ModItems.IRON_CUTLASS, cutlassTemplate);
         create32X(itemModelGenerator, ModItems.GOLDEN_CUTLASS, cutlassTemplate);
         create32X(itemModelGenerator, ModItems.DIAMOND_CUTLASS, cutlassTemplate);
@@ -69,8 +68,8 @@ public class ModModelProvider extends FabricModelProvider {
         create32X(itemModelGenerator, ModItems.WOODEN_MORNINGSTAR, greataxeTemplate);
         create32X(itemModelGenerator, ModItems.STONE_MORNINGSTAR, greataxeTemplate);
         //? if >=1.21.10 {
-        create32X(itemModelGenerator, ModItems.COPPER_MORNINGSTAR, cutlassTemplate);
-        //? }
+        /*create32X(itemModelGenerator, ModItems.COPPER_MORNINGSTAR, cutlassTemplate);
+        *///? }
         create32X(itemModelGenerator, ModItems.IRON_MORNINGSTAR, greataxeTemplate);
         create32X(itemModelGenerator, ModItems.GOLDEN_MORNINGSTAR, greataxeTemplate);
         create32X(itemModelGenerator, ModItems.DIAMOND_MORNINGSTAR, greataxeTemplate);
@@ -80,8 +79,8 @@ public class ModModelProvider extends FabricModelProvider {
         create32X(itemModelGenerator, ModItems.WOODEN_ESTOC, cutlassTemplate);
         create32X(itemModelGenerator, ModItems.STONE_ESTOC, cutlassTemplate);
         //? if >=1.21.10 {
-        create32X(itemModelGenerator, ModItems.COPPER_ESTOC, cutlassTemplate);
-        //? }
+        /*create32X(itemModelGenerator, ModItems.COPPER_ESTOC, cutlassTemplate);
+        *///? }
         create32X(itemModelGenerator, ModItems.IRON_ESTOC, cutlassTemplate);
         create32X(itemModelGenerator, ModItems.GOLDEN_ESTOC, cutlassTemplate);
         create32X(itemModelGenerator, ModItems.DIAMOND_ESTOC, cutlassTemplate);
@@ -91,8 +90,8 @@ public class ModModelProvider extends FabricModelProvider {
         create32X(itemModelGenerator, ModItems.WOODEN_GREATAXE, greataxeTemplate);
         create32X(itemModelGenerator, ModItems.STONE_GREATAXE, greataxeTemplate);
         //? if >=1.21.10 {
-        create32X(itemModelGenerator, ModItems.COPPER_GREATAXE, greataxeTemplate);
-        //? }
+        /*create32X(itemModelGenerator, ModItems.COPPER_GREATAXE, greataxeTemplate);
+        *///? }
         create32X(itemModelGenerator, ModItems.IRON_GREATAXE, greataxeTemplate);
         create32X(itemModelGenerator, ModItems.GOLDEN_GREATAXE, greataxeTemplate);
         create32X(itemModelGenerator, ModItems.DIAMOND_GREATAXE, greataxeTemplate);
@@ -102,8 +101,8 @@ public class ModModelProvider extends FabricModelProvider {
         create32X(itemModelGenerator, ModItems.WOODEN_WARHAMMER, greataxeTemplate);
         create32X(itemModelGenerator, ModItems.STONE_WARHAMMER, greataxeTemplate);
         //? if >=1.21.10 {
-        create32X(itemModelGenerator, ModItems.COPPER_WARHAMMER, greataxeTemplate);
-        //? }
+        /*create32X(itemModelGenerator, ModItems.COPPER_WARHAMMER, greataxeTemplate);
+        *///? }
         create32X(itemModelGenerator, ModItems.IRON_WARHAMMER, greataxeTemplate);
         create32X(itemModelGenerator, ModItems.GOLDEN_WARHAMMER, greataxeTemplate);
         create32X(itemModelGenerator, ModItems.DIAMOND_WARHAMMER, greataxeTemplate);

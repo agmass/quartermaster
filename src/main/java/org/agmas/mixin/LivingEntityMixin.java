@@ -145,19 +145,19 @@ public abstract class LivingEntityMixin extends Entity {
 								if (pull) {
 									livingEntity.setDeltaMovement(livingEntity.getPosition(0f).subtract(getPosition(0f)).normalize().multiply(-2,-2,-2));
 									//? if >=1.21.11 {
-									livingEntity.needsSync = true;
-									//? } else {
-									/*livingEntity.hasImpulse = true;
-									 *///? }
+									/*livingEntity.needsSync = true;
+									*///? } else {
+									livingEntity.hasImpulse = true;
+									 //? }
 								}
 
 								if (homerun) {
 									livingEntity.setDeltaMovement(new Vec3(0,0.5f,0));
 									//? if >=1.21.11 {
-									livingEntity.needsSync = true;
-									//? } else {
-									/*livingEntity.hasImpulse = true;
-									 *///? }
+									/*livingEntity.needsSync = true;
+									*///? } else {
+									livingEntity.hasImpulse = true;
+									 //? }
 								}
 							}
 						}

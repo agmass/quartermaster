@@ -10,9 +10,7 @@ import net.minecraft.client.gui.GuiGraphics;
 //? }
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.world.entity.player.Player;
-import org.agmas.QMIdentifier;
-import org.agmas.Quartermaster;
-import org.agmas.init.ModAttachments;
+import org.agmas.porting.QMIdentifier;
 import org.agmas.init.ModItems;
 
 /**

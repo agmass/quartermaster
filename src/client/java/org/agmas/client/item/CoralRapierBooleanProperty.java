@@ -7,9 +7,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import org.agmas.QMIdentifier;
-import org.agmas.Quartermaster;
-import org.agmas.init.ModAttachments;
+import org.agmas.porting.QMIdentifier;
 import org.agmas.init.ModComponents;
 import org.jspecify.annotations.Nullable;
 

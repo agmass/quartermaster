@@ -12,7 +12,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.Potions;
-import org.agmas.QMIdentifier;
+import org.agmas.porting.QMIdentifier;
 
 public class ModPotions {
     public static final Holder<Potion> FROST_PROTECTION =

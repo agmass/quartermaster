@@ -3,10 +3,10 @@ package org.agmas.mixin;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 //? if >=1.21.11 {
-import net.minecraft.resources.Identifier;
-//? } else {
-/*import net.minecraft.resources.ResourceLocation;
-*///? }
+/*import net.minecraft.resources.Identifier;
+*///? } else {
+import net.minecraft.resources.ResourceLocation;
+//? }
 import net.minecraft.world.item.ItemCooldowns;
 import net.minecraft.world.item.ItemStack;
 import org.agmas.Quartermaster;
@@ -20,14 +20,14 @@ import java.util.Map;
 @Mixin(ItemCooldowns.class)
 public abstract class DisarmedCooldownMixin {
     //? if >=1.21.11 {
-    @Shadow
-    @Final
-    private Map<Identifier, ?> cooldowns;
-    //? } else {
     /*@Shadow
     @Final
+    private Map<Identifier, ?> cooldowns;
+    *///? } else {
+    @Shadow
+    @Final
     private Map<ResourceLocation, ?> cooldowns;
-    *///? }
+    //? }
 
     @WrapMethod(method = "isOnCooldown")
     public boolean noCooldownOnCharges(ItemStack itemStack, Operation<Boolean> original) {

@@ -20,12 +20,11 @@ import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.particle.CritParticle;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Items;
-import org.agmas.QMIdentifier;
+import org.agmas.porting.QMIdentifier;
 import org.agmas.Quartermaster;
 import org.agmas.client.item.CoralRapierBooleanProperty;
 import org.agmas.client.render.animations.HandsModel;
@@ -80,12 +79,12 @@ public class QuartermasterClient implements ClientModInitializer {
 
 
 		//? if >=1.21.9 {
-		KeyMapping.Category CATEGORY = KeyMapping.Category.register(
+		/*KeyMapping.Category CATEGORY = KeyMapping.Category.register(
 				QMIdentifier.of("quartermaster").id
 		);
-		//? } else {
-		/*String CATEGORY = KeyMapping.CATEGORY_MOVEMENT;
-		 *///? }
+		*///? } else {
+		String CATEGORY = KeyMapping.CATEGORY_MOVEMENT;
+		 //? }
 		inspectAnimation = registerKeyMapping(
 				new KeyMapping(
 						"key.quartermaster.inspect",

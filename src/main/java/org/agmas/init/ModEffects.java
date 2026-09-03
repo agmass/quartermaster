@@ -10,9 +10,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.phys.Vec3;
-import org.agmas.QMIdentifier;
-import org.agmas.Quartermaster;
+import org.agmas.porting.QMIdentifier;
 import org.agmas.effect.DisarmedMobEffect;
 import org.agmas.effect.QMMobEffect;
 import org.agmas.effect.StunnedMobEffect;
@@ -38,10 +36,10 @@ public class ModEffects {
                     if (attacker.hasEffect(ModEffects.DISARMED)) {
                         livingEntity.push(attacker.getViewVector(0.5f).scale(Math.clamp(baseDamageTaken*0.1,0.2,4)));
                         //? if >=1.21.11 {
-                        livingEntity.needsSync = true;
-                        //? } else {
-                        /*livingEntity.hasImpulse = true;
-                        *///? }
+                        /*livingEntity.needsSync = true;
+                        *///? } else {
+                        livingEntity.hasImpulse = true;
+                        //? }
                         if (livingEntity instanceof ServerPlayer player) {
                             player.connection.send(new ClientboundSetEntityMotionPacket(player));
                         }
