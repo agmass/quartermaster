@@ -9,7 +9,8 @@ import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
+//? if <=1.21.1
+//import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -27,11 +28,11 @@ import org.agmas.init.*;
 import org.agmas.init.tag.ModTags;
 import org.agmas.porting.QMPToolMaterial;
 //? if >1.21.1 {
-/*import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import net.minecraft.world.item.component.Weapon;
 import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.entity.EntitySpawnReason;
-*///? }
+//? }
 
 public class WarhammerItem extends EnchantableQMItem {
     public WarhammerItem(QMPToolMaterial toolMaterial, Properties properties) {
@@ -64,34 +65,34 @@ public class WarhammerItem extends EnchantableQMItem {
 
     @Override
     //? if >1.21.1
-    //public void inventoryTick(ItemStack itemStack, ServerLevel serverLevel, Entity entity, @Nullable EquipmentSlot equipmentSlot) {
+    public void inventoryTick(ItemStack itemStack, ServerLevel serverLevel, Entity entity, @Nullable EquipmentSlot equipmentSlot) {
     //? if <=1.21.1
-    public void inventoryTick(ItemStack itemStack, Level serverLevel, Entity entity, int i, boolean bl) {
+    //public void inventoryTick(ItemStack itemStack, Level serverLevel, Entity entity, int i, boolean bl) {
         if (entity instanceof Player player) {
             if (player.hasAttached(ModAttachments.WARHAMMER_CAST_TIME) && !player.isCreative()) {
                 boolean siesmic = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(serverLevel, ModEnchants.SIESMIC),itemStack) > 0;
                 player.getCooldowns().addCooldown(itemStack
                         //? if <=1.21.1
-                                .getItem()
+                                //.getItem()
                         , siesmic ? 20 * 12 : 20 * 6);
             }
         }
         //? if >1.21.1
-        //super.inventoryTick(itemStack, serverLevel, entity, equipmentSlot);
+        super.inventoryTick(itemStack, serverLevel, entity, equipmentSlot);
         //? if <=1.21.1
-        super.inventoryTick(itemStack, serverLevel, entity, i, bl);
+        //super.inventoryTick(itemStack, serverLevel, entity, i, bl);
     }
 
     @Override
     //? if >1.21.1
-    //public InteractionResult use(Level level, Player player, InteractionHand interactionHand) {
+    public InteractionResult use(Level level, Player player, InteractionHand interactionHand) {
     //? if <=1.21.1
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+    //public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         ItemStack stack = player.getItemInHand(interactionHand);
         if (!level.isClientSide()) {
             if(!player.getCooldowns().isOnCooldown(stack
                 //? if <=1.21.1
-                    .getItem()
+                    //.getItem()
             )) {
                 boolean siesmic = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder((ServerLevel) level, ModEnchants.SIESMIC),stack) > 0;
                 player.setAttached(ModAttachments.WARHAMMER_CAST_TIME, siesmic ? 80 : 40);
@@ -104,7 +105,7 @@ public class WarhammerItem extends EnchantableQMItem {
         float range = 1f;
         if (material == QMPToolMaterial.STONE
                 //? if >1.21.10
-                //|| material ==  QMPToolMaterial.COPPER
+                || material ==  QMPToolMaterial.COPPER
         ) range = 1.5f;
         if (material == QMPToolMaterial.IRON) range = 2f;
         if (material == QMPToolMaterial.DIAMOND) range = 2.5f;
@@ -112,15 +113,15 @@ public class WarhammerItem extends EnchantableQMItem {
         return new Properties()
                 .stacksTo(1)
                 //? if >1.21.1
-                //.tool(material, BlockTags.MINEABLE_WITH_AXE, 0, 0, 5.0F)
+                .tool(material.toolMaterial, BlockTags.MINEABLE_WITH_AXE, 0, 0, 5.0F)
                 //? if <=1.21.1
-                .component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.MINEABLE_WITH_AXE))
+                //.component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.MINEABLE_WITH_AXE))
                 .attributes(WarhammerItem.createAttributes(material))
                 //? if >1.21.1
-                //.enchantable(material.enchantability())
+                .enchantable(material.enchantability())
                 .component(ModComponents.WARHAMMER_RANGE, range)
                 //? if >1.21.1
-                //.component(DataComponents.WEAPON, new Weapon(1))
+                .component(DataComponents.WEAPON, new Weapon(1))
                 .durability(material.durability());
     }
 

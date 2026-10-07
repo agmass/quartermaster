@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "minecraft:blast_protection",
+      "required": false
+    },
+    {
+      "id": "minecraft:fire_protection",
+      "required": false
+    },
+    {
+      "id": "minecraft:projectile_protection",
+      "required": false
+    }
+  ]
+}

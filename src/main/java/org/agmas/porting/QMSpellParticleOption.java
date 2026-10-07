@@ -8,8 +8,11 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+//? if >=1.21.11
+import net.minecraft.util.ARGB;
 import net.minecraft.util.ExtraCodecs;
-import net.minecraft.util.FastColor;
+//? if <=1.21.1
+ //import net.minecraft.util.FastColor;
 
 public class QMSpellParticleOption implements ParticleOptions {
     private final ParticleType<QMSpellParticleOption> type;
@@ -19,9 +22,9 @@ public class QMSpellParticleOption implements ParticleOptions {
     public static MapCodec<QMSpellParticleOption> codec(ParticleType<QMSpellParticleOption> particleType) {
         return RecordCodecBuilder.mapCodec((instance) -> instance.group(
                 //? if >1.21.1
-                //ExtraCodecs.RGB_COLOR_CODEC
-                //if <=1.21.1
-                ExtraCodecs.ARGB_COLOR_CODEC
+                ExtraCodecs.RGB_COLOR_CODEC
+                //? if <=1.21.1
+                //ExtraCodecs.ARGB_COLOR_CODEC
                 .optionalFieldOf("color", -1).forGetter((spellParticleOption) -> spellParticleOption.color), Codec.FLOAT.optionalFieldOf("power", 1.0F).forGetter((spellParticleOption) -> spellParticleOption.power)).apply(instance, (integer, float_) -> new QMSpellParticleOption(particleType, integer, float_)));
     }
 
@@ -41,23 +44,23 @@ public class QMSpellParticleOption implements ParticleOptions {
 
     public float getRed() {
         //? if >1.21.1
-        //return (float)ARGB.red(this.color) / 255.0F;
+        return (float)ARGB.red(this.color) / 255.0F;
         //? if <=1.21.1
-        return (float) FastColor.ARGB32.red(this.color) / 255.0F;
+        //return (float) FastColor.ARGB32.red(this.color) / 255.0F;
     }
 
     public float getGreen() {
         //? if >1.21.1
-        //return (float)ARGB.green(this.color) / 255.0F;
+        return (float) ARGB.green(this.color) / 255.0F;
         //? if <=1.21.1
-        return (float) FastColor.ARGB32.green(this.color) / 255.0F;
+        //return (float) FastColor.ARGB32.green(this.color) / 255.0F;
     }
 
     public float getBlue() {
         //? if >1.21.1
-        //return (float)ARGB.blue(this.color) / 255.0F;
+        return (float)ARGB.blue(this.color) / 255.0F;
         //? if <=1.21.1
-        return (float) FastColor.ARGB32.blue(this.color) / 255.0F;
+        //return (float) FastColor.ARGB32.blue(this.color) / 255.0F;
     }
 
     public float getPower() {
@@ -70,8 +73,8 @@ public class QMSpellParticleOption implements ParticleOptions {
 
     public static QMSpellParticleOption create(ParticleType<QMSpellParticleOption> particleType, float f, float g, float h, float i) {
         //? if >1.21.1
-        //return create(particleType, ARGB.colorFromFloat(1.0F, f, g, h), i);
+        return create(particleType, ARGB.colorFromFloat(1.0F, f, g, h), i);
         //? if <=1.21.1
-        return create(particleType, FastColor.ARGB32.colorFromFloat(1.0F, f, g, h), i);
+        //return create(particleType, FastColor.ARGB32.colorFromFloat(1.0F, f, g, h), i);
     }
 }

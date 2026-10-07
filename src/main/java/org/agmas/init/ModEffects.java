@@ -36,10 +36,10 @@ public class ModEffects {
                     if (attacker.hasEffect(ModEffects.DISARMED)) {
                         livingEntity.push(attacker.getViewVector(0.5f).scale(Math.clamp(baseDamageTaken*0.1,0.2,4)));
                         //? if >=1.21.11 {
-                        /*livingEntity.needsSync = true;
-                        *///? } else {
-                        livingEntity.hasImpulse = true;
-                        //? }
+                        livingEntity.needsSync = true;
+                        //? } else {
+                        /*livingEntity.hasImpulse = true;
+                        *///? }
                         if (livingEntity instanceof ServerPlayer player) {
                             player.connection.send(new ClientboundSetEntityMotionPacket(player));
                         }

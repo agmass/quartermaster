@@ -12,8 +12,8 @@ public class ModItemLists {
             ModItems.WOODEN_CUTLASS,
             ModItems.STONE_CUTLASS,
             //? if >=1.21.10 {
-            /*ModItems.COPPER_CUTLASS,
-            *///? }
+            ModItems.COPPER_CUTLASS,
+            //? }
             ModItems.IRON_CUTLASS,
             ModItems.GOLDEN_CUTLASS,
             ModItems.DIAMOND_CUTLASS,
@@ -26,8 +26,8 @@ public class ModItemLists {
             ModItems.WOODEN_MORNINGSTAR,
             ModItems.STONE_MORNINGSTAR,
             //? if >=1.21.10 {
-            /*ModItems.COPPER_MORNINGSTAR,
-            *///? }
+            ModItems.COPPER_MORNINGSTAR,
+            //? }
             ModItems.IRON_MORNINGSTAR,
             ModItems.GOLDEN_MORNINGSTAR,
             ModItems.DIAMOND_MORNINGSTAR,
@@ -40,8 +40,8 @@ public class ModItemLists {
             ModItems.WOODEN_ESTOC,
             ModItems.STONE_ESTOC,
             //? if >=1.21.10 {
-            /*ModItems.COPPER_ESTOC,
-            *///? }
+            ModItems.COPPER_ESTOC,
+            //? }
             ModItems.IRON_ESTOC,
             ModItems.GOLDEN_ESTOC,
             ModItems.DIAMOND_ESTOC,
@@ -54,8 +54,8 @@ public class ModItemLists {
             ModItems.WOODEN_GREATAXE,
             ModItems.STONE_GREATAXE,
             //? if >=1.21.10 {
-            /*ModItems.COPPER_GREATAXE,
-            *///? }
+            ModItems.COPPER_GREATAXE,
+            //? }
             ModItems.IRON_GREATAXE,
             ModItems.GOLDEN_GREATAXE,
             ModItems.DIAMOND_GREATAXE,
@@ -68,8 +68,8 @@ public class ModItemLists {
             ModItems.WOODEN_WARHAMMER,
             ModItems.STONE_WARHAMMER,
             //? if >=1.21.10 {
-            /*ModItems.COPPER_WARHAMMER,
-            *///? }
+            ModItems.COPPER_WARHAMMER,
+            //? }
             ModItems.IRON_WARHAMMER,
             ModItems.GOLDEN_WARHAMMER,
             ModItems.DIAMOND_WARHAMMER,
@@ -83,56 +83,63 @@ public class ModItemLists {
             ModItems.WOODEN_MORNINGSTAR,
             ModItems.WOODEN_WARHAMMER,
             ModItems.WOODEN_GREATAXE,
-            Items.WOODEN_AXE,
-            Items.WOODEN_SPEAR
+            Items.WOODEN_AXE
+            //? if >=1.21.11
+            , Items.WOODEN_SPEAR
     );
 
     public static List<Item> stone_heavy = List.of(
             ModItems.STONE_MORNINGSTAR,
             ModItems.STONE_WARHAMMER,
             ModItems.STONE_GREATAXE,
-            Items.STONE_AXE,
-            Items.STONE_SPEAR
+            Items.STONE_AXE
+            //? if >=1.21.11
+            , Items.STONE_SPEAR
     );
 
+    //? if >=1.21.11 {
     public static List<Item> copper_heavy = List.of(
             ModItems.COPPER_MORNINGSTAR,
             ModItems.COPPER_WARHAMMER,
             ModItems.COPPER_GREATAXE,
             Items.COPPER_AXE,
             Items.COPPER_SPEAR
-    );
+    );//? }
 
     public static List<Item> iron_heavy = List.of(
             ModItems.IRON_MORNINGSTAR,
             ModItems.IRON_WARHAMMER,
             ModItems.IRON_GREATAXE,
-            Items.IRON_AXE,
-            Items.IRON_SPEAR
+            Items.IRON_AXE
+            //? if >=1.21.11
+            , Items.IRON_SPEAR
     );
 
     public static List<Item> golden_heavy = List.of(
             ModItems.GOLDEN_MORNINGSTAR,
             ModItems.GOLDEN_WARHAMMER,
             ModItems.GOLDEN_GREATAXE,
-            Items.GOLDEN_AXE,
-            Items.GOLDEN_SPEAR
+            Items.GOLDEN_AXE
+            //? if >=1.21.11
+            , Items.GOLDEN_SPEAR
     );
 
     public static List<Item> diamond_heavy = List.of(
             ModItems.DIAMOND_MORNINGSTAR,
             ModItems.DIAMOND_WARHAMMER,
             ModItems.DIAMOND_GREATAXE,
-            Items.DIAMOND_AXE,
-            Items.DIAMOND_SPEAR
+            Items.DIAMOND_AXE
+            //? if >=1.21.11
+            , Items.DIAMOND_SPEAR
     );
 
     public static List<Item> netherite_heavy = List.of(
             ModItems.NETHERITE_MORNINGSTAR,
             ModItems.NETHERITE_WARHAMMER,
             ModItems.NETHERITE_GREATAXE,
-            Items.NETHERITE_AXE,
-            Items.NETHERITE_SPEAR
+            Items.NETHERITE_AXE
+            //? if >=1.21.11
+            , Items.NETHERITE_SPEAR
     );
 
     // Lights
@@ -149,11 +156,14 @@ public class ModItemLists {
             Items.STONE_SWORD
     );
 
+
+    //? if >=1.21.11 {
     public static List<Item> copper_light = List.of(
             ModItems.COPPER_CUTLASS,
             ModItems.COPPER_ESTOC,
             Items.COPPER_SWORD
     );
+    //? }
 
     public static List<Item> iron_light = List.of(
             ModItems.IRON_CUTLASS,
@@ -186,8 +196,9 @@ public class ModItemLists {
             ModItems.BAMBOO_ESTOC,
             ModItems.BAMBOO_MORNINGSTAR,
             ModItems.BAMBOO_AXE,
-            ModItems.BAMBOO_SWORD,
-            ModItems.BAMBOO_SPEAR,
+            ModItems.BAMBOO_SWORD
+            //? if >=1.21.11
+            , ModItems.BAMBOO_SPEAR,
             ModItems.BAMBOO_MACE
     );
 

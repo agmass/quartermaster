@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#minecraft:netherite_tool_materials",
+  "base": "quartermaster:diamond_cutlass",
+  "result": {
+    "id": "quartermaster:netherite_cutlass"
+  },
+  "template": "minecraft:netherite_upgrade_smithing_template"
+}

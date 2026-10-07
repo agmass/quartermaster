@@ -1,7 +1,6 @@
 package org.agmas.entity;
 
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.particles.SpellParticleOption;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
@@ -12,7 +11,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -39,7 +37,7 @@ public class GunpowderEntity extends Projectile {
         HitResult hitResult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
         this.hitTargetOrDeflectSelf(hitResult);
 
-        setDeltaMovement(getDeltaMovement().scale(0.9f));
+        //setDeltaMovement(getDeltaMovement().scale(0.9f));
         setPos(getPosition(0f).add(getDeltaMovement()).add(0,-0.25f,0));
         super.tick();
     }

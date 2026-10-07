@@ -22,14 +22,23 @@ public class DisarmedMobEffect extends MobEffect {
         return true;
     }
 
+
     @Override
-    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(
+            //? if >=1.21.11
+            ServerLevel level,
+            LivingEntity entity, int amplifier) {
         if (entity instanceof Player p) {
+            //? if >=1.21.11 {
             if (!level.getGameRules().get(ModGameRule.ALLOW_ITEM_INTERACTIONS_WHEN_DISARMED).booleanValue()) {
                 p.getCooldowns().addCooldown(Quartermaster.ALL_DISARMED_ID.id, 4);
             }
+            //? }
         }
         entity.setAttached(ModAttachments.DISARMED_ANIMATION_TICKS, entity.getEffect(ModEffects.DISARMED).getDuration()+20);
-        return super.applyEffectTick(level, entity, amplifier);
+        return super.applyEffectTick(
+                //? if >=1.21.11
+                level,
+                entity, amplifier);
     }
 }

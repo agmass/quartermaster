@@ -2,6 +2,7 @@ package org.agmas.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+//? if >=1.21.11
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
@@ -27,7 +28,10 @@ public abstract class UseWarhammerMixin {
     @WrapMethod(method = "checkAndPerformAttack")
     void useWarhammer(LivingEntity livingEntity, Operation<Void> original) {
         if ((livingEntity.isBlocking() || livingEntity.getRandom().nextInt(0,3) == 0) && mob.getMainHandItem().is(ModTags.GREATAXES) && mob.tickCount % 100 == 0) {
-            GreataxeProjectileEntity buster = ModEntities.GREATAXE_PROJECTILE.create(mob.level(), EntitySpawnReason.TRIGGERED);
+            GreataxeProjectileEntity buster = ModEntities.GREATAXE_PROJECTILE.create(mob.level()
+                    //? if >=1.21.11
+                    , EntitySpawnReason.TRIGGERED
+            );
             buster.setOwner(mob);
             buster.setColor(mob.getMainHandItem().get(ModComponents.BUSTER_COLOR).intValue());
             buster.attackPower = (int) (mob.getAttribute(Attributes.ATTACK_DAMAGE).getValue()*0.7f);

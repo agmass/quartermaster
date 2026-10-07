@@ -11,7 +11,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 //? if >1.21.1
-//import net.minecraft.data.tags.TagAppender;
+import net.minecraft.data.tags.TagAppender;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.tags.EnchantmentTags;
@@ -58,7 +58,7 @@ public class ModTagProviders {
             addList(ModItemLists.cutlasses, net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
             addList(ModItemLists.cutlasses, net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
             //? if >1.21.1
-            //addList(ModItemLists.cutlasses, net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
+            addList(ModItemLists.cutlasses, net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
             addList(ModItemLists.cutlasses, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
             addList(ModItemLists.cutlasses, ModTags.CUTLASSES);
 
@@ -73,7 +73,7 @@ public class ModTagProviders {
             addList(ModItemLists.estoc, net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
             addList(ModItemLists.estoc, net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
             //? if >1.21.1
-            //addList(ModItemLists.estoc, net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
+            addList(ModItemLists.estoc, net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
             addList(ModItemLists.estoc, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
             addList(ModItemLists.estoc, ModTags.ESTOCS);
 
@@ -118,7 +118,7 @@ public class ModTagProviders {
             add(ModItems.RAPIER, net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
             add(ModItems.RAPIER, net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
             //? if >1.21.1
-            //add(ModItems.RAPIER, net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
+            add(ModItems.RAPIER, net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
             add(ModItems.RAPIER, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
 
             add(ModItems.FLINTLOCK, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
@@ -134,29 +134,29 @@ public class ModTagProviders {
             /*tag(tag)
                     .add(ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)));
             *///? } else if >1.21.1 {
-            /*valueLookupBuilder(tag)
+            valueLookupBuilder(tag)
                     .add(item);
-            *///? } else{
-            tag(tag)
+            //? } else{
+            /*tag(tag)
                     .add(BuiltInRegistries.ITEM.getResourceKey(item).get());
-            //? }
+            *///? }
         }
 
         public void addList(List<Item> list,TagKey<Item> tag) {
             //? if >=26.2 {
             /*TagAppender<Item> itemTagAppender = tag(tag);
             *///? } else  if >1.21.1 {
-            /*TagAppender<Item, Item> itemTagAppender = valueLookupBuilder(tag);
-            *///? }
+            TagAppender<Item, Item> itemTagAppender = valueLookupBuilder(tag);
+            //? }
             for (Item item : list) {
                 //? if >=26.2 {
                 /*itemTagAppender.add(ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)));
                 *///? } else  if >1.21.1 {
-                /*itemTagAppender.add(item);
-                *///? } else {
-                    tag(tag)
+                itemTagAppender.add(item);
+                //? } else {
+                    /*tag(tag)
                             .add(BuiltInRegistries.ITEM.getResourceKey(item).get());
-                    //? }
+                    *///? }
             }
         }
     }
@@ -180,9 +180,9 @@ public class ModTagProviders {
         protected void addTags(HolderLookup.Provider provider) {
 
             //? if >1.21.1
-            //builder(EnchantmentTags.NON_TREASURE)
+            builder(EnchantmentTags.NON_TREASURE)
             //? if <=1.21.1
-            getOrCreateTagBuilder(EnchantmentTags.NON_TREASURE)
+            //getOrCreateTagBuilder(EnchantmentTags.NON_TREASURE)
                     .addOptional(ModEnchants.HOMERUN)
                     .addOptional(ModEnchants.POGO)
                     .addOptional(ModEnchants.PULL)
@@ -210,67 +210,67 @@ public class ModTagProviders {
                     .addOptional(ModEnchants.SIESMIC);
 
             //? if >1.21.1
-            //builder(ModTags.EXCLUSIVE_SET_SHIELD_DISABLE)
+            builder(ModTags.EXCLUSIVE_SET_SHIELD_DISABLE)
             //? if <=1.21.1
-            getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_SHIELD_DISABLE)
+            //getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_SHIELD_DISABLE)
                     .addOptional(ModEnchants.TAKEDOWN)
                     .addOptional(ModEnchants.SPLINTER);
 
 
             //? if >1.21.1
-            //builder(ModTags.EXCLUSIVE_SET_SPEARS)
+            builder(ModTags.EXCLUSIVE_SET_SPEARS)
             //? if <=1.21.1
-            getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_SPEARS)
+            //getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_SPEARS)
                     .addOptional(ModEnchants.POGO)
                     .addOptional(ModEnchants.PUNCTURE);
 
             //? if >1.21.1
-            //builder(ModTags.EXCLUSIVE_SET_GREATAXE)
+            builder(ModTags.EXCLUSIVE_SET_GREATAXE)
             //? if <=1.21.1
-            getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_GREATAXE)
+            //getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_GREATAXE)
                     .addOptional(ModEnchants.CHARGED)
                     .addOptional(ModEnchants.BUSTER);
 
             //? if >1.21.1
-            //builder(ModTags.EXCLUSIVE_SET_KNOCKBACK)
+            builder(ModTags.EXCLUSIVE_SET_KNOCKBACK)
             //? if <=1.21.1
-            getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_KNOCKBACK)
+            //getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_KNOCKBACK)
                     .addOptional(ModEnchants.HOMERUN)
                     .addOptional(Enchantments.KNOCKBACK);
 
             //? if >1.21.1
-            //builder(ModTags.EXCLUSIVE_SET_WARHAMMER)
+            builder(ModTags.EXCLUSIVE_SET_WARHAMMER)
             //? if <=1.21.1
-            getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_WARHAMMER)
+            //getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_WARHAMMER)
                     .addOptional(ModEnchants.PULL)
                     .addOptional(ModEnchants.HOMERUN);
 
             //? if >1.21.1
-            //builder(ModTags.EXCLUSIVE_SET_FALL_PROTECTION)
+            builder(ModTags.EXCLUSIVE_SET_FALL_PROTECTION)
             //? if <=1.21.1
-            getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_FALL_PROTECTION)
+            //getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_FALL_PROTECTION)
                     .addOptional(ModEnchants.IMPACT_PROTECTION)
                     .addOptional(Enchantments.FEATHER_FALLING);
 
             //? if >1.21.1
-            //builder(ModTags.EXCLUSIVE_SET_SHIELD)
+            builder(ModTags.EXCLUSIVE_SET_SHIELD)
             //? if <=1.21.1
-            getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_SHIELD)
+            //getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_SHIELD)
                     .addOptional(ModEnchants.SHIELD_BASH)
                     .addOptional(ModEnchants.BRITTLE);
 
             //? if >1.21.1
-            //builder(ModTags.YOU_TWO_SHOULD_JUST_KISS_ALREADY)
+            builder(ModTags.YOU_TWO_SHOULD_JUST_KISS_ALREADY)
             //? if <=1.21.1
-            getOrCreateTagBuilder(ModTags.YOU_TWO_SHOULD_JUST_KISS_ALREADY)
+            //getOrCreateTagBuilder(ModTags.YOU_TWO_SHOULD_JUST_KISS_ALREADY)
                     .addOptional(Enchantments.BLAST_PROTECTION)
                     .addOptional(Enchantments.FIRE_PROTECTION)
                     .addOptional(Enchantments.PROJECTILE_PROTECTION);
 
             //? if >1.21.1
-            //builder(ModTags.EXCLUSIVE_SET_ELEMENTAL)
+            builder(ModTags.EXCLUSIVE_SET_ELEMENTAL)
             //? if <=1.21.1
-            getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_ELEMENTAL)
+            //getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_ELEMENTAL)
                     .addOptional(ModEnchants.GLACIAL)
                     .addOptional(ModEnchants.HEATWAVE)
                     .addOptional(ModEnchants.TIDAL_CHILL)
@@ -299,30 +299,30 @@ public class ModTagProviders {
         protected void addTags(HolderLookup.Provider provider) {
 
             //? if >1.21.1
-            //builder(DamageTypeTags.BYPASSES_ARMOR)
+            builder(DamageTypeTags.BYPASSES_ARMOR)
             //? if <=1.21.1
-            getOrCreateTagBuilder(DamageTypeTags.BYPASSES_ARMOR)
+            //getOrCreateTagBuilder(DamageTypeTags.BYPASSES_ARMOR)
                     .addOptional(ModDamageTypes.WOUND);
 
 
             //? if >1.21.1
-            //builder(DamageTypeTags.BYPASSES_COOLDOWN)
+            builder(DamageTypeTags.BYPASSES_COOLDOWN)
             //? if <=1.21.1
-            getOrCreateTagBuilder(DamageTypeTags.BYPASSES_COOLDOWN)
+            //getOrCreateTagBuilder(DamageTypeTags.BYPASSES_COOLDOWN)
                     .addOptional(ModDamageTypes.WOUND);
 
 
             //? if >1.21.1
-            //builder(DamageTypeTags.NO_KNOCKBACK)
+            builder(DamageTypeTags.NO_KNOCKBACK)
             //? if <=1.21.1
-            getOrCreateTagBuilder(DamageTypeTags.NO_KNOCKBACK)
+            //getOrCreateTagBuilder(DamageTypeTags.NO_KNOCKBACK)
                     .addOptional(ModDamageTypes.WOUND);
 
 
             //? if >1.21.1
-            //builder(ModTags.IS_MAGIC)
+            builder(ModTags.IS_MAGIC)
             //? if <=1.21.1
-            getOrCreateTagBuilder(ModTags.IS_MAGIC)
+            //getOrCreateTagBuilder(ModTags.IS_MAGIC)
                     .addOptional(DamageTypes.MAGIC)
                     .addOptional(DamageTypes.INDIRECT_MAGIC)
                     .addOptional(DamageTypes.FIREBALL)
@@ -332,18 +332,18 @@ public class ModTagProviders {
 
 
             //? if >1.21.1
-            //builder(ModTags.IS_IMPACT)
+            builder(ModTags.IS_IMPACT)
             //? if <=1.21.1
-            getOrCreateTagBuilder(ModTags.IS_IMPACT)
+            //getOrCreateTagBuilder(ModTags.IS_IMPACT)
                     //? if >1.21.4
-                    //.addOptional(DamageTypes.MACE_SMASH)
+                    .addOptional(DamageTypes.MACE_SMASH)
                     .addOptional(DamageTypes.FALL)
                     .addOptional(DamageTypes.THORNS)
                     .addOptional(DamageTypes.FALLING_ANVIL)
                     .addOptional(DamageTypes.FALLING_BLOCK)
                     .addOptional(DamageTypes.FALLING_STALACTITE)
                     //? if >=1.21.11
-                    //.addOptional(DamageTypes.SPEAR)
+                    .addOptional(DamageTypes.SPEAR)
                     .addOptional(DamageTypes.STALAGMITE)
                     .addOptional(ModDamageTypes.SHOCKWAVE);
         }
@@ -367,14 +367,14 @@ public class ModTagProviders {
         protected void addTags(HolderLookup.Provider provider) {
 
             //? if >1.21.1
-            //builder(ModTags.IS_STUN)
+            builder(ModTags.IS_STUN)
             //? if <=1.21.1
-            getOrCreateTagBuilder(ModTags.IS_STUN)
+            //getOrCreateTagBuilder(ModTags.IS_STUN)
                     .addOptional(ModEffects.STUNNED.unwrap().left().get())
                     .addOptional(ModEffects.DISARMED.unwrap().left().get())
                     .addOptional(ModEffects.WOUNDED.unwrap().left().get())
                     //? if >1.21.1
-                    //.addOptional(MobEffects.MINING_FATIGUE.unwrap().left().get())
+                    .addOptional(MobEffects.MINING_FATIGUE.unwrap().left().get())
                     .addOptional(MobEffects.POISON.unwrap().left().get())
                     .addOptional(MobEffects.WITHER.unwrap().left().get());
         }

@@ -19,7 +19,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 //? if >1.21.1
-//import net.minecraft.world.item.component.Weapon;
+import net.minecraft.world.item.component.Weapon;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import org.agmas.porting.QMIdentifier;
@@ -33,9 +33,9 @@ import java.util.function.Function;
 public class ModItems {
     public static final QMPToolMaterial BAMBOO =
             //? if >1.21.1
-            //new QMPToolMaterial(new ToolMaterial(BlockTags.INCORRECT_FOR_WOODEN_TOOL, 9999999, 0.0F, 0.0F, 15, ModTags.BAMBOO_REPAIR_MATERIALS));
+            new QMPToolMaterial(new ToolMaterial(BlockTags.INCORRECT_FOR_WOODEN_TOOL, 9999999, 0.0F, 0.0F, 15, ModTags.BAMBOO_REPAIR_MATERIALS));
             //? if <=1.21.1 {
-            new QMPToolMaterial(new Tier() {
+            /*new QMPToolMaterial(new Tier() {
                 @Override
                 public int getUses() {
                     return 99999999;
@@ -66,7 +66,7 @@ public class ModItems {
                     return Ingredient.of(ModTags.BAMBOO_REPAIR_MATERIALS);
                 }
             });
-            //? }
+            *///? }
 
 
     public static Item RELIC_HANDLE = register("relic_handle", Item::new, new Item.Properties().stacksTo(1).rarity(Rarity.RARE));
@@ -76,7 +76,7 @@ public class ModItems {
 
     public static Item FLINTLOCK = register("flintlock", FlintlockItem::new, new Item.Properties().stacksTo(1)
             //? if >1.21.1
-            //.enchantable(9)
+            .enchantable(9)
             .rarity(Rarity.UNCOMMON).durability(930));
     public static Item PELLET = register("pellet", Item::new, new Item.Properties());
     public static Item AMMUNITION = register("ammunition", Item::new, new Item.Properties());
@@ -88,8 +88,8 @@ public class ModItems {
     public static Item WOODEN_CUTLASS = register("wooden_cutlass", (p)->new CutlassItem(QMPToolMaterial.WOOD, p), CutlassItem.createSettings(QMPToolMaterial.WOOD));
     public static Item STONE_CUTLASS = register("stone_cutlass", (p)->new CutlassItem(QMPToolMaterial.STONE, p), CutlassItem.createSettings(QMPToolMaterial.STONE));
     //? if >=1.21.10 {
-    /*public static Item COPPER_CUTLASS = register("copper_cutlass", (p)->new CutlassItem(QMPToolMaterial.COPPER, p), CutlassItem.createSettings(QMPToolMaterial.COPPER));
-    *///? }
+    public static Item COPPER_CUTLASS = register("copper_cutlass", (p)->new CutlassItem(QMPToolMaterial.COPPER, p), CutlassItem.createSettings(QMPToolMaterial.COPPER));
+    //? }
     public static Item IRON_CUTLASS = register("iron_cutlass", (p)->new CutlassItem(QMPToolMaterial.IRON, p), CutlassItem.createSettings(QMPToolMaterial.IRON));
     public static Item GOLDEN_CUTLASS = register("golden_cutlass", (p)->new CutlassItem(QMPToolMaterial.GOLD, p), CutlassItem.createSettings(QMPToolMaterial.GOLD));
     public static Item DIAMOND_CUTLASS = register("diamond_cutlass", (p)->new CutlassItem(QMPToolMaterial.DIAMOND, p), CutlassItem.createSettings(QMPToolMaterial.DIAMOND));
@@ -101,8 +101,8 @@ public class ModItems {
     public static Item WOODEN_MORNINGSTAR = register("wooden_morningstar", (p)->new MorningstarItem(QMPToolMaterial.WOOD, p), MorningstarItem.createSettings(QMPToolMaterial.WOOD));
     public static Item STONE_MORNINGSTAR = register("stone_morningstar", (p)->new MorningstarItem(QMPToolMaterial.STONE, p), MorningstarItem.createSettings(QMPToolMaterial.STONE));
     //? if >=1.21.10 {
-    /*public static Item COPPER_MORNINGSTAR = register("copper_morningstar", (p)->new MorningstarItem(QMPToolMaterial.COPPER, p), MorningstarItem.createSettings(QMPToolMaterial.COPPER));
-    *///? }
+    public static Item COPPER_MORNINGSTAR = register("copper_morningstar", (p)->new MorningstarItem(QMPToolMaterial.COPPER, p), MorningstarItem.createSettings(QMPToolMaterial.COPPER));
+    //? }
     public static Item IRON_MORNINGSTAR = register("iron_morningstar", (p)->new MorningstarItem(QMPToolMaterial.IRON, p), MorningstarItem.createSettings(QMPToolMaterial.IRON));
     public static Item GOLDEN_MORNINGSTAR = register("golden_morningstar", (p)->new MorningstarItem(QMPToolMaterial.GOLD, p), MorningstarItem.createSettings(QMPToolMaterial.GOLD));
     public static Item DIAMOND_MORNINGSTAR = register("diamond_morningstar", (p)->new MorningstarItem(QMPToolMaterial.DIAMOND, p), MorningstarItem.createSettings(QMPToolMaterial.DIAMOND));
@@ -114,8 +114,8 @@ public class ModItems {
     public static Item WOODEN_ESTOC = register("wooden_estoc", (p)->new EstocItem(QMPToolMaterial.WOOD, p), EstocItem.createSettings(QMPToolMaterial.WOOD));
     public static Item STONE_ESTOC = register("stone_estoc", (p)->new EstocItem(QMPToolMaterial.STONE, p), EstocItem.createSettings(QMPToolMaterial.STONE));
     //? if >=1.21.10 {
-    /*public static Item COPPER_ESTOC = register("copper_estoc", (p)->new EstocItem(QMPToolMaterial.COPPER, p), EstocItem.createSettings(QMPToolMaterial.COPPER));
-    *///? }
+    public static Item COPPER_ESTOC = register("copper_estoc", (p)->new EstocItem(QMPToolMaterial.COPPER, p), EstocItem.createSettings(QMPToolMaterial.COPPER));
+    //? }
     public static Item IRON_ESTOC = register("iron_estoc", (p)->new EstocItem(QMPToolMaterial.IRON, p), EstocItem.createSettings(QMPToolMaterial.IRON));
     public static Item GOLDEN_ESTOC = register("golden_estoc", (p)->new EstocItem(QMPToolMaterial.GOLD, p), EstocItem.createSettings(QMPToolMaterial.GOLD));
     public static Item DIAMOND_ESTOC = register("diamond_estoc", (p)->new EstocItem(QMPToolMaterial.DIAMOND, p), EstocItem.createSettings(QMPToolMaterial.DIAMOND));
@@ -127,8 +127,8 @@ public class ModItems {
     public static Item WOODEN_GREATAXE = register("wooden_greataxe", (p)->new GreataxeItem(QMPToolMaterial.WOOD, p), GreataxeItem.createSettings(QMPToolMaterial.WOOD));
     public static Item STONE_GREATAXE = register("stone_greataxe", (p)->new GreataxeItem(QMPToolMaterial.STONE, p), GreataxeItem.createSettings(QMPToolMaterial.STONE));
     //? if >=1.21.10 {
-    /*public static Item COPPER_GREATAXE = register("copper_greataxe", (p)->new GreataxeItem(QMPToolMaterial.COPPER, p), GreataxeItem.createSettings(QMPToolMaterial.COPPER));
-    *///? }
+    public static Item COPPER_GREATAXE = register("copper_greataxe", (p)->new GreataxeItem(QMPToolMaterial.COPPER, p), GreataxeItem.createSettings(QMPToolMaterial.COPPER));
+    //? }
     public static Item IRON_GREATAXE = register("iron_greataxe", (p)->new GreataxeItem(QMPToolMaterial.IRON, p), GreataxeItem.createSettings(QMPToolMaterial.IRON));
     public static Item GOLDEN_GREATAXE = register("golden_greataxe", (p)->new GreataxeItem(QMPToolMaterial.GOLD, p), GreataxeItem.createSettings(QMPToolMaterial.GOLD));
     public static Item DIAMOND_GREATAXE = register("diamond_greataxe", (p)->new GreataxeItem(QMPToolMaterial.DIAMOND, p), GreataxeItem.createSettings(QMPToolMaterial.DIAMOND));
@@ -140,8 +140,8 @@ public class ModItems {
     public static Item WOODEN_WARHAMMER = register("wooden_warhammer", (p)->new WarhammerItem(QMPToolMaterial.WOOD, p), WarhammerItem.createSettings(QMPToolMaterial.WOOD));
     public static Item STONE_WARHAMMER = register("stone_warhammer", (p)->new WarhammerItem(QMPToolMaterial.STONE, p), WarhammerItem.createSettings(QMPToolMaterial.STONE));
     //? if >=1.21.10 {
-    /*public static Item COPPER_WARHAMMER = register("copper_warhammer", (p)->new WarhammerItem(QMPToolMaterial.COPPER, p), WarhammerItem.createSettings(QMPToolMaterial.COPPER));
-    *///? }
+    public static Item COPPER_WARHAMMER = register("copper_warhammer", (p)->new WarhammerItem(QMPToolMaterial.COPPER, p), WarhammerItem.createSettings(QMPToolMaterial.COPPER));
+    //? }
     public static Item IRON_WARHAMMER = register("iron_warhammer", (p)->new WarhammerItem(QMPToolMaterial.IRON, p), WarhammerItem.createSettings(QMPToolMaterial.IRON));
     public static Item GOLDEN_WARHAMMER = register("golden_warhammer", (p)->new WarhammerItem(QMPToolMaterial.GOLD, p), WarhammerItem.createSettings(QMPToolMaterial.GOLD));
     public static Item DIAMOND_WARHAMMER = register("diamond_warhammer", (p)->new WarhammerItem(QMPToolMaterial.DIAMOND, p), WarhammerItem.createSettings(QMPToolMaterial.DIAMOND));
@@ -155,33 +155,48 @@ public class ModItems {
     public static Item BAMBOO_CUTLASS = register("bamboo_cutlass", (p)->new CutlassItem(BAMBOO, p), CutlassItem.createSettings(BAMBOO));
     public static Item BAMBOO_SWORD = register("bamboo_sword",
             //? if >1.21.1
-            //Item::new
+            Item::new
             //? if <=1.21.1
-            (p) -> new SwordItem(QMPToolMaterial.WOOD.toolMaterial, p)
+            //(p) -> new SwordItem(QMPToolMaterial.WOOD.toolMaterial, p)
             , new Item.Properties()
             //? if >1.21.1
-            //.sword(BAMBOO, 0.01F, -2.4F)
+            .sword(BAMBOO.toolMaterial, 0.01F, -2.4F)
     );
-    public static Item BAMBOO_AXE = register("bamboo_axe", properties -> new AxeItem(BAMBOO.toolMaterial,
+    public static Item BAMBOO_AXE = register("bamboo_axe",
+            //? if <26.3 {
+            properties -> new AxeItem(BAMBOO.toolMaterial,
             //? if >1.21.1
-            //0.01F, -3.2F,
-            properties), new Item.Properties());
-    public static Item BAMBOO_MACE = register("bamboo_mace",  (p)->new MaceItem(
+            0.01F, -3.2F,
+            properties),
+            //? } else {
+            /*Item::new,
+            *///? }
+             new Item.Properties()
+            //? if >=26.3
+                     //.axe(BAMBOO.toolMaterial, 0.01F, -3.2F)
+            );
+    public static Item BAMBOO_MACE = register("bamboo_mace",  MaceItem::new, (new Item.Properties()).rarity(Rarity.EPIC).durability(500).component(DataComponents.TOOL, MaceItem.createToolProperties())
             //? if >1.21.1
-            //BAMBOO.toolMaterial,
-            p), (new Item.Properties()).rarity(Rarity.EPIC).durability(500).component(DataComponents.TOOL, MaceItem.createToolProperties())
-            //? if >1.21.1
-            //.repairable(Items.BAMBOO)
+            .repairable(Items.BAMBOO)
             .attributes(createBambooMaceAttributes())
             //? if >1.21.1
-            //.enchantable(15)
+            .enchantable(15)
             //? if >1.21.1
-            //.component(DataComponents.WEAPON, new Weapon(1))
+            .component(DataComponents.WEAPON, new Weapon(1))
             );
+    public static Item RELIC_MACE = register("relic_mace",  MaceItem::new, (new Item.Properties()).rarity(Rarity.EPIC).durability(500).component(DataComponents.TOOL, MaceItem.createToolProperties())
+            //? if >1.21.1
+            .repairable(Items.BREEZE_ROD)
+            .attributes(MaceItem.createAttributes())
+            //? if >1.21.1
+            .enchantable(15)
+            //? if >1.21.1
+            .component(DataComponents.WEAPON, new Weapon(1))
+    );
     //? if >=1.21.11 {
-    /*public static Item BAMBOO_SPEAR = register(
-            "bamboo_spear", Item::new, new Item.Properties().spear(BAMBOO, 0.65F, 0.01F, 0.75F, 5.0F, 14.0F, 10.0F, 5.1F, 15.0F, 0F)
-    );*/
+    public static Item BAMBOO_SPEAR = register(
+            "bamboo_spear", Item::new, new Item.Properties().spear(BAMBOO.toolMaterial, 0.65F, 0.01F, 0.75F, 5.0F, 14.0F, 10.0F, 5.1F, 15.0F, 0F)
+    );
     //? }
 
 
@@ -199,8 +214,8 @@ public class ModItems {
         // Create the item instance.
         T item = itemFactory.apply(settings
                 //? if >=1.21.4 {
-                /*.setId(itemKey)
-                *///? }
+                .setId(itemKey)
+                //? }
         );
 
         // Register the item.
@@ -255,7 +270,7 @@ public class ModItems {
                     creativeTab.addAfter(Items.NETHERITE_AXE, ModItems.BAMBOO_AXE);
                     creativeTab.addAfter(Items.NETHERITE_SWORD, ModItems.BAMBOO_SWORD);
                     //? if >=1.21.11
-                    //creativeTab.addAfter(Items.NETHERITE_SPEAR, ModItems.BAMBOO_SPEAR);
+                    creativeTab.addAfter(Items.NETHERITE_SPEAR, ModItems.BAMBOO_SPEAR);
 
                     // Heavies
                     creativeTab.addAfter(Items.NETHERITE_AXE, ModItemLists.greataxes.toArray(new Item[0]));

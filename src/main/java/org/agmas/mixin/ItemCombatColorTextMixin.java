@@ -7,12 +7,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+//? if >=1.21.11
 import net.minecraft.world.item.component.TooltipDisplay;
 import org.agmas.init.ModComponents;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 @Mixin(Item.class)
@@ -25,9 +27,17 @@ public abstract class ItemCombatColorTextMixin {
         return original.call(itemStack);
     }
     @WrapMethod(method = "appendHoverText")
+    //? if >=1.21.11
     public void changeSoundWithWeapon(ItemStack itemStack, Item.TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> consumer, TooltipFlag tooltipFlag, Operation<Void> original) {
+    //? if <1.21.11
+    //public void changeSoundWithWeapon(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> consumer, TooltipFlag tooltipFlag, Operation<Void> original) {
         if (itemStack.has(ModComponents.COMBAT_EFFECT_COLOR)) {
-            consumer.accept(Component.translatable("quartermaster.combat_effect_tooltip").withColor(itemStack.get(ModComponents.COMBAT_EFFECT_COLOR).intValue()));
+            consumer.
+                    //? if >=1.21.11
+                    accept
+                    //? if <1.21.11
+                        //add
+                            (Component.translatable("quartermaster.combat_effect_tooltip").withColor(itemStack.get(ModComponents.COMBAT_EFFECT_COLOR).intValue()));
         }
     }
 

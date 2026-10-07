@@ -1,0 +1,6 @@
+{
+  "parent": "quartermaster:item/rapier_template",
+  "textures": {
+    "layer0": "quartermaster:item/rapier_coral_16"
+  }
+}

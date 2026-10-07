@@ -4,17 +4,17 @@ import net.minecraft.world.item.Item;
 import org.agmas.init.tag.ModItemLists;
 
 //? if >1.21.1 {
-/*import net.minecraft.world.entity.npc.villager.VillagerProfession;
-import net.minecraft.world.entity.npc.villager.VillagerTrades;
-*///? } else {
-import net.minecraft.world.entity.npc.VillagerProfession;
-import net.minecraft.world.entity.npc.VillagerTrades;
-//? }
-//? if <=1.21.11 {
-import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
+import net.minecraft.world.entity.npc.villager.VillagerProfession;
 //? } else {
-/*import net.minecraft.world.item.trading.VillagerTrades;
+/*import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.item.trading.VillagerTrades;
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 *///? }
+//? if =1.21.11 {
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
+//? }
 
 public class ModTrades {
     public static void init() {

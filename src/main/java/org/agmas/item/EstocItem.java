@@ -56,9 +56,9 @@ public class EstocItem extends EnchantableQMItem {
 
     @Override
     //? if >1.21.1
-    //public void hurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity attacker) {
+    public void hurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity attacker) {
     //? if <=1.21.1
-    public boolean hurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity attacker) {
+    //public boolean hurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity attacker) {
         if (!livingEntity.isBlocking()) {
             if (attacker instanceof Player player) {
                 if (((PlayerAcessor) attacker).quartermaster$getEstocWoundChanceTicks() > 0) {
@@ -70,7 +70,7 @@ public class EstocItem extends EnchantableQMItem {
             }
         }
         //? if <=1.21.1
-        return
+        //return
         super.hurtEnemy(itemStack, livingEntity, attacker);
     }
 
@@ -78,12 +78,12 @@ public class EstocItem extends EnchantableQMItem {
         return new Properties()
                 .stacksTo(1)
                 //? if >1.21.1
-                //.sword(material,0f,0f)
+                .sword(material.toolMaterial,0f,0f)
                 .attributes(EstocItem.createAttributes(material))
                 //? if >1.21.1
-                //.enchantable(material.enchantmentValue())
+                .enchantable(material.enchantability())
                 //? if <=1.21.1
-                .component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.SWORD_EFFICIENT))
+                //.component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.SWORD_EFFICIENT))
                 .durability(material.durability());
     }
 

@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:homerun",
+      "required": false
+    },
+    {
+      "id": "minecraft:knockback",
+      "required": false
+    }
+  ]
+}

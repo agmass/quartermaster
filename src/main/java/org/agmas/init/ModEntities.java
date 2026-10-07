@@ -25,7 +25,11 @@ public class ModEntities {
 
     private static <T extends Entity> EntityType<T> register(String name, EntityType.Builder<T> builder) {
         ResourceKey<EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, QMIdentifier.of(name).id);
-        return Registry.register(BuiltInRegistries.ENTITY_TYPE, key, builder.build(key));
+        return Registry.register(BuiltInRegistries.ENTITY_TYPE, key, builder.build(
+                key
+                //? if <1.21.11
+                        //.toString()
+        ));
     }
 
     public static void init() {

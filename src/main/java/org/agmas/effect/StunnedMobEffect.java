@@ -15,9 +15,4 @@ public class StunnedMobEffect extends MobEffect {
     public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return true;
     }
-
-    @Override
-    public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
-       return super.applyEffectTick(level, entity, amplifier);
-    }
 }

@@ -55,10 +55,12 @@ public abstract class GiveMoreWeaponsMixin extends Entity {
             replaceItems = ModItemLists.stone_heavy;
         } else if (itemStack.is(ModTags.STONE_LIGHT_WEAPONS)) {
             replaceItems = ModItemLists.stone_light;
+            //? if >=1.21.11 {
         } else if (itemStack.is(ModTags.COPPER_HEAVY_WEAPONS)) {
             replaceItems = ModItemLists.copper_heavy;
         } else if (itemStack.is(ModTags.COPPER_LIGHT_WEAPONS)) {
             replaceItems = ModItemLists.copper_light;
+            //? }
         } else if (itemStack.is(ModTags.IRON_HEAVY_WEAPONS)) {
             replaceItems = ModItemLists.iron_heavy;
         } else if (itemStack.is(ModTags.IRON_LIGHT_WEAPONS)) {
@@ -73,7 +75,7 @@ public abstract class GiveMoreWeaponsMixin extends Entity {
             replaceItems = ModItemLists.diamond_light;
         }
 
-        if (replaceItems != null) {
+        if (replaceItems != null && !level().isClientSide()) {
             original.call(EquipmentSlot.MAINHAND,replaceItems.get(random.nextInt(0,replaceItems.size())).getDefaultInstance());
         } else {
             original.call(equipmentSlot,itemStack);

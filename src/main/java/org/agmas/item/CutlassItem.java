@@ -7,6 +7,8 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
+//? if >=26.3
+//import net.minecraft.util.Prediction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -67,10 +69,10 @@ public class CutlassItem extends EnchantableQMItem implements CustomHitSounds {
         int comboToDisable = 7; // fallback to wood
 
         //? if >=1.21.10 {
-        /*if (material == COPPER || material == STONE)  comboToDisable = 6;
-        *///? } else {
-        if (material == STONE)  comboToDisable = 6;
-        //? }
+        if (material == COPPER || material == STONE)  comboToDisable = 6;
+        //? } else {
+        /*if (material == STONE)  comboToDisable = 6;
+        *///? }
         if (material == IRON || material == GOLD)  comboToDisable = 5;
         if (material == DIAMOND)  comboToDisable = 4;
         if (material == NETHERITE)  comboToDisable = 3;
@@ -79,12 +81,12 @@ public class CutlassItem extends EnchantableQMItem implements CustomHitSounds {
                 .component(ModComponents.COMBO_TO_DISABLE, comboToDisable)
                 .stacksTo(1)
                 //? if >1.21.1
-                //.sword(material,0f,0f)
+                .sword(material.toolMaterial,0f,0f)
                 .attributes(CutlassItem.createAttributes(material))
                 //? if >1.21.1
-                //.enchantable(material.enchantability())
+                .enchantable(material.enchantability())
                 //? if <=1.21.1
-                .component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.SWORD_EFFICIENT))
+                //.component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.SWORD_EFFICIENT))
                 .durability(material.durability());
     }
 
@@ -129,12 +131,18 @@ public class CutlassItem extends EnchantableQMItem implements CustomHitSounds {
                                     player.getInventory().setItem(freeSlot,stack);
                                 }
                             } else {
-                                //? if >1.21.1
-                                //livingEntity.drop(livingEntity.getMainHandItem(),false,false);
-                                //? if <=1.21.1 {
-                                ItemEntity itemEntity = new ItemEntity(livingEntity.level(), livingEntity.getX(), livingEntity.getEyeY(), livingEntity.getZ(), livingEntity.getMainHandItem());
-                                ((ServerLevel)livingEntity.level()).addFreshEntity(itemEntity);
+                                //? if >1.21.1 {
+                                livingEntity.drop(livingEntity.getMainHandItem(),false,
+                                        //? if <26.3
+                                        false
+                                        //? if >=26.3
+                                        //Prediction.PREDICTED
+                                );
                                 //? }
+                                //? if <=1.21.1 {
+                                /*ItemEntity itemEntity = new ItemEntity(livingEntity.level(), livingEntity.getX(), livingEntity.getEyeY(), livingEntity.getZ(), livingEntity.getMainHandItem());
+                                ((ServerLevel)livingEntity.level()).addFreshEntity(itemEntity);
+                                *///? }
                                 livingEntity.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
                             }
                         }
@@ -150,8 +158,8 @@ public class CutlassItem extends EnchantableQMItem implements CustomHitSounds {
     public static void disarm(LivingEntity livingEntity, int division) {
         livingEntity.addEffect(new MobEffectInstance(ModEffects.DISARMED, Quartermaster.DISARMED_TICKS / division, 0));
         //? if >1.21.1
-        //livingEntity.addEffect(new MobEffectInstance(MobEffects.SPEED, Quartermaster.DISARMED_TICKS / division, 0));
+        livingEntity.addEffect(new MobEffectInstance(MobEffects.SPEED, Quartermaster.DISARMED_TICKS / division, 0));
         //? if <=1.21.1
-        livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, Quartermaster.DISARMED_TICKS / division, 0));
+        //livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, Quartermaster.DISARMED_TICKS / division, 0));
     }
 }

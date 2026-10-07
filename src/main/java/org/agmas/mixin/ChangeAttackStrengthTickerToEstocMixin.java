@@ -63,9 +63,13 @@ public abstract class ChangeAttackStrengthTickerToEstocMixin extends LivingEntit
         int estocTicks = instance.getAttachedOrElse(ModAttachments.STORED_ESTOC_TICKS,0);
         if (instance.getMainHandItem().is(ModTags.ESTOCS)) {
             if (!instance.level().isClientSide()) {
-                if (lastEstocTicks < 10 && ((ServerLevel)instance.level()).getGameRules().get(ModGameRule.WOUND_WHEN_ESTOC_UNCHARGED_BOOLEAN_GAMERULE).booleanValue()) {
+                //? if >=1.21.11 {
+                if (lastEstocTicks < 10 &&
+                        ((ServerLevel)instance.level()).getGameRules().get(ModGameRule.WOUND_WHEN_ESTOC_UNCHARGED_BOOLEAN_GAMERULE).booleanValue()
+                ) {
                     EstocItem.wound(instance);
                 }
+                //? }
             }
             estocWoundChanceTicks = 20;
         } else {

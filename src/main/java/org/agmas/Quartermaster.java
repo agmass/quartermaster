@@ -10,8 +10,12 @@ import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction;
+//? if <26.3 {
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+//? } else {
+/*import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
+*///? }
 import org.agmas.init.ModEnchants;
 import org.agmas.init.*;
 import org.agmas.init.tag.ModTags;
@@ -78,7 +82,12 @@ public class Quartermaster implements ModInitializer {
 			if (lootTableSource.isBuiltin() &&
 					key.equals(BuiltInLootTables.BASTION_BRIDGE) || key.equals(BuiltInLootTables.BASTION_OTHER) || key.equals(BuiltInLootTables.BASTION_HOGLIN_STABLE)) {
 				builder.withPool(LootPool.lootPool()
-						.setRolls(ConstantValue.exactly(1))
+						.setRolls(
+								//? if <26.3
+								ConstantValue.exactly(1)
+								//? if >=26.3
+								//ContextIntProviders.exactly(1)
+						)
 						.add(
 								LootItem.lootTableItem(Items.BOOK)
 										.setWeight(1)
@@ -96,7 +105,12 @@ public class Quartermaster implements ModInitializer {
 			if (lootTableSource.isBuiltin() &&
 					key.equals(BuiltInLootTables.END_CITY_TREASURE)) {
 				builder.withPool(LootPool.lootPool()
-						.setRolls(ConstantValue.exactly(1))
+						.setRolls(
+								//? if <26.3
+								ConstantValue.exactly(1)
+								//? if >=26.3
+								//ContextIntProviders.exactly(1)
+						)
 						.add(
 								LootItem.lootTableItem(Items.BOOK)
 										.setWeight(1)
@@ -110,7 +124,12 @@ public class Quartermaster implements ModInitializer {
 			if (lootTableSource.isBuiltin() &&
 					key.equals(BuiltInLootTables.PILLAGER_OUTPOST)) {
 				builder.withPool(LootPool.lootPool()
-						.setRolls(ConstantValue.exactly(1))
+						.setRolls(
+								//? if <26.3
+								ConstantValue.exactly(1)
+								//? if >=26.3
+								//ContextIntProviders.exactly(1)
+						)
 						.add(
 								LootItem.lootTableItem(Items.BOOK)
 										.setWeight(1)
@@ -124,7 +143,12 @@ public class Quartermaster implements ModInitializer {
 			if (lootTableSource.isBuiltin() &&
 					key.equals(BuiltInLootTables.WOODLAND_MANSION)) {
 				builder.withPool(LootPool.lootPool()
-						.setRolls(ConstantValue.exactly(1))
+						.setRolls(
+								//? if <26.3
+								ConstantValue.exactly(1)
+								//? if >=26.3
+								//ContextIntProviders.exactly(1)
+						)
 						.add(
 								LootItem.lootTableItem(Items.BOOK)
 										.setWeight(1)
@@ -142,7 +166,12 @@ public class Quartermaster implements ModInitializer {
 			if (lootTableSource.isBuiltin() &&
 					key.equals(BuiltInLootTables.ABANDONED_MINESHAFT)) {
 				builder.withPool(LootPool.lootPool()
-						.setRolls(UniformGenerator.between(0,1))
+						.setRolls(
+								//? if <26.3
+								UniformGenerator.between(0,1)
+								//? if >=26.3
+								//ContextIntProviders.between(0,1)
+						)
 						.add(
 								LootItem.lootTableItem(Items.BOOK)
 										.setWeight(1)
@@ -157,7 +186,12 @@ public class Quartermaster implements ModInitializer {
 			if (lootTableSource.isBuiltin() &&
 					key.equals(BuiltInLootTables.TRIAL_CHAMBERS_REWARD) || key.equals(BuiltInLootTables.TRIAL_CHAMBERS_REWARD_OMINOUS)) {
 				builder.withPool(LootPool.lootPool()
-						.setRolls(UniformGenerator.between(0,2))
+						.setRolls(
+								//? if <26.3
+								UniformGenerator.between(0,2)
+								//? if >=26.3
+								//ContextIntProviders.between(0,2)
+						)
 						.add(
 								LootItem.lootTableItem(Items.BOOK)
 										.setWeight(1)
@@ -181,5 +215,7 @@ public class Quartermaster implements ModInitializer {
 		});
 
 	}
+
+
 
 }

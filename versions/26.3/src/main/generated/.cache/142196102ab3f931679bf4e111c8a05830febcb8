@@ -1,0 +1,6 @@
+// 26.3-rc-2	-999999999-01-01T00:00:00	Quartermaster/Tags for minecraft:damage_type
+fa7ea93c52220bf2a6e722cddb30e9a2e282e1dc data/minecraft/tags/damage_type/bypasses_armor.json
+fa7ea93c52220bf2a6e722cddb30e9a2e282e1dc data/minecraft/tags/damage_type/bypasses_cooldown.json
+fa7ea93c52220bf2a6e722cddb30e9a2e282e1dc data/minecraft/tags/damage_type/no_knockback.json
+a7e46931b049e6b991858ebb4b60e31587b6d263 data/quartermaster/tags/damage_type/is_impact.json
+fb01146a19df8137f0b2878e76774487bdc33667 data/quartermaster/tags/damage_type/is_magic.json

@@ -99,7 +99,10 @@ public class FlintlockAnimator {
         QuartermasterClient.handsRoot.getChild("main").getChild("rightarm").getChild("gun").translateAndRotate(stack);
         QuartermasterClient.handsRoot.getChild("main").getChild("rightarm").getChild("gun").getChild("ITEM").translateAndRotate(stack);
 
+        //? if <26.3
         stack.mulPose(Axis.ZP.rotationDegrees(180));
+        //? if >=26.3
+        //stack.rotate(Axis.ZP.rotationDegrees(180));
         stack.translate(0,0.2,-0.2);
         ItemStackRenderState itemStackRenderState = new ItemStackRenderState();
         Minecraft.getInstance().getItemModelResolver()

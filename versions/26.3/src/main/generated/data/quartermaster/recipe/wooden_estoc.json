@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": "minecraft:stick",
+    "N": "#minecraft:planks"
+  },
+  "pattern": [
+    " N ",
+    " H ",
+    "H  "
+  ],
+  "result": {
+    "id": "quartermaster:wooden_estoc"
+  }
+}

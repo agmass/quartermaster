@@ -29,7 +29,7 @@ public class WarhammerLandingParticle extends SingleQuadParticle {
     WarhammerLandingParticle(ClientLevel clientLevel, double d, double e, double f, double g, SpriteSet spriteSet) {
         super(clientLevel, d, e, f, 0.0, 0.0, 0.0
                 //? if >1.21.1
-                //, spriteSet.first()
+                , spriteSet.first()
         );
         this.lifetime = 40;
         this.setSpriteFromAge(spriteSet);
@@ -60,25 +60,25 @@ public class WarhammerLandingParticle extends SingleQuadParticle {
 
     @Override
     //? if >1.21.1
-    //public void extract(QuadParticleRenderState quadParticleRenderState, Camera camera, float f) {
+    public void extract(QuadParticleRenderState quadParticleRenderState, Camera camera, float f) {
     //? if <=1.21.1
-    public void render(VertexConsumer vertexConsumer, Camera camera, float f) {
+    //public void render(VertexConsumer vertexConsumer, Camera camera, float f) {
         Quaternionf quaternionf = new Quaternionf();
 
         float ageInTicks = (age+f)/lifetime;
 
         //? if >1.21.1
-        //quadSize = Mth.lerp(EasingType.OUT_EXPO.apply(ageInTicks), 0, maxSize*1.5f);
+        quadSize = Mth.lerp(EasingType.OUT_EXPO.apply(ageInTicks), 0, maxSize*1.5f);
         //? if <=1.21.1
-        quadSize = Mth.lerp(ageInTicks, 0, maxSize*1.5f);
+        //quadSize = Mth.lerp(ageInTicks, 0, maxSize*1.5f);
 
         quaternionf.rotateX((float) Math.toRadians(-90));
         quaternionf.rotateZ((float) Mth.lerp(ageInTicks, 0, Math.toRadians(270)));
 
         //? if >1.21.1
-        //this.extractRotatedQuad(quadParticleRenderState, camera, quaternionf, f);
+        this.extractRotatedQuad(quadParticleRenderState, camera, quaternionf, f);
         //? if <=1.21.1
-        renderRotatedQuad(vertexConsumer,camera,quaternionf,f);
+        //renderRotatedQuad(vertexConsumer,camera,quaternionf,f);
 
         quaternionf = new Quaternionf();
 
@@ -86,19 +86,19 @@ public class WarhammerLandingParticle extends SingleQuadParticle {
         quaternionf.rotateX((float) Mth.lerp(ageInTicks, 0, Math.toRadians(270)));
 
         //? if >1.21.1
-        //this.extractRotatedQuad(quadParticleRenderState, camera, quaternionf, f);
+        this.extractRotatedQuad(quadParticleRenderState, camera, quaternionf, f);
         //? if <=1.21.1
-        renderRotatedQuad(vertexConsumer,camera,quaternionf,f);
+        //renderRotatedQuad(vertexConsumer,camera,quaternionf,f);
         quaternionf.rotateX((float) Math.toRadians(180));
         //? if >1.21.1
-        //this.extractRotatedQuad(quadParticleRenderState, camera, quaternionf, f);
+        this.extractRotatedQuad(quadParticleRenderState, camera, quaternionf, f);
         //? if <=1.21.1
-        renderRotatedQuad(vertexConsumer,camera,quaternionf,f);
+        //renderRotatedQuad(vertexConsumer,camera,quaternionf,f);
 
     }
 
     //? if <=1.21.1 {
-    @Override
+    /*@Override
     public ParticleRenderType getRenderType() {
         return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
     }
@@ -122,14 +122,14 @@ public class WarhammerLandingParticle extends SingleQuadParticle {
     protected float getV1() {
         return 1;
     }
-    //? }
+    *///? }
 
 
     //? if >1.21.1 {
-    /*@Override
+    @Override
     public Layer getLayer() {
         return Layer.TRANSLUCENT;
-    }*/
+    }
     //? }
 
     @Environment(EnvType.CLIENT)
@@ -142,7 +142,7 @@ public class WarhammerLandingParticle extends SingleQuadParticle {
         @Override
         public Particle createParticle(QMSpellParticleOption particleOptions, ClientLevel clientLevel, double d, double e, double f, double g, double h, double i
                                                  //? if >1.21.1
-                                                 //, RandomSource randomSource
+                                                 , RandomSource randomSource
         ) {
             WarhammerLandingParticle spellParticle = new WarhammerLandingParticle(clientLevel, d, e, f, g, this.sprite);
             spellParticle.setColor(particleOptions.getRed(), particleOptions.getGreen(), particleOptions.getBlue());
@@ -162,7 +162,7 @@ public class WarhammerLandingParticle extends SingleQuadParticle {
         public Particle createParticle(
                 SimpleParticleType simpleParticleType, ClientLevel clientLevel, double d, double e, double f, double g, double h, double i
                 //? if >1.21.1
-                //, RandomSource randomSource
+                , RandomSource randomSource
         ) {
             return new WarhammerLandingParticle(clientLevel, d, e, f, g, this.sprites);
         }

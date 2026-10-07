@@ -1,6 +1,8 @@
 package org.agmas.entity;
 
+import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.particles.SpellParticleOption;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
@@ -15,6 +17,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
+//? if >=1.21.11
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,6 +31,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import org.agmas.init.*;
+import org.agmas.porting.QMSpellParticleOption;
 
 import java.awt.*;
 import java.util.List;
@@ -57,7 +61,10 @@ public class GreataxeProjectileEntity extends Projectile {
             if (!entities.isEmpty()) {
                 GreataxeProjectileEntity other = (GreataxeProjectileEntity) entities.getFirst();
                 if (other.getOwner() != getOwner() && tickCount != 0 && other.tickCount != 0) {
-                    GreataxeProjectileEntity buster = ModEntities.GREATAXE_PROJECTILE.create(level(), EntitySpawnReason.TRIGGERED);
+                    GreataxeProjectileEntity buster = ModEntities.GREATAXE_PROJECTILE.create(level()
+                            //? if >=1.21.11
+                            , EntitySpawnReason.TRIGGERED
+                    );
                     buster.setOwner(getOwner());
                     Color thisColor = new Color(getColor());
                     Color otherColor = new Color(other.getColor());
@@ -105,9 +112,15 @@ public class GreataxeProjectileEntity extends Projectile {
         if (shooter == null) {
             level.playSound(null, getX(), getY(), getZ(), ModSounds.GREATAXE_HIT, getSoundSource());
         } else {
+            //? if >=1.21.11
             level.playSound(shooter, getX(), getY(), getZ(), ModSounds.GREATAXE_HIT, getSoundSource());
             if (shooter instanceof ServerPlayer player) {
+                //? if <1.21.11 {
+                /*level.playSound(player, getX(), getY(), getZ(), ModSounds.GREATAXE_HIT, getSoundSource());
+                player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(ModSounds.GREATAXE_HIT),player.getSoundSource(),player.getX(),player.getY(),player.getZ(),1f,1f,0));
+                *///? } else {
                 player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.get(ModSounds.GREATAXE_HIT.location()).get(),player.getSoundSource(),player.getX(),player.getY(),player.getZ(),1f,1f,0));
+                //? }
             }
         }
         for (Entity entity : level.getEntities(this, getBoundingBox().inflate(0.5, 3, 0.5))) {
@@ -137,7 +150,11 @@ public class GreataxeProjectileEntity extends Projectile {
                 DamageSource source = level().damageSources().source(ModDamageTypes.RUDE_DAMAGE, this);
                 entityHitResult.getEntity().hurt(source, attackPower);
                 Entity hit = entityHitResult.getEntity();
+
+                //? if >=1.21.11
                 ((ServerLevel) level()).sendParticles(SpellParticleOption.create(ParticleTypes.INSTANT_EFFECT, getColor(), 4f), hit.getX(), hit.getEyeY(), hit.getZ(), 20, 0.5f, 0.5f, 0.5f, 0.5f);
+                //? if <1.21.11
+                //((ServerLevel) level()).sendParticles(ParticleTypes.INSTANT_EFFECT, hit.getX(), hit.getEyeY(), hit.getZ(), 20, 0.5f, 0.5f, 0.5f, 0.5f);
             }
             discard();
         }

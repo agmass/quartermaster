@@ -8,13 +8,15 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraft.world.item.component.PiercingWeapon;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 import org.agmas.init.ModEnchants;
 import org.agmas.item.EstocItem;
+//? if >=1.21.11 {
 import org.apache.commons.lang3.function.Predicates;
+import net.minecraft.world.item.component.PiercingWeapon;
+//? }
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -28,6 +30,7 @@ public abstract class StabAttackMixin extends LivingEntity {
         super(entityType, level);
     }
 
+    //? if >=1.21.11 {
     @Inject(method = "stabAttack", at = @At("TAIL"))
     public void woundSpear(EquipmentSlot equipmentSlot, Entity entity, float f, boolean bl, boolean bl2, boolean bl3, CallbackInfoReturnable<Boolean> cir) {
         boolean puncture = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.PUNCTURE),getItemBySlot(equipmentSlot)) > 0;
@@ -36,15 +39,16 @@ public abstract class StabAttackMixin extends LivingEntity {
                 EstocItem.wound(livingEntity);
             entity.setDeltaMovement(getViewVector(0f).multiply(-1f,-1f,-1f));
             //? if >=1.21.11 {
-            /*entity.needsSync = true;
-            *///? } else {
-            entity.hasImpulse = true;
-             //? }
+            entity.needsSync = true;
+            //? } else {
+            /*entity.hasImpulse = true;
+             *///? }
             if (entity instanceof ServerPlayer player2) {
                 player2.connection.send(new ClientboundSetEntityMotionPacket(player2));
             }
         }
     }
+    //? }
 
 
 }

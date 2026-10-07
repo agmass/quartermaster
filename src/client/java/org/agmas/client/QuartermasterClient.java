@@ -22,8 +22,11 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.properties.conditional.ConditionalItemModelProperties;
+import net.minecraft.network.protocol.game.ServerboundSwingPacket;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Items;
+//? if >=26.3
+//import net.minecraft.world.item.component.SwingAnimation;
 import org.agmas.porting.QMIdentifier;
 import org.agmas.Quartermaster;
 import org.agmas.client.item.CoralRapierBooleanProperty;
@@ -79,12 +82,12 @@ public class QuartermasterClient implements ClientModInitializer {
 
 
 		//? if >=1.21.9 {
-		/*KeyMapping.Category CATEGORY = KeyMapping.Category.register(
+		KeyMapping.Category CATEGORY = KeyMapping.Category.register(
 				QMIdentifier.of("quartermaster").id
 		);
-		*///? } else {
-		String CATEGORY = KeyMapping.CATEGORY_MOVEMENT;
-		 //? }
+		//? } else {
+		/*String CATEGORY = KeyMapping.CATEGORY_MOVEMENT;
+		 *///? }
 		inspectAnimation = registerKeyMapping(
 				new KeyMapping(
 						"key.quartermaster.inspect",
@@ -126,7 +129,13 @@ public class QuartermasterClient implements ClientModInitializer {
 				if (m.player.getItemBlockingWith() != null) {
 					if (m.player.getItemBlockingWith().is(Items.SHIELD)) {
 						while (m.options.keyAttack.consumeClick()) {
-							m.player.swing(InteractionHand.MAIN_HAND);
+							m.player.swing(InteractionHand.MAIN_HAND,
+									//? if >=26.3
+									//SwingAnimation.DEFAULT,
+									false
+							);
+							m.getConnection().send(new ServerboundSwingPacket(InteractionHand.MAIN_HAND));
+
 						}
 					}
 				}

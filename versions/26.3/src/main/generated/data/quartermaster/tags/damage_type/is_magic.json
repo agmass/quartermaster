@@ -1,0 +1,28 @@
+{
+  "values": [
+    {
+      "id": "minecraft:magic",
+      "required": false
+    },
+    {
+      "id": "minecraft:indirect_magic",
+      "required": false
+    },
+    {
+      "id": "minecraft:fireball",
+      "required": false
+    },
+    {
+      "id": "minecraft:dragon_breath",
+      "required": false
+    },
+    {
+      "id": "quartermaster:rude_damage",
+      "required": false
+    },
+    {
+      "id": "minecraft:sonic_boom",
+      "required": false
+    }
+  ]
+}

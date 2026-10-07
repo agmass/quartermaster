@@ -4,7 +4,6 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.core.particles.SpellParticleOption;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -29,7 +28,7 @@ import net.minecraft.world.phys.Vec3;
 import org.agmas.Quartermaster;
 import org.agmas.init.*;
 import org.agmas.init.tag.ModTags;
-import org.jspecify.annotations.Nullable;
+import org.agmas.porting.QMSpellParticleOption;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -50,7 +49,7 @@ public abstract class LivingEntityMixin extends Entity {
 	public abstract boolean hasEffect(Holder<MobEffect> effect);
 
 	@Shadow
-	public abstract @Nullable AttributeInstance getAttribute(Holder<Attribute> attribute);
+	public abstract AttributeInstance getAttribute(Holder<Attribute> attribute);
 
 	@Shadow
 	public abstract boolean addEffect(MobEffectInstance newEffect);
@@ -117,21 +116,33 @@ public abstract class LivingEntityMixin extends Entity {
 						if (getMainHandItem().has(ModComponents.WARHAMMER_RANGE)) {
 							power = getMainHandItem().get(ModComponents.WARHAMMER_RANGE).floatValue();
 						}
-						addEffect(new MobEffectInstance(MobEffects.SLOWNESS,20,0));
-						level.sendParticles(SpellParticleOption.create(ModParticles.LANDING, color,power),getX(),getY()+0.02f,getZ(),0,0,0,0,0);
+						addEffect(new MobEffectInstance(
+								//? if >=1.21.11
+								MobEffects.SLOWNESS,
+								//? if <1.21.11
+								//MobEffects.MOVEMENT_SLOWDOWN,
+								20,0));
+						level.sendParticles(QMSpellParticleOption.create(ModParticles.LANDING, color,power),getX(),getY()+0.02f,getZ(),0,0,0,0,0);
 						boolean siesmic = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.SIESMIC),getMainHandItem()) > 0;
 						boolean pull = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.PULL),getMainHandItem()) > 0;
 						boolean homerun = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.HOMERUN),getMainHandItem()) > 0;
-						boolean glacial = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.HEATWAVE),getMainHandItem()) > 0;
-						boolean heatwave = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.GLACIAL),getMainHandItem()) > 0;
+						boolean heatwave = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.HEATWAVE),getMainHandItem()) > 0;
+						boolean glacial = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.GLACIAL),getMainHandItem()) > 0;
 						boolean earthquake = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.EARTHQUAKE),getMainHandItem()) > 0;
 
 						for (Entity entity : level.getEntities(((LivingEntity) (Object) this), getBoundingBox().inflate(power * 1.5f))) {
 							if (entity instanceof LivingEntity livingEntity) {
 								DamageSource source = level.damageSources().source(ModDamageTypes.SHOCKWAVE, this);
+
+								//? if >=1.21.11
 								livingEntity.hurtServer(level,source, siesmic ? (float) getAttribute(Attributes.ATTACK_DAMAGE).getValue()*2f : 4f);
+								//? if <1.21.11
+								//livingEntity.hurt(source, siesmic ? (float) getAttribute(Attributes.ATTACK_DAMAGE).getValue()*2f : 4f);
 								if (!siesmic && livingEntity.isBlocking()) {
+									//? if >=1.21.11
 									livingEntity.getItemBlockingWith().get(DataComponents.BLOCKS_ATTACKS).disable(level,livingEntity,power,livingEntity.getItemBlockingWith());
+									//? if <1.21.11
+									//livingEntity.hurtCurrentlyUsedShield(power);
 								}
 								if (heatwave) {
 									livingEntity.setRemainingFireTicks(120);
@@ -145,19 +156,19 @@ public abstract class LivingEntityMixin extends Entity {
 								if (pull) {
 									livingEntity.setDeltaMovement(livingEntity.getPosition(0f).subtract(getPosition(0f)).normalize().multiply(-2,-2,-2));
 									//? if >=1.21.11 {
-									/*livingEntity.needsSync = true;
-									*///? } else {
-									livingEntity.hasImpulse = true;
-									 //? }
+									livingEntity.needsSync = true;
+									//? } else {
+									/*livingEntity.hasImpulse = true;
+									 *///? }
 								}
 
 								if (homerun) {
 									livingEntity.setDeltaMovement(new Vec3(0,0.5f,0));
 									//? if >=1.21.11 {
-									/*livingEntity.needsSync = true;
-									*///? } else {
-									livingEntity.hasImpulse = true;
-									 //? }
+									livingEntity.needsSync = true;
+									//? } else {
+									/*livingEntity.hasImpulse = true;
+									 *///? }
 								}
 							}
 						}
@@ -174,15 +185,30 @@ public abstract class LivingEntityMixin extends Entity {
 	/**
 	 * @author Chemthunder
 	 */
+	//? if >=1.21.11 {
 	@WrapMethod(method = "hurtServer")
 	private boolean parry(ServerLevel level, DamageSource source, float amount, Operation<Boolean> original) {
+	//? } else if <1.21.11 {
+	/*@WrapMethod(method = "hurt")
+	private boolean parry(DamageSource source, float amount, Operation<Boolean> original) {
+	*///? }
+
 		if (source.getEntity() instanceof LivingEntity target) {
 			if (getUseItem().is(ModItems.RAPIER)) {
+				//? if >=1.21.11
 				target.hurtServer(level,source,amount*2);
-				level.playSound(null,position().x,position().y,position().z, ModSounds.PARRY, SoundSource.PLAYERS);
-				return original.call(level,source,amount/4);
+				//? if <1.21.11
+				//target.hurt(source,amount*2);
+				level().playSound(null,position().x,position().y,position().z, ModSounds.PARRY, SoundSource.PLAYERS);
+				return original.call(
+						//? if >=1.21.11
+						level,
+						source,amount/4);
 			}
 		}
-		return original.call(level, source, amount);
+		return original.call(
+				//? if >=1.21.11
+				level,
+				source, amount);
 	}
 }

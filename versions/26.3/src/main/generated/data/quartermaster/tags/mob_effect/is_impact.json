@@ -1,0 +1,28 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:stunned",
+      "required": false
+    },
+    {
+      "id": "quartermaster:disarmed",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wounded",
+      "required": false
+    },
+    {
+      "id": "minecraft:mining_fatigue",
+      "required": false
+    },
+    {
+      "id": "minecraft:poison",
+      "required": false
+    },
+    {
+      "id": "minecraft:wither",
+      "required": false
+    }
+  ]
+}

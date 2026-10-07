@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:shield_bash",
+      "required": false
+    },
+    {
+      "id": "quartermaster:brittle",
+      "required": false
+    }
+  ]
+}

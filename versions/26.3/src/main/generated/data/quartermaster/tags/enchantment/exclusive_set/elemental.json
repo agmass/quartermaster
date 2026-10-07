@@ -1,0 +1,32 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:glacial",
+      "required": false
+    },
+    {
+      "id": "quartermaster:heatwave",
+      "required": false
+    },
+    {
+      "id": "quartermaster:tidal_chill",
+      "required": false
+    },
+    {
+      "id": "quartermaster:hellfork",
+      "required": false
+    },
+    {
+      "id": "quartermaster:chill",
+      "required": false
+    },
+    {
+      "id": "minecraft:fire_aspect",
+      "required": false
+    },
+    {
+      "id": "minecraft:flame",
+      "required": false
+    }
+  ]
+}

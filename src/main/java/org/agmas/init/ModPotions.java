@@ -1,6 +1,7 @@
 package org.agmas.init;
 
-//? if >=26.1 {
+//? if >=26.3 {
+//? } else if >=26.1 {
 /*import net.fabricmc.fabric.api.registry.FabricPotionBrewingBuilder;
 *///? } else {
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
@@ -41,6 +42,7 @@ public class ModPotions {
                     )
             );
     public static void init() {
+        //? if <26.3 {
         //? if >=26.1 {
         /*FabricPotionBrewingBuilder.BUILD.register(builder -> {
         *///? } else {
@@ -64,5 +66,6 @@ public class ModPotions {
                     LONG_FROST_PROTECTION
             );
         });
+        //? }
     }
 }

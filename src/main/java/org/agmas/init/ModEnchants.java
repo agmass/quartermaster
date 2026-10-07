@@ -34,6 +34,7 @@ public class ModEnchants {
     public static final ResourceKey<Enchantment> MAGIC_PROTECTION = of("magic_protection");
     public static final ResourceKey<Enchantment> FROST_PROTECTION = of("frost_protection");
 
+    public static final ResourceKey<Enchantment> EXCAVATE = of("excavate");
     public static final ResourceKey<Enchantment> BLADEDANCE = of("bladedance");
     public static final ResourceKey<Enchantment> EXPLOSIVE_KINECTIVITY = of("explosive_kinectivity");
     public static final ResourceKey<Enchantment> GLACIAL = of("glacial");
@@ -43,6 +44,8 @@ public class ModEnchants {
     public static final ResourceKey<Enchantment> SINGLEHANDED = of("singlehanded");
     public static final ResourceKey<Enchantment> TIDAL_CHILL = of("tidal_chill");
     public static final ResourceKey<Enchantment> CHILL = of("chill");
+    public static final ResourceKey<Enchantment> NORTH_WIND = of("north_wind");
+    public static final ResourceKey<Enchantment> UPDRAFT = of("updraft");
 
 
     public static final ResourceKey<Enchantment> WHATSAPP = of("whatsapp");
@@ -84,10 +87,10 @@ public class ModEnchants {
                     if (EnchantmentHelper.getEnchantmentLevel(enchantHolder((ServerLevel) player.level(),ModEnchants.HOMERUN), player) > 0 && entity.onGround()) {
                         entity.setDeltaMovement(0, 0.5f, 0);
                         //? if >=1.21.11 {
-                        /*entity.needsSync = true;
-                        *///? } else {
-                        entity.hasImpulse = true;
-                         //? }
+                        entity.needsSync = true;
+                        //? } else {
+                        /*entity.hasImpulse = true;
+                         *///? }
                         if (entity instanceof ServerPlayer player2) {
                             player2.connection.send(new ClientboundSetEntityMotionPacket(player2));
                         }
@@ -97,13 +100,17 @@ public class ModEnchants {
         }));
     }
     public static Holder<Enchantment> enchantHolder(Level level, ResourceKey<Enchantment> e) {
+        //? if >=1.21.11
         return level.registryAccess().lookup(Registries.ENCHANTMENT).get().wrapAsHolder(level.registryAccess().lookup(Registries.ENCHANTMENT).get().getValue(e));
+        //? if <1.21.11
+        //return level.registryAccess().lookup(Registries.ENCHANTMENT).get().getOrThrow(e);
     }
     public static boolean canCriticalAttack(Player entity) {
         return entity.fallDistance > 0.0
                 && !entity.onGround()
                 && !entity.onClimbable()
                 && !entity.isInWater()
+                //? if >=1.21.11
                 && !entity.isMobilityRestricted()
                 && !entity.isPassenger()
                 && !entity.isSprinting();

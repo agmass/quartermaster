@@ -1,13 +1,14 @@
 package org.agmas.porting;
 //? if <=1.21.1
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.Tiers;
+//import net.minecraft.world.item.Tier;
+//? if <=1.21.1
+//import net.minecraft.world.item.Tiers;
 //? if >1.21.1
-//import net.minecraft.world.item.ToolMaterial;
+import net.minecraft.world.item.ToolMaterial;
 
 public class QMPToolMaterial {
     //? if <=1.21.1 {
-    public Tier toolMaterial;
+    /*public Tier toolMaterial;
 
     public static QMPToolMaterial WOOD = new QMPToolMaterial(Tiers.WOOD);
     public static QMPToolMaterial STONE = new QMPToolMaterial(Tiers.STONE);
@@ -19,8 +20,8 @@ public class QMPToolMaterial {
     public QMPToolMaterial(Tier toolMaterial) {
         this.toolMaterial = toolMaterial;
     }
-    //? } else {
-    /*
+    *///? } else {
+    
 
     public static QMPToolMaterial WOOD = new QMPToolMaterial(ToolMaterial.WOOD);
     public static QMPToolMaterial STONE = new QMPToolMaterial(ToolMaterial.STONE);
@@ -34,28 +35,28 @@ public class QMPToolMaterial {
     public QMPToolMaterial(ToolMaterial toolMaterial) {
         this.toolMaterial = toolMaterial;
     }
-    *///? }
+    //? }
 
     public float attackDamageBonus() {
         //? if >1.21.1
-        //return toolMaterial.attackDamageBonus;
+        return toolMaterial.attackDamageBonus();
         //? if <=1.21.1
-        return toolMaterial.getAttackDamageBonus();
+        //return toolMaterial.getAttackDamageBonus();
     }
 
 
     public int enchantability() {
         //? if >1.21.1
-        //return toolMaterial.enchantmentValue;
+        return toolMaterial.enchantmentValue();
         //? if <=1.21.1
-        return toolMaterial.getEnchantmentValue();
+        //return toolMaterial.getEnchantmentValue();
     }
 
     public int durability() {
         //? if >1.21.1
-        //return toolMaterial.durability;
+        return toolMaterial.durability();
         //? if <=1.21.1
-        return toolMaterial.getUses();
+        //return toolMaterial.getUses();
     }
 
 

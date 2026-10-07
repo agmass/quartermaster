@@ -18,12 +18,10 @@ public class EnchantableQMItem extends Item {
     }
 
 
-    private static Tool createSwordToolProperties() {
-        return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F), Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F)), 1.0F, 2);
-    }
+
     //? if <=1.21.1 {
 
-    @Override
+    /*@Override
     public boolean isEnchantable(ItemStack itemStack) {
         return true;
     }
@@ -32,6 +30,9 @@ public class EnchantableQMItem extends Item {
     public int getEnchantmentValue() {
         return toolMaterial.enchantability();
     }
+    private static Tool createSwordToolProperties() {
+        return new Tool(List.of(Tool.Rule.minesAndDrops(List.of(Blocks.COBWEB), 15.0F), Tool.Rule.overrideSpeed(BlockTags.SWORD_EFFICIENT, 1.5F)), 1.0F, 2);
+    }
 
-    //? }
+    *///? }
 }

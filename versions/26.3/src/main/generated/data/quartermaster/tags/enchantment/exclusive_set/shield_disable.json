@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:takedown",
+      "required": false
+    },
+    {
+      "id": "quartermaster:splinter",
+      "required": false
+    }
+  ]
+}

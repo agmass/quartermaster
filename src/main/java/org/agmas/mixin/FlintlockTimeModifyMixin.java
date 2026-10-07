@@ -12,7 +12,6 @@ import net.minecraft.world.item.ItemStack;
 import org.agmas.init.ModItems;
 import org.agmas.init.ModSounds;
 import org.agmas.item.FlintlockItem;
-import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;

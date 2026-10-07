@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:pull",
+      "required": false
+    },
+    {
+      "id": "quartermaster:homerun",
+      "required": false
+    }
+  ]
+}

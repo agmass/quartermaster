@@ -27,7 +27,10 @@ public abstract class LivingEntityEstocMixin extends Entity {
         super(entityType, level);
     }
 
+    //? if <26.3
     @Inject(method = "swing(Lnet/minecraft/world/InteractionHand;)V", at = @At("TAIL"))
+    //? if >=26.3
+    //@Inject(method = "swingAndResetAttackStrength", at = @At("TAIL"))
     public void attackStrengthReset(CallbackInfo ci) {
         setAttached(ModAttachments.STORED_ESTOC_TICKS, 0);
     }

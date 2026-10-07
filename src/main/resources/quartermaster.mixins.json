@@ -17,6 +17,7 @@
     "LivingEntityMixin",
     "ModifyDamagEnchantsMixin",
     "MorningstarShieldDisableMixin",
+    "NoBlockDropsMixin",
     "NoProtectionExclusiveSetMixin",
     "PiercingWeaponMixin",
     "ReduceFrostEffectTimesMixin",
@@ -27,6 +28,7 @@
     "StoreEstocCooldownMixin",
     "StunMixin",
     "SweepAttackColorMixin",
+    "TridentHitMixin",
     "UseWarhammerMixin",
     "WarhammerForceUseMixin",
     "WeaponHitSoundsMixin"

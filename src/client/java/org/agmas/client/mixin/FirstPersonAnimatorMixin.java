@@ -9,10 +9,17 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
+//? if <26.3
 import net.minecraft.client.renderer.ItemInHandRenderer;
+//? if >=26.3
+//import net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.renderer.entity.player.AvatarRenderer;
+//? if >=26.3 {
+/*import net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState;
+import net.minecraft.client.renderer.state.level.PlayerRenderState;
+*///? }
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -26,22 +33,27 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
+//? if <26.3
 @Mixin(value = ItemInHandRenderer.class)
+//? if >=26.3
+//@Mixin(value = FirstPersonHandsAndItemsRenderer.class)
 public abstract class FirstPersonAnimatorMixin {
 
 	@Shadow
 	@Final
 	private Minecraft minecraft;
 
+	//? if <26.3 {
 	@Shadow
 	@Final
 	private EntityRenderDispatcher entityRenderDispatcher;
+	//? }
 
 	//? <=1.21.11 {
 	@WrapOperation(method = "renderArmWithItem", at= @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"))
 	public boolean undoCrossbow(ItemStack instance, Item item, Operation<Boolean> original) {
 	//?} else {
-	
+
 	/*@WrapOperation(method = "submitArmWithItem", at= @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Ljava/lang/Object;)Z"))
 	public boolean undoCrossbow(ItemStack instance, Object item, Operation<Boolean> original) {
 	*///? }
@@ -55,10 +67,13 @@ public abstract class FirstPersonAnimatorMixin {
 	//? <=1.21.11 {
 	@ModifyArg(method = "renderArmWithItem"
 	//?} else {
-	
 	/*@ModifyArg(method = "submitArmWithItem"
 	*///? }
-	, at= @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/ItemInHandRenderer;renderItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;I)V"))
+	,
+		//? if <26.3
+		at= @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/ItemInHandRenderer;renderItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;I)V"))
+		//? if >=26.3
+		//at= @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/item/ItemStackRenderState;submit(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;III)V"))
 	public PoseStack a(PoseStack par1) {
 		float inspectTime = minecraft.player.getAttachedOrElse(ModAttachments.INSPECT_ANIMATION_TICKS, 0)-minecraft.getDeltaTracker().getGameTimeDeltaPartialTick(false);
 		if (inspectTime > 0) {
@@ -67,10 +82,10 @@ public abstract class FirstPersonAnimatorMixin {
 		return par1;
 	}
 
+	//? if <26.3 {
 	//? <=1.21.11 {
 	@WrapMethod(method = "renderArmWithItem")
 	//?} else {
-	
 	/*@WrapMethod(method = "submitArmWithItem")
 	*///? }
 	public void renderFlintlockFirstPerson(AbstractClientPlayer abstractClientPlayer, float f, float g, InteractionHand interactionHand, float h, ItemStack itemStack, float i, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int j, Operation<Void> original) {
@@ -83,4 +98,17 @@ public abstract class FirstPersonAnimatorMixin {
 		}
 		original.call(abstractClientPlayer, f, g, interactionHand, h, itemStack, i, poseStack, submitNodeCollector, j);
 	}
+	//? } else {
+	/*@WrapMethod(method = "submitArmWithItem")
+	public void renderFlintlockFirstPerson(PlayerRenderState playerState, FirstPersonHandsAndItemsRenderState state, float partialTicks, float xRot, InteractionHand hand, float attack, ItemStack itemStack, float inverseArmHeight, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int lightCoords, Operation<Void> original) {
+		if (minecraft.player.isHolding(ModItems.FLINTLOCK)) {
+			if (minecraft.player.isUsingItem() || (minecraft.player.getMainHandItem().is(ModItems.FLINTLOCK) && hand.equals(InteractionHand.MAIN_HAND))) {
+				AvatarRenderer<AbstractClientPlayer> avatarRenderer = (AvatarRenderer<AbstractClientPlayer>) minecraft.getEntityRenderDispatcher().getRenderer(playerState.avatarRenderState);
+				FlintlockAnimator.animateHeld(avatarRenderer.getModel(), playerState.avatarRenderState.skin.body().texturePath(), submitNodeCollector, poseStack, partialTicks,lightCoords);
+				return;
+			}
+		}
+		original.call(playerState,state,partialTicks,xRot,hand,attack,itemStack,inverseArmHeight,poseStack,submitNodeCollector,lightCoords);
+	}
+	*///? }
 }

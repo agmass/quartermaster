@@ -3,16 +3,17 @@ package org.agmas.item;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
+//? if <=1.21.1
+//import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ChargedProjectiles;
 //? if >1.21.1 {
-/*import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.item.component.TooltipDisplay;
-*///? }
+//? }
 import net.minecraft.world.level.Level;
 import org.agmas.Quartermaster;
 import org.agmas.entity.GunpowderEntity;
@@ -38,9 +39,9 @@ public class FlintlockItem extends CrossbowItem {
 
     @Override
     //? if >1.21.1
-    //public InteractionResult use(Level level, Player player, InteractionHand interactionHand) {
+    public InteractionResult use(Level level, Player player, InteractionHand interactionHand) {
     //? if <=1.21.1
-    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+    //public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
         ItemStack itemStack = player.getItemInHand(interactionHand);
         ChargedProjectiles chargedProjectiles = itemStack.get(DataComponents.CHARGED_PROJECTILES);
         if (chargedProjectiles != null && !chargedProjectiles.isEmpty()) {
@@ -59,7 +60,7 @@ public class FlintlockItem extends CrossbowItem {
     protected Projectile createProjectile(Level level, LivingEntity livingEntity, ItemStack itemStack, ItemStack itemStack2, boolean bl) {
         GunpowderEntity gunpowderEntity = ModEntities.GUNPOWDER.create(level
                 //? if >1.21.1
-                //, EntitySpawnReason.TRIGGERED
+                , EntitySpawnReason.TRIGGERED
         );
         gunpowderEntity.setPos(livingEntity.getPosition(0f).x,livingEntity.getEyePosition(0f).y-0.25f,livingEntity.getPosition(0f).z);
         gunpowderEntity.setOwner(livingEntity);

@@ -9,7 +9,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
+//? if <=1.21.1
+//import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -18,7 +19,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 //? if >1.21.1
-//import net.minecraft.world.item.component.TooltipDisplay;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
@@ -77,36 +78,36 @@ public class RapierItem extends Item implements CustomHitSounds {
 
     @Override
     //? if >1.21.1
-    //public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
     //? if <=1.21.1
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> consumer, TooltipFlag tooltipFlag) {
+    //public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> consumer, TooltipFlag tooltipFlag) {
         if (itemStack.get(ModComponents.IS_CORAL)) {
 
             //? if >1.21.1
-            //consumer.accept
+            consumer.accept
             //? if <=1.21.1
-            consumer.add
+            //consumer.add
                     (Component.translatable("item.quartermaster.rapier.coral").withStyle(ChatFormatting.GRAY));
         }
         //? if >1.21.1
-        //super.appendHoverText(itemStack, tooltipContext, tooltipDisplay, consumer, tooltipFlag);
+        super.appendHoverText(itemStack, tooltipContext, tooltipDisplay, consumer, tooltipFlag);
         //? if <=1.21.1
-        super.appendHoverText(itemStack, tooltipContext, consumer, tooltipFlag);
+        //super.appendHoverText(itemStack, tooltipContext, consumer, tooltipFlag);
     }
 
 
     @Override
     //? if >1.21.1
-    //public InteractionResult use(Level level, Player user, InteractionHand interactionHand) {
+    public InteractionResult use(Level level, Player user, InteractionHand interactionHand) {
     //? if <=1.21.1
-    public InteractionResultHolder<ItemStack> use(Level level, Player user, InteractionHand interactionHand) {
+    //public InteractionResultHolder<ItemStack> use(Level level, Player user, InteractionHand interactionHand) {
         ItemStack stack = user.getItemInHand(interactionHand);
 
         user.startUsingItem(interactionHand);
         if (!user.isCreative()) {
             user.getCooldowns().addCooldown(stack
                     //? if <=1.21.1
-                            .getItem()
+                            //.getItem()
                     , 20*6);
         }
         return super.use(level, user, interactionHand);
@@ -121,12 +122,13 @@ public class RapierItem extends Item implements CustomHitSounds {
     }
 
     @Override
-    //? if >1.21.1
-    //public ItemUseAnimation getUseAnimation(ItemStack itemStack) { return ItemUseAnimation.BLOCK; }
-    //? if <=1.21.1
-    public UseAnim getUseAnimation(ItemStack itemStack) {
+    //? if >1.21.1 {
+    public ItemUseAnimation getUseAnimation(ItemStack itemStack) { return ItemUseAnimation.BLOCK; }
+    //? } else if <=1.21.1 {
+    /*public UseAnim getUseAnimation(ItemStack itemStack) {
         return UseAnim.BLOCK;
     }
+     *///? }
 
     @Override
     public InteractionResult useOn(UseOnContext useOnContext) {
@@ -147,9 +149,9 @@ public class RapierItem extends Item implements CustomHitSounds {
                 .stacksTo(1)
                 .attributes(RapierItem.createAttributes(material))
                 //? if >1.21.1
-                //.enchantable(material.enchantability())
+                .enchantable(material.enchantability())
                 //? if <=1.21.1
-                .component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.SWORD_EFFICIENT))
+                //.component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.SWORD_EFFICIENT))
                 .durability(material.durability());
     }
 

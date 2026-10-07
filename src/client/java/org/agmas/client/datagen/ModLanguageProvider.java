@@ -100,6 +100,12 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("enchantment.quartermaster.earthquake", "Earthquake");
         translationBuilder.add("enchantment.quartermaster.earthquake.desc", "Victims hit by the right-click ability are Stunned.");
 
+        translationBuilder.add("enchantment.quartermaster.excavate", "Excavate");
+        translationBuilder.add("enchantment.quartermaster.excavate.desc", "Blocks no longer have drops, but makes the tool much faster.");
+
+        translationBuilder.add("enchantment.quartermaster.north_wind", "North Wind");
+        translationBuilder.add("enchantment.quartermaster.north_wind.desc", "Spawns a wind charge on impact.");
+
         translationBuilder.add("enchantment.quartermaster.explosive_kinectivity", "Explosive Kinectivity");
         translationBuilder.add("enchantment.quartermaster.explosive_kinectivity.desc", "Kaboom.");
 
@@ -147,7 +153,7 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(ModItems.BAMBOO_AXE, "Bamboo Axe");
         translationBuilder.add(ModItems.BAMBOO_SWORD, "Bamboo Sword");
         //? if >=1.21.11
-        //translationBuilder.add(ModItems.BAMBOO_SPEAR, "Bamboo Spear");
+        translationBuilder.add(ModItems.BAMBOO_SPEAR, "Bamboo Spear");
 
         generateTiered(translationBuilder, "cutlass", "Cutlass");
         generateTiered(translationBuilder, "morningstar", "Morningstar");

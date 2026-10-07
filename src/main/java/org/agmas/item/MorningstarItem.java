@@ -49,9 +49,9 @@ public class MorningstarItem extends EnchantableQMItem {
                 .attributes(MorningstarItem.createAttributes(material))
                 .component(ModComponents.FALL_DAMAGE_SHIELD_DISABLE_MULTIPLIER, material.attackDamageBonus())
                 //? if >1.21.1
-                //.enchantable(material.enchantability())
+                .enchantable(material.enchantability())
                 //? if <=1.21.1
-                .component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.MINEABLE_WITH_AXE))
+                //.component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.MINEABLE_WITH_AXE))
                 .durability(material.durability());
     }
 

@@ -16,7 +16,14 @@ public abstract class ReduceStunEffectTimesMixin {
 	private boolean reduceTime(MobEffectInstance mobEffectInstance, Entity entity, Operation<Boolean> original) {
 		LivingEntity instance = ((LivingEntity) (Object)this);
 		if (mobEffectInstance.getEffect().is(ModTags.IS_STUN)) {
-			return original.call(mobEffectInstance.withScaledDuration((float) instance.getAttribute(ModAttributes.STUN_TIME).getValue()),entity);
+			return original.call(
+					new MobEffectInstance(
+							mobEffectInstance.getEffect(),
+							(int)(mobEffectInstance.getDuration() * ((float) instance.getAttribute(ModAttributes.STUN_TIME).getValue())),
+							mobEffectInstance.getAmplifier(),
+							mobEffectInstance.isAmbient(),
+							mobEffectInstance.isVisible())
+				,entity);
 		}
 		return original.call(mobEffectInstance,entity);
 	}

@@ -18,7 +18,6 @@ import net.minecraft.world.item.crafting.SmithingRecipeInput;
 import org.agmas.init.ModColors;
 import org.agmas.init.ModComponents;
 import org.agmas.init.ModItems;
-import org.jspecify.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -29,14 +28,20 @@ import java.util.function.Predicate;
 
 @Mixin(SmithingMenu.class)
 public abstract class SmithCombatEffectsMixin extends ItemCombinerMenu {
-    public SmithCombatEffectsMixin(@Nullable MenuType<?> menuType, int i, Inventory inventory, ContainerLevelAccess containerLevelAccess, ItemCombinerMenuSlotDefinition itemCombinerMenuSlotDefinition) {
-        super(menuType, i, inventory, containerLevelAccess, itemCombinerMenuSlotDefinition);
+    public SmithCombatEffectsMixin(MenuType<?> menuType, int i, Inventory inventory, ContainerLevelAccess containerLevelAccess, ItemCombinerMenuSlotDefinition itemCombinerMenuSlotDefinition) {
+        super(menuType, i, inventory, containerLevelAccess
+                //? if >=1.21.11
+                , itemCombinerMenuSlotDefinition
+        );
     }
 
     @WrapOperation(method = "createInputSlotDefinitions", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/inventory/ItemCombinerMenuSlotDefinition$Builder;withSlot(IIILjava/util/function/Predicate;)Lnet/minecraft/world/inventory/ItemCombinerMenuSlotDefinition$Builder;"))
     private static ItemCombinerMenuSlotDefinition.Builder allowAnything(ItemCombinerMenuSlotDefinition.Builder instance, int slotIndex, int xPlacement, int yPlacement, Predicate<ItemStack> mayPlace, Operation<ItemCombinerMenuSlotDefinition.Builder> original) {
         return original.call(instance, slotIndex, xPlacement, yPlacement, Predicates.alwaysTrue());
     }
+
+
+    //? if >=1.21.11 {
     @WrapMethod(method = "hasRecipeError")
     public boolean noError(Operation<Boolean> original) {
         if (getSlot(0).getItem().is(ModItems.COMBAT_EFFECT_SMITHING_TEMPLATE)) {
@@ -44,6 +49,7 @@ public abstract class SmithCombatEffectsMixin extends ItemCombinerMenu {
         }
         return original.call();
     }
+    //? }
     @WrapMethod(method = "canMoveIntoInputSlots")
     public boolean canMoveAnythingIntoMenu(ItemStack itemStack, Operation<Boolean> original) {
         if (itemStack.is(ModItems.COMBAT_EFFECT_SMITHING_TEMPLATE) && !this.getSlot(0).hasItem()) {
@@ -71,7 +77,7 @@ public abstract class SmithCombatEffectsMixin extends ItemCombinerMenu {
             }
             for (Map.Entry<TagKey<Item>, Integer> entry : ModColors.tagTrimColors.entrySet()) {
                 //? if <26.1 {
-                if (BuiltInRegistries.ITEM.get(entry.getKey()).get().contains(smithingRecipeInput.addition().getItemHolder())) {
+                if (smithingRecipeInput.addition().getItemHolder().is(entry.getKey())) {
                 //? } else {
                 /*if (BuiltInRegistries.ITEM.get(entry.getKey()).get().contains(smithingRecipeInput.addition().getItem().builtInRegistryHolder())) {
                 *///? }
