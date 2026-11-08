@@ -1,11 +1,11 @@
 // 26.1.2	-999999999-01-01T00:00:00	Quartermaster/Tags for minecraft:item
 59e430bca3c6f3367e793f6a73182a6495df259a data/minecraft/tags/item/axes.json
-e74272c10d30ebccafdb1caa726a62243b91f529 data/minecraft/tags/item/enchantable/durability.json
+6be281b65a73e656252e7ddeda206b33998250b7 data/minecraft/tags/item/enchantable/durability.json
 59e430bca3c6f3367e793f6a73182a6495df259a data/minecraft/tags/item/enchantable/mining.json
-e16b2404b17426e07aae8a90d07d0a3955070b02 data/minecraft/tags/item/enchantable/sharp_weapon.json
-5ca6ee811afc95a8c65745ee12a49d14bc534d00 data/minecraft/tags/item/enchantable/sweeping.json
-e16b2404b17426e07aae8a90d07d0a3955070b02 data/minecraft/tags/item/enchantable/weapon.json
-5ca6ee811afc95a8c65745ee12a49d14bc534d00 data/minecraft/tags/item/swords.json
+dbd24f55520f0fc59b7f81f8b9227f911318e6e8 data/minecraft/tags/item/enchantable/sharp_weapon.json
+b3869ae71c943488498986ddb0e0ff10b5796f36 data/minecraft/tags/item/enchantable/sweeping.json
+dbd24f55520f0fc59b7f81f8b9227f911318e6e8 data/minecraft/tags/item/enchantable/weapon.json
+b3869ae71c943488498986ddb0e0ff10b5796f36 data/minecraft/tags/item/swords.json
 95975966c55b733d9f8f596b804b230ddc266073 data/quartermaster/tags/item/bamboo_repair_materials.json
 418f4827ce18a7ecd027e0240f403fe1131e19a9 data/quartermaster/tags/item/copper_heavy_weapons.json
 dd379032818d4b73f6b33258058cd7e58df04604 data/quartermaster/tags/item/copper_light_weapons.json
@@ -23,6 +23,7 @@ d17bd4ac70b64a336a76c7b343d4a3f7efdb682d data/quartermaster/tags/item/morningsta
 77b7a2bde2bf865357464303ecbedf5eb08b23f2 data/quartermaster/tags/item/netherite_light_weapons.json
 0e8e947cc6fc5d4a28d2f47ff19991be45d66eb0 data/quartermaster/tags/item/non_damaging.json
 e66f03bdc8e3aeb23a0301cdd8fa8195378a515b data/quartermaster/tags/item/ranged.json
+63e9abfe94a6639faeeb8793e902d9f1db33378a data/quartermaster/tags/item/rapiers.json
 eee7614776702a623d1f0a2df212c960a5632804 data/quartermaster/tags/item/stone_heavy_weapons.json
 571f4603deb38ad83d3ea11460a1d19293cabbb2 data/quartermaster/tags/item/stone_light_weapons.json
 aca6823b54ed39948c7e19f543b78fc188462904 data/quartermaster/tags/item/warhammers.json

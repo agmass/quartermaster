@@ -330,6 +330,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 buildGreataxe(ModItems.GREATAXE.bamboo(), Ingredient.of(Items.BAMBOO), Items.BAMBOO);
                 buildWarhammers(ModItems.WARHAMMER.bamboo(), Ingredient.of(Items.BAMBOO), Items.BAMBOO);
             }
+
+            
             public void buildWarhammers(Item cutlass, Ingredient material, Item unlock) {
                 shaped(RecipeCategory.COMBAT, cutlass)
                         .pattern("   ")

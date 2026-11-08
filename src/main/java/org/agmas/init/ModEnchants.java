@@ -46,6 +46,7 @@ public class ModEnchants {
     public static final ResourceKey<Enchantment> CHILL = of("chill");
     public static final ResourceKey<Enchantment> NORTH_WIND = of("north_wind");
     public static final ResourceKey<Enchantment> UPDRAFT = of("updraft");
+    public static final ResourceKey<Enchantment> DEADLOCK = of("deadlock");
 
 
     public static final ResourceKey<Enchantment> WHATSAPP = of("whatsapp");

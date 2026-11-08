@@ -62,6 +62,14 @@ public class ModTagProviders {
             addList(ModItems.CUTLASS.asList(), net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
             addList(ModItems.CUTLASS.asList(), ModTags.CUTLASSES);
 
+            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.SWORDS);
+            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
+            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
+            //? if >1.21.1
+            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
+            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
+            addList(ModItems.RAPIER.asList(), ModTags.RAPIERS);
+
             addList(ModItems.MORNINGSTAR.asList(), net.minecraft.tags.ItemTags.AXES);
             addList(ModItems.MORNINGSTAR.asList(), net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
             addList(ModItems.MORNINGSTAR.asList(), net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
@@ -113,13 +121,6 @@ public class ModTagProviders {
             addList(ModItemLists.netherite_light, ModTags.NETHERITE_LIGHT_WEAPONS);
 
             addList(ModItemLists.ranged, ModTags.RANGED);
-
-            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.SWORDS);
-            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
-            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
-            //? if >1.21.1
-            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
-            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
 
             add(ModItems.FLINTLOCK, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
 

@@ -141,6 +141,8 @@ public class RapierItem extends EnchantableQMItem implements CustomHitSounds {
                 .stacksTo(1)
                 .attributes(RapierItem.createAttributes(material))
                 //? if >1.21.1
+                .sword(material.toolMaterial,0f,0f)
+                //? if >1.21.1
                 .enchantable(material.enchantability())
                 //? if <=1.21.1
                 //.component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.SWORD_EFFICIENT))

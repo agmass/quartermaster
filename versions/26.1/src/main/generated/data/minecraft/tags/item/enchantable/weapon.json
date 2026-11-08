@@ -37,6 +37,42 @@
       "required": false
     },
     {
+      "id": "quartermaster:rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:golden_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_rapier",
+      "required": false
+    },
+    {
       "id": "quartermaster:morningstar",
       "required": false
     },
@@ -178,42 +214,6 @@
     },
     {
       "id": "quartermaster:netherite_warhammer",
-      "required": false
-    },
-    {
-      "id": "quartermaster:rapier",
-      "required": false
-    },
-    {
-      "id": "quartermaster:bamboo_rapier",
-      "required": false
-    },
-    {
-      "id": "quartermaster:wooden_rapier",
-      "required": false
-    },
-    {
-      "id": "quartermaster:stone_rapier",
-      "required": false
-    },
-    {
-      "id": "quartermaster:copper_rapier",
-      "required": false
-    },
-    {
-      "id": "quartermaster:iron_rapier",
-      "required": false
-    },
-    {
-      "id": "quartermaster:golden_rapier",
-      "required": false
-    },
-    {
-      "id": "quartermaster:diamond_rapier",
-      "required": false
-    },
-    {
-      "id": "quartermaster:netherite_rapier",
       "required": false
     }
   ]

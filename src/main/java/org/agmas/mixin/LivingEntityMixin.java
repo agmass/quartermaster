@@ -196,15 +196,27 @@ public abstract class LivingEntityMixin extends Entity {
 
 		if (source.getEntity() instanceof LivingEntity target) {
 			if (getUseItem().getItem() instanceof RapierItem r) {
+				level().playSound(null,position().x,position().y,position().z, ModSounds.PARRY, SoundSource.PLAYERS);
+
+				if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.DEADLOCK), source.getWeaponItem()) > 0) {
+					double stunAmount = amount*r.getParryMultiplier();
+					stunAmount *= 1.5;
+					target.addEffect(new MobEffectInstance(ModEffects.DISARMED, (int) Math.round(stunAmount/2),0));
+					target.addEffect(new MobEffectInstance(ModEffects.STUNNED, (int) Math.round(stunAmount),0));
+					return original.call(
+							//? if >=1.21.11
+							level,
+							source, amount);
+				}
 				//? if >=1.21.11
 				target.hurtServer(level,source,amount*r.getParryMultiplier());
 				//? if <1.21.11
 				//target.hurt(source,amount*2);
-				level().playSound(null,position().x,position().y,position().z, ModSounds.PARRY, SoundSource.PLAYERS);
 				return original.call(
 						//? if >=1.21.11
 						level,
 						source,amount/(r.getParryMultiplier()*2));
+
 			}
 		}
 		return original.call(
