@@ -41,9 +41,9 @@ public class WoundedMobEffect extends MobEffect {
                             ).orElseThrow());
 
             //? if >=1.21.11
-            entity.hurtServer(level, damageSource, 0.2f);
+            entity.hurtServer(level, damageSource, 0.1f);
             //? if <1.21.11
-            //entity.hurt(damageSource, 0.2f);
+            //entity.hurt(damageSource, 0.1f);
         }
         return super.applyEffectTick(
                 //? if >=1.21.11

@@ -48,9 +48,9 @@ public class EstocItem extends EnchantableQMItem {
 
     public static void wound(LivingEntity livingEntity) {
         if (!livingEntity.hasEffect(ModEffects.WOUNDED)) {
-            livingEntity.addEffect(new MobEffectInstance(ModEffects.WOUNDED, 20*10,0));
+            livingEntity.addEffect(new MobEffectInstance(ModEffects.WOUNDED, 20*5,0));
         } else if (livingEntity.getEffect(ModEffects.WOUNDED).getAmplifier() < 2 || livingEntity.getEffect(ModEffects.WOUNDED).getDuration() < 20) {
-            livingEntity.addEffect(new MobEffectInstance(ModEffects.WOUNDED, 20*5,livingEntity.getEffect(ModEffects.WOUNDED).getAmplifier()+1));
+            livingEntity.addEffect(new MobEffectInstance(ModEffects.WOUNDED, 20*6,livingEntity.getEffect(ModEffects.WOUNDED).getAmplifier()+1));
         }
     }
 

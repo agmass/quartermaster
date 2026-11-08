@@ -79,6 +79,7 @@ public class CutlassItem extends EnchantableQMItem implements CustomHitSounds {
 
         return new Item.Properties()
                 .component(ModComponents.COMBO_TO_DISABLE, comboToDisable)
+                .component(ModComponents.HAS_FLING, false)
                 .stacksTo(1)
                 //? if >1.21.1
                 .sword(material.toolMaterial,0f,0f)
@@ -117,11 +118,20 @@ public class CutlassItem extends EnchantableQMItem implements CustomHitSounds {
             if (damageSource.getDirectEntity() instanceof LivingEntity attacker) {
                 if (!(attacker.getMainHandItem().getItem() instanceof CutlassItem)) return;
 
+                ItemStack mainHand = attacker.getMainHandItem();
+
+                boolean fling = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(livingEntity.level(), ModEnchants.FLING), mainHand) > 0;
+                if (!mainHand.get(ModComponents.HAS_FLING)) {
+                    if (fling) {
+                        mainHand.set(ModComponents.COMBO_TO_DISABLE, mainHand.get(ModComponents.COMBO_TO_DISABLE) * 2);
+                        mainHand.set(ModComponents.HAS_FLING, true);
+                    }
+                }
+
                 if (attacker.hasAttached(ModAttachments.CUTLASS_COMBO)) {
                     attacker.setAttached(ModAttachments.CUTLASS_COMBO, attacker.getAttached(ModAttachments.CUTLASS_COMBO) + 1);
-                    if (attacker.getAttached(ModAttachments.CUTLASS_COMBO) >= attacker.getMainHandItem().get(ModComponents.COMBO_TO_DISABLE)) {
+                    if (attacker.getAttached(ModAttachments.CUTLASS_COMBO) >= mainHand.get(ModComponents.COMBO_TO_DISABLE)) {
                         attacker.removeAttached(ModAttachments.CUTLASS_COMBO);
-                        boolean fling = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(livingEntity.level(), ModEnchants.FLING),attacker.getMainHandItem()) > 0;
                         if (fling) {
                             if (livingEntity instanceof Player player) {
                                 int freeSlot =player.getInventory().getFreeSlot();
