@@ -25,6 +25,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 //? } else {
 /*import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 *///? }
+import org.agmas.config.QMConfig;
 import org.agmas.init.ModEnchants;
 import org.agmas.init.*;
 import org.agmas.init.tag.ModTags;
@@ -42,6 +43,7 @@ public class Quartermaster implements ModInitializer {
 	public static int DISARMED_TICKS = 50;
 	@Override
 	public void onInitialize() {
+		QMConfig.parse();
 		ModItems.init();
 		ModComponents.init();
 		ModColors.init();
@@ -58,6 +60,7 @@ public class Quartermaster implements ModInitializer {
 		ModDamageTypes.init();
 		ModAttributes.init();
 		ModTrades.init();
+		QMConfig.write();
 
 		LootTableEvents.MODIFY.register((key, builder, lootTableSource, provider)->{
 			if (lootTableSource.isBuiltin() &&

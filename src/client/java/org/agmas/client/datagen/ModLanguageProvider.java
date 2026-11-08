@@ -1,6 +1,11 @@
 package org.agmas.client.datagen;
 
-w
+
+//? if >=26.1 {
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+//? } else {
+/*import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+*///? }
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.core.HolderLookup;
 import org.agmas.client.QuartermasterClient;

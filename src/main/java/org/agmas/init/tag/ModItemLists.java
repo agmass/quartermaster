@@ -7,201 +7,54 @@ import org.agmas.init.ModItems;
 import java.util.List;
 
 public class ModItemLists {
-    public static List<Item> cutlasses = List.of(
-            ModItems.CUTLASS,
-            ModItems.WOODEN_CUTLASS,
-            ModItems.STONE_CUTLASS,
-            //? if >=1.21.10 {
-            ModItems.COPPER_CUTLASS,
-            //? }
-            ModItems.IRON_CUTLASS,
-            ModItems.GOLDEN_CUTLASS,
-            ModItems.DIAMOND_CUTLASS,
-            ModItems.NETHERITE_CUTLASS,
-            ModItems.BAMBOO_CUTLASS
-    );
+    public static List<Item> cutlasses;
 
-    public static List<Item> morningstar = List.of(
-            ModItems.MORNINGSTAR,
-            ModItems.WOODEN_MORNINGSTAR,
-            ModItems.STONE_MORNINGSTAR,
-            //? if >=1.21.10 {
-            ModItems.COPPER_MORNINGSTAR,
-            //? }
-            ModItems.IRON_MORNINGSTAR,
-            ModItems.GOLDEN_MORNINGSTAR,
-            ModItems.DIAMOND_MORNINGSTAR,
-            ModItems.NETHERITE_MORNINGSTAR,
-            ModItems.BAMBOO_MORNINGSTAR
-    );
+    public static List<Item> morningstar;
 
-    public static List<Item> estoc = List.of(
-            ModItems.ESTOC,
-            ModItems.WOODEN_ESTOC,
-            ModItems.STONE_ESTOC,
-            //? if >=1.21.10 {
-            ModItems.COPPER_ESTOC,
-            //? }
-            ModItems.IRON_ESTOC,
-            ModItems.GOLDEN_ESTOC,
-            ModItems.DIAMOND_ESTOC,
-            ModItems.NETHERITE_ESTOC,
-            ModItems.BAMBOO_ESTOC
-    );
+    public static List<Item> estoc;
 
-    public static List<Item> greataxes = List.of(
-            ModItems.GREATAXE,
-            ModItems.WOODEN_GREATAXE,
-            ModItems.STONE_GREATAXE,
-            //? if >=1.21.10 {
-            ModItems.COPPER_GREATAXE,
-            //? }
-            ModItems.IRON_GREATAXE,
-            ModItems.GOLDEN_GREATAXE,
-            ModItems.DIAMOND_GREATAXE,
-            ModItems.NETHERITE_GREATAXE,
-            ModItems.BAMBOO_GREATAXE
-    );
+    public static List<Item> greataxes;
 
-    public static List<Item> warhammers = List.of(
-            ModItems.WARHAMMER,
-            ModItems.WOODEN_WARHAMMER,
-            ModItems.STONE_WARHAMMER,
-            //? if >=1.21.10 {
-            ModItems.COPPER_WARHAMMER,
-            //? }
-            ModItems.IRON_WARHAMMER,
-            ModItems.GOLDEN_WARHAMMER,
-            ModItems.DIAMOND_WARHAMMER,
-            ModItems.NETHERITE_WARHAMMER,
-            ModItems.BAMBOO_WARHAMMER
-    );
+    public static List<Item> warhammers;
 
     // Heavies
 
-    public static List<Item> wooden_heavy = List.of(
-            ModItems.WOODEN_MORNINGSTAR,
-            ModItems.WOODEN_WARHAMMER,
-            ModItems.WOODEN_GREATAXE,
-            Items.WOODEN_AXE
-            //? if >=1.21.11
-            , Items.WOODEN_SPEAR
-    );
+    public static List<Item> wooden_heavy;
 
-    public static List<Item> stone_heavy = List.of(
-            ModItems.STONE_MORNINGSTAR,
-            ModItems.STONE_WARHAMMER,
-            ModItems.STONE_GREATAXE,
-            Items.STONE_AXE
-            //? if >=1.21.11
-            , Items.STONE_SPEAR
-    );
+    public static List<Item> stone_heavy;
 
     //? if >=1.21.11 {
-    public static List<Item> copper_heavy = List.of(
-            ModItems.COPPER_MORNINGSTAR,
-            ModItems.COPPER_WARHAMMER,
-            ModItems.COPPER_GREATAXE,
-            Items.COPPER_AXE,
-            Items.COPPER_SPEAR
-    );//? }
+    public static List<Item> copper_heavy;
+    //? }
 
-    public static List<Item> iron_heavy = List.of(
-            ModItems.IRON_MORNINGSTAR,
-            ModItems.IRON_WARHAMMER,
-            ModItems.IRON_GREATAXE,
-            Items.IRON_AXE
-            //? if >=1.21.11
-            , Items.IRON_SPEAR
-    );
+    public static List<Item> iron_heavy;
 
-    public static List<Item> golden_heavy = List.of(
-            ModItems.GOLDEN_MORNINGSTAR,
-            ModItems.GOLDEN_WARHAMMER,
-            ModItems.GOLDEN_GREATAXE,
-            Items.GOLDEN_AXE
-            //? if >=1.21.11
-            , Items.GOLDEN_SPEAR
-    );
+    public static List<Item> golden_heavy;
 
-    public static List<Item> diamond_heavy = List.of(
-            ModItems.DIAMOND_MORNINGSTAR,
-            ModItems.DIAMOND_WARHAMMER,
-            ModItems.DIAMOND_GREATAXE,
-            Items.DIAMOND_AXE
-            //? if >=1.21.11
-            , Items.DIAMOND_SPEAR
-    );
+    public static List<Item> diamond_heavy;
 
-    public static List<Item> netherite_heavy = List.of(
-            ModItems.NETHERITE_MORNINGSTAR,
-            ModItems.NETHERITE_WARHAMMER,
-            ModItems.NETHERITE_GREATAXE,
-            Items.NETHERITE_AXE
-            //? if >=1.21.11
-            , Items.NETHERITE_SPEAR
-    );
+    public static List<Item> netherite_heavy;
 
     // Lights
 
-    public static List<Item> wooden_light = List.of(
-            ModItems.WOODEN_CUTLASS,
-            ModItems.WOODEN_ESTOC,
-            Items.WOODEN_SWORD
-    );
+    public static List<Item> wooden_light;
 
-    public static List<Item> stone_light = List.of(
-            ModItems.STONE_CUTLASS,
-            ModItems.STONE_ESTOC,
-            Items.STONE_SWORD
-    );
+    public static List<Item> stone_light;
 
 
     //? if >=1.21.11 {
-    public static List<Item> copper_light = List.of(
-            ModItems.COPPER_CUTLASS,
-            ModItems.COPPER_ESTOC,
-            Items.COPPER_SWORD
-    );
+    public static List<Item> copper_light;
     //? }
 
-    public static List<Item> iron_light = List.of(
-            ModItems.IRON_CUTLASS,
-            ModItems.IRON_ESTOC,
-            Items.IRON_SWORD
-    );
+    public static List<Item> iron_light;
 
-    public static List<Item> golden_light = List.of(
-            ModItems.GOLDEN_CUTLASS,
-            ModItems.GOLDEN_ESTOC,
-            Items.GOLDEN_SWORD
-    );
+    public static List<Item> golden_light;
 
-    public static List<Item> diamond_light = List.of(
-            ModItems.DIAMOND_CUTLASS,
-            ModItems.DIAMOND_ESTOC,
-            Items.DIAMOND_SWORD
-    );
+    public static List<Item> diamond_light;
 
-    public static List<Item> netherite_light = List.of(
-            ModItems.NETHERITE_CUTLASS,
-            ModItems.NETHERITE_ESTOC,
-            Items.NETHERITE_SWORD
-    );
+    public static List<Item> netherite_light;
 
-    public static List<Item> bamboo_weapons = List.of(
-            ModItems.BAMBOO_GREATAXE,
-            ModItems.BAMBOO_WARHAMMER,
-            ModItems.BAMBOO_CUTLASS,
-            ModItems.BAMBOO_ESTOC,
-            ModItems.BAMBOO_MORNINGSTAR,
-            ModItems.BAMBOO_AXE,
-            ModItems.BAMBOO_SWORD
-            //? if >=1.21.11
-            , ModItems.BAMBOO_SPEAR,
-            ModItems.BAMBOO_MACE
-    );
-
+    public static List<Item> bamboo_weapons;
 
 
     public static List<Item> ranged = List.of(

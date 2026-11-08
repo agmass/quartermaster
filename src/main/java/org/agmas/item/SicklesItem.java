@@ -1,0 +1,162 @@
+package org.agmas.item;
+
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import org.agmas.Quartermaster;
+import org.agmas.init.*;
+import org.agmas.item.util.CustomHitSounds;
+import org.agmas.porting.QMPToolMaterial;
+
+import static org.agmas.porting.QMPToolMaterial.*;
+
+//? if >=26.3
+//import net.minecraft.util.Prediction;
+
+public class SicklesItem extends EnchantableQMItem implements CustomHitSounds {
+    public SicklesItem(QMPToolMaterial toolMaterial, Properties properties) {
+        super(toolMaterial, properties);
+    }
+
+    public static ItemAttributeModifiers createAttributes(QMPToolMaterial material) {
+        return ItemAttributeModifiers.builder()
+                .add(
+                        Attributes.ATTACK_DAMAGE,
+                        new AttributeModifier(
+                                BASE_ATTACK_DAMAGE_ID,
+                                (material == ModItems.BAMBOO  ? 0.01 : 2.4F) + material.attackDamageBonus(),
+                                AttributeModifier.Operation.ADD_VALUE
+                        ),
+                        EquipmentSlotGroup.MAINHAND
+                )
+                .add(
+                        Attributes.ATTACK_SPEED,
+                        new AttributeModifier(
+                                BASE_ATTACK_SPEED_ID,
+                                -2.3F,
+                                AttributeModifier.Operation.ADD_VALUE
+                        ),
+                        EquipmentSlotGroup.MAINHAND
+                )
+                .build();
+    }
+
+
+    public static Properties createSettings(QMPToolMaterial material) {
+        int comboToDisable = 7; // fallback to wood
+
+        //? if >=1.21.10 {
+        if (material == COPPER || material == STONE)  comboToDisable = 6;
+        //? } else {
+        /*if (material == STONE)  comboToDisable = 6;
+        *///? }
+        if (material == IRON || material == GOLD)  comboToDisable = 5;
+        if (material == DIAMOND)  comboToDisable = 4;
+        if (material == NETHERITE)  comboToDisable = 3;
+
+        return new Properties()
+                .component(ModComponents.COMBO_TO_DISABLE, comboToDisable)
+                .component(ModComponents.HAS_FLING, false)
+                .stacksTo(1)
+                //? if >1.21.1
+                .sword(material.toolMaterial,0f,0f)
+                .attributes(SicklesItem.createAttributes(material))
+                //? if >1.21.1
+                .enchantable(material.enchantability())
+                //? if <=1.21.1
+                //.component(DataComponents.TOOL, material.toolMaterial.createToolProperties(BlockTags.SWORD_EFFICIENT))
+                .durability(material.durability());
+    }
+
+
+    @Override
+    public SoundEvent getSweepHitSound() {
+        return ModSounds.CUTLASS_SWEEP;
+    }
+
+    @Override
+    public SoundEvent getCritHitSound() {
+        return ModSounds.CUTLASS_CRIT;
+    }
+
+    @Override
+    public boolean playOriginalHitSounds(SoundEvent soundEvent) {
+        return true;
+    }
+
+    public static void onHit(LivingEntity livingEntity, DamageSource damageSource, float baseAttackDamage, float attackDamage, boolean blocked) {
+        if (blocked) return;
+        if (baseAttackDamage < 3) return;
+
+        livingEntity.removeAttached(ModAttachments.CUTLASS_COMBO);
+        if (livingEntity.hasEffect(ModEffects.DISARMED)) return;
+
+        if (damageSource.getDirectEntity() != null) {
+            if (damageSource.getDirectEntity() instanceof LivingEntity attacker) {
+                if (!(attacker.getMainHandItem().getItem() instanceof SicklesItem)) return;
+
+                ItemStack mainHand = attacker.getMainHandItem();
+
+                boolean fling = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(livingEntity.level(), ModEnchants.FLING), mainHand) > 0;
+                if (!mainHand.get(ModComponents.HAS_FLING)) {
+                    if (fling) {
+                        mainHand.set(ModComponents.COMBO_TO_DISABLE, mainHand.get(ModComponents.COMBO_TO_DISABLE) * 2);
+                        mainHand.set(ModComponents.HAS_FLING, true);
+                    }
+                }
+
+                if (attacker.hasAttached(ModAttachments.CUTLASS_COMBO)) {
+                    attacker.setAttached(ModAttachments.CUTLASS_COMBO, attacker.getAttached(ModAttachments.CUTLASS_COMBO) + 1);
+                    if (attacker.getAttached(ModAttachments.CUTLASS_COMBO) >= mainHand.get(ModComponents.COMBO_TO_DISABLE)) {
+                        attacker.removeAttached(ModAttachments.CUTLASS_COMBO);
+                        if (fling) {
+                            if (livingEntity instanceof Player player) {
+                                int freeSlot =player.getInventory().getFreeSlot();
+                                if (freeSlot != -1) {
+                                    ItemStack stack = player.getMainHandItem().copy();
+                                    player.getItemInHand(InteractionHand.MAIN_HAND).shrink(100);
+                                    player.getInventory().setItem(freeSlot,stack);
+                                }
+                            } else {
+                                //? if >1.21.1 {
+                                livingEntity.drop(livingEntity.getMainHandItem(),false,
+                                        //? if <26.3
+                                        false
+                                        //? if >=26.3
+                                        //Prediction.PREDICTED
+                                );
+                                //? }
+                                //? if <=1.21.1 {
+                                /*ItemEntity itemEntity = new ItemEntity(livingEntity.level(), livingEntity.getX(), livingEntity.getEyeY(), livingEntity.getZ(), livingEntity.getMainHandItem());
+                                ((ServerLevel)livingEntity.level()).addFreshEntity(itemEntity);
+                                *///? }
+                                livingEntity.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+                            }
+                        }
+                        disarm(livingEntity,(fling ? 2 : 1));
+                    }
+                } else {
+                    attacker.setAttached(ModAttachments.CUTLASS_COMBO, 1);
+                }
+            }
+        }
+    }
+
+    public static void disarm(LivingEntity livingEntity, int division) {
+        livingEntity.addEffect(new MobEffectInstance(ModEffects.DISARMED, Quartermaster.DISARMED_TICKS / division, 0));
+        //? if >1.21.1
+        livingEntity.addEffect(new MobEffectInstance(MobEffects.SPEED, Quartermaster.DISARMED_TICKS / division, 0));
+        //? if <=1.21.1
+        //livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, Quartermaster.DISARMED_TICKS / division, 0));
+    }
+}

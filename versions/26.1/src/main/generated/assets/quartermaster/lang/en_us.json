@@ -14,7 +14,7 @@
   "enchantment.quartermaster.brittle": "Brittle",
   "enchantment.quartermaster.brittle.desc": "Everything disables your shield, but knocks you back significantlly",
   "enchantment.quartermaster.buster": "Buster",
-  "enchantment.quartermaster.buster.desc": "Attacks no longer go through shields, but ups the damage of the Ranged ability.",
+  "enchantment.quartermaster.buster.desc": "Attacks no longer disables shields, but ups the damage of the Ranged ability.",
   "enchantment.quartermaster.charged": "Charged",
   "enchantment.quartermaster.charged.desc": "Lowers damage of the Ranged ability, but adds extra charges depending on level.",
   "enchantment.quartermaster.chill": "Chill",
