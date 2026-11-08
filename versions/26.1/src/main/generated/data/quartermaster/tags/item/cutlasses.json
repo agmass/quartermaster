@@ -1,13 +1,40 @@
 {
   "values": [
-    "quartermaster:cutlass",
-    "quartermaster:wooden_cutlass",
-    "quartermaster:stone_cutlass",
-    "quartermaster:copper_cutlass",
-    "quartermaster:iron_cutlass",
-    "quartermaster:golden_cutlass",
-    "quartermaster:diamond_cutlass",
-    "quartermaster:netherite_cutlass",
-    "quartermaster:bamboo_cutlass"
+    {
+      "id": "quartermaster:cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:golden_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_cutlass",
+      "required": false
+    }
   ]
 }

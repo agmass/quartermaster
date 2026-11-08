@@ -1,5 +1,6 @@
 package org.agmas.init;
 
+import com.mojang.datafixers.types.Func;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 //? if <26.1 {
 /*import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -22,12 +23,17 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.Weapon;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
+import org.agmas.config.QMConfig;
 import org.agmas.porting.QMIdentifier;
 import org.agmas.init.tag.ModItemLists;
 import org.agmas.init.tag.ModTags;
 import org.agmas.item.*;
 import org.agmas.porting.QMPToolMaterial;
 
+import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 public class ModItems {
@@ -81,78 +87,14 @@ public class ModItems {
     public static Item PELLET = register("pellet", Item::new, new Item.Properties());
     public static Item AMMUNITION = register("ammunition", Item::new, new Item.Properties());
 
-    public static Item RAPIER = register("rapier", RapierItem::new, RapierItem.createSettings(QMPToolMaterial.NETHERITE).rarity(Rarity.RARE).fireResistant());
-    // Cutlasses
-    public static Item CUTLASS = register("cutlass", (p)->new CutlassItem(QMPToolMaterial.NETHERITE, p), CutlassItem.createSettings(QMPToolMaterial.NETHERITE).rarity(Rarity.RARE).fireResistant());
-
-    public static Item WOODEN_CUTLASS = register("wooden_cutlass", (p)->new CutlassItem(QMPToolMaterial.WOOD, p), CutlassItem.createSettings(QMPToolMaterial.WOOD));
-    public static Item STONE_CUTLASS = register("stone_cutlass", (p)->new CutlassItem(QMPToolMaterial.STONE, p), CutlassItem.createSettings(QMPToolMaterial.STONE));
-    //? if >=1.21.10 {
-    public static Item COPPER_CUTLASS = register("copper_cutlass", (p)->new CutlassItem(QMPToolMaterial.COPPER, p), CutlassItem.createSettings(QMPToolMaterial.COPPER));
-    //? }
-    public static Item IRON_CUTLASS = register("iron_cutlass", (p)->new CutlassItem(QMPToolMaterial.IRON, p), CutlassItem.createSettings(QMPToolMaterial.IRON));
-    public static Item GOLDEN_CUTLASS = register("golden_cutlass", (p)->new CutlassItem(QMPToolMaterial.GOLD, p), CutlassItem.createSettings(QMPToolMaterial.GOLD));
-    public static Item DIAMOND_CUTLASS = register("diamond_cutlass", (p)->new CutlassItem(QMPToolMaterial.DIAMOND, p), CutlassItem.createSettings(QMPToolMaterial.DIAMOND));
-    public static Item NETHERITE_CUTLASS = register("netherite_cutlass", (p)->new CutlassItem(QMPToolMaterial.NETHERITE, p), CutlassItem.createSettings(QMPToolMaterial.NETHERITE).fireResistant());
-
-    // Morningstars
-    public static Item MORNINGSTAR = register("morningstar", (p)->new MorningstarItem(QMPToolMaterial.NETHERITE, p), MorningstarItem.createSettings(QMPToolMaterial.NETHERITE).rarity(Rarity.RARE).fireResistant());
-
-    public static Item WOODEN_MORNINGSTAR = register("wooden_morningstar", (p)->new MorningstarItem(QMPToolMaterial.WOOD, p), MorningstarItem.createSettings(QMPToolMaterial.WOOD));
-    public static Item STONE_MORNINGSTAR = register("stone_morningstar", (p)->new MorningstarItem(QMPToolMaterial.STONE, p), MorningstarItem.createSettings(QMPToolMaterial.STONE));
-    //? if >=1.21.10 {
-    public static Item COPPER_MORNINGSTAR = register("copper_morningstar", (p)->new MorningstarItem(QMPToolMaterial.COPPER, p), MorningstarItem.createSettings(QMPToolMaterial.COPPER));
-    //? }
-    public static Item IRON_MORNINGSTAR = register("iron_morningstar", (p)->new MorningstarItem(QMPToolMaterial.IRON, p), MorningstarItem.createSettings(QMPToolMaterial.IRON));
-    public static Item GOLDEN_MORNINGSTAR = register("golden_morningstar", (p)->new MorningstarItem(QMPToolMaterial.GOLD, p), MorningstarItem.createSettings(QMPToolMaterial.GOLD));
-    public static Item DIAMOND_MORNINGSTAR = register("diamond_morningstar", (p)->new MorningstarItem(QMPToolMaterial.DIAMOND, p), MorningstarItem.createSettings(QMPToolMaterial.DIAMOND));
-    public static Item NETHERITE_MORNINGSTAR = register("netherite_morningstar", (p)->new MorningstarItem(QMPToolMaterial.NETHERITE, p), MorningstarItem.createSettings(QMPToolMaterial.NETHERITE).fireResistant());
-
-    // Estoc
-    public static Item ESTOC = register("estoc", (p)->new EstocItem(QMPToolMaterial.NETHERITE, p), EstocItem.createSettings(QMPToolMaterial.NETHERITE).rarity(Rarity.RARE).fireResistant());
-
-    public static Item WOODEN_ESTOC = register("wooden_estoc", (p)->new EstocItem(QMPToolMaterial.WOOD, p), EstocItem.createSettings(QMPToolMaterial.WOOD));
-    public static Item STONE_ESTOC = register("stone_estoc", (p)->new EstocItem(QMPToolMaterial.STONE, p), EstocItem.createSettings(QMPToolMaterial.STONE));
-    //? if >=1.21.10 {
-    public static Item COPPER_ESTOC = register("copper_estoc", (p)->new EstocItem(QMPToolMaterial.COPPER, p), EstocItem.createSettings(QMPToolMaterial.COPPER));
-    //? }
-    public static Item IRON_ESTOC = register("iron_estoc", (p)->new EstocItem(QMPToolMaterial.IRON, p), EstocItem.createSettings(QMPToolMaterial.IRON));
-    public static Item GOLDEN_ESTOC = register("golden_estoc", (p)->new EstocItem(QMPToolMaterial.GOLD, p), EstocItem.createSettings(QMPToolMaterial.GOLD));
-    public static Item DIAMOND_ESTOC = register("diamond_estoc", (p)->new EstocItem(QMPToolMaterial.DIAMOND, p), EstocItem.createSettings(QMPToolMaterial.DIAMOND));
-    public static Item NETHERITE_ESTOC = register("netherite_estoc", (p)->new EstocItem(QMPToolMaterial.NETHERITE, p), EstocItem.createSettings(QMPToolMaterial.NETHERITE).fireResistant());
-
-    // Greataxe
-    public static Item GREATAXE = register("greataxe", (p)->new GreataxeItem(QMPToolMaterial.NETHERITE, p), GreataxeItem.createSettings(QMPToolMaterial.NETHERITE).rarity(Rarity.RARE).fireResistant());
-
-    public static Item WOODEN_GREATAXE = register("wooden_greataxe", (p)->new GreataxeItem(QMPToolMaterial.WOOD, p), GreataxeItem.createSettings(QMPToolMaterial.WOOD));
-    public static Item STONE_GREATAXE = register("stone_greataxe", (p)->new GreataxeItem(QMPToolMaterial.STONE, p), GreataxeItem.createSettings(QMPToolMaterial.STONE));
-    //? if >=1.21.10 {
-    public static Item COPPER_GREATAXE = register("copper_greataxe", (p)->new GreataxeItem(QMPToolMaterial.COPPER, p), GreataxeItem.createSettings(QMPToolMaterial.COPPER));
-    //? }
-    public static Item IRON_GREATAXE = register("iron_greataxe", (p)->new GreataxeItem(QMPToolMaterial.IRON, p), GreataxeItem.createSettings(QMPToolMaterial.IRON));
-    public static Item GOLDEN_GREATAXE = register("golden_greataxe", (p)->new GreataxeItem(QMPToolMaterial.GOLD, p), GreataxeItem.createSettings(QMPToolMaterial.GOLD));
-    public static Item DIAMOND_GREATAXE = register("diamond_greataxe", (p)->new GreataxeItem(QMPToolMaterial.DIAMOND, p), GreataxeItem.createSettings(QMPToolMaterial.DIAMOND));
-    public static Item NETHERITE_GREATAXE = register("netherite_greataxe", (p)->new GreataxeItem(QMPToolMaterial.NETHERITE, p), GreataxeItem.createSettings(QMPToolMaterial.NETHERITE).fireResistant());
-
-    // Warhammer
-    public static Item WARHAMMER = register("warhammer", (p)->new WarhammerItem(QMPToolMaterial.NETHERITE, p), WarhammerItem.createSettings(QMPToolMaterial.NETHERITE).rarity(Rarity.RARE).fireResistant());
-
-    public static Item WOODEN_WARHAMMER = register("wooden_warhammer", (p)->new WarhammerItem(QMPToolMaterial.WOOD, p), WarhammerItem.createSettings(QMPToolMaterial.WOOD));
-    public static Item STONE_WARHAMMER = register("stone_warhammer", (p)->new WarhammerItem(QMPToolMaterial.STONE, p), WarhammerItem.createSettings(QMPToolMaterial.STONE));
-    //? if >=1.21.10 {
-    public static Item COPPER_WARHAMMER = register("copper_warhammer", (p)->new WarhammerItem(QMPToolMaterial.COPPER, p), WarhammerItem.createSettings(QMPToolMaterial.COPPER));
-    //? }
-    public static Item IRON_WARHAMMER = register("iron_warhammer", (p)->new WarhammerItem(QMPToolMaterial.IRON, p), WarhammerItem.createSettings(QMPToolMaterial.IRON));
-    public static Item GOLDEN_WARHAMMER = register("golden_warhammer", (p)->new WarhammerItem(QMPToolMaterial.GOLD, p), WarhammerItem.createSettings(QMPToolMaterial.GOLD));
-    public static Item DIAMOND_WARHAMMER = register("diamond_warhammer", (p)->new WarhammerItem(QMPToolMaterial.DIAMOND, p), WarhammerItem.createSettings(QMPToolMaterial.DIAMOND));
-    public static Item NETHERITE_WARHAMMER = register("netherite_warhammer", (p)->new WarhammerItem(QMPToolMaterial.NETHERITE, p), WarhammerItem.createSettings(QMPToolMaterial.NETHERITE).fireResistant());
+    public static QMWeapon RAPIER;
+    public static QMWeapon CUTLASS;
+    public static QMWeapon MORNINGSTAR;
+    public static QMWeapon ESTOC;
+    public static QMWeapon GREATAXE;
+    public static QMWeapon WARHAMMER;
 
     // Bamboo Toolset
-    public static Item BAMBOO_WARHAMMER = register("bamboo_warhammer", (p)->new WarhammerItem(BAMBOO, p), WarhammerItem.createSettings(BAMBOO));
-    public static Item BAMBOO_GREATAXE = register("bamboo_greataxe",  (p)->new GreataxeItem(BAMBOO, p), GreataxeItem.createSettings(BAMBOO));
-    public static Item BAMBOO_ESTOC = register("bamboo_estoc",  (p)->new EstocItem(BAMBOO, p), EstocItem.createSettings(BAMBOO));
-    public static Item BAMBOO_MORNINGSTAR = register("bamboo_morningstar", (p)->new MorningstarItem(BAMBOO, p), MorningstarItem.createSettings(BAMBOO));
-    public static Item BAMBOO_CUTLASS = register("bamboo_cutlass", (p)->new CutlassItem(BAMBOO, p), CutlassItem.createSettings(BAMBOO));
     public static Item BAMBOO_SWORD = register("bamboo_sword",
             //? if >1.21.1
             Item::new
@@ -200,6 +142,54 @@ public class ModItems {
     //? }
 
 
+    public static void initItems() {
+        RAPIER = generateItems(WeaponClass.LIGHT, "rapier", RapierItem.class, RapierItem::createSettings);
+        CUTLASS = generateItems(WeaponClass.LIGHT,"cutlass", CutlassItem.class, CutlassItem::createSettings);
+        ESTOC = generateItems(WeaponClass.LIGHT,"estoc", EstocItem.class, EstocItem::createSettings);
+        MORNINGSTAR = generateItems(WeaponClass.HEAVY,"morningstar", MorningstarItem.class, MorningstarItem::createSettings);
+        GREATAXE = generateItems(WeaponClass.HEAVY,"greataxe", GreataxeItem.class, GreataxeItem::createSettings);
+        WARHAMMER = generateItems(WeaponClass.HEAVY,"warhammer", WarhammerItem.class, WarhammerItem::createSettings);
+
+        ModItemLists.initLists();
+    }
+
+    public static <T extends Item> EnchantableQMItem generateConstructor(Item.Properties properties, Class<? extends EnchantableQMItem> itemClass, QMPToolMaterial toolMaterial) {
+        try {
+            return itemClass.getConstructor(QMPToolMaterial.class, Item.Properties.class).newInstance(toolMaterial,properties);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static QMWeapon generateItems(WeaponClass weaponClass, String name, Class<? extends EnchantableQMItem> c, Function<QMPToolMaterial, Item.Properties> propertiesFunction) {
+        Item relic = null;
+        if (QMConfig.enabledWeapons.get(name).relic()) {
+            relic = register(name, (p)->generateConstructor(p,c,QMPToolMaterial.NETHERITE), propertiesFunction.apply(QMPToolMaterial.NETHERITE).rarity(Rarity.RARE).fireResistant());
+        }
+        Item bamboo = null;
+        if (QMConfig.enabledWeapons.get(name).bamboo()) {
+            bamboo = register("bamboo_"+name, (p)->generateConstructor(p,c,BAMBOO), propertiesFunction.apply(BAMBOO));
+        }
+
+        QMWeapon w;
+        if (QMConfig.enabledWeapons.get(name).tiered()) {
+            w = new QMWeapon(weaponClass, relic, bamboo,
+                    register("wooden_"+name, (p)->generateConstructor(p,c,QMPToolMaterial.WOOD), propertiesFunction.apply(QMPToolMaterial.WOOD)),
+                    register("stone_"+name, (p)->generateConstructor(p,c,QMPToolMaterial.STONE), propertiesFunction.apply(QMPToolMaterial.STONE)),
+                    //? >=1.21.10
+                    register("copper_"+name, (p)->generateConstructor(p,c,QMPToolMaterial.COPPER), propertiesFunction.apply(QMPToolMaterial.COPPER)),
+                    register("iron_"+name, (p)->generateConstructor(p,c,QMPToolMaterial.IRON), propertiesFunction.apply(QMPToolMaterial.IRON)),
+                    register("golden_"+name, (p)->generateConstructor(p,c,QMPToolMaterial.GOLD), propertiesFunction.apply(QMPToolMaterial.GOLD)),
+                    register("diamond_"+name, (p)->generateConstructor(p,c,QMPToolMaterial.DIAMOND), propertiesFunction.apply(QMPToolMaterial.DIAMOND)),
+                    register("netherite_"+name, (p)->generateConstructor(p,c,QMPToolMaterial.NETHERITE), propertiesFunction.apply(QMPToolMaterial.NETHERITE)));
+        } else {
+            w = new QMWeapon(weaponClass, relic, bamboo, null, null, null, null, null, null, null);
+        }
+        ModItemLists.weapons.add(w);
+        return w;
+    }
+
     public static ItemAttributeModifiers createBambooMaceAttributes() {
         return ItemAttributeModifiers.builder()
                 .add(Attributes.ATTACK_SPEED, new AttributeModifier(Item.BASE_ATTACK_SPEED_ID, -3.4F, AttributeModifier.Operation.ADD_VALUE), EquipmentSlotGroup.MAINHAND)
@@ -224,6 +214,7 @@ public class ModItems {
         return item;
     }
     public static void init() {
+        initItems();
         ServerLivingEntityEvents.AFTER_DAMAGE.register(CutlassItem::onHit);
         ServerLivingEntityEvents.AFTER_DAMAGE.register(EstocItem::onHit);
 
@@ -248,40 +239,63 @@ public class ModItems {
                 .register((creativeTab) -> {
                     creativeTab.accept(ModItems.FLINTLOCK);
                     //? if >=26.1 {
-                    
-                    ItemStack coralRapier = ModItems.RAPIER.getDefaultInstance();
-                    coralRapier.set(ModComponents.IS_CORAL, true);
-                    creativeTab.insertAfter(Items.NETHERITE_SWORD, ModItems.RAPIER);
-                    creativeTab.insertAfter(Items.NETHERITE_SWORD, coralRapier);
 
                     // Heavies
-                    creativeTab.insertAfter(Items.NETHERITE_AXE, ModItemLists.greataxes.toArray(new Item[0]));
-                    creativeTab.insertAfter(Items.NETHERITE_AXE, ModItemLists.warhammers.toArray(new Item[0]));
-                    creativeTab.insertAfter(Items.NETHERITE_AXE, ModItemLists.morningstar.toArray(new Item[0]));
+                    creativeTab.insertAfter(Items.NETHERITE_AXE, GREATAXE.asList().toArray(new Item[0]));
+                    creativeTab.insertAfter(Items.NETHERITE_AXE, WARHAMMER.asList().toArray(new Item[0]));
+                    creativeTab.insertAfter(Items.NETHERITE_AXE, MORNINGSTAR.asList().toArray(new Item[0]));
 
                     // Swords
-                    creativeTab.insertAfter(Items.NETHERITE_SWORD, ModItemLists.estoc.toArray(new Item[0]));
-                    creativeTab.insertAfter(Items.NETHERITE_SWORD, ModItemLists.cutlasses.toArray(new Item[0]));
+                    creativeTab.insertAfter(Items.NETHERITE_SWORD, ESTOC.asList().toArray(new Item[0]));
+                    creativeTab.insertAfter(Items.NETHERITE_SWORD, RAPIER.asList().toArray(new Item[0]));
+                    creativeTab.insertAfter(Items.NETHERITE_SWORD, CUTLASS.asList().toArray(new Item[0]));
 
                     //? } else {
-                    /*ItemStack coralRapier = ModItems.RAPIER.getDefaultInstance();
-                    coralRapier.set(ModComponents.IS_CORAL, true);
-                    creativeTab.addAfter(Items.NETHERITE_SWORD, ModItems.RAPIER);
-                    creativeTab.addAfter(Items.NETHERITE_SWORD, coralRapier);
+                    /*
                     creativeTab.addAfter(Items.NETHERITE_AXE, ModItems.BAMBOO_AXE);
                     creativeTab.addAfter(Items.NETHERITE_SWORD, ModItems.BAMBOO_SWORD);
                     //? if >=1.21.11
                     creativeTab.addAfter(Items.NETHERITE_SPEAR, ModItems.BAMBOO_SPEAR);
 
                     // Heavies
-                    creativeTab.addAfter(Items.NETHERITE_AXE, ModItemLists.greataxes.toArray(new Item[0]));
-                    creativeTab.addAfter(Items.NETHERITE_AXE, ModItemLists.warhammers.toArray(new Item[0]));
-                    creativeTab.addAfter(Items.NETHERITE_AXE, ModItemLists.morningstar.toArray(new Item[0]));
+                    creativeTab.addAfter(Items.NETHERITE_AXE, GREATAXE.asList().toArray(new Item[0]));
+                    creativeTab.addAfter(Items.NETHERITE_AXE, WARHAMMER.asList().toArray(new Item[0]));
+                    creativeTab.addAfter(Items.NETHERITE_AXE, MORNINGSTAR.asList().toArray(new Item[0]));
 
                     // Swords
-                    creativeTab.addAfter(Items.NETHERITE_SWORD, ModItemLists.estoc.toArray(new Item[0]));
-                    creativeTab.addAfter(Items.NETHERITE_SWORD, ModItemLists.cutlasses.toArray(new Item[0]));
+                    creativeTab.addAfter(Items.NETHERITE_SWORD, ESTOC.asList().toArray(new Item[0]));
+                    creativeTab.addAfter(Items.NETHERITE_SWORD, RAPIER.asList().toArray(new Item[0]));
+                    creativeTab.addAfter(Items.NETHERITE_SWORD, CUTLASS.asList().toArray(new Item[0]));
                     *///? }
                 });
+    }
+
+    public enum WeaponClass {
+        LIGHT,
+        HEAVY,
+        RANGED // will probabbly go unused for a while
+    }
+
+    public record QMWeapon(WeaponClass weaponClass, Item relic, Item bamboo, Item wooden, Item stone,
+                         //? if >=1.21.10
+                         Item copper,
+                         Item iron, Item golden, Item diamond, Item netherite) {
+        public List<Item> asList() {
+            ArrayList<Item> items = new ArrayList<>();
+            if (relic != null) items.add(relic);
+            if (bamboo != null) items.add(bamboo);
+            if (wooden != null) {
+                items.add(wooden);
+                items.add(stone);
+                //? >=1.21.10
+                items.add(copper);
+                items.add(iron);
+                items.add(golden);
+                items.add(diamond);
+                items.add(netherite);
+            }
+            return items;
+        }
+
     }
 }

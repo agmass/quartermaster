@@ -1,7 +1,16 @@
 {
   "values": [
-    "quartermaster:copper_cutlass",
-    "quartermaster:copper_estoc",
-    "minecraft:copper_sword"
+    {
+      "id": "quartermaster:copper_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_estoc",
+      "required": false
+    }
   ]
 }

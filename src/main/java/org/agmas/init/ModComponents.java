@@ -49,11 +49,5 @@ public class ModComponents {
             DataComponentType.<Integer>builder().persistent(Codec.INT).networkSynchronized(ByteBufCodecs.INT).build()
     );
 
-    public static final DataComponentType<Boolean> IS_CORAL = Registry.register(
-            BuiltInRegistries.DATA_COMPONENT_TYPE,
-            QMIdentifier.of("is_coral").id,
-            DataComponentType.<Boolean>builder().persistent(Codec.BOOL).networkSynchronized(ByteBufCodecs.BOOL).build()
-    );
-
     public static void init() {}
 }

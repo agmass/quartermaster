@@ -28,6 +28,7 @@ import net.minecraft.world.phys.Vec3;
 import org.agmas.Quartermaster;
 import org.agmas.init.*;
 import org.agmas.init.tag.ModTags;
+import org.agmas.item.RapierItem;
 import org.agmas.porting.QMSpellParticleOption;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -194,16 +195,16 @@ public abstract class LivingEntityMixin extends Entity {
 	*///? }
 
 		if (source.getEntity() instanceof LivingEntity target) {
-			if (getUseItem().is(ModItems.RAPIER)) {
+			if (getUseItem().getItem() instanceof RapierItem r) {
 				//? if >=1.21.11
-				target.hurtServer(level,source,amount*2);
+				target.hurtServer(level,source,amount*r.getParryMultiplier());
 				//? if <1.21.11
 				//target.hurt(source,amount*2);
 				level().playSound(null,position().x,position().y,position().z, ModSounds.PARRY, SoundSource.PLAYERS);
 				return original.call(
 						//? if >=1.21.11
 						level,
-						source,amount/4);
+						source,amount/(r.getParryMultiplier()*2));
 			}
 		}
 		return original.call(

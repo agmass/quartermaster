@@ -1,51 +1,224 @@
 {
   "values": [
-    "quartermaster:cutlass",
-    "quartermaster:wooden_cutlass",
-    "quartermaster:stone_cutlass",
-    "quartermaster:copper_cutlass",
-    "quartermaster:iron_cutlass",
-    "quartermaster:golden_cutlass",
-    "quartermaster:diamond_cutlass",
-    "quartermaster:netherite_cutlass",
-    "quartermaster:bamboo_cutlass",
-    "quartermaster:morningstar",
-    "quartermaster:wooden_morningstar",
-    "quartermaster:stone_morningstar",
-    "quartermaster:copper_morningstar",
-    "quartermaster:iron_morningstar",
-    "quartermaster:golden_morningstar",
-    "quartermaster:diamond_morningstar",
-    "quartermaster:netherite_morningstar",
-    "quartermaster:bamboo_morningstar",
-    "quartermaster:estoc",
-    "quartermaster:wooden_estoc",
-    "quartermaster:stone_estoc",
-    "quartermaster:copper_estoc",
-    "quartermaster:iron_estoc",
-    "quartermaster:golden_estoc",
-    "quartermaster:diamond_estoc",
-    "quartermaster:netherite_estoc",
-    "quartermaster:bamboo_estoc",
-    "quartermaster:greataxe",
-    "quartermaster:wooden_greataxe",
-    "quartermaster:stone_greataxe",
-    "quartermaster:copper_greataxe",
-    "quartermaster:iron_greataxe",
-    "quartermaster:golden_greataxe",
-    "quartermaster:diamond_greataxe",
-    "quartermaster:netherite_greataxe",
-    "quartermaster:bamboo_greataxe",
-    "quartermaster:warhammer",
-    "quartermaster:wooden_warhammer",
-    "quartermaster:stone_warhammer",
-    "quartermaster:copper_warhammer",
-    "quartermaster:iron_warhammer",
-    "quartermaster:golden_warhammer",
-    "quartermaster:diamond_warhammer",
-    "quartermaster:netherite_warhammer",
-    "quartermaster:bamboo_warhammer",
-    "quartermaster:rapier",
-    "quartermaster:flintlock"
+    {
+      "id": "quartermaster:cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:golden_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:golden_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:estoc",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_estoc",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_estoc",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_estoc",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_estoc",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_estoc",
+      "required": false
+    },
+    {
+      "id": "quartermaster:golden_estoc",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_estoc",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_estoc",
+      "required": false
+    },
+    {
+      "id": "quartermaster:greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:golden_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:golden_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:golden_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:flintlock",
+      "required": false
+    }
   ]
 }

@@ -1,16 +1,20 @@
 package org.agmas.item;
 
 import net.fabricmc.fabric.api.item.v1.EnchantingContext;
+import net.fabricmc.loader.impl.util.log.Log;
+import net.fabricmc.loader.impl.util.log.LogCategory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 //? if <=1.21.1
 //import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -25,6 +29,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CoralBlock;
+import org.agmas.init.ModItems;
 import org.agmas.porting.QMIdentifier;
 import org.agmas.init.ModComponents;
 import org.agmas.init.ModSounds;
@@ -35,9 +40,10 @@ import org.agmas.porting.QMPToolMaterial;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class RapierItem extends Item implements CustomHitSounds {
-    public RapierItem(Properties properties) {
-        super(properties);
+public class RapierItem extends EnchantableQMItem implements CustomHitSounds {
+
+    public RapierItem(QMPToolMaterial toolMaterial, Properties properties) {
+        super(toolMaterial, properties);
     }
 
     /**
@@ -76,25 +82,15 @@ public class RapierItem extends Item implements CustomHitSounds {
                 .build();
     }
 
-    @Override
-    //? if >1.21.1
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
-    //? if <=1.21.1
-    //public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, List<Component> consumer, TooltipFlag tooltipFlag) {
-        if (itemStack.get(ModComponents.IS_CORAL)) {
+    public static float MAX_DAMAGE = 7.0f;
 
-            //? if >1.21.1
-            consumer.accept
-            //? if <=1.21.1
-            //consumer.add
-                    (Component.translatable("item.quartermaster.rapier.coral").withStyle(ChatFormatting.GRAY));
+    public float getParryMultiplier() {
+        Log.info(LogCategory.GENERAL, getAttackDamage()+"");
+        if (getAttackDamage()/MAX_DAMAGE >= 1) { // netherite tier is stronger
+            return (float) Mth.lerp(getAttackDamage()/MAX_DAMAGE, 0f,2.5f);
         }
-        //? if >1.21.1
-        super.appendHoverText(itemStack, tooltipContext, tooltipDisplay, consumer, tooltipFlag);
-        //? if <=1.21.1
-        //super.appendHoverText(itemStack, tooltipContext, consumer, tooltipFlag);
+        return (float) Mth.lerp(getAttackDamage()/MAX_DAMAGE, 0f,1.5f);
     }
-
 
     @Override
     //? if >1.21.1
@@ -107,8 +103,14 @@ public class RapierItem extends Item implements CustomHitSounds {
         if (!user.isCreative()) {
             user.getCooldowns().addCooldown(stack
                     //? if <=1.21.1
-                            //.getItem()
+                    //.getItem()
                     , 20*6);
+            for (Item item : ModItems.RAPIER.asList()) {
+                user.getCooldowns().addCooldown(item.getDefaultInstance()
+                        //? if <=1.21.1
+                        //.getItem()
+                        , 20*6);
+            }
         }
         return super.use(level, user, interactionHand);
     }
@@ -118,7 +120,11 @@ public class RapierItem extends Item implements CustomHitSounds {
         if (livingEntity instanceof Player player) {
             if (player.isCreative()) return Integer.MAX_VALUE;
         }
-        return 5;
+        return Math.max((int) Mth.lerp(getAttackDamage()/MAX_DAMAGE, 120, 5), 5);
+    }
+
+    public double getAttackDamage() {
+        return components().get(DataComponents.ATTRIBUTE_MODIFIERS).compute(Attributes.ATTACK_DAMAGE, 1f, EquipmentSlot.MAINHAND);
     }
 
     @Override
@@ -130,22 +136,8 @@ public class RapierItem extends Item implements CustomHitSounds {
     }
      *///? }
 
-    @Override
-    public InteractionResult useOn(UseOnContext useOnContext) {
-        if (useOnContext.getLevel().getBlockState(useOnContext.getClickedPos()).is(Blocks.WATER_CAULDRON)) {
-            useOnContext.getItemInHand().set(ModComponents.IS_CORAL, false);
-            return InteractionResult.SUCCESS;
-        }
-        if (useOnContext.getLevel().getBlockState(useOnContext.getClickedPos()).getBlock() instanceof CoralBlock) {
-            useOnContext.getItemInHand().set(ModComponents.IS_CORAL, true);
-            return InteractionResult.SUCCESS;
-        }
-        return super.useOn(useOnContext);
-    }
-
     public static Properties createSettings(QMPToolMaterial material) {
         return new Properties()
-                .component(ModComponents.IS_CORAL, false)
                 .stacksTo(1)
                 .attributes(RapierItem.createAttributes(material))
                 //? if >1.21.1

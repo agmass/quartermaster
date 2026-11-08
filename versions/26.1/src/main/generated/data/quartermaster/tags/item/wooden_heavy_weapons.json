@@ -1,9 +1,16 @@
 {
   "values": [
-    "quartermaster:wooden_morningstar",
-    "quartermaster:wooden_warhammer",
-    "quartermaster:wooden_greataxe",
-    "minecraft:wooden_axe",
-    "minecraft:wooden_spear"
+    {
+      "id": "quartermaster:wooden_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_warhammer",
+      "required": false
+    }
   ]
 }

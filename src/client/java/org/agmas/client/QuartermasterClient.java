@@ -31,7 +31,6 @@ import net.minecraft.world.item.Items;
 import org.agmas.network.ServerboundUseShieldBashPacket;
 import org.agmas.porting.QMIdentifier;
 import org.agmas.Quartermaster;
-import org.agmas.client.item.CoralRapierBooleanProperty;
 import org.agmas.client.render.animations.HandsModel;
 import org.agmas.client.render.entity.GreataxeProjectileEntityRenderer;
 import org.agmas.client.render.entity.GunpowderEntityRenderer;
@@ -59,11 +58,10 @@ public class QuartermasterClient implements ClientModInitializer {
 	public static KeyMapping inspectAnimation;
 	public static LayerDefinition firstPersonHands;
 	public static ModelPart handsRoot;
+
 	@Override
 	public void onInitializeClient() {
 		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
-
-		ConditionalItemModelProperties.ID_MAPPER.put(CoralRapierBooleanProperty.ID, CoralRapierBooleanProperty.CODEC);
 
 		EntityRenderers.register(ModEntities.GUNPOWDER, GunpowderEntityRenderer::new);
 

@@ -142,12 +142,6 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("key.quartermaster.inspect", "Inspect");
         translationBuilder.add("key.category.quartermaster.quartermaster", "Quartermaster");
 
-        translationBuilder.add(ModItems.CUTLASS, "Cutlass");
-        translationBuilder.add(ModItems.MORNINGSTAR, "Morningstar");
-        translationBuilder.add(ModItems.ESTOC, "Estoc");
-        translationBuilder.add(ModItems.RAPIER, "Rapier");
-        translationBuilder.add(ModItems.GREATAXE, "Greataxe");
-        translationBuilder.add(ModItems.WARHAMMER, "Warhammer");
         translationBuilder.add(ModItems.FLINTLOCK, "Flintlock");
 
         translationBuilder.add(ModItems.BAMBOO_MACE, "Bamboo Mace");
@@ -156,11 +150,12 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         //? if >=1.21.11
         translationBuilder.add(ModItems.BAMBOO_SPEAR, "Bamboo Spear");
 
-        generateTiered(translationBuilder, "cutlass", "Cutlass");
-        generateTiered(translationBuilder, "morningstar", "Morningstar");
-        generateTiered(translationBuilder, "estoc", "Estoc");
-        generateTiered(translationBuilder, "greataxe", "Greataxe");
-        generateTiered(translationBuilder, "warhammer", "Warhammer");
+        generateTiered(translationBuilder, ModItems.RAPIER, "Rapier");
+        generateTiered(translationBuilder, ModItems.CUTLASS, "Cutlass");
+        generateTiered(translationBuilder, ModItems.MORNINGSTAR, "Morningstar");
+        generateTiered(translationBuilder, ModItems.ESTOC, "Estoc");
+        generateTiered(translationBuilder, ModItems.GREATAXE, "Greataxe");
+        generateTiered(translationBuilder, ModItems.WARHAMMER, "Warhammer");
 
         translationBuilder.add(ModItems.RUINED_HANDLE, "Ruined Handle");
         translationBuilder.add(ModItems.RELIC_HANDLE, "Relic Handle");
@@ -170,15 +165,17 @@ public class ModLanguageProvider extends FabricLanguageProvider {
 
     }
 
-    public void generateTiered(TranslationBuilder translationBuilder, String toolName, String fancyName) {
-        translationBuilder.add("item.quartermaster.wooden_" + toolName, "Wooden " + fancyName);
-        translationBuilder.add("item.quartermaster.stone_" + toolName, "Stone " + fancyName);
-        translationBuilder.add("item.quartermaster.copper_" + toolName, "Copper " + fancyName);
-        translationBuilder.add("item.quartermaster.iron_" + toolName, "Iron " + fancyName);
-        translationBuilder.add("item.quartermaster.golden_" + toolName, "Golden " + fancyName);
-        translationBuilder.add("item.quartermaster.diamond_" + toolName, "Diamond " + fancyName);
-        translationBuilder.add("item.quartermaster.netherite_" + toolName, "Netherite " + fancyName);
-        translationBuilder.add("item.quartermaster.bamboo_" + toolName, "Bamboo " + fancyName);
+    public void generateTiered(TranslationBuilder translationBuilder, ModItems.QMWeapon tool, String fancyName) {
+        translationBuilder.add(tool.wooden(), "Wooden " + fancyName);
+        translationBuilder.add(tool.stone(), "Stone " + fancyName);
+        //? >=1.21.10
+        translationBuilder.add(tool.copper(), "Copper " + fancyName);
+        translationBuilder.add(tool.iron(), "Iron " + fancyName);
+        translationBuilder.add(tool.golden(), "Golden " + fancyName);
+        translationBuilder.add(tool.diamond(), "Diamond " + fancyName);
+        translationBuilder.add(tool.netherite(), "Netherite " + fancyName);
+        translationBuilder.add(tool.bamboo(), "Bamboo " + fancyName);
+        translationBuilder.add(tool.relic(), fancyName);
     }
 
 }

@@ -54,42 +54,42 @@ public class ModTagProviders {
 
         @Override
         protected void addTags(HolderLookup.Provider provider) {
-            addList(ModItemLists.cutlasses, net.minecraft.tags.ItemTags.SWORDS);
-            addList(ModItemLists.cutlasses, net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
-            addList(ModItemLists.cutlasses, net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
+            addList(ModItems.CUTLASS.asList(), net.minecraft.tags.ItemTags.SWORDS);
+            addList(ModItems.CUTLASS.asList(), net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
+            addList(ModItems.CUTLASS.asList(), net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
             //? if >1.21.1
-            addList(ModItemLists.cutlasses, net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
-            addList(ModItemLists.cutlasses, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
-            addList(ModItemLists.cutlasses, ModTags.CUTLASSES);
+            addList(ModItems.CUTLASS.asList(), net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
+            addList(ModItems.CUTLASS.asList(), net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
+            addList(ModItems.CUTLASS.asList(), ModTags.CUTLASSES);
 
-            addList(ModItemLists.morningstar, net.minecraft.tags.ItemTags.AXES);
-            addList(ModItemLists.morningstar, net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
-            addList(ModItemLists.morningstar, net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
-            addList(ModItemLists.morningstar, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
-            addList(ModItemLists.morningstar, net.minecraft.tags.ItemTags.MINING_ENCHANTABLE);
-            addList(ModItemLists.morningstar, ModTags.MORNINGSTARS);
+            addList(ModItems.MORNINGSTAR.asList(), net.minecraft.tags.ItemTags.AXES);
+            addList(ModItems.MORNINGSTAR.asList(), net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
+            addList(ModItems.MORNINGSTAR.asList(), net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
+            addList(ModItems.MORNINGSTAR.asList(), net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
+            addList(ModItems.MORNINGSTAR.asList(), net.minecraft.tags.ItemTags.MINING_ENCHANTABLE);
+            addList(ModItems.MORNINGSTAR.asList(), ModTags.MORNINGSTARS);
 
-            addList(ModItemLists.estoc, net.minecraft.tags.ItemTags.SWORDS);
-            addList(ModItemLists.estoc, net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
-            addList(ModItemLists.estoc, net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
+            addList(ModItems.ESTOC.asList(), net.minecraft.tags.ItemTags.SWORDS);
+            addList(ModItems.ESTOC.asList(), net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
+            addList(ModItems.ESTOC.asList(), net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
             //? if >1.21.1
-            addList(ModItemLists.estoc, net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
-            addList(ModItemLists.estoc, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
-            addList(ModItemLists.estoc, ModTags.ESTOCS);
+            addList(ModItems.ESTOC.asList(), net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
+            addList(ModItems.ESTOC.asList(), net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
+            addList(ModItems.ESTOC.asList(), ModTags.ESTOCS);
 
-            addList(ModItemLists.greataxes, net.minecraft.tags.ItemTags.AXES);
-            addList(ModItemLists.greataxes, net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
-            addList(ModItemLists.greataxes, net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
-            addList(ModItemLists.greataxes, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
-            addList(ModItemLists.greataxes, net.minecraft.tags.ItemTags.MINING_ENCHANTABLE);
-            addList(ModItemLists.greataxes, ModTags.GREATAXES);
+            addList(ModItems.GREATAXE.asList(), net.minecraft.tags.ItemTags.AXES);
+            addList(ModItems.GREATAXE.asList(), net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
+            addList(ModItems.GREATAXE.asList(), net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
+            addList(ModItems.GREATAXE.asList(), net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
+            addList(ModItems.GREATAXE.asList(), net.minecraft.tags.ItemTags.MINING_ENCHANTABLE);
+            addList(ModItems.GREATAXE.asList(), ModTags.GREATAXES);
 
-            addList(ModItemLists.warhammers, net.minecraft.tags.ItemTags.AXES);
-            addList(ModItemLists.warhammers, net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
-            addList(ModItemLists.warhammers, net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
-            addList(ModItemLists.warhammers, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
-            addList(ModItemLists.warhammers, net.minecraft.tags.ItemTags.MINING_ENCHANTABLE);
-            addList(ModItemLists.warhammers, ModTags.WARHAMMERS);
+            addList(ModItems.WARHAMMER.asList(), net.minecraft.tags.ItemTags.AXES);
+            addList(ModItems.WARHAMMER.asList(), net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
+            addList(ModItems.WARHAMMER.asList(), net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
+            addList(ModItems.WARHAMMER.asList(), net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
+            addList(ModItems.WARHAMMER.asList(), net.minecraft.tags.ItemTags.MINING_ENCHANTABLE);
+            addList(ModItems.WARHAMMER.asList(), ModTags.WARHAMMERS);
 
             addList(ModItemLists.wooden_heavy, ModTags.WOODEN_HEAVY_WEAPONS);
             addList(ModItemLists.wooden_light, ModTags.WOODEN_LIGHT_WEAPONS);
@@ -114,12 +114,12 @@ public class ModTagProviders {
 
             addList(ModItemLists.ranged, ModTags.RANGED);
 
-            add(ModItems.RAPIER, net.minecraft.tags.ItemTags.SWORDS);
-            add(ModItems.RAPIER, net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
-            add(ModItems.RAPIER, net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
+            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.SWORDS);
+            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
+            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
             //? if >1.21.1
-            add(ModItems.RAPIER, net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
-            add(ModItems.RAPIER, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
+            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
+            addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
 
             add(ModItems.FLINTLOCK, net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
 
@@ -132,13 +132,13 @@ public class ModTagProviders {
         public void add(Item item,TagKey<Item> tag) {
             //? if >=26.2 {
             /*tag(tag)
-                    .add(ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)));
+                    .addOptional(ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)));
             *///? } else if >1.21.1 {
             valueLookupBuilder(tag)
-                    .add(item);
+                    .addOptional(item);
             //? } else{
             /*tag(tag)
-                    .add(BuiltInRegistries.ITEM.getResourceKey(item).get());
+                    .addOptional(BuiltInRegistries.ITEM.getResourceKey(item).get());
             *///? }
         }
 
@@ -150,12 +150,12 @@ public class ModTagProviders {
             //? }
             for (Item item : list) {
                 //? if >=26.2 {
-                /*itemTagAppender.add(ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)));
+                /*itemTagAppender.addOptional(ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)));
                 *///? } else  if >1.21.1 {
-                itemTagAppender.add(item);
+                itemTagAppender.addOptional(item);
                 //? } else {
                     /*tag(tag)
-                            .add(BuiltInRegistries.ITEM.getResourceKey(item).get());
+                            .addOptional(BuiltInRegistries.ITEM.getResourceKey(item).get());
                     *///? }
             }
         }

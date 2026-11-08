@@ -1,7 +1,16 @@
 {
   "values": [
-    "quartermaster:iron_cutlass",
-    "quartermaster:iron_estoc",
-    "minecraft:iron_sword"
+    {
+      "id": "quartermaster:iron_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_estoc",
+      "required": false
+    }
   ]
 }

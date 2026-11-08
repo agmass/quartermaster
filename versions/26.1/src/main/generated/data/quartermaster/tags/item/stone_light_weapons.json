@@ -1,7 +1,16 @@
 {
   "values": [
-    "quartermaster:stone_cutlass",
-    "quartermaster:stone_estoc",
-    "minecraft:stone_sword"
+    {
+      "id": "quartermaster:stone_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_estoc",
+      "required": false
+    }
   ]
 }

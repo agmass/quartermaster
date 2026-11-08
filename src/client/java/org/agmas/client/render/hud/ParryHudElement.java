@@ -10,6 +10,7 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 *///? }
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.world.entity.player.Player;
+import org.agmas.item.RapierItem;
 import org.agmas.porting.QMIdentifier;
 import org.agmas.init.ModItems;
 
@@ -28,7 +29,7 @@ public class ParryHudElement implements HudElement {
         Player player = Minecraft.getInstance().player;
         if (player == null) return;
 
-        if (player.getUseItem().is(ModItems.RAPIER)) {
+        if (player.getUseItem().getItem() instanceof RapierItem) {
             guiGraphics.blitSprite(
                     RenderPipelines.GUI_TEXTURED,
                     QMIdentifier.of("hud/rapier_parry_indicator").id,

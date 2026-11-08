@@ -1,9 +1,16 @@
 {
   "values": [
-    "quartermaster:copper_morningstar",
-    "quartermaster:copper_warhammer",
-    "quartermaster:copper_greataxe",
-    "minecraft:copper_axe",
-    "minecraft:copper_spear"
+    {
+      "id": "quartermaster:copper_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_warhammer",
+      "required": false
+    }
   ]
 }

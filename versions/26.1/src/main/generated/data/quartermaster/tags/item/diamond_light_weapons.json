@@ -1,7 +1,16 @@
 {
   "values": [
-    "quartermaster:diamond_cutlass",
-    "quartermaster:diamond_estoc",
-    "minecraft:diamond_sword"
+    {
+      "id": "quartermaster:diamond_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_estoc",
+      "required": false
+    }
   ]
 }

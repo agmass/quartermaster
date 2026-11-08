@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.stream.JsonWriter;
+import net.fabricmc.fabric.impl.datagen.FabricDataGenHelper;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import org.agmas.Quartermaster;
@@ -12,33 +13,35 @@ import org.agmas.Quartermaster;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class QMConfig {
-    public static List<WeaponEnabledStatus> weaponDefaults = List.of(
-                    new WeaponEnabledStatus("cutlass", true, true),
-                    new WeaponEnabledStatus("morningstar", true, true),
-                    new WeaponEnabledStatus("estoc", true, true),
-                    new WeaponEnabledStatus("greataxe", true, true),
-                    new WeaponEnabledStatus("warhammer", true, true),
-                    new WeaponEnabledStatus("rapier", false, true)
-    );
-    public static ArrayList<WeaponEnabledStatus> enabledWeapons = new ArrayList<>();
+    public static HashMap<String, WeaponEnabledStatus> weaponDefaults = new HashMap<>();
+    public static HashMap<String, WeaponEnabledStatus> enabledWeapons = new HashMap<>();
 
     public static void parse() {
+        weaponDefaults.put("cutlass", new WeaponEnabledStatus(true, true,true));
+        weaponDefaults.put("morningstar", new WeaponEnabledStatus(true, true,true));
+        weaponDefaults.put("estoc", new WeaponEnabledStatus(true, true,true));
+        weaponDefaults.put("greataxe", new WeaponEnabledStatus(true, true,true));
+        weaponDefaults.put("warhammer", new WeaponEnabledStatus(true, true,true));
+        weaponDefaults.put("rapier", new WeaponEnabledStatus(false, true,false));
+        if (FabricDataGenHelper.ENABLED) {
+            weaponDefaults.forEach((s, ignored)->{
+                enabledWeapons.put(s, new WeaponEnabledStatus(true,true,true));
+            });
+            return;
+        }
+        enabledWeapons.putAll(weaponDefaults);
         File configFile = new File("config/quartermaster.json");
         if (configFile.exists()) {
             try {
                 JsonElement element = JsonParser.parseReader(new FileReader(configFile));
                 for (JsonElement weapons : element.getAsJsonObject().getAsJsonArray("enabledWeapons")) {
                     JsonObject object = weapons.getAsJsonObject();
-                    enabledWeapons.add(new WeaponEnabledStatus(object.get("name").getAsString(), object.get("tiered").getAsBoolean(), object.get("relic").getAsBoolean()));
+                    enabledWeapons.put(object.get("name").getAsString(), new WeaponEnabledStatus(object.get("tiered").getAsBoolean(), object.get("relic").getAsBoolean(), object.get("bamboo").getAsBoolean()));
                 }
             } catch (Exception ignored) {}
-        } else {
-            enabledWeapons.addAll(weaponDefaults);
         }
     }
 
@@ -52,14 +55,15 @@ public class QMConfig {
 
             jsonWriter.beginObject();
             jsonWriter.name("enabledWeapons").beginArray();
-            for (WeaponEnabledStatus enabledWeapon : enabledWeapons) {
+            for (Map.Entry<String, WeaponEnabledStatus> enabledWeapon : enabledWeapons.entrySet()) {
                 jsonWriter.beginObject();
-                jsonWriter.name("name").value(enabledWeapon.weaponName);
-                jsonWriter.name("tiered").value(enabledWeapon.tiered);
-                jsonWriter.name("relic").value(enabledWeapon.relic);
+                jsonWriter.name("name").value(enabledWeapon.getKey());
+                jsonWriter.name("tiered").value(enabledWeapon.getValue().tiered);
+                jsonWriter.name("relic").value(enabledWeapon.getValue().relic);
+                jsonWriter.name("bamboo").value(enabledWeapon.getValue().bamboo);
                 jsonWriter.endObject();
             }
-            
+
             jsonWriter.endArray();
             jsonWriter.endObject();
             jsonWriter.close();
@@ -68,7 +72,7 @@ public class QMConfig {
         }
     }
 
-    public record WeaponEnabledStatus(String weaponName, boolean tiered, boolean relic) {
+    public record WeaponEnabledStatus(boolean tiered, boolean relic, boolean bamboo) {
 
     }
 }
