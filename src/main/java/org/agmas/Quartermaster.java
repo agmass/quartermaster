@@ -3,6 +3,7 @@ package org.agmas;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
@@ -41,9 +42,11 @@ public class Quartermaster implements ModInitializer {
 	public static int timeSinceShooting = 0;
 	public static int STUNNED_TICKS = 20*5;
 	public static int DISARMED_TICKS = 50;
+	public static boolean loadedConfig = false;
 	@Override
 	public void onInitialize() {
-		QMConfig.parse();
+		if (!loadedConfig)
+			QMConfig.parse();
 		ModItems.init();
 		ModComponents.init();
 		ModColors.init();
@@ -133,50 +136,108 @@ public class Quartermaster implements ModInitializer {
 										))
 						));
 			}
-			if (lootTableSource.isBuiltin() &&
-					key.equals(BuiltInLootTables.PILLAGER_OUTPOST)) {
-				builder.withPool(LootPool.lootPool()
-						.setRolls(
-								//? if <26.3
-								ConstantValue.exactly(1)
-								//? if >=26.3
-								//ContextIntProviders.exactly(1)
-						)
-						.add(
-								LootItem.lootTableItem(Items.BOOK)
-										.setWeight(1)
-										.apply(new EnchantRandomlyFunction.Builder().withOneOf(
-												HolderSet.direct(
-														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.FLING)
-												)
-										))
-						));
+			if (FabricLoader.getInstance().isModLoaded("enchancement")) {
+				if (lootTableSource.isBuiltin() &&
+						key.equals(BuiltInLootTables.PILLAGER_OUTPOST)) {
+					builder.withPool(LootPool.lootPool()
+							.setRolls(
+									//? if <26.3
+									ConstantValue.exactly(1)
+									//? if >=26.3
+									//ContextIntProviders.exactly(1)
+							)
+							.add(
+									LootItem.lootTableItem(Items.BOOK)
+											.setWeight(1)
+											.apply(new EnchantRandomlyFunction.Builder().withOneOf(
+													HolderSet.direct(
+															provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.FLING)
+													)
+											))
+							));
+				}
+				if (lootTableSource.isBuiltin() &&
+						key.equals(BuiltInLootTables.WOODLAND_MANSION)) {
+					builder.withPool(LootPool.lootPool()
+							.setRolls(
+									//? if <26.3
+									ConstantValue.exactly(1)
+									//? if >=26.3
+									//ContextIntProviders.exactly(1)
+							)
+							.add(
+									LootItem.lootTableItem(Items.BOOK)
+											.setWeight(1)
+											.apply(new EnchantRandomlyFunction.Builder().withOneOf(
+													HolderSet.direct(
+															provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.PULL),
+															provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.SIESMIC)
+													)
+											))
+							));
+				}
+				if (lootTableSource.isBuiltin() &&
+						(key.equals(BuiltInLootTables.IGLOO_CHEST) || key.equals(BuiltInLootTables.VILLAGE_TAIGA_HOUSE) || key.equals(BuiltInLootTables.VILLAGE_SNOWY_HOUSE) || key.equals(BuiltInLootTables.VILLAGE_PLAINS_HOUSE))) {
+					builder.withPool(LootPool.lootPool()
+							.setRolls(
+									//? if <26.3
+									UniformGenerator.between(0, 1)
+									//? if >=26.3
+									//ContextIntProviders.between(0,1)
+							)
+							.add(
+									LootItem.lootTableItem(Items.BOOK)
+											.setWeight(1)
+											.apply(new EnchantRandomlyFunction.Builder().withOneOf(
+													HolderSet.direct(
+															provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.FROST_PROTECTION)
+													)
+											))
+							));
+				}
+
+				if (lootTableSource.isBuiltin() &&
+						(key.equals(BuiltInLootTables.VILLAGE_SAVANNA_HOUSE) || key.equals(BuiltInLootTables.VILLAGE_DESERT_HOUSE) || key.equals(BuiltInLootTables.VILLAGE_PLAINS_HOUSE))) {
+					builder.withPool(LootPool.lootPool()
+							.setRolls(
+									//? if <26.3
+									UniformGenerator.between(0, 1)
+									//? if >=26.3
+									//ContextIntProviders.between(0,1)
+							)
+							.add(
+									LootItem.lootTableItem(Items.BOOK)
+											.setWeight(1)
+											.apply(new EnchantRandomlyFunction.Builder().withOneOf(
+													HolderSet.direct(
+															provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.FROST_PROTECTION)
+													)
+											))
+							));
+				}
+				if (lootTableSource.isBuiltin() &&
+						key.equals(BuiltInLootTables.ABANDONED_MINESHAFT)) {
+					builder.withPool(LootPool.lootPool()
+							.setRolls(
+									//? if <26.3
+									UniformGenerator.between(0, 1)
+									//? if >=26.3
+									//ContextIntProviders.between(0,1)
+							)
+							.add(
+									LootItem.lootTableItem(Items.BOOK)
+											.setWeight(1)
+											.apply(new EnchantRandomlyFunction.Builder().withOneOf(
+													HolderSet.direct(
+															provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.BUSTER),
+															provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.CHARGED)
+													)
+											))
+							));
+				}
 			}
 			if (lootTableSource.isBuiltin() &&
-					key.equals(BuiltInLootTables.WOODLAND_MANSION)) {
-				builder.withPool(LootPool.lootPool()
-						.setRolls(
-								//? if <26.3
-								ConstantValue.exactly(1)
-								//? if >=26.3
-								//ContextIntProviders.exactly(1)
-						)
-						.add(
-								LootItem.lootTableItem(Items.BOOK)
-										.setWeight(1)
-										.apply(new EnchantRandomlyFunction.Builder().withOneOf(
-												HolderSet.direct(
-														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.PULL),
-														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.SIESMIC),
-														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.HEATWAVE),
-														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.EARTHQUAKE),
-														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.GLACIAL)
-												)
-										))
-						));
-			}
-			if (lootTableSource.isBuiltin() &&
-					key.equals(BuiltInLootTables.ABANDONED_MINESHAFT)) {
+					key.equals(BuiltInLootTables.TRIAL_CHAMBERS_REWARD) || key.equals(BuiltInLootTables.TRIAL_CHAMBERS_REWARD_OMINOUS)) {
 				builder.withPool(LootPool.lootPool()
 						.setRolls(
 								//? if <26.3
@@ -189,37 +250,15 @@ public class Quartermaster implements ModInitializer {
 										.setWeight(1)
 										.apply(new EnchantRandomlyFunction.Builder().withOneOf(
 												HolderSet.direct(
-														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.BUSTER),
-														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.CHARGED)
-												)
-										))
-						));
-			}
-			if (lootTableSource.isBuiltin() &&
-					key.equals(BuiltInLootTables.TRIAL_CHAMBERS_REWARD) || key.equals(BuiltInLootTables.TRIAL_CHAMBERS_REWARD_OMINOUS)) {
-				builder.withPool(LootPool.lootPool()
-						.setRolls(
-								//? if <26.3
-								UniformGenerator.between(0,2)
-								//? if >=26.3
-								//ContextIntProviders.between(0,2)
-						)
-						.add(
-								LootItem.lootTableItem(Items.BOOK)
-										.setWeight(1)
-										.apply(new EnchantRandomlyFunction.Builder().withOneOf(
-												HolderSet.direct(
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.BRITTLE),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.SHIELD_BASH),
-														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.EARTHQUAKE),
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.FROST_ASPECT),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.BUSTER),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.CHARGED),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.FLING),
-														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.GLACIAL),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.SIESMIC),
 														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.PUNCTURE),
-														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.PULL),
-														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.HEATWAVE)
+														provider.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ModEnchants.PULL)
 												)
 										))
 						));
@@ -231,7 +270,7 @@ public class Quartermaster implements ModInitializer {
 	public static void shieldBash(LivingEntity player) {
 		Level level = player.level();
 		if (player.getItemBlockingWith() != null && !level.isClientSide()) {
-			boolean shieldBash = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.SHIELD_BASH),player.getItemBlockingWith()) > 0;
+			boolean shieldBash = ModEnchants.getItemEnchant(player.getItemBlockingWith(), player.level(), ModEnchants.SHIELD_BASH) > 0;
 			if (shieldBash) {
 				player.addDeltaMovement(player.getViewVector(0f).multiply(1,0,1));
 				player.level().playSound(null,player.getX(),player.getY(),player.getZ(),ModSounds.STRONG_SHIELD_BREAK, SoundSource.PLAYERS);

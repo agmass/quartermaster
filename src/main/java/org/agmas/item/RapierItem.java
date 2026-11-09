@@ -1,22 +1,26 @@
 package org.agmas.item;
 
-import net.fabricmc.fabric.api.item.v1.EnchantingContext;
 import net.fabricmc.loader.impl.util.log.Log;
 import net.fabricmc.loader.impl.util.log.LogCategory;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 //? if <=1.21.1
 //import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -26,13 +30,12 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CoralBlock;
-import org.agmas.init.ModItems;
+import org.agmas.init.*;
 import org.agmas.porting.QMIdentifier;
-import org.agmas.init.ModComponents;
-import org.agmas.init.ModSounds;
 import org.agmas.init.tag.ModTags;
 import org.agmas.item.util.CustomHitSounds;
 import org.agmas.porting.QMPToolMaterial;
@@ -85,18 +88,18 @@ public class RapierItem extends EnchantableQMItem implements CustomHitSounds {
     public static float MAX_DAMAGE = 7.0f;
 
     public float getParryMultiplier() {
-        Log.info(LogCategory.GENERAL, getAttackDamage()+"");
-        if (getAttackDamage()/MAX_DAMAGE >= 1) { // netherite tier is stronger
-            return (float) Mth.lerp(getAttackDamage()/MAX_DAMAGE, 0f,2.5f);
+        Log.info(LogCategory.GENERAL, getAttackDamage() + "");
+        if (getAttackDamage() / MAX_DAMAGE >= 1) { // netherite tier is stronger
+            return (float) Mth.lerp(getAttackDamage() / MAX_DAMAGE, 0f, 2.5f);
         }
-        return (float) Mth.lerp(getAttackDamage()/MAX_DAMAGE, 0f,1.5f);
+        return (float) Mth.lerp(getAttackDamage() / MAX_DAMAGE, 0f, 1.5f);
     }
 
     @Override
     //? if >1.21.1
     public InteractionResult use(Level level, Player user, InteractionHand interactionHand) {
-    //? if <=1.21.1
-    //public InteractionResultHolder<ItemStack> use(Level level, Player user, InteractionHand interactionHand) {
+        //? if <=1.21.1
+        //public InteractionResultHolder<ItemStack> use(Level level, Player user, InteractionHand interactionHand) {
         ItemStack stack = user.getItemInHand(interactionHand);
 
         user.startUsingItem(interactionHand);
@@ -104,12 +107,12 @@ public class RapierItem extends EnchantableQMItem implements CustomHitSounds {
             user.getCooldowns().addCooldown(stack
                     //? if <=1.21.1
                     //.getItem()
-                    , 20*6);
+                    , 20 * 6);
             for (Item item : ModItems.RAPIER.asList()) {
                 user.getCooldowns().addCooldown(item.getDefaultInstance()
                         //? if <=1.21.1
                         //.getItem()
-                        , 20*6);
+                        , 20 * 6);
             }
         }
         return super.use(level, user, interactionHand);
@@ -120,7 +123,7 @@ public class RapierItem extends EnchantableQMItem implements CustomHitSounds {
         if (livingEntity instanceof Player player) {
             if (player.isCreative()) return Integer.MAX_VALUE;
         }
-        return Math.max((int) Mth.lerp(getAttackDamage()/MAX_DAMAGE, 120, 5), 5);
+        return Math.max((int) Mth.lerp(getAttackDamage() / MAX_DAMAGE, 120, 5), 5);
     }
 
     public double getAttackDamage() {
@@ -129,7 +132,9 @@ public class RapierItem extends EnchantableQMItem implements CustomHitSounds {
 
     @Override
     //? if >1.21.1 {
-    public ItemUseAnimation getUseAnimation(ItemStack itemStack) { return ItemUseAnimation.BLOCK; }
+    public ItemUseAnimation getUseAnimation(ItemStack itemStack) {
+        return ItemUseAnimation.BLOCK;
+    }
     //? } else if <=1.21.1 {
     /*public UseAnim getUseAnimation(ItemStack itemStack) {
         return UseAnim.BLOCK;
@@ -139,9 +144,9 @@ public class RapierItem extends EnchantableQMItem implements CustomHitSounds {
     public static Properties createSettings(QMPToolMaterial material) {
         return new Properties()
                 .stacksTo(1)
-                .attributes(RapierItem.createAttributes(material))
                 //? if >1.21.1
-                .sword(material.toolMaterial,0f,0f)
+                .sword(material.toolMaterial, 0f, 0f)
+                .attributes(RapierItem.createAttributes(material))
                 //? if >1.21.1
                 .enchantable(material.enchantability())
                 //? if <=1.21.1
@@ -158,13 +163,35 @@ public class RapierItem extends EnchantableQMItem implements CustomHitSounds {
     public SoundEvent getCritHitSound() {
         return ModSounds.CUTLASS_CRIT;
     }
+
     @Override
     public boolean playOriginalHitSounds(SoundEvent soundEvent) {
         return true;
     }
 
-    @Override
-    public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
-        return enchantment.is(ModTags.RAPIER_ENCHANTABLE);
+    public static void onHit(LivingEntity livingEntity, DamageSource damageSource, float baseAttackDamage, float attackDamage, boolean blocked) {
+        if (livingEntity instanceof Mob m && damageSource.getEntity() instanceof LivingEntity victim) {
+            if ((m.getTarget() == null || m.getTarget().equals(victim)) && m.getMainHandItem().getItem() instanceof RapierItem r) {
+                if (m.getRandom().nextInt(0,4) < 1) {
+                    r.parry(m,victim,damageSource,attackDamage);
+                }
+            }
+        }
+    }
+    public float parry(LivingEntity parrier, LivingEntity parried, DamageSource source, float amount) {
+        parrier.level().playSound(null,parrier.position().x,parrier.position().y,parrier.position().z, ModSounds.PARRY, SoundSource.PLAYERS);
+
+        if (ModEnchants.getItemEnchant(parrier.getUseItem(), parrier.level(), ModEnchants.DEADLOCK) > 0) {
+            double stunAmount = amount*getParryMultiplier();
+            stunAmount *= 1.5;
+            parried.addEffect(new MobEffectInstance(ModEffects.DISARMED, (int) Math.round(stunAmount/2),0));
+            parried.addEffect(new MobEffectInstance(ModEffects.STUNNED, (int) Math.round(stunAmount),0));
+            return amount;
+        }
+        //? if >=1.21.11
+        parried.hurtServer((ServerLevel) parried.level(),source,amount*getParryMultiplier());
+        //? if <1.21.11
+        //target.hurt(source,amount*2);
+        return amount/(getParryMultiplier()*2);
     }
 }

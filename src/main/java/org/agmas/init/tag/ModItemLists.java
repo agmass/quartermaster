@@ -51,7 +51,7 @@ public class ModItemLists {
 
     public static void initLists() {
         for (ModItems.QMWeapon weapon : weapons) {
-            if (weapon.wooden() != null) {
+            if (weapon.stone() != null) {
                 if (weapon.weaponClass().equals(ModItems.WeaponClass.LIGHT)) {
                     wooden_light.add(weapon.wooden());
                     stone_light.add(weapon.stone());
@@ -73,6 +73,9 @@ public class ModItemLists {
             }
             if (weapon.bamboo() != null) {
                 bamboo_weapons.add(weapon.bamboo());
+            }
+            if (weapon.relic() != null) {
+                bamboo_weapons.add(weapon.relic());
             }
         }
     }

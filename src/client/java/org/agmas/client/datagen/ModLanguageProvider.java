@@ -2,10 +2,10 @@ package org.agmas.client.datagen;
 
 
 //? if >=26.1 {
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
-//? } else {
-/*import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-*///? }
+/*import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+*///? } else {
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+//? }
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.core.HolderLookup;
 import org.agmas.client.QuartermasterClient;
@@ -18,10 +18,10 @@ public class ModLanguageProvider extends FabricLanguageProvider {
 
 
     //? if >=26.1 {
-    public ModLanguageProvider(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-    //? } else {
-    /*public ModLanguageProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-     *///? }
+    /*public ModLanguageProvider(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+    *///? } else {
+    public ModLanguageProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+     //? }
         super(dataOutput, registryLookup);
     }   
 
@@ -110,11 +110,15 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("enchantment.quartermaster.explosive_kinectivity", "Explosive Kinectivity");
         translationBuilder.add("enchantment.quartermaster.explosive_kinectivity.desc", "Kaboom.");
 
+        translationBuilder.add("enchantment.quartermaster.deadlock", "Deadlock");
+        translationBuilder.add("enchantment.quartermaster.deadlock.desc", "Replaces parry damage and damage shielding, but stuns and disarming parried targets");
+
         translationBuilder.add("death.attack.bleed", "%1$s bled out");
         translationBuilder.add("death.attack.bleed.player", "%1$s bled out because of %2$s");
         translationBuilder.add("death.attack.shockwave", "%1$s's skull was shattered");
         translationBuilder.add("death.attack.shockwave.player", "%1$s's bones were broken by %2$s");
         translationBuilder.add("quartermaster.combat_effect_tooltip", "Trimmed with Combat Effects");
+        translationBuilder.add("quartermaster.sickle_requires_both_hands", "Both hands must have same-tier sickles to be functional");
 
         translationBuilder.add("item.minecraft.splash_potion.effect.frost_protection", "Splash Potion of Frost Resistance");
         translationBuilder.add("item.minecraft.potion.effect.frost_protection", "Potion of Frost Resistance");
@@ -156,6 +160,7 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         generateTiered(translationBuilder, ModItems.ESTOC, "Estoc");
         generateTiered(translationBuilder, ModItems.GREATAXE, "Greataxe");
         generateTiered(translationBuilder, ModItems.WARHAMMER, "Warhammer");
+        generateTiered(translationBuilder, ModItems.SICKLES, "Sickles");
 
         translationBuilder.add(ModItems.RUINED_HANDLE, "Ruined Handle");
         translationBuilder.add(ModItems.RELIC_HANDLE, "Relic Handle");

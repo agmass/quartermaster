@@ -1,9 +1,24 @@
 {
   "values": [
-    "quartermaster:iron_morningstar",
-    "quartermaster:iron_warhammer",
-    "quartermaster:iron_greataxe",
-    "minecraft:iron_axe",
-    "minecraft:iron_spear"
+    {
+      "id": "quartermaster:iron_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_warhammer",
+      "required": false
+    },
+    {
+      "id": "minecraft:iron_axe",
+      "required": false
+    },
+    {
+      "id": "minecraft:iron_spear",
+      "required": false
+    }
   ]
 }

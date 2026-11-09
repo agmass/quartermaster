@@ -1,9 +1,24 @@
 {
   "values": [
-    "quartermaster:stone_morningstar",
-    "quartermaster:stone_warhammer",
-    "quartermaster:stone_greataxe",
-    "minecraft:stone_axe",
-    "minecraft:stone_spear"
+    {
+      "id": "quartermaster:stone_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_warhammer",
+      "required": false
+    },
+    {
+      "id": "minecraft:stone_axe",
+      "required": false
+    },
+    {
+      "id": "minecraft:stone_spear",
+      "required": false
+    }
   ]
 }

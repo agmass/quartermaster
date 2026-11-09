@@ -120,7 +120,7 @@ public class CutlassItem extends EnchantableQMItem implements CustomHitSounds {
 
                 ItemStack mainHand = attacker.getMainHandItem();
 
-                boolean fling = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(livingEntity.level(), ModEnchants.FLING), mainHand) > 0;
+                boolean fling = ModEnchants.getItemEnchant(mainHand, livingEntity.level(), ModEnchants.FLING) > 0;
                 if (mainHand.has(ModComponents.HAS_FLING)) {
                     if (!mainHand.get(ModComponents.HAS_FLING)) {
                         if (fling) {

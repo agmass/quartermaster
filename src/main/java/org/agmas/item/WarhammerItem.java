@@ -70,7 +70,7 @@ public class WarhammerItem extends EnchantableQMItem {
     //public void inventoryTick(ItemStack itemStack, Level serverLevel, Entity entity, int i, boolean bl) {
         if (entity instanceof Player player) {
             if (player.hasAttached(ModAttachments.WARHAMMER_CAST_TIME) && !player.isCreative()) {
-                boolean siesmic = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(serverLevel, ModEnchants.SIESMIC),itemStack) > 0;
+                boolean siesmic = ModEnchants.getItemEnchant(itemStack, serverLevel, ModEnchants.SIESMIC) > 0;
                 player.getCooldowns().addCooldown(itemStack
                         //? if <=1.21.1
                                 //.getItem()
@@ -94,7 +94,7 @@ public class WarhammerItem extends EnchantableQMItem {
                 //? if <=1.21.1
                     //.getItem()
             )) {
-                boolean siesmic = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder((ServerLevel) level, ModEnchants.SIESMIC),stack) > 0;
+                boolean siesmic = ModEnchants.getItemEnchant(stack, level, ModEnchants.SIESMIC) > 0;
                 player.setAttached(ModAttachments.WARHAMMER_CAST_TIME, siesmic ? 80 : 40);
             }
         }

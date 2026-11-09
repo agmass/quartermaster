@@ -68,7 +68,7 @@ public class GreataxeItem extends EnchantableQMItem {
     public static float modifyBlockDamage(LivingEntity livingEntity, ServerLevel serverLevel, DamageSource damageSource, float original) {
         if (damageSource.getWeaponItem() != null) {
             if (original > 1) {
-                boolean busterEnchant = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(serverLevel, ModEnchants.BUSTER), damageSource.getWeaponItem()) > 0;
+                boolean busterEnchant = ModEnchants.getItemEnchant(damageSource.getWeaponItem(), serverLevel, ModEnchants.BUSTER) > 0;
                 if (damageSource.getWeaponItem().is(ModTags.GREATAXES) && !busterEnchant) {
                     serverLevel.broadcastDamageEvent(livingEntity, damageSource); // make the player RED WITH RAGE!!!!!!!!!!!!!!!!!!
                     return original * 0.75f;
@@ -83,7 +83,7 @@ public class GreataxeItem extends EnchantableQMItem {
     public void inventoryTick(ItemStack itemStack, ServerLevel serverLevel, Entity entity, @Nullable EquipmentSlot equipmentSlot) {
     //? if <=1.21.1
     //public void inventoryTick(ItemStack itemStack, Level serverLevel, Entity entity, int i, boolean bl) {
-        int charges = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(serverLevel, ModEnchants.CHARGED),itemStack);
+        int charges = ModEnchants.getItemEnchant(itemStack, serverLevel, ModEnchants.CHARGED);
         if (charges > 0) {
             itemStack.set(ModComponents.MAX_CHARGES, charges+1);
             if (!itemStack.has(ModComponents.CHARGES)) itemStack.set(ModComponents.CHARGES, charges+1);
@@ -171,7 +171,7 @@ public class GreataxeItem extends EnchantableQMItem {
                     buster.attackPower *= 0.7f;
                 }
 
-                boolean busterEnchant = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.BUSTER),stack) > 0;
+                boolean busterEnchant = ModEnchants.getItemEnchant(stack, level, ModEnchants.BUSTER) > 0;
                 if (busterEnchant) {
                     buster.attackPower *= 1.5f;
                     buster.setDeltaMovement(player.getViewVector(0f).multiply(1.25f,1.5f,1.25f).add(player.getDeltaMovement()));

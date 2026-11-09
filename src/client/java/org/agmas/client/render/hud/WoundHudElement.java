@@ -4,10 +4,10 @@ import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 //? if <26.1 {
-/*import net.minecraft.client.gui.GuiGraphics;
-*///? } else {
-import net.minecraft.client.gui.GuiGraphicsExtractor;
-//? }
+import net.minecraft.client.gui.GuiGraphics;
+//? } else {
+/*import net.minecraft.client.gui.GuiGraphicsExtractor;
+*///? }
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.util.EasingType;
 import net.minecraft.util.Mth;
@@ -25,10 +25,10 @@ public class WoundHudElement implements HudElement {
 
     @Override
     //? >=26.1 {
-    public void extractRenderState(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
-    //? } else {
-    /*public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
-    *///?}
+    /*public void extractRenderState(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
+    *///? } else {
+    public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    //?}
         Player player = Minecraft.getInstance().player;
         if (player == null) return;
 

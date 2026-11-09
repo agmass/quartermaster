@@ -1,13 +1,40 @@
 {
   "values": [
-    "quartermaster:warhammer",
-    "quartermaster:wooden_warhammer",
-    "quartermaster:stone_warhammer",
-    "quartermaster:copper_warhammer",
-    "quartermaster:iron_warhammer",
-    "quartermaster:golden_warhammer",
-    "quartermaster:diamond_warhammer",
-    "quartermaster:netherite_warhammer",
-    "quartermaster:bamboo_warhammer"
+    {
+      "id": "quartermaster:warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:golden_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_warhammer",
+      "required": false
+    }
   ]
 }

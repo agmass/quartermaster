@@ -1,10 +1,10 @@
 package org.agmas.client.datagen;
 
 //? if >=26.1 {
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
-//? } else {
-/*import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
- *///? }
+/*import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+*///? } else {
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+ //? }
 
 //? if >=1.21.4 {
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -30,14 +30,14 @@ import java.util.Optional;
 public class ModModelProvider extends FabricModelProvider {
 
     //? if >=26.1 {
-    public ModModelProvider(FabricPackOutput output) {
+    /*public ModModelProvider(FabricPackOutput output) {
         super(output);
     }
-    //? } else {
-    /*public ModModelProvider(FabricDataOutput output) {
+    *///? } else {
+    public ModModelProvider(FabricDataOutput output) {
         super(output);
     }
-    *///? }
+    //? }
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockModelGenerators) {
@@ -63,6 +63,7 @@ public class ModModelProvider extends FabricModelProvider {
         createWeapon32(itemModelGenerator, ModItems.GREATAXE, greataxeTemplate);
         createWeapon32(itemModelGenerator, ModItems.CUTLASS, cutlassTemplate);
         createWeapon32(itemModelGenerator, ModItems.ESTOC, cutlassTemplate);
+        createWeapon(itemModelGenerator, ModItems.SICKLES, ModelTemplates.FLAT_HANDHELD_ITEM);
 
         // Bamboo
 
@@ -75,6 +76,18 @@ public class ModModelProvider extends FabricModelProvider {
 
     }
 
+    public void createWeapon(ItemModelGenerators itemModelGenerator, ModItems.QMWeapon weapon, ModelTemplate template) {
+        itemModelGenerator.generateFlatItem(weapon.relic(), template);
+        itemModelGenerator.generateFlatItem(weapon.bamboo(), template);
+        itemModelGenerator.generateFlatItem(weapon.wooden(), template);
+        itemModelGenerator.generateFlatItem(weapon.stone(), template);
+        //? >=1.21.10
+        itemModelGenerator.generateFlatItem(weapon.copper(), template);
+        itemModelGenerator.generateFlatItem(weapon.iron(), template);
+        itemModelGenerator.generateFlatItem(weapon.golden(), template);
+        itemModelGenerator.generateFlatItem(weapon.diamond(), template);
+        itemModelGenerator.generateFlatItem(weapon.netherite(), template);
+    }
     public void createWeapon32(ItemModelGenerators itemModelGenerator, ModItems.QMWeapon weapon, ModelTemplate template) {
         create32X(itemModelGenerator, weapon.relic(), template);
         create32X(itemModelGenerator, weapon.bamboo(), template);

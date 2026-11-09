@@ -16,7 +16,8 @@ public class ModTags {
     public static final TagKey<Item> WARHAMMERS = TagKey.create(Registries.ITEM, QMIdentifier.of("warhammers").id);
     public static final TagKey<Item> RAPIERS = TagKey.create(Registries.ITEM, QMIdentifier.of("rapiers").id);
 
-    public static final TagKey<Enchantment> RAPIER_ENCHANTABLE = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("cutlasses").id);
+    public static final TagKey<Item> ELEMENTAL_WEAPONS = TagKey.create(Registries.ITEM, QMIdentifier.of("enchantable/elemental_weapon").id);
+    public static final TagKey<Item> ELEMENTAL_RANGED_WEAPONS = TagKey.create(Registries.ITEM, QMIdentifier.of("enchantable/elemental_weapon_ranged").id);
 
     public static final TagKey<Item> WOODEN_LIGHT_WEAPONS = TagKey.create(Registries.ITEM, QMIdentifier.of("wooden_light_weapons").id);
     public static final TagKey<Item> WOODEN_HEAVY_WEAPONS = TagKey.create(Registries.ITEM, QMIdentifier.of("wooden_heavy_weapons").id);
@@ -44,7 +45,6 @@ public class ModTags {
     public static final TagKey<Item> BAMBOO_REPAIR_MATERIALS = TagKey.create(Registries.ITEM, QMIdentifier.of("bamboo_repair_materials").id);
     public static final TagKey<Item> NON_DAMAGING = TagKey.create(Registries.ITEM, QMIdentifier.of("non_damaging").id);
 
-
     public static final TagKey<Enchantment> EXCLUSIVE_SET_SPEARS = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/spears").id);
     public static final TagKey<Enchantment> EXCLUSIVE_SET_SHIELD_DISABLE = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/shield_disable").id);
     public static final TagKey<Enchantment> EXCLUSIVE_SET_GREATAXE = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/greataxe").id);
@@ -53,6 +53,7 @@ public class ModTags {
     public static final TagKey<Enchantment> EXCLUSIVE_SET_FALL_PROTECTION = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/fall_prot").id);
     public static final TagKey<Enchantment> EXCLUSIVE_SET_SHIELD = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/shield").id);
     public static final TagKey<Enchantment> EXCLUSIVE_SET_ELEMENTAL = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/elemental").id);
+    public static final TagKey<Enchantment> EXCLUSIVE_SET_ELEMENTAL_RANGED = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("exclusive_set/elemental_ranged").id);
     public static final TagKey<Enchantment> YOU_TWO_SHOULD_JUST_KISS_ALREADY = TagKey.create(Registries.ENCHANTMENT, QMIdentifier.of("you_two_should_just_kiss_already").id);
 
     public static final TagKey<DamageType> IS_MAGIC = TagKey.create(Registries.DAMAGE_TYPE, QMIdentifier.of("is_magic").id);

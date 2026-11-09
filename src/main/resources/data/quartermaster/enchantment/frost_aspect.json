@@ -1,7 +1,7 @@
 {
   "anvil_cost": 1,
   "description": {
-    "translate": "enchantment.quartermaster.earthquake"
+    "translate": "enchantment.quartermaster.frost_aspect"
   },
   "effects": {
   },
@@ -14,10 +14,11 @@
     "base": 1,
     "per_level_above_first": 11
   },
-  "primary_items": "#quartermaster:warhammers",
+  "exclusive_set": "#quartermaster:exclusive_set/elemental",
+  "primary_items": "#quartermaster:enchantable/elemental_weapon",
   "slots": [
     "mainhand"
   ],
-  "supported_items": "#quartermaster:warhammers",
+  "supported_items": "#quartermaster:enchantable/elemental_weapon",
   "weight": 10
 }

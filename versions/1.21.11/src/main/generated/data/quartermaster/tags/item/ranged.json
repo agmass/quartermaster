@@ -1,7 +1,16 @@
 {
   "values": [
-    "quartermaster:flintlock",
-    "minecraft:bow",
-    "minecraft:crossbow"
+    {
+      "id": "quartermaster:flintlock",
+      "required": false
+    },
+    {
+      "id": "minecraft:bow",
+      "required": false
+    },
+    {
+      "id": "minecraft:crossbow",
+      "required": false
+    }
   ]
 }

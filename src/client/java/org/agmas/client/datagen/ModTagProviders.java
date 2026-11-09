@@ -1,12 +1,12 @@
 package org.agmas.client.datagen;
 
 //? if >=26.1 {
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+/*import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
-//? } else {
-/*import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+*///? } else {
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-*///? }
+//? }
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -38,17 +38,17 @@ import java.util.concurrent.CompletableFuture;
 public class ModTagProviders {
 
     //? if >=26.1 {
-    public static final class ItemTags extends FabricTagsProvider.ItemTagsProvider {
-    //?} else {
-    /*public static final class ItemTags extends FabricTagProvider.ItemTagProvider {
-    *///? }
+    /*public static final class ItemTags extends FabricTagsProvider.ItemTagsProvider {
+    *///?} else {
+    public static final class ItemTags extends FabricTagProvider.ItemTagProvider {
+    //? }
 
 
         //? if >=26.1 {
-        public ItemTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        //?} else {
-        /*public ItemTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        *///? }
+        /*public ItemTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        *///?} else {
+        public ItemTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        //? }
             super(output, registriesFuture);
         }
 
@@ -69,6 +69,14 @@ public class ModTagProviders {
             addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
             addList(ModItems.RAPIER.asList(), net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
             addList(ModItems.RAPIER.asList(), ModTags.RAPIERS);
+
+            addList(ModItems.SICKLES.asList(), net.minecraft.tags.ItemTags.SWORDS);
+            addList(ModItems.SICKLES.asList(), net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
+            addList(ModItems.SICKLES.asList(), net.minecraft.tags.ItemTags.SHARP_WEAPON_ENCHANTABLE);
+            //? if >1.21.1
+            addList(ModItems.SICKLES.asList(), net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
+            addList(ModItems.SICKLES.asList(), net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
+            addList(ModItems.SICKLES.asList(), ModTags.RAPIERS);
 
             addList(ModItems.MORNINGSTAR.asList(), net.minecraft.tags.ItemTags.AXES);
             addList(ModItems.MORNINGSTAR.asList(), net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);
@@ -128,15 +136,49 @@ public class ModTagProviders {
 
             addList(ModItemLists.bamboo_weapons, ModTags.NON_DAMAGING);
 
+            for (ModItems.QMWeapon weapon : ModItemLists.weapons) {
+                if (weapon.relic() != null)
+                    add(weapon.relic(), ModTags.ELEMENTAL_WEAPONS);
+                if (weapon.bamboo() != null)
+                    add(weapon.bamboo(), ModTags.ELEMENTAL_WEAPONS);
+                if (weapon.wooden() != null) {
+                    add(weapon.wooden(), ModTags.ELEMENTAL_WEAPONS);
+                    add(weapon.stone(), ModTags.ELEMENTAL_WEAPONS);
+                    //? >=1.21.10
+                    add(weapon.copper(), ModTags.ELEMENTAL_WEAPONS);
+                    add(weapon.iron(), ModTags.ELEMENTAL_WEAPONS);
+                    add(weapon.diamond(), ModTags.ELEMENTAL_WEAPONS);
+                    add(weapon.netherite(), ModTags.ELEMENTAL_WEAPONS);
+                }
+            }
+
+            // Technically redundant, but increases support with modded weapons
+            add(net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE, ModTags.ELEMENTAL_WEAPONS);
+
+            add(Items.TRIDENT, ModTags.ELEMENTAL_RANGED_WEAPONS);
+            add(net.minecraft.tags.ItemTags.BOW_ENCHANTABLE, ModTags.ELEMENTAL_RANGED_WEAPONS);
+
         }
 
+        public void add(TagKey<Item> item,TagKey<Item> tag) {
+            //? if >=26.2 {
+            /*tag(tag)
+                    .addOptionalTag(item);
+            *///? } else if >1.21.1 {
+            builder(tag)
+                    .addOptionalTag(item);
+            //? } else{
+            /*tag(tag)
+                    .addOptionalTag(item);
+            *///? }
+        }
         public void add(Item item,TagKey<Item> tag) {
             //? if >=26.2 {
             /*tag(tag)
                     .addOptional(ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)));
             *///? } else if >1.21.1 {
-            valueLookupBuilder(tag)
-                    .addOptional(item);
+            builder(tag)
+                    .addOptional(ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)));
             //? } else{
             /*tag(tag)
                     .addOptional(BuiltInRegistries.ITEM.getResourceKey(item).get());
@@ -147,13 +189,11 @@ public class ModTagProviders {
             //? if >=26.2 {
             /*TagAppender<Item> itemTagAppender = tag(tag);
             *///? } else  if >1.21.1 {
-            TagAppender<Item, Item> itemTagAppender = valueLookupBuilder(tag);
+            TagAppender<ResourceKey<Item>, Item> itemTagAppender = builder(tag);
             //? }
             for (Item item : list) {
-                //? if >=26.2 {
-                /*itemTagAppender.addOptional(ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)));
-                *///? } else  if >1.21.1 {
-                itemTagAppender.addOptional(item);
+                //? if >1.21.1 {
+                itemTagAppender.addOptional(ResourceKey.create(Registries.ITEM, BuiltInRegistries.ITEM.getKey(item)));
                 //? } else {
                     /*tag(tag)
                             .addOptional(BuiltInRegistries.ITEM.getResourceKey(item).get());
@@ -164,16 +204,16 @@ public class ModTagProviders {
 
 
     //? if >=26.1 {
-    public static final class EnchantTags extends FabricTagsProvider<Enchantment> {
-    //?} else {
-    /*public static final class EnchantTags extends FabricTagProvider<Enchantment> {
-    *///?}
+    /*public static final class EnchantTags extends FabricTagsProvider<Enchantment> {
+    *///?} else {
+    public static final class EnchantTags extends FabricTagProvider<Enchantment> {
+    //?}
 
         //? if >=26.1 {
-        public EnchantTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        //? } else {
-        /*public EnchantTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        *///? }
+        /*public EnchantTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        *///? } else {
+        public EnchantTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        //? }
             super(output, Registries.ENCHANTMENT, registriesFuture);
         }
 
@@ -189,7 +229,7 @@ public class ModTagProviders {
                     .addOptional(ModEnchants.PULL)
                     .addOptional(ModEnchants.BUSTER)
                     .addOptional(ModEnchants.CHARGED)
-                    .addOptional(ModEnchants.EARTHQUAKE)
+                    .addOptional(ModEnchants.FROST_ASPECT)
                     .addOptional(ModEnchants.FLING)
                     .addOptional(ModEnchants.PUNCTURE)
                     .addOptional(ModEnchants.SPLINTER)
@@ -200,10 +240,6 @@ public class ModTagProviders {
                     .addOptional(ModEnchants.FROST_PROTECTION)
                     .addOptional(ModEnchants.STUN_PROTECTION)
                     .addOptional(ModEnchants.MAGIC_PROTECTION)
-                    .addOptional(ModEnchants.GLACIAL)
-                    .addOptional(ModEnchants.HEATWAVE)
-                    .addOptional(ModEnchants.TIDAL_CHILL)
-                    .addOptional(ModEnchants.HELLFORK)
                     .addOptional(ModEnchants.CHILL)
                     .addOptional(ModEnchants.SINGLEHANDED)
                     .addOptional(ModEnchants.EXPLOSIVE_KINECTIVITY)
@@ -274,27 +310,29 @@ public class ModTagProviders {
             builder(ModTags.EXCLUSIVE_SET_ELEMENTAL)
             //? if <=1.21.1
             //getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_ELEMENTAL)
-                    .addOptional(ModEnchants.GLACIAL)
-                    .addOptional(ModEnchants.HEATWAVE)
-                    .addOptional(ModEnchants.TIDAL_CHILL)
-                    .addOptional(ModEnchants.HELLFORK)
+                    .addOptional(ModEnchants.FROST_ASPECT)
+                    .addOptional(Enchantments.FIRE_ASPECT);
+
+            //? if >1.21.1
+            builder(ModTags.EXCLUSIVE_SET_ELEMENTAL_RANGED)
+            //? if <=1.21.1
+            //getOrCreateTagBuilder(ModTags.EXCLUSIVE_SET_ELEMENTAL_RANGED)
                     .addOptional(ModEnchants.CHILL)
-                    .addOptional(Enchantments.FIRE_ASPECT)
                     .addOptional(Enchantments.FLAME);
         }
     }
 
     //? if >=26.1 {
-    public static final class DamageTypesTags extends FabricTagsProvider<DamageType> {
-     //?} else {
-    /*public static final class DamageTypesTags extends FabricTagProvider<DamageType> {
-        *///?}
+    /*public static final class DamageTypesTags extends FabricTagsProvider<DamageType> {
+     *///?} else {
+    public static final class DamageTypesTags extends FabricTagProvider<DamageType> {
+        //?}
 
         //? if >=26.1 {
-        public DamageTypesTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-         //? } else {
-        /*public DamageTypesTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-            *///? }
+        /*public DamageTypesTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+         *///? } else {
+        public DamageTypesTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+            //? }
             super(output, Registries.DAMAGE_TYPE, registriesFuture);
         }
 
@@ -353,16 +391,16 @@ public class ModTagProviders {
     }
 
     //? if >=26.1 {
-    public static final class MobEffectTags extends FabricTagsProvider<MobEffect> {
-     //?} else {
-    /*public static final class MobEffectTags extends FabricTagProvider<MobEffect> {
-        *///?}
+    /*public static final class MobEffectTags extends FabricTagsProvider<MobEffect> {
+     *///?} else {
+    public static final class MobEffectTags extends FabricTagProvider<MobEffect> {
+        //?}
 
         //? if >=26.1 {
-        public MobEffectTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-         //? } else {
-        /*public MobEffectTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-            *///? }
+        /*public MobEffectTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+         *///? } else {
+        public MobEffectTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+            //? }
             super(output, Registries.MOB_EFFECT, registriesFuture);
         }
 

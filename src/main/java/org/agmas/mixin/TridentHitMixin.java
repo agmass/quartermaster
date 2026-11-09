@@ -31,7 +31,7 @@ public abstract class TridentHitMixin {
 
     @Inject(method = "hitBlockEnchantmentEffects", at = @At("TAIL"))
     void noHurt(ServerLevel serverLevel, BlockHitResult blockHitResult, ItemStack itemStack, CallbackInfo ci) {
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(serverLevel, ModEnchants.NORTH_WIND), itemStack) > 0) {
+        if (ModEnchants.getItemEnchant(itemStack, serverLevel, ModEnchants.NORTH_WIND) > 0) {
             Vec3 vec3 = blockHitResult.getLocation();
             ((Entity) (Object) this).level().explode((Entity) (Object) this, null,
                     new SimpleExplosionDamageCalculator(true, false, Optional.of(Float.valueOf(1.22f)), BuiltInRegistries.BLOCK.get(BlockTags.BLOCKS_WIND_CHARGE_EXPLOSIONS).map(Function.identity())),

@@ -50,12 +50,12 @@ public abstract class FirstPersonAnimatorMixin {
 	//? }
 
 	//? <=1.21.11 {
-	/*@WrapOperation(method = "renderArmWithItem", at= @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"))
+	@WrapOperation(method = "renderArmWithItem", at= @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"))
 	public boolean undoCrossbow(ItemStack instance, Item item, Operation<Boolean> original) {
-	*///?} else <= 26.1 {
-	@WrapOperation(method = "renderArmWithItem", at= @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Ljava/lang/Object;)Z"))
+	//?} else <= 26.1 {
+	/*@WrapOperation(method = "renderArmWithItem", at= @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Ljava/lang/Object;)Z"))
 	public boolean undoCrossbow(ItemStack instance, Object item, Operation<Boolean> original) {
-	//? } else {
+	*///? } else {
 	/*@WrapOperation(method = "submitArmWithItem", at= @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Ljava/lang/Object;)Z"))
 	public boolean undoCrossbow(ItemStack instance, Object item, Operation<Boolean> original) {
 	*///? }

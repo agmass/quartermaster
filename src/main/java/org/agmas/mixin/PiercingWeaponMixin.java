@@ -26,7 +26,7 @@ public abstract class PiercingWeaponMixin {
 
     @Inject(method = "attack", at = @At("TAIL"))
     public void woundSpear(LivingEntity livingEntity, EquipmentSlot equipmentSlot, CallbackInfo ci) {
-        boolean pogo = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(livingEntity.level(), ModEnchants.POGO),livingEntity.getItemBySlot(equipmentSlot)) > 0;
+        boolean pogo = ModEnchants.getItemEnchant(livingEntity.getItemBySlot(equipmentSlot), livingEntity.level(), ModEnchants.BRITTLE) > 0;;
 
         if (pogo &&!ProjectileUtil.getHitResultOnViewVector(livingEntity, Predicates.alwaysTrue(),4).getType().equals(HitResult.Type.MISS)) {
             livingEntity.setDeltaMovement(livingEntity.getViewVector(0f).multiply(-1.5f,-0.75f,-1.5f));

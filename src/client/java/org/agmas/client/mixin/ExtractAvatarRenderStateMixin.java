@@ -28,7 +28,7 @@ public abstract class ExtractAvatarRenderStateMixin {
 	public void quartermasterAnimations(Avatar entity, AvatarRenderState state, float partialTicks, CallbackInfo ci) {
 		if (entity.hasAttached(ModAttachments.WARHAMMER_CAST_TIME)) {
 
-			boolean siesmic = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(entity.level(), ModEnchants.SIESMIC),entity.getMainHandItem()) > 0;
+			boolean siesmic =ModEnchants.getItemEnchant(entity.getMainHandItem(), entity.level(), ModEnchants.SIESMIC) > 0;
 			float ticks = entity.getAttached(ModAttachments.WARHAMMER_CAST_TIME)-partialTicks;
 			if (siesmic && ticks > 20) {
 				ticks = Mth.lerp((ticks-20)/60, 20f,40f);

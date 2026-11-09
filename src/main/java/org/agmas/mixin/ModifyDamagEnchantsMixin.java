@@ -18,11 +18,11 @@ public abstract class ModifyDamagEnchantsMixin {
     private static float changeDamage(ServerLevel serverLevel, ItemStack itemStack, Entity entity, DamageSource damageSource, float f, Operation<Float> original) {
         float o = original.call(serverLevel,itemStack,entity,damageSource,f);
         if (damageSource.getDirectEntity() instanceof LivingEntity livingEntity) {
-            if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder((ServerLevel) entity.level(), ModEnchants.SINGLEHANDED), itemStack) > 0 && livingEntity.getOffhandItem().isEmpty()) {
+            if (ModEnchants.getItemEnchant(itemStack, livingEntity.level(), ModEnchants.SINGLEHANDED) > 0 && livingEntity.getOffhandItem().isEmpty()) {
                 return o + 2;
             }
         }
-        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder((ServerLevel) entity.level(), ModEnchants.BLADEDANCE), itemStack) > 0 && !entity.onGround()) {
+        if (ModEnchants.getItemEnchant(itemStack, entity.level(), ModEnchants.BLADEDANCE) > 0 && !entity.onGround()) {
             return o + 2;
         }
         return o;

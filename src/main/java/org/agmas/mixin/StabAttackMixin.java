@@ -33,7 +33,7 @@ public abstract class StabAttackMixin extends LivingEntity {
     //? if >=1.21.11 {
     @Inject(method = "stabAttack", at = @At("TAIL"))
     public void woundSpear(EquipmentSlot equipmentSlot, Entity entity, float f, boolean bl, boolean bl2, boolean bl3, CallbackInfoReturnable<Boolean> cir) {
-        boolean puncture = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.PUNCTURE),getItemBySlot(equipmentSlot)) > 0;
+        boolean puncture = ModEnchants.getItemEnchant(getItemBySlot(equipmentSlot), entity.level(), ModEnchants.PUNCTURE) > 0;
         if (puncture) {
             if (entity instanceof LivingEntity livingEntity)
                 EstocItem.wound(livingEntity);

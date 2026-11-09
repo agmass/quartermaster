@@ -49,9 +49,9 @@ public abstract class AxeEnchantShieldMixin extends LivingEntity {
         //? if <1.21.11
         //float amount = 100/20F;
         boolean cancel = false;
-        boolean splinter = EnchantmentHelper.getEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.SPLINTER),attacker) > 0;
+        boolean splinter = ModEnchants.getEnchant(attacker, ModEnchants.SPLINTER) > 0;
 
-        boolean takedown = EnchantmentHelper.getEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.TAKEDOWN),attacker) > 0;
+        boolean takedown = ModEnchants.getEnchant(attacker, ModEnchants.TAKEDOWN) > 0;
         if (takedown) {
             CutlassItem.disarm(instance,1);
         }
@@ -69,7 +69,7 @@ public abstract class AxeEnchantShieldMixin extends LivingEntity {
 
 
         if (blockingItem != null) {
-            boolean brittle = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.BRITTLE),blockingItem) > 0;
+            boolean brittle = ModEnchants.getItemEnchant(blockingItem, level(), ModEnchants.BRITTLE) > 0;
             if (brittle) {
                 float attackDamage = (float)(attacker.getAttribute(Attributes.ATTACK_DAMAGE).getValue())/3.5f;
                 instance.setDeltaMovement(getViewVector(0f).multiply(-attackDamage,-attackDamage,-attackDamage));
@@ -83,7 +83,7 @@ public abstract class AxeEnchantShieldMixin extends LivingEntity {
                 }
             }
 
-            boolean shieldBash = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level(), ModEnchants.SHIELD_BASH),blockingItem) > 0;
+            boolean shieldBash = ModEnchants.getItemEnchant(blockingItem, level(), ModEnchants.SHIELD_BASH) > 0;
             if (shieldBash) {
                 amount *= 2f;
                 cancel = true;

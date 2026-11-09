@@ -23,6 +23,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.agmas.Quartermaster;
@@ -124,12 +125,13 @@ public abstract class LivingEntityMixin extends Entity {
 								//MobEffects.MOVEMENT_SLOWDOWN,
 								20,0));
 						level.sendParticles(QMSpellParticleOption.create(ModParticles.LANDING, color,power),getX(),getY()+0.02f,getZ(),0,0,0,0,0);
-						boolean siesmic = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.SIESMIC),getMainHandItem()) > 0;
-						boolean pull = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.PULL),getMainHandItem()) > 0;
-						boolean homerun = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.HOMERUN),getMainHandItem()) > 0;
-						boolean heatwave = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.HEATWAVE),getMainHandItem()) > 0;
-						boolean glacial = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.GLACIAL),getMainHandItem()) > 0;
-						boolean earthquake = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.EARTHQUAKE),getMainHandItem()) > 0;
+						boolean siesmic = ModEnchants.getItemEnchant(getMainHandItem(), level, ModEnchants.SIESMIC) > 0;
+						boolean pull = ModEnchants.getItemEnchant(getMainHandItem(), level, ModEnchants.PULL) > 0;
+						boolean homerun = ModEnchants.getItemEnchant(getMainHandItem(), level, ModEnchants.HOMERUN) > 0;
+						boolean heatwave = ModEnchants.getItemEnchant(getMainHandItem(), level, Enchantments.FIRE_ASPECT) > 0;
+						boolean glacial = ModEnchants.getItemEnchant(getMainHandItem(), level, ModEnchants.FROST_ASPECT) > 0;
+						//boolean earthquake = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.EARTHQUAKE),getMainHandItem()) > 0;
+						boolean earthquake = false;
 
 						for (Entity entity : level.getEntities(((LivingEntity) (Object) this), getBoundingBox().inflate(power * 1.5f))) {
 							if (entity instanceof LivingEntity livingEntity) {
@@ -196,27 +198,11 @@ public abstract class LivingEntityMixin extends Entity {
 
 		if (source.getEntity() instanceof LivingEntity target) {
 			if (getUseItem().getItem() instanceof RapierItem r) {
-				level().playSound(null,position().x,position().y,position().z, ModSounds.PARRY, SoundSource.PLAYERS);
-
-				if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.DEADLOCK), source.getWeaponItem()) > 0) {
-					double stunAmount = amount*r.getParryMultiplier();
-					stunAmount *= 1.5;
-					target.addEffect(new MobEffectInstance(ModEffects.DISARMED, (int) Math.round(stunAmount/2),0));
-					target.addEffect(new MobEffectInstance(ModEffects.STUNNED, (int) Math.round(stunAmount),0));
-					return original.call(
-							//? if >=1.21.11
-							level,
-							source, amount);
-				}
-				//? if >=1.21.11
-				target.hurtServer(level,source,amount*r.getParryMultiplier());
-				//? if <1.21.11
-				//target.hurt(source,amount*2);
 				return original.call(
 						//? if >=1.21.11
 						level,
-						source,amount/(r.getParryMultiplier()*2));
-
+						source,
+						r.parry(((LivingEntity) (Object)this), target, source, amount));
 			}
 		}
 		return original.call(

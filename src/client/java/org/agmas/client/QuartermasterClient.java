@@ -5,15 +5,15 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 //? if <26.1 {
-/*import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-*///? } else {
-import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
- //? }
-//? if >=26.1 {
-import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 //? } else {
-/*import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-*///? }
+/*import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
+ *///? }
+//? if >=26.1 {
+/*import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+*///? } else {
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+//? }
 import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
@@ -28,16 +28,13 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Items;
 //? if >=26.3
 //import net.minecraft.world.item.component.SwingAnimation;
+import org.agmas.client.render.hud.*;
 import org.agmas.network.ServerboundUseShieldBashPacket;
 import org.agmas.porting.QMIdentifier;
 import org.agmas.Quartermaster;
 import org.agmas.client.render.animations.HandsModel;
 import org.agmas.client.render.entity.GreataxeProjectileEntityRenderer;
 import org.agmas.client.render.entity.GunpowderEntityRenderer;
-import org.agmas.client.render.hud.DisarmedHudElement;
-import org.agmas.client.render.hud.ParryHudElement;
-import org.agmas.client.render.hud.StunnedHudElement;
-import org.agmas.client.render.hud.WoundHudElement;
 import org.agmas.client.render.particle.ColorAttackSweepParticle;
 import org.agmas.client.render.particle.ColorCritParticle;
 import org.agmas.client.render.particle.WarhammerLandingParticle;
@@ -71,14 +68,14 @@ public class QuartermasterClient implements ClientModInitializer {
 		handsRoot =QuartermasterClient.firstPersonHands.bakeRoot();
 
 		//? if <26.1 {
-		/*ParticleFactoryRegistry.getInstance().register(ModParticles.COLOR_CRIT, ColorCritParticle.InstantProvider::new);
+		ParticleFactoryRegistry.getInstance().register(ModParticles.COLOR_CRIT, ColorCritParticle.InstantProvider::new);
 		ParticleFactoryRegistry.getInstance().register(ModParticles.COLOR_SWEEP, ColorAttackSweepParticle.InstantProvider::new);
 		ParticleFactoryRegistry.getInstance().register(ModParticles.LANDING, WarhammerLandingParticle.InstantProvider::new);
-		*///? } else {
-		ParticleProviderRegistry.getInstance().register(ModParticles.COLOR_CRIT, ColorCritParticle.InstantProvider::new);
+		//? } else {
+		/*ParticleProviderRegistry.getInstance().register(ModParticles.COLOR_CRIT, ColorCritParticle.InstantProvider::new);
 		ParticleProviderRegistry.getInstance().register(ModParticles.COLOR_SWEEP, ColorAttackSweepParticle.InstantProvider::new);
 		ParticleProviderRegistry.getInstance().register(ModParticles.LANDING, WarhammerLandingParticle.InstantProvider::new);
-		//? }
+		*///? }
 
 
 		//? if >=1.21.9 {
@@ -121,6 +118,11 @@ public class QuartermasterClient implements ClientModInitializer {
 				QMIdentifier.of("wound_indicator_hud").id,
 				new WoundHudElement()
 		);
+		HudElementRegistry.attachElementAfter(
+				VanillaHudElements.CROSSHAIR,
+				QMIdentifier.of("sickle_range").id,
+				new SickleRangeHudElement()
+		);
 
 		ClientTickEvents.START_CLIENT_TICK.register((m)->{
 			Quartermaster.timeSinceShooting--;
@@ -157,9 +159,9 @@ public class QuartermasterClient implements ClientModInitializer {
 
 	public static KeyMapping registerKeyMapping(KeyMapping keyMapping) {
 		//? if >=26.1 {
-		return KeyMappingHelper.registerKeyMapping(keyMapping);
-		//? } else {
-		/*return KeyBindingHelper.registerKeyBinding(keyMapping);
-		 *///? }
+		/*return KeyMappingHelper.registerKeyMapping(keyMapping);
+		*///? } else {
+		return KeyBindingHelper.registerKeyBinding(keyMapping);
+		 //? }
 	}
 }

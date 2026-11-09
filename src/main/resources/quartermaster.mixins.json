@@ -23,6 +23,7 @@
     "ReduceFrostEffectTimesMixin",
     "ReduceStunEffectTimesMixin",
     "ShieldBashMixin",
+    "SickleRangedDamageMixin",
     "SmithCombatEffectsMixin",
     "StabAttackMixin",
     "StoreEstocCooldownMixin",
@@ -31,7 +32,9 @@
     "TridentHitMixin",
     "UseWarhammerMixin",
     "WarhammerForceUseMixin",
-    "WeaponHitSoundsMixin"
+    "WeaponHitSoundsMixin",
+    "config.DisableEnchantmentsInCreativeTabMixin",
+    "config.DisableEnchantmentsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

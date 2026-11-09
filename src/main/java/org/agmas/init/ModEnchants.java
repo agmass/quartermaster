@@ -9,12 +9,16 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import org.agmas.porting.QMIdentifier;
 
 public class ModEnchants {
+
+    public static final ResourceKey<Enchantment> FROST_ASPECT = of("frost_aspect");
 
     public static final ResourceKey<Enchantment> HOMERUN = of("homerun");
     public static final ResourceKey<Enchantment> SIESMIC = of("siesmic");
@@ -37,15 +41,9 @@ public class ModEnchants {
     public static final ResourceKey<Enchantment> EXCAVATE = of("excavate");
     public static final ResourceKey<Enchantment> BLADEDANCE = of("bladedance");
     public static final ResourceKey<Enchantment> EXPLOSIVE_KINECTIVITY = of("explosive_kinectivity");
-    public static final ResourceKey<Enchantment> GLACIAL = of("glacial");
-    public static final ResourceKey<Enchantment> HEATWAVE = of("heatwave");
-    public static final ResourceKey<Enchantment> EARTHQUAKE = of("earthquake");
-    public static final ResourceKey<Enchantment> HELLFORK = of("hellfork");
     public static final ResourceKey<Enchantment> SINGLEHANDED = of("singlehanded");
-    public static final ResourceKey<Enchantment> TIDAL_CHILL = of("tidal_chill");
     public static final ResourceKey<Enchantment> CHILL = of("chill");
     public static final ResourceKey<Enchantment> NORTH_WIND = of("north_wind");
-    public static final ResourceKey<Enchantment> UPDRAFT = of("updraft");
     public static final ResourceKey<Enchantment> DEADLOCK = of("deadlock");
 
 
@@ -57,19 +55,15 @@ public class ModEnchants {
 
     public static void init() {
         ServerLivingEntityEvents.ALLOW_DEATH.register(((entity, damageSource,a) -> {
-            if (EnchantmentHelper.getEnchantmentLevel(enchantHolder((ServerLevel) entity.level(),ModEnchants.EXPLOSIVE_KINECTIVITY), entity) > 0) {
+            if (ModEnchants.getEnchant(entity, ModEnchants.EXPLOSIVE_KINECTIVITY) > 0) {
                 entity.level().explode(entity,entity.getPosition(0f).x,entity.getPosition(0f).y,entity.getPosition(0f).z,6, Level.ExplosionInteraction.BLOCK);
             }
             return true;
         }));
         ServerLivingEntityEvents.AFTER_DAMAGE.register(((entity, source, baseDamageTaken, damageTaken, blocked) -> {
-
             if (source.getWeaponItem() != null) {
                 if (!blocked) {
-                    if (EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), ModEnchants.HELLFORK), source.getWeaponItem()) > 0) {
-                        entity.setRemainingFireTicks(90);
-                    }
-                    if (EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), ModEnchants.TIDAL_CHILL), source.getWeaponItem()) > 0) {
+                    if (EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), ModEnchants.FROST_ASPECT), source.getWeaponItem()) > 0) {
                         entity.setTicksFrozen(300);
                     }
                     if (EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), ModEnchants.CHILL), source.getWeaponItem()) > 0) {
@@ -100,7 +94,23 @@ public class ModEnchants {
             }
         }));
     }
-    public static Holder<Enchantment> enchantHolder(Level level, ResourceKey<Enchantment> e) {
+
+
+
+    public static int getItemEnchant(ItemStack itemStack, Level level, ResourceKey<Enchantment> e) {
+        if (!enabled(level,e)) return 0;
+        return EnchantmentHelper.getItemEnchantmentLevel(enchantHolder(level, e), itemStack);
+    }
+
+    public static int getEnchant(LivingEntity livingEntity, ResourceKey<Enchantment> e) {
+        if (!enabled(livingEntity.level(),e)) return 0;
+        return EnchantmentHelper.getEnchantmentLevel(enchantHolder(livingEntity.level(), e), livingEntity);
+    }
+
+    public static boolean enabled(Level level, ResourceKey<Enchantment> e) {
+        return level.registryAccess().lookup(Registries.ENCHANTMENT).get().containsKey(e);
+    }
+    private static Holder<Enchantment> enchantHolder(Level level, ResourceKey<Enchantment> e) {
         //? if >=1.21.11
         return level.registryAccess().lookup(Registries.ENCHANTMENT).get().wrapAsHolder(level.registryAccess().lookup(Registries.ENCHANTMENT).get().getValue(e));
         //? if <1.21.11

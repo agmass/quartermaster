@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:chill",
+      "required": false
+    },
+    {
+      "id": "minecraft:flame",
+      "required": false
+    }
+  ]
+}
