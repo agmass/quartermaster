@@ -5,7 +5,15 @@
       "required": false
     },
     {
+      "id": "quartermaster:rapier",
+      "required": false
+    },
+    {
       "id": "quartermaster:bamboo_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:cutlass",
       "required": false
     },
     {
@@ -13,7 +21,23 @@
       "required": false
     },
     {
+      "id": "quartermaster:estoc",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_sickle",
+      "required": false
+    },
+    {
+      "id": "quartermaster:sickle",
+      "required": false
+    },
+    {
       "id": "quartermaster:bamboo_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:morningstar",
       "required": false
     },
     {
@@ -21,7 +45,15 @@
       "required": false
     },
     {
+      "id": "quartermaster:greataxe",
+      "required": false
+    },
+    {
       "id": "quartermaster:bamboo_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:warhammer",
       "required": false
     }
   ]

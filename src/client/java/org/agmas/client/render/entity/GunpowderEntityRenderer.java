@@ -10,10 +10,10 @@ import net.minecraft.client.renderer.entity.state.EntityRenderState;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 
 //? if <26.1 {
-import net.minecraft.client.renderer.state.CameraRenderState;
-//? } else {
-/*import net.minecraft.client.renderer.state.level.CameraRenderState;
- *///? }
+/*import net.minecraft.client.renderer.state.CameraRenderState;
+*///? } else {
+import net.minecraft.client.renderer.state.level.CameraRenderState;
+ //? }
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import org.agmas.porting.QMIdentifier;
 import org.agmas.entity.GunpowderEntity;

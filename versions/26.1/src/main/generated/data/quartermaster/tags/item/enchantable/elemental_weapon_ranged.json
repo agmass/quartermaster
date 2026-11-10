@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "minecraft:trident",
+      "required": false
+    },
+    {
+      "id": "#minecraft:enchantable/bow",
+      "required": false
+    }
+  ]
+}

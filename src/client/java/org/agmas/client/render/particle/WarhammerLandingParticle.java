@@ -9,10 +9,10 @@ import net.minecraft.client.particle.*;
 //? if <=1.21.1 {
 
 //? } else if <26.1 {
-import net.minecraft.client.renderer.state.QuadParticleRenderState;
-//? } else {
-/*import net.minecraft.client.renderer.state.level.QuadParticleRenderState;
- *///? }
+/*import net.minecraft.client.renderer.state.QuadParticleRenderState;
+*///? } else {
+import net.minecraft.client.renderer.state.level.QuadParticleRenderState;
+ //? }
 import net.minecraft.core.particles.SimpleParticleType;
 //? if >1.21.1 {
 import net.minecraft.core.particles.SpellParticleOption;
@@ -36,16 +36,16 @@ public class WarhammerLandingParticle extends SingleQuadParticle {
     }
 
     //? if <26.1 {
-    @Override
+    /*@Override
     public int getLightColor(float f) {
         return 15728880;
     }
-    //? } else {
-    /*@Override
+    *///? } else {
+    @Override
     protected int getLightCoords(float a) {
         return 15728880;
     }
-    *///? }
+    //? }
 
     @Override
     public void tick() {

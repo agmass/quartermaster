@@ -1,12 +1,12 @@
 package org.agmas.client.datagen;
 
 //? if >=26.1 {
-/*import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
-*///? } else {
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+//? } else {
+/*import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-//? }
+*///? }
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -38,17 +38,17 @@ import java.util.concurrent.CompletableFuture;
 public class ModTagProviders {
 
     //? if >=26.1 {
-    /*public static final class ItemTags extends FabricTagsProvider.ItemTagsProvider {
-    *///?} else {
-    public static final class ItemTags extends FabricTagProvider.ItemTagProvider {
-    //? }
+    public static final class ItemTags extends FabricTagsProvider.ItemTagsProvider {
+    //?} else {
+    /*public static final class ItemTags extends FabricTagProvider.ItemTagProvider {
+    *///? }
 
 
         //? if >=26.1 {
-        /*public ItemTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        *///?} else {
-        public ItemTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        //? }
+        public ItemTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        //?} else {
+        /*public ItemTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        *///? }
             super(output, registriesFuture);
         }
 
@@ -204,16 +204,16 @@ public class ModTagProviders {
 
 
     //? if >=26.1 {
-    /*public static final class EnchantTags extends FabricTagsProvider<Enchantment> {
-    *///?} else {
-    public static final class EnchantTags extends FabricTagProvider<Enchantment> {
-    //?}
+    public static final class EnchantTags extends FabricTagsProvider<Enchantment> {
+    //?} else {
+    /*public static final class EnchantTags extends FabricTagProvider<Enchantment> {
+    *///?}
 
         //? if >=26.1 {
-        /*public EnchantTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        *///? } else {
-        public EnchantTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        //? }
+        public EnchantTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        //? } else {
+        /*public EnchantTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        *///? }
             super(output, Registries.ENCHANTMENT, registriesFuture);
         }
 
@@ -323,16 +323,16 @@ public class ModTagProviders {
     }
 
     //? if >=26.1 {
-    /*public static final class DamageTypesTags extends FabricTagsProvider<DamageType> {
-     *///?} else {
-    public static final class DamageTypesTags extends FabricTagProvider<DamageType> {
-        //?}
+    public static final class DamageTypesTags extends FabricTagsProvider<DamageType> {
+     //?} else {
+    /*public static final class DamageTypesTags extends FabricTagProvider<DamageType> {
+        *///?}
 
         //? if >=26.1 {
-        /*public DamageTypesTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-         *///? } else {
-        public DamageTypesTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-            //? }
+        public DamageTypesTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+         //? } else {
+        /*public DamageTypesTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+            *///? }
             super(output, Registries.DAMAGE_TYPE, registriesFuture);
         }
 
@@ -391,16 +391,16 @@ public class ModTagProviders {
     }
 
     //? if >=26.1 {
-    /*public static final class MobEffectTags extends FabricTagsProvider<MobEffect> {
-     *///?} else {
-    public static final class MobEffectTags extends FabricTagProvider<MobEffect> {
-        //?}
+    public static final class MobEffectTags extends FabricTagsProvider<MobEffect> {
+     //?} else {
+    /*public static final class MobEffectTags extends FabricTagProvider<MobEffect> {
+        *///?}
 
         //? if >=26.1 {
-        /*public MobEffectTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-         *///? } else {
-        public MobEffectTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-            //? }
+        public MobEffectTags(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+         //? } else {
+        /*public MobEffectTags(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+            *///? }
             super(output, Registries.MOB_EFFECT, registriesFuture);
         }
 

@@ -3,7 +3,10 @@ package org.agmas.client.render.hud;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+//? if <=1.21.11
+//import net.minecraft.client.gui.GuiGraphics;
+//? if >1.21.11
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,10 +21,10 @@ public class SickleRangeHudElement implements HudElement {
 
     @Override
     //? >=26.1 {
-    /*public void extractRenderState(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
-    *///? } else {
-    public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
-    //?}
+    public void extractRenderState(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
+    //? } else {
+    /*public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    *///?}
         Player player = Minecraft.getInstance().player;
         if (player == null) return;
 

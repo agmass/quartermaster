@@ -23,16 +23,16 @@ public class ColorAttackSweepParticle extends SingleQuadParticle {
     }
 
     //? if <26.1 {
-    @Override
+    /*@Override
     public int getLightColor(float f) {
         return 15728880;
     }
-    //? } else {
-    /*@Override
+    *///? } else {
+    @Override
     protected int getLightCoords(float a) {
         return 15728880;
     }
-    *///? }
+    //? }
 
     @Override
     public void tick() {

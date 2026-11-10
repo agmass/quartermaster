@@ -77,17 +77,6 @@ public class SicklesItem extends EnchantableQMItem implements CustomHitSounds {
         return (float) (1 - Math.pow(1 - x, 4));
     }
 
-    @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext tooltipContext, TooltipDisplay tooltipDisplay, Consumer<Component> consumer, TooltipFlag tooltipFlag) {
-        super.appendHoverText(itemStack, tooltipContext, tooltipDisplay, consumer, tooltipFlag);
-        if (itemStack.getEntityRepresentation() != null) {
-            if (itemStack.getEntityRepresentation() instanceof LivingEntity le) {
-                if (le.getMainHandItem().is(le.getOffhandItem().getItem())) {
-                    consumer.accept(Component.translatable("quartermaster.sickle_requires_both_hands").withStyle(ChatFormatting.RED));
-                }
-            }
-        }
-    }
 
     @Override
     public SoundEvent getSweepHitSound() {

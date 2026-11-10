@@ -2,10 +2,10 @@ package org.agmas.init;
 
 //? if >=26.3 {
 //? } else if >=26.1 {
-/*import net.fabricmc.fabric.api.registry.FabricPotionBrewingBuilder;
-*///? } else {
-import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
-//? }
+import net.fabricmc.fabric.api.registry.FabricPotionBrewingBuilder;
+//? } else {
+/*import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
+*///? }
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -44,10 +44,10 @@ public class ModPotions {
     public static void init() {
         //? if <26.3 {
         //? if >=26.1 {
-        /*FabricPotionBrewingBuilder.BUILD.register(builder -> {
-        *///? } else {
-        FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
-        //? }
+        FabricPotionBrewingBuilder.BUILD.register(builder -> {
+        //? } else {
+        /*FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
+        *///? }
             builder.addMix(
                     Potions.AWKWARD,
                     Items.SNOWBALL,
@@ -56,10 +56,10 @@ public class ModPotions {
         });
 
         //? if >=26.1 {
-        /*FabricPotionBrewingBuilder.BUILD.register(builder -> {
-         *///? } else {
-        FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
-            //? }
+        FabricPotionBrewingBuilder.BUILD.register(builder -> {
+         //? } else {
+        /*FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
+            *///? }
             builder.addMix(
                     FROST_PROTECTION,
                     Items.REDSTONE,

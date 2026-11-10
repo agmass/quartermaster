@@ -77,10 +77,10 @@ public abstract class SmithCombatEffectsMixin extends ItemCombinerMenu {
             }
             for (Map.Entry<TagKey<Item>, Integer> entry : ModColors.tagTrimColors.entrySet()) {
                 //? if <26.1 {
-                if (smithingRecipeInput.addition().getItemHolder().is(entry.getKey())) {
-                //? } else {
-                /*if (BuiltInRegistries.ITEM.get(entry.getKey()).get().contains(smithingRecipeInput.addition().getItem().builtInRegistryHolder())) {
-                *///? }
+                /*if (smithingRecipeInput.addition().getItemHolder().is(entry.getKey())) {
+                *///? } else {
+                if (BuiltInRegistries.ITEM.get(entry.getKey()).get().contains(smithingRecipeInput.addition().getItem().builtInRegistryHolder())) {
+                //? }
                     ItemStack stack = smithingRecipeInput.base().copyWithCount(1);
                     stack.set(ModComponents.COMBAT_EFFECT_COLOR, entry.getValue());
                     stack.set(ModComponents.BUSTER_COLOR, entry.getValue());

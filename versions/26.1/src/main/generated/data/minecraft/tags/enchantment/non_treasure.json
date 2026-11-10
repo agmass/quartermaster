@@ -21,7 +21,7 @@
       "required": false
     },
     {
-      "id": "quartermaster:earthquake",
+      "id": "quartermaster:frost_aspect",
       "required": false
     },
     {
@@ -62,22 +62,6 @@
     },
     {
       "id": "quartermaster:magic_protection",
-      "required": false
-    },
-    {
-      "id": "quartermaster:glacial",
-      "required": false
-    },
-    {
-      "id": "quartermaster:heatwave",
-      "required": false
-    },
-    {
-      "id": "quartermaster:tidal_chill",
-      "required": false
-    },
-    {
-      "id": "quartermaster:hellfork",
       "required": false
     },
     {

@@ -5,10 +5,10 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 //? >=26.1 {
-/*import net.minecraft.client.gui.GuiGraphicsExtractor;
- *///? } else {
-import net.minecraft.client.gui.GuiGraphics;
-//? }
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+ //? } else {
+/*import net.minecraft.client.gui.GuiGraphics;
+*///? }
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Player;
@@ -24,10 +24,10 @@ public class StunnedHudElement implements HudElement {
 
     @Override
     //? >=26.1 {
-    /*public void extractRenderState(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
-    *///? } else {
-    public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
-    //?}
+    public void extractRenderState(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
+    //? } else {
+    /*public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    *///?}
         Player player = Minecraft.getInstance().player;
         if (player == null) return;
 

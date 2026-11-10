@@ -1,10 +1,10 @@
 package org.agmas.client.datagen;
 
 //? if >=26.1 {
-/*import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
-*///? } else {
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
- //? }
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+//? } else {
+/*import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+ *///? }
 
 //? if >=1.21.4 {
 import net.minecraft.client.data.models.BlockModelGenerators;
@@ -30,14 +30,14 @@ import java.util.Optional;
 public class ModModelProvider extends FabricModelProvider {
 
     //? if >=26.1 {
-    /*public ModModelProvider(FabricPackOutput output) {
+    public ModModelProvider(FabricPackOutput output) {
         super(output);
     }
-    *///? } else {
-    public ModModelProvider(FabricDataOutput output) {
+    //? } else {
+    /*public ModModelProvider(FabricDataOutput output) {
         super(output);
     }
-    //? }
+    *///? }
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockModelGenerators) {

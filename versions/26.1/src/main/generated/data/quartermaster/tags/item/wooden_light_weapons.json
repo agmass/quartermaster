@@ -11,6 +11,14 @@
     {
       "id": "quartermaster:wooden_estoc",
       "required": false
+    },
+    {
+      "id": "quartermaster:wooden_sickle",
+      "required": false
+    },
+    {
+      "id": "minecraft:wooden_sword",
+      "required": false
     }
   ]
 }

@@ -74,9 +74,6 @@ public class ModItemLists {
             if (weapon.bamboo() != null) {
                 bamboo_weapons.add(weapon.bamboo());
             }
-            if (weapon.relic() != null) {
-                bamboo_weapons.add(weapon.relic());
-            }
         }
     }
 

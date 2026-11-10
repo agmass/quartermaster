@@ -35,6 +35,42 @@
     {
       "id": "quartermaster:netherite_rapier",
       "required": false
+    },
+    {
+      "id": "quartermaster:sickle",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_sickle",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_sickle",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_sickle",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_sickle",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_sickle",
+      "required": false
+    },
+    {
+      "id": "quartermaster:golden_sickle",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_sickle",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_sickle",
+      "required": false
     }
   ]
 }

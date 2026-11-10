@@ -9,17 +9,17 @@ import org.agmas.network.ServerboundUseShieldBashPacket;
 public class ModPackets {
     public static void init() {
         //? if >=26.1 {
-        /*PayloadTypeRegistry.serverboundPlay()
-        *///? } else {
-        PayloadTypeRegistry.playC2S()
-        //? }
+        PayloadTypeRegistry.serverboundPlay()
+        //? } else {
+        /*PayloadTypeRegistry.playC2S()
+        *///? }
                 .register(ServerboundInspectPacket.TYPE, ServerboundInspectPacket.CODEC);
 
         //? if >=26.1 {
-        /*PayloadTypeRegistry.serverboundPlay()
-         *///? } else {
-        PayloadTypeRegistry.playC2S()
-                //? }
+        PayloadTypeRegistry.serverboundPlay()
+         //? } else {
+        /*PayloadTypeRegistry.playC2S()
+                *///? }
                 .register(ServerboundUseShieldBashPacket.TYPE, ServerboundUseShieldBashPacket.CODEC);
 
 

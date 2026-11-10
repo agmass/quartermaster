@@ -12,14 +12,14 @@ import net.minecraft.world.item.trading.VillagerTrades;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 *///? }
 //? if =1.21.11 {
-import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
+/*import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.world.entity.npc.villager.VillagerTrades;
-//? }
+*///? }
 
 public class ModTrades {
     public static void init() {
         //? if <=1.21.11 {
-        TradeOfferHelper.registerVillagerOffers(VillagerProfession.WEAPONSMITH, 0, (factories)->{
+        /*TradeOfferHelper.registerVillagerOffers(VillagerProfession.WEAPONSMITH, 0, (factories)->{
             for (Item item : ModItemLists.golden_heavy) {
                 factories.add(new VillagerTrades.EnchantedItemForEmeralds(item, 2, 3, 1));
             }
@@ -38,6 +38,6 @@ public class ModTrades {
                 factories.add(new VillagerTrades.EnchantedItemForEmeralds(item, 2, 3, 1));
             }
         });
-        //? }
+        *///? }
     }
 }

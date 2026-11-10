@@ -11,6 +11,14 @@
     {
       "id": "quartermaster:diamond_warhammer",
       "required": false
+    },
+    {
+      "id": "minecraft:diamond_axe",
+      "required": false
+    },
+    {
+      "id": "minecraft:diamond_spear",
+      "required": false
     }
   ]
 }
