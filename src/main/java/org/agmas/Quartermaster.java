@@ -2,11 +2,16 @@ package org.agmas;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.HolderSet;
+import net.minecraft.core.LayeredRegistryAccess;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.server.RegistryLayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -42,11 +47,10 @@ public class Quartermaster implements ModInitializer {
 	public static int timeSinceShooting = 0;
 	public static int STUNNED_TICKS = 20*5;
 	public static int DISARMED_TICKS = 50;
-	public static boolean loadedConfig = false;
+	public static RegistryAccess registryAccess;
 	@Override
 	public void onInitialize() {
-		if (!loadedConfig)
-			QMConfig.parse();
+		QMConfig.parse();
 		ModItems.init();
 		ModComponents.init();
 		ModColors.init();
@@ -64,6 +68,10 @@ public class Quartermaster implements ModInitializer {
 		ModAttributes.init();
 		ModTrades.init();
 		QMConfig.write();
+
+		ServerTickEvents.END_SERVER_TICK.register(((server) -> {
+			registryAccess = server.registries().compositeAccess();
+		}));
 
 		LootTableEvents.MODIFY.register((key, builder, lootTableSource, provider)->{
 			if (lootTableSource.isBuiltin() &&

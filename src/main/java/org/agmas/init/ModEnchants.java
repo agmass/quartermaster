@@ -1,6 +1,9 @@
 package org.agmas.init;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.impl.util.log.Log;
+import net.fabricmc.loader.impl.util.log.LogCategory;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
@@ -13,12 +16,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import org.agmas.config.QMConfig;
 import org.agmas.porting.QMIdentifier;
 
 public class ModEnchants {
 
-    public static final ResourceKey<Enchantment> FROST_ASPECT = of("frost_aspect");
+    public static ResourceKey<Enchantment> FROST_ASPECT = of("frost_aspect");
+    public static final ResourceKey<Enchantment> EARTH_ASPECT = of("earth_aspect");
 
     public static final ResourceKey<Enchantment> HOMERUN = of("homerun");
     public static final ResourceKey<Enchantment> SIESMIC = of("siesmic");
@@ -52,17 +58,40 @@ public class ModEnchants {
     private static ResourceKey<Enchantment> of(String name) {
         return ResourceKey.create(Registries.ENCHANTMENT, QMIdentifier.of(name).id);
     }
+    private static ResourceKey<Enchantment> ofEnchancement(String name) {
+        return ResourceKey.create(Registries.ENCHANTMENT, QMIdentifier.of("enchancement", name).id);
+    }
 
     public static void init() {
+        if (QMConfig.mergeFrost && FabricLoader.getInstance().isModLoaded("enchancement")) {
+            FROST_ASPECT = ofEnchancement("frostbite");
+        }
         ServerLivingEntityEvents.ALLOW_DEATH.register(((entity, damageSource,a) -> {
             if (ModEnchants.getEnchant(entity, ModEnchants.EXPLOSIVE_KINECTIVITY) > 0) {
                 entity.level().explode(entity,entity.getPosition(0f).x,entity.getPosition(0f).y,entity.getPosition(0f).z,6, Level.ExplosionInteraction.BLOCK);
             }
             return true;
         }));
+        ServerLivingEntityEvents.ALLOW_DEATH.register(((entity, source, damageTaken) -> {
+            if (source.getWeaponItem() != null) {
+                int flame = EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), Enchantments.FLAME), source.getWeaponItem());
+                if (flame > 0) {
+                    // Technically redundant, but this fixes mobs not giving cooked food on death
+                    flame += 1;
+                    entity.igniteForSeconds(flame * 4.0f);
+                }
+            }
+            return true;
+        }));
         ServerLivingEntityEvents.AFTER_DAMAGE.register(((entity, source, baseDamageTaken, damageTaken, blocked) -> {
             if (source.getWeaponItem() != null) {
                 if (!blocked) {
+                    int flame = EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), Enchantments.FLAME), source.getWeaponItem());
+                    if (flame > 0) {
+                        // This does the exact same thing as flame, just did it this way to add more compatibility (specifically for tridents)
+                        flame += 1;
+                        entity.igniteForSeconds(flame*4.0f);
+                    }
                     if (EnchantmentHelper.getItemEnchantmentLevel(enchantHolder((ServerLevel) entity.level(), ModEnchants.FROST_ASPECT), source.getWeaponItem()) > 0) {
                         entity.setTicksFrozen(300);
                     }

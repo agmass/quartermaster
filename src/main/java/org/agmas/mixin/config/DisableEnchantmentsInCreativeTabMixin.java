@@ -19,19 +19,11 @@ import java.util.stream.Stream;
 public class DisableEnchantmentsInCreativeTabMixin {
     @WrapOperation(method = "generateEnchantmentBookTypesAllLevels", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/HolderLookup;listElements()Ljava/util/stream/Stream;"))
     private static Stream<Holder.Reference<Enchantment>> noBooks(HolderLookup instance, Operation<Stream<Holder.Reference<Enchantment>>> original) {
-        if (!Quartermaster.loadedConfig)
-            QMConfig.parse();
         return original.call(instance).filter((enchantmentReference)-> !QMConfig.disabledEnchants.contains(enchantmentReference.key().identifier().toString()));
     }
 
     @WrapOperation(method = "generateEnchantmentBookTypesOnlyMaxLevel", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/HolderLookup;listElements()Ljava/util/stream/Stream;"))
     private static Stream<Holder.Reference<Enchantment>> noBooks2(HolderLookup instance, Operation<Stream<Holder.Reference<Enchantment>>> original) {
-        if (!Quartermaster.loadedConfig)
-            QMConfig.parse();
-        return original.call(instance).filter((enchantmentReference)-> {
-                    Log.info(LogCategory.GENERAL, QMConfig.disabledEnchants.contains(enchantmentReference.key().identifier().toString())+"");
-                return !QMConfig.disabledEnchants.contains(enchantmentReference.key().identifier().toString());
-            }
-        );
+        return original.call(instance).filter((enchantmentReference)-> !QMConfig.disabledEnchants.contains(enchantmentReference.key().identifier().toString()));
     }
 }

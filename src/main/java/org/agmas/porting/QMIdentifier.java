@@ -28,12 +28,19 @@ public class QMIdentifier {
     public static QMIdentifier of(String path) {
         return new QMIdentifier(Identifier.fromNamespaceAndPath(Quartermaster.MOD_ID, path));
     }
+    public static QMIdentifier of(String namespace, String path) {
+        return new QMIdentifier(Identifier.fromNamespaceAndPath(namespace, path));
+    }
     public static QMIdentifier ofVanilla(String path) {
         return new QMIdentifier(Identifier.fromNamespaceAndPath("minecraft", path));
     }
     //? } else {
     /*public static QMIdentifier of(String path) {
         return new QMIdentifier(ResourceLocation.fromNamespaceAndPath(Quartermaster.MOD_ID, path));
+    }
+
+    public static QMIdentifier of(String namespace, String path) {
+        return new QMIdentifier(ResourceLocation.fromNamespaceAndPath(namespace, path));
     }
     public static QMIdentifier ofVanilla(String path) {
         return new QMIdentifier(ResourceLocation.fromNamespaceAndPath("minecraft", path));

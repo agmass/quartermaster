@@ -2,18 +2,21 @@ package org.agmas.client;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 //? if <26.1 {
-/*import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-*///? } else {
-import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
- //? }
-//? if >=26.1 {
-import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 //? } else {
-/*import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-*///? }
+/*import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
+ *///? }
+//? if >=26.1 {
+/*import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+*///? } else {
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+//? }
 import net.fabricmc.fabric.api.client.rendering.v1.RenderStateDataKey;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
@@ -25,10 +28,12 @@ import net.minecraft.client.renderer.item.properties.conditional.ConditionalItem
 //? if <26.3
 import net.minecraft.network.protocol.game.ServerboundSwingPacket;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.Items;
 //? if >=26.3
 //import net.minecraft.world.item.component.SwingAnimation;
 import org.agmas.client.render.hud.*;
+import org.agmas.init.ModEffects;
 import org.agmas.network.ServerboundUseShieldBashPacket;
 import org.agmas.porting.QMIdentifier;
 import org.agmas.Quartermaster;
@@ -68,14 +73,14 @@ public class QuartermasterClient implements ClientModInitializer {
 		handsRoot =QuartermasterClient.firstPersonHands.bakeRoot();
 
 		//? if <26.1 {
-		/*ParticleFactoryRegistry.getInstance().register(ModParticles.COLOR_CRIT, ColorCritParticle.InstantProvider::new);
+		ParticleFactoryRegistry.getInstance().register(ModParticles.COLOR_CRIT, ColorCritParticle.InstantProvider::new);
 		ParticleFactoryRegistry.getInstance().register(ModParticles.COLOR_SWEEP, ColorAttackSweepParticle.InstantProvider::new);
 		ParticleFactoryRegistry.getInstance().register(ModParticles.LANDING, WarhammerLandingParticle.InstantProvider::new);
-		*///? } else {
-		ParticleProviderRegistry.getInstance().register(ModParticles.COLOR_CRIT, ColorCritParticle.InstantProvider::new);
+		//? } else {
+		/*ParticleProviderRegistry.getInstance().register(ModParticles.COLOR_CRIT, ColorCritParticle.InstantProvider::new);
 		ParticleProviderRegistry.getInstance().register(ModParticles.COLOR_SWEEP, ColorAttackSweepParticle.InstantProvider::new);
 		ParticleProviderRegistry.getInstance().register(ModParticles.LANDING, WarhammerLandingParticle.InstantProvider::new);
-		//? }
+		*///? }
 
 
 		//? if >=1.21.9 {
@@ -108,10 +113,15 @@ public class QuartermasterClient implements ClientModInitializer {
 				QMIdentifier.of("disarmed_hud").id,
 				new DisarmedHudElement()
 		);
+
+		DeadlockLikeStatusHudElement effectHud = new DeadlockLikeStatusHudElement();
+		effectHud.addEffect(ModEffects.STUNNED);
+		effectHud.addEffect(ModEffects.PUSHED);
+		effectHud.addEffect(ModEffects.DISARMED);
 		HudElementRegistry.attachElementAfter(
 				VanillaHudElements.CROSSHAIR,
 				QMIdentifier.of("stunned_hud").id,
-				new StunnedHudElement()
+				effectHud
 		);
 		HudElementRegistry.attachElementAfter(
 				VanillaHudElements.CROSSHAIR,
@@ -155,13 +165,17 @@ public class QuartermasterClient implements ClientModInitializer {
 				}
 			}
 		});
+
+		ClientPlayConnectionEvents.JOIN.register((cpl,ps,minecraft)->{
+			Quartermaster.registryAccess = minecraft.level.registryAccess();
+		});
 	}
 
 	public static KeyMapping registerKeyMapping(KeyMapping keyMapping) {
 		//? if >=26.1 {
-		return KeyMappingHelper.registerKeyMapping(keyMapping);
-		//? } else {
-		/*return KeyBindingHelper.registerKeyBinding(keyMapping);
-		 *///? }
+		/*return KeyMappingHelper.registerKeyMapping(keyMapping);
+		*///? } else {
+		return KeyBindingHelper.registerKeyBinding(keyMapping);
+		 //? }
 	}
 }

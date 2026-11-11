@@ -2,10 +2,10 @@ package org.agmas.client.datagen;
 
 
 //? if >=26.1 {
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
-//? } else {
-/*import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-*///? }
+/*import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+*///? } else {
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+//? }
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.core.HolderLookup;
 import org.agmas.client.QuartermasterClient;
@@ -18,10 +18,10 @@ public class ModLanguageProvider extends FabricLanguageProvider {
 
 
     //? if >=26.1 {
-    public ModLanguageProvider(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-    //? } else {
-    /*public ModLanguageProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-     *///? }
+    /*public ModLanguageProvider(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+    *///? } else {
+    public ModLanguageProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+     //? }
         super(dataOutput, registryLookup);
     }   
 
@@ -36,7 +36,7 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("enchantment.quartermaster.charged.desc", "Lowers damage of the Ranged ability, but adds extra charges depending on level.");
 
         translationBuilder.add("enchantment.quartermaster.fling", "Fling");
-        translationBuilder.add("enchantment.quartermaster.fling.desc", "Halves disarmed time, but sends held items into the victim's inventory (or makes mobs drop their items)");
+        translationBuilder.add("enchantment.quartermaster.fling.desc", "Increases required hits by 1, but sends held items into the victim's inventory (or makes mobs drop their items)");
 
         translationBuilder.add("enchantment.quartermaster.homerun", "Homerun");
         translationBuilder.add("enchantment.quartermaster.homerun.desc", "Replaces knock-back with a knock-up when landing Critical Hits.");
@@ -113,6 +113,14 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("enchantment.quartermaster.deadlock", "Deadlock");
         translationBuilder.add("enchantment.quartermaster.deadlock.desc", "Replaces parry damage and damage shielding, but stuns and disarming parried targets");
 
+        translationBuilder.add("enchantment.quartermaster.frost_aspect", "Frost Aspect");
+        translationBuilder.add("enchantment.quartermaster.frost_aspect.desc", "Freezes enemies hit, making them slower and take damage over time.");
+
+        translationBuilder.add("enchantment.quartermaster.earth_aspect", "Earth Aspect");
+        translationBuilder.add("enchantment.quartermaster.earth_aspect.desc", "Replaces abilities of Heavy-class weapons (excluding axes) with stuns. (eg. greataxe projectile now stuns rather than breaking shields, warhammers stun on right-click)");
+
+        translationBuilder.add("death.attack.wall_slam", "%1$s crashed against a wall");
+        translationBuilder.add("death.attack.wall_slam.player", "%1$s was slammed against a wall by %2$s");
         translationBuilder.add("death.attack.bleed", "%1$s bled out");
         translationBuilder.add("death.attack.bleed.player", "%1$s bled out because of %2$s");
         translationBuilder.add("death.attack.shockwave", "%1$s's skull was shattered");
@@ -142,6 +150,7 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add(ModEffects.FROST_PROTECTION.value(), "Frost Protection");
         translationBuilder.add(ModEffects.DISARMED.value(), "Disarmed");
         translationBuilder.add(ModEffects.STUNNED.value(), "Stunned");
+        translationBuilder.add(ModEffects.PUSHED.value(), "Pushed");
 
         translationBuilder.add("key.quartermaster.inspect", "Inspect");
         translationBuilder.add("key.category.quartermaster.quartermaster", "Quartermaster");

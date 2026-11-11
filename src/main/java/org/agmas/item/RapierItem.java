@@ -88,7 +88,6 @@ public class RapierItem extends EnchantableQMItem implements CustomHitSounds {
     public static float MAX_DAMAGE = 7.0f;
 
     public float getParryMultiplier() {
-        Log.info(LogCategory.GENERAL, getAttackDamage() + "");
         if (getAttackDamage() / MAX_DAMAGE >= 1) { // netherite tier is stronger
             return (float) Mth.lerp(getAttackDamage() / MAX_DAMAGE, 0f, 2.5f);
         }
@@ -181,17 +180,22 @@ public class RapierItem extends EnchantableQMItem implements CustomHitSounds {
     public float parry(LivingEntity parrier, LivingEntity parried, DamageSource source, float amount) {
         parrier.level().playSound(null,parrier.position().x,parrier.position().y,parrier.position().z, ModSounds.PARRY, SoundSource.PLAYERS);
 
-        if (ModEnchants.getItemEnchant(parrier.getUseItem(), parrier.level(), ModEnchants.DEADLOCK) > 0) {
-            double stunAmount = amount*getParryMultiplier();
-            stunAmount *= 1.5;
-            parried.addEffect(new MobEffectInstance(ModEffects.DISARMED, (int) Math.round(stunAmount/2),0));
-            parried.addEffect(new MobEffectInstance(ModEffects.STUNNED, (int) Math.round(stunAmount),0));
+        if (parrier.getUseItem().is(ModTags.NON_DAMAGING)) {
             return amount;
+        } else {
+            if (ModEnchants.getItemEnchant(parrier.getUseItem(), parrier.level(), ModEnchants.DEADLOCK) > 0) {
+                double stunAmount = amount * getParryMultiplier();
+                stunAmount *= 1.5;
+                parried.addEffect(new MobEffectInstance(ModEffects.DISARMED, (int) Math.round(stunAmount / 2), 0));
+                parried.addEffect(new MobEffectInstance(ModEffects.STUNNED, (int) Math.round(stunAmount), 0));
+                return amount;
+            }
+
+            //? if >=1.21.11
+            parried.hurtServer((ServerLevel) parried.level(), source, amount * getParryMultiplier());
+            //? if <1.21.11
+            //target.hurt(source,amount*2);
+            return amount / (getParryMultiplier() * 2);
         }
-        //? if >=1.21.11
-        parried.hurtServer((ServerLevel) parried.level(),source,amount*getParryMultiplier());
-        //? if <1.21.11
-        //target.hurt(source,amount*2);
-        return amount/(getParryMultiplier()*2);
     }
 }

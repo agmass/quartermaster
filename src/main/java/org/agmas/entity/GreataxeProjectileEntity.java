@@ -40,6 +40,7 @@ import java.util.List;
 public class GreataxeProjectileEntity extends Projectile {
 
     public float attackPower = 4;
+    public int stunTime = 0;
     public boolean canPierceShields = true;
     private static final EntityDataAccessor<Integer> COLOR_DATA = SynchedEntityData.defineId(GreataxeProjectileEntity.class, EntityDataSerializers.INT);
 

@@ -3,10 +3,10 @@ package org.agmas.init;
 import com.mojang.datafixers.types.Func;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 //? if <26.1 {
-/*import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-*///? } else {
-import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
-//? }
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+//? } else {
+/*import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
+*///? }
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -95,38 +95,11 @@ public class ModItems {
     public static QMWeapon WARHAMMER;
     public static QMWeapon SICKLES;
 
-    public static QMWeapon SWORD = new QMWeapon(WeaponClass.LIGHT,
-            null,
-            ModItems.BAMBOO_SWORD,
-            Items.WOODEN_SWORD,
-            Items.STONE_SWORD,
-            Items.COPPER_SWORD,
-            Items.IRON_SWORD,
-            Items.GOLDEN_SWORD,
-            Items.DIAMOND_SWORD,
-            Items.NETHERITE_SWORD);
+    public static QMWeapon SWORD;
 
-    public static QMWeapon AXE = new QMWeapon(WeaponClass.HEAVY,
-            null,
-            ModItems.BAMBOO_AXE,
-            Items.WOODEN_AXE,
-            Items.STONE_AXE,
-            Items.COPPER_AXE,
-            Items.IRON_AXE,
-            Items.GOLDEN_AXE,
-            Items.DIAMOND_AXE,
-            Items.NETHERITE_AXE);
+    public static QMWeapon AXE;
 
-    public static QMWeapon SPEAR = new QMWeapon(WeaponClass.HEAVY,
-            null,
-            ModItems.BAMBOO_SPEAR,
-            Items.WOODEN_SPEAR,
-            Items.STONE_SPEAR,
-            Items.COPPER_SPEAR,
-            Items.IRON_SPEAR,
-            Items.GOLDEN_SPEAR,
-            Items.DIAMOND_SPEAR,
-            Items.NETHERITE_SPEAR);
+    public static QMWeapon SPEAR;
 
     // Bamboo Toolset
     public static Item BAMBOO_SWORD = register("bamboo_sword",
@@ -184,6 +157,39 @@ public class ModItems {
         MORNINGSTAR = generateItems(WeaponClass.HEAVY,"morningstar", MorningstarItem.class, MorningstarItem::createSettings);
         GREATAXE = generateItems(WeaponClass.HEAVY,"greataxe", GreataxeItem.class, GreataxeItem::createSettings);
         WARHAMMER = generateItems(WeaponClass.HEAVY,"warhammer", WarhammerItem.class, WarhammerItem::createSettings);
+
+        SPEAR = new QMWeapon(WeaponClass.HEAVY,
+                null,
+                ModItems.BAMBOO_SPEAR,
+                Items.WOODEN_SPEAR,
+                Items.STONE_SPEAR,
+                Items.COPPER_SPEAR,
+                Items.IRON_SPEAR,
+                Items.GOLDEN_SPEAR,
+                Items.DIAMOND_SPEAR,
+                Items.NETHERITE_SPEAR);
+
+        AXE = new QMWeapon(WeaponClass.HEAVY,
+                null,
+                ModItems.BAMBOO_AXE,
+                Items.WOODEN_AXE,
+                Items.STONE_AXE,
+                Items.COPPER_AXE,
+                Items.IRON_AXE,
+                Items.GOLDEN_AXE,
+                Items.DIAMOND_AXE,
+                Items.NETHERITE_AXE);
+
+        SWORD = new QMWeapon(WeaponClass.LIGHT,
+                null,
+                ModItems.BAMBOO_SWORD,
+                Items.WOODEN_SWORD,
+                Items.STONE_SWORD,
+                Items.COPPER_SWORD,
+                Items.IRON_SWORD,
+                Items.GOLDEN_SWORD,
+                Items.DIAMOND_SWORD,
+                Items.NETHERITE_SWORD);
 
         ModItemLists.weapons.add(SWORD);
         ModItemLists.weapons.add(AXE);
@@ -259,10 +265,10 @@ public class ModItems {
         ServerLivingEntityEvents.AFTER_DAMAGE.register(RapierItem::onHit);
 
         //? if >=26.1 {
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS)
-        //? } else {
-        /*ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS)
-         *///? }
+        /*CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.INGREDIENTS)
+        *///? } else {
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.INGREDIENTS)
+         //? }
                 .register((creativeTab) -> {
                     creativeTab.accept(ModItems.RELIC_HANDLE);
                     creativeTab.accept(ModItems.RUINED_HANDLE);
@@ -272,15 +278,15 @@ public class ModItems {
                 });
 
         //? if >=26.1 {
-        CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COMBAT)
-        //? } else {
-        /*ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COMBAT)
-         *///? }
+        /*CreativeModeTabEvents.modifyOutputEvent(CreativeModeTabs.COMBAT)
+        *///? } else {
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.COMBAT)
+         //? }
                 .register((creativeTab) -> {
                     creativeTab.accept(ModItems.FLINTLOCK);
                     //? if >=26.1 {
 
-                    // Heavies
+                    /*// Heavies
                     creativeTab.insertAfter(Items.NETHERITE_AXE, GREATAXE.asList().toArray(new Item[0]));
                     creativeTab.insertAfter(Items.NETHERITE_AXE, WARHAMMER.asList().toArray(new Item[0]));
                     creativeTab.insertAfter(Items.NETHERITE_AXE, MORNINGSTAR.asList().toArray(new Item[0]));
@@ -291,9 +297,9 @@ public class ModItems {
                     creativeTab.insertAfter(Items.NETHERITE_SWORD, SICKLES.asList().toArray(new Item[0]));
                     creativeTab.insertAfter(Items.NETHERITE_SWORD, CUTLASS.asList().toArray(new Item[0]));
 
-                    //? } else {
+                    *///? } else {
                     
-                    /*creativeTab.addAfter(Items.NETHERITE_AXE, ModItems.BAMBOO_AXE);
+                    creativeTab.addAfter(Items.NETHERITE_AXE, ModItems.BAMBOO_AXE);
                     creativeTab.addAfter(Items.NETHERITE_SWORD, ModItems.BAMBOO_SWORD);
                     //? if >=1.21.11
                     creativeTab.addAfter(Items.NETHERITE_SPEAR, ModItems.BAMBOO_SPEAR);
@@ -308,7 +314,7 @@ public class ModItems {
                     creativeTab.addAfter(Items.NETHERITE_SWORD, SICKLES.asList().toArray(new Item[0]));
                     creativeTab.addAfter(Items.NETHERITE_SWORD, RAPIER.asList().toArray(new Item[0]));
                     creativeTab.addAfter(Items.NETHERITE_SWORD, CUTLASS.asList().toArray(new Item[0]));
-                    *///? }
+                    //? }
                 });
     }
 

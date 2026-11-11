@@ -4,9 +4,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 //? if <=1.21.11
-//import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphics;
 //? if >1.21.11
-import net.minecraft.client.gui.GuiGraphicsExtractor;
+//import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,10 +21,10 @@ public class SickleRangeHudElement implements HudElement {
 
     @Override
     //? >=26.1 {
-    public void extractRenderState(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
-    //? } else {
-    /*public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
-    *///?}
+    /*public void extractRenderState(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
+    *///? } else {
+    public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    //?}
         Player player = Minecraft.getInstance().player;
         if (player == null) return;
 
@@ -34,7 +34,7 @@ public class SickleRangeHudElement implements HudElement {
 
         if (player.getMainHandItem().getItem() instanceof SicklesItem && Minecraft.getInstance().crosshairPickEntity instanceof LivingEntity victim) {
             if (player.getMainHandItem().is(player.getOffhandItem().getItem())) {
-                float f = SicklesItem.calculateFalloff(player,victim);
+                float f = Math.min(player.getAttackStrengthScale(deltaTracker.getGameTimeDeltaPartialTick(false)), SicklesItem.calculateFalloff(player,victim));
                 guiGraphics.blitSprite(RenderPipelines.GUI_TEXTURED, Identifier.withDefaultNamespace("hud/crosshair_attack_indicator_progress"), 16, 4, 0, 0, x, y, (int)(f*17), 4, Color.RED.getRGB());
             }
         }

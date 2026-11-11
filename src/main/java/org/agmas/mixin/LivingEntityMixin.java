@@ -4,6 +4,8 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.particles.BlockParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,17 +27,20 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import org.agmas.Quartermaster;
 import org.agmas.init.*;
 import org.agmas.init.tag.ModTags;
 import org.agmas.item.RapierItem;
+import org.agmas.item.SicklesItem;
 import org.agmas.porting.QMSpellParticleOption;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.awt.*;
 
@@ -130,8 +135,19 @@ public abstract class LivingEntityMixin extends Entity {
 						boolean homerun = ModEnchants.getItemEnchant(getMainHandItem(), level, ModEnchants.HOMERUN) > 0;
 						boolean heatwave = ModEnchants.getItemEnchant(getMainHandItem(), level, Enchantments.FIRE_ASPECT) > 0;
 						boolean glacial = ModEnchants.getItemEnchant(getMainHandItem(), level, ModEnchants.FROST_ASPECT) > 0;
-						//boolean earthquake = EnchantmentHelper.getItemEnchantmentLevel(ModEnchants.enchantHolder(level, ModEnchants.EARTHQUAKE),getMainHandItem()) > 0;
-						boolean earthquake = false;
+						boolean earthquake = ModEnchants.getItemEnchant(getMainHandItem(), level, ModEnchants.EARTH_ASPECT) > 0;
+
+						if (glacial) {
+							level.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.BLUE_ICE.defaultBlockState()),getX(),getY()+0.1f,getZ(),30,2,0.05,2,1);
+						}
+
+						if (earthquake) {
+							level.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.DIRT.defaultBlockState()),getX(),getY()+0.1f,getZ(),30,2,0.05,2,1);
+						}
+
+						if (heatwave) {
+							level.sendParticles(new BlockParticleOption(ParticleTypes.BLOCK, Blocks.LAVA.defaultBlockState()),getX(),getY()+0.1f,getZ(),30,2,0.05,2,1);
+						}
 
 						for (Entity entity : level.getEntities(((LivingEntity) (Object) this), getBoundingBox().inflate(power * 1.5f))) {
 							if (entity instanceof LivingEntity livingEntity) {
@@ -185,6 +201,22 @@ public abstract class LivingEntityMixin extends Entity {
 		}
 	}
 
+	@Inject(method = "hurtServer", at = @At("TAIL"))
+	public void simulateSickleAlwayUpKB(ServerLevel serverLevel, DamageSource damageSource, float f, CallbackInfoReturnable<Boolean> cir) {
+		if (damageSource.getWeaponItem() != null) {
+			if (damageSource.getWeaponItem().getItem() instanceof SicklesItem) {
+				setDeltaMovement(getDeltaMovement().x, Math.min(0.4,  getDeltaMovement().y / 2.0 + 4.0), getDeltaMovement().z);
+			}
+		}
+	}
+	@Inject(method = "hurtArmor", at = @At("HEAD"), cancellable = true)
+	public void noBambooWeaponArmorHurt(DamageSource damageSource, float f, CallbackInfo ci) {
+		if (damageSource.getWeaponItem() != null) {
+			if (damageSource.getWeaponItem().is(ModTags.NON_DAMAGING)) {
+				ci.cancel();
+			}
+		}
+	}
 	/**
 	 * @author Chemthunder
 	 */

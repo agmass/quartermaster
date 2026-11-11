@@ -14,7 +14,7 @@ import java.awt.*;
 
 public class DisarmedMobEffect extends MobEffect {
     public DisarmedMobEffect() {
-        super(MobEffectCategory.HARMFUL, new Color(255, 210, 132).getRGB());
+        super(MobEffectCategory.HARMFUL, new Color(255, 114, 114).getRGB());
     }
 
     @Override

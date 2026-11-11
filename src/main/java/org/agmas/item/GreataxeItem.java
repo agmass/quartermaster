@@ -27,6 +27,7 @@ import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import org.agmas.Quartermaster;
 import org.agmas.entity.GreataxeProjectileEntity;
 import org.agmas.init.*;
 import org.agmas.init.tag.ModTags;
@@ -171,8 +172,15 @@ public class GreataxeItem extends EnchantableQMItem {
                     buster.attackPower *= 0.7f;
                 }
 
+                boolean earthquake = ModEnchants.getItemEnchant(stack, level, ModEnchants.EARTH_ASPECT) > 0;
+                if (earthquake) {
+                    buster.canPierceShields = false;
+                    buster.stunTime = (int) (Quartermaster.STUNNED_TICKS * (stack.has(ModComponents.CHARGES) ? 0.5f : 1f));
+                }
+
                 boolean busterEnchant = ModEnchants.getItemEnchant(stack, level, ModEnchants.BUSTER) > 0;
                 if (busterEnchant) {
+                    buster.canPierceShields = false;
                     buster.attackPower *= 1.5f;
                     buster.setDeltaMovement(player.getViewVector(0f).multiply(1.25f,1.5f,1.25f).add(player.getDeltaMovement()));
                 } else {

@@ -19,6 +19,8 @@ public class ModTags {
     public static final TagKey<Item> ELEMENTAL_WEAPONS = TagKey.create(Registries.ITEM, QMIdentifier.of("enchantable/elemental_weapon").id);
     public static final TagKey<Item> ELEMENTAL_RANGED_WEAPONS = TagKey.create(Registries.ITEM, QMIdentifier.of("enchantable/elemental_weapon_ranged").id);
 
+    public static final TagKey<Item> STUN_ENCHANTABLE = TagKey.create(Registries.ITEM, QMIdentifier.of("enchantable/stun").id);
+
     public static final TagKey<Item> WOODEN_LIGHT_WEAPONS = TagKey.create(Registries.ITEM, QMIdentifier.of("wooden_light_weapons").id);
     public static final TagKey<Item> WOODEN_HEAVY_WEAPONS = TagKey.create(Registries.ITEM, QMIdentifier.of("wooden_heavy_weapons").id);
 

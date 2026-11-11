@@ -5,6 +5,10 @@
       "required": false
     },
     {
+      "id": "minecraft:crossbow",
+      "required": false
+    },
+    {
       "id": "#minecraft:enchantable/bow",
       "required": false
     }

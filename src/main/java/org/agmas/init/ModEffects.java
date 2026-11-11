@@ -8,20 +8,22 @@ import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import org.agmas.config.QMConfig;
+import org.agmas.effect.*;
 import org.agmas.porting.QMIdentifier;
-import org.agmas.effect.DisarmedMobEffect;
-import org.agmas.effect.QMMobEffect;
-import org.agmas.effect.StunnedMobEffect;
-import org.agmas.effect.WoundedMobEffect;
 
 public class ModEffects {
-    public static final Holder<MobEffect> STUNNED =
+    public static Holder<MobEffect> STUNNED =
             Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, QMIdentifier.of("stunned").id, new StunnedMobEffect());
 
-    public static final Holder<MobEffect> DISARMED =
+    public static Holder<MobEffect> DISARMED =
             Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, QMIdentifier.of("disarmed").id, new DisarmedMobEffect());
+
+    public static Holder<MobEffect> PUSHED =
+            Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, QMIdentifier.of("pushed").id, new PushedMobEffect());
 
     public static final Holder<MobEffect> WOUNDED =
             Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, QMIdentifier.of("wounded").id, new WoundedMobEffect());
@@ -30,6 +32,10 @@ public class ModEffects {
             Registry.registerForHolder(BuiltInRegistries.MOB_EFFECT, QMIdentifier.of("frost_protection").id, new QMMobEffect(MobEffectCategory.BENEFICIAL, ModColors.FROST_PROTECTION).addAttributeModifier(ModAttributes.FROST_TIME, QMIdentifier.of("frost_protection").id, -1, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
 
     public static void init() {
+        if (!QMConfig.stunEffects) {
+            DISARMED = MobEffects.WEAKNESS;
+            STUNNED = MobEffects.SLOWNESS;
+        }
         ServerLivingEntityEvents.ALLOW_DAMAGE.register(((livingEntity, damageSource, baseDamageTaken) -> {
             if (damageSource.getDirectEntity() != null) {
                 if (damageSource.getDirectEntity() instanceof LivingEntity attacker) {
