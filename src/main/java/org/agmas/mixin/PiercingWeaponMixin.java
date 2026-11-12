@@ -13,6 +13,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
+import net.minecraft.world.item.component.AttackRange;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.phys.BlockHitResult;
@@ -45,7 +46,16 @@ public abstract class PiercingWeaponMixin {
     public void woundSpear(LivingEntity livingEntity, EquipmentSlot equipmentSlot, CallbackInfo ci) {
         boolean pogo = ModEnchants.getItemEnchant(livingEntity.getItemBySlot(equipmentSlot), livingEntity.level(), ModEnchants.BRITTLE) > 0;;
 
-        if (pogo &&!ProjectileUtil.getHitResultOnViewVector(livingEntity, Predicates.alwaysTrue(),livingEntity.entityAttackRange().maxRange()).getType().equals(HitResult.Type.MISS)) {
+        //? if <26.1
+        AttackRange range = livingEntity.entityAttackRange();
+        //? if >=26.1
+        //AttackRange range = livingEntity.getAttackRangeWith(livingEntity.getItemBySlot(equipmentSlot));
+        if (pogo &&!ProjectileUtil.getHitResultOnViewVector(livingEntity, Predicates.alwaysTrue(), range
+                //? if <26.1
+                .maxRange()
+                //? if >=26.1
+                //.maxReach()
+        ).getType().equals(HitResult.Type.MISS)) {
             livingEntity.setDeltaMovement(livingEntity.getViewVector(0f).multiply(-1.5f,-0.75f,-1.5f));
             //? if >=1.21.11 {
             livingEntity.needsSync = true;
@@ -61,7 +71,7 @@ public abstract class PiercingWeaponMixin {
 
         if (earthquake) {
             Either<BlockHitResult, Collection<EntityHitResult>> hitEntitiesAlong = ProjectileUtil.getHitEntitiesAlong(
-                    livingEntity, livingEntity.entityAttackRange(), entity -> canHitEntity(livingEntity, entity), ClipContext.Block.COLLIDER
+                    livingEntity,range, entity -> canHitEntity(livingEntity, entity), ClipContext.Block.COLLIDER
             );
             if (hitEntitiesAlong.right().isPresent()) {
                 for (EntityHitResult entityHitResult : hitEntitiesAlong.right().get()) {

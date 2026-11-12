@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 //? if <=1.21.11
 import net.minecraft.client.gui.GuiGraphics;
 //? if >1.21.11
-//import net.minecraft.client.gui.GuiGraphicsExtractor;
+//import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.LivingEntity;
@@ -21,7 +21,7 @@ public class SickleRangeHudElement implements HudElement {
 
     @Override
     //? >=26.1 {
-    /*public void extractRenderState(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
+    /*public void extractRenderState(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
     *///? } else {
     public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
     //?}

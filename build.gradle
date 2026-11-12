@@ -21,6 +21,10 @@ repositories {
 			includeGroup "maven.modrinth"
 		}
 	}
+	maven { name = "LadySnake (Enchancement)"; url = "https://maven.ladysnake.org/releases" };
+	maven { name = "TerraformersMC (Mod Menu)"; url = "https://maven.terraformersmc.com/releases" };
+	maven { name = "UpCraft (DataSync)"; url = "https://maven.uuid.gg/releases" };
+
 }
 
 loom {
@@ -42,6 +46,20 @@ fabricApi {
 	}
 }
 
+
+stonecutter {
+	// i made some of this codebase before i realized replacements existed so there's a little bit of inconsistency around
+
+	replacements.string(stonecutter.current.parsed >= '26.1') {
+		replace 'graphics.drawString(', 'graphics.text('
+		replace 'GuiGraphics', 'GuiGraphicsExtractor'
+		replace 'ClientTickEvents.END_WORLD_TICK', 'ClientTickEvents.END_LEVEL_TICK'
+	}
+	replacements.string(stonecutter.current.parsed >= '26.3') {
+		replace 'poseStack.mulPose', 'poseStack.rotate'
+	}
+}
+
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:" + property("minecraft_version") as String
@@ -51,7 +69,6 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:" + property("loader_version") as String
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:" + property("fabric_api_version") as String
-
 }
 
 processResources {

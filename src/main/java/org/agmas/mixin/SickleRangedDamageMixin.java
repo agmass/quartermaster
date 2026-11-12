@@ -35,13 +35,13 @@ public abstract class SickleRangedDamageMixin extends Entity {
 						victim.setDeltaMovement(oldVelocity);
 						return b;
 					}
-					float f = SicklesItem.calculateFalloff(le, victim);
-					boolean b = original.call(instance,source,damage*f);
-					victim.setDeltaMovement(oldVelocity.lerp(victim.getDeltaMovement(), f));
 					//? if >=26.3
 					//victim.setInvulnerableTime(0);
 					//? if <26.3
 					victim.invulnerableTime = 0;
+					float f = SicklesItem.calculateFalloff(le, victim);
+					boolean b = original.call(instance,source,damage*f);
+					victim.setDeltaMovement(oldVelocity.lerp(victim.getDeltaMovement(), f));
 					return b;
 				}
 			}

@@ -23,6 +23,9 @@ import org.agmas.porting.QMIdentifier;
 
 public class ModEnchants {
 
+    public static Holder.Reference<Enchantment> EMPTY_REF;
+    public static final ResourceKey<Enchantment> EMPTY = of("empty");
+
     public static ResourceKey<Enchantment> FROST_ASPECT = of("frost_aspect");
     public static final ResourceKey<Enchantment> EARTH_ASPECT = of("earth_aspect");
 

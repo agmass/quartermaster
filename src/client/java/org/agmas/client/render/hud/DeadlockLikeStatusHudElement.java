@@ -28,7 +28,7 @@ public class DeadlockLikeStatusHudElement implements HudElement {
     }
     @Override
     //? >=26.1 {
-    /*public void extractRenderState(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
+    /*public void extractRenderState(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
     *///? } else {
     public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
     //?}

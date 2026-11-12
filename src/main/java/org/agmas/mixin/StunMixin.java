@@ -24,14 +24,12 @@ public abstract class StunMixin {
                 }
                 return;
             }
-			if (livingEntity.hasEffect(ModEffects.PUSHED)) {
-				if (vec3.length() < 40) {
-					original.call(vec3.multiply(1.075f, 0.8f, 1.075f));
-					return;
-				}
-			}
 		}
 		original.call(vec3);
+	}
+	@WrapMethod(method = "getBlockSpeedFactor")
+	private float a(Operation<Float> original) {
+		return 1;
 	}
 
 	@WrapOperation(method = "moveRelative", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/Entity;getInputVector(Lnet/minecraft/world/phys/Vec3;FF)Lnet/minecraft/world/phys/Vec3;"))

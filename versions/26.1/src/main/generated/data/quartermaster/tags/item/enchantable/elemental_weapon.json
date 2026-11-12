@@ -225,6 +225,10 @@
       "required": false
     },
     {
+      "id": "quartermaster:bamboo_sword",
+      "required": false
+    },
+    {
       "id": "minecraft:wooden_sword",
       "required": false
     },
@@ -249,6 +253,10 @@
       "required": false
     },
     {
+      "id": "quartermaster:bamboo_axe",
+      "required": false
+    },
+    {
       "id": "minecraft:wooden_axe",
       "required": false
     },
@@ -270,6 +278,10 @@
     },
     {
       "id": "minecraft:netherite_axe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_spear",
       "required": false
     },
     {
@@ -298,6 +310,10 @@
     },
     {
       "id": "#minecraft:enchantable/weapon",
+      "required": false
+    },
+    {
+      "id": "minecraft:trident",
       "required": false
     }
   ]

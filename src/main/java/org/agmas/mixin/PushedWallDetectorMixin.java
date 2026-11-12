@@ -64,7 +64,6 @@ public abstract class PushedWallDetectorMixin extends Entity {
 	@Inject(at = @At("HEAD"), method = "tick")
 	private void init(CallbackInfo info) {
 		if (hasEffect(ModEffects.PUSHED)) {
-			Log.info(LogCategory.GENERAL, Math.abs(getKnownMovement().z)+"");
 			if (level() instanceof ServerLevel serverLevel) {
 				float damage = 0;
 				if (Math.abs(getKnownMovement().x) < 0.1) {
@@ -78,7 +77,10 @@ public abstract class PushedWallDetectorMixin extends Entity {
 					}
 				}
 				if (damage > 0) {
+					//? if <26.3
 					invulnerableTime = 0;
+					//? if >=26.3
+					//setInvulnerableTime(0);
 					hurtServer(serverLevel, damageSources().source(ModDamageTypes.WALL_IMPACT, getLastAttacker()), damage);
 					removeEffect(ModEffects.PUSHED);
 					setDeltaMovement(lastDeltaMovement.multiply(-2,-2,-2).add(0,-0.4,0));

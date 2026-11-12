@@ -19,8 +19,6 @@ import java.util.*;
 public class QMConfig {
     public static HashMap<String, WeaponEnabledStatus> weaponDefaults = new HashMap<>();
     public static HashMap<String, WeaponEnabledStatus> enabledWeapons = new HashMap<>();
-    public static ArrayList<String> disabledEnchants = new ArrayList<>();
-    public static ArrayList<String> disabledEnchantsDefaults = new ArrayList<>();
     public static boolean mergeFrost = true;
     public static boolean stunEffects = true;
 
@@ -33,18 +31,10 @@ public class QMConfig {
         weaponDefaults.put("sickle", new WeaponEnabledStatus(true, true,true));
         weaponDefaults.put("rapier", new WeaponEnabledStatus(false, true,false));
 
-        disabledEnchantsDefaults.add("quartermaster:impact_protection");
-        disabledEnchantsDefaults.add("quartermaster:magic_protection");
-        disabledEnchantsDefaults.add("quartermaster:frost_protection");
-        disabledEnchantsDefaults.add("quartermaster:bladedance");
-        disabledEnchantsDefaults.add("quartermaster:singlehanded");
-        disabledEnchantsDefaults.add("quartermaster:explosive_kinectivity");
-
         if (FabricDataGenHelper.ENABLED) {
             weaponDefaults.forEach((s, ignored)->{
                 enabledWeapons.put(s, new WeaponEnabledStatus(true,true,true));
             });
-            disabledEnchantsDefaults.clear();
             return;
         }
         enabledWeapons.putAll(weaponDefaults);
@@ -56,14 +46,9 @@ public class QMConfig {
                     JsonObject object = weapons.getAsJsonObject();
                     enabledWeapons.put(object.get("name").getAsString(), new WeaponEnabledStatus(object.get("tiered").getAsBoolean(), object.get("relic").getAsBoolean(), object.get("bamboo").getAsBoolean()));
                 }
-                for (JsonElement enchant : element.getAsJsonObject().getAsJsonArray("disabledEnchants")) {
-                    disabledEnchants.add(enchant.getAsString());
-                }
                 mergeFrost = element.getAsJsonObject().get("mergeFrost").getAsBoolean();
                 stunEffects = element.getAsJsonObject().get("stunEffects").getAsBoolean();
             } catch (Exception ignored) {}
-        } else {
-            disabledEnchants.addAll(disabledEnchantsDefaults);
         }
     }
 
@@ -94,11 +79,6 @@ public class QMConfig {
             writeComment(jsonWriter, "The default disabled enchant list is mostly enchants which only fit for the Apostasy Season 2 modpack. And explosive kinectivity.");
             writeComment(jsonWriter, "Does not fully disable the enchant (like enchancements), but makes it unobtainable in survival.");
 
-            jsonWriter.name("disabledEnchants").beginArray();
-            for (String disabledEnchant : disabledEnchants) {
-                jsonWriter.value(disabledEnchant);
-            }
-            jsonWriter.endArray();
             writeComment(jsonWriter, "If Frost Aspect should be replaced with Enchancement's Frostbite");
             jsonWriter.name("mergeFrost").value(mergeFrost);
             writeComment(jsonWriter, "This can be disabled if the PvP style you're going for is much more reliant on movement");

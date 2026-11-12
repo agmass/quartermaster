@@ -1,0 +1,128 @@
+{
+  "values": [
+    {
+      "id": "quartermaster:morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_spear",
+      "required": false
+    },
+    {
+      "id": "minecraft:wooden_spear",
+      "required": false
+    },
+    {
+      "id": "minecraft:stone_spear",
+      "required": false
+    },
+    {
+      "id": "minecraft:copper_spear",
+      "required": false
+    },
+    {
+      "id": "minecraft:iron_spear",
+      "required": false
+    },
+    {
+      "id": "minecraft:diamond_spear",
+      "required": false
+    },
+    {
+      "id": "minecraft:netherite_spear",
+      "required": false
+    }
+  ]
+}

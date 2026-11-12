@@ -4,7 +4,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 //? >=26.1 {
-/*import net.minecraft.client.gui.GuiGraphicsExtractor;
+/*import net.minecraft.client.gui.GuiGraphics;
 *///? } else {
 import net.minecraft.client.gui.GuiGraphics;
 //? }
@@ -22,7 +22,7 @@ public class ParryHudElement implements HudElement {
 
     @Override
     //? >=26.1 {
-    /*public void extractRenderState(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
+    /*public void extractRenderState(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
     *///? } else {
     public void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
     //?}

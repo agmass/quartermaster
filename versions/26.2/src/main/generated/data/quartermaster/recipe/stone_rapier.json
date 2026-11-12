@@ -1,0 +1,25 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:registry_contains",
+      "registry": "minecraft:item",
+      "values": [
+        "quartermaster:stone_rapier"
+      ]
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "H": "minecraft:stick",
+    "N": "#minecraft:stone_tool_materials"
+  },
+  "pattern": [
+    "  N",
+    " N ",
+    "H  "
+  ],
+  "result": {
+    "id": "quartermaster:stone_rapier"
+  }
+}

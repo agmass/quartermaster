@@ -35,6 +35,10 @@
     {
       "id": "quartermaster:shockwave",
       "required": false
+    },
+    {
+      "id": "quartermaster:wall_slam",
+      "required": false
     }
   ]
 }

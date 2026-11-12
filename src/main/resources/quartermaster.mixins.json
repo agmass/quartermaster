@@ -7,6 +7,7 @@
     "AxeEnchantShieldMixin",
     "BambooWeaponsDoNoDamageMixin",
     "BusterAlwaysAccurateMixin",
+    "CannotBeEnchantedMixin",
     "ChangeAttackStrengthTickerToEstocMixin",
     "ChangeEnchantTagsMixin",
     "DisarmedCooldownMixin",
@@ -34,9 +35,7 @@
     "TridentHitMixin",
     "UseWarhammerMixin",
     "WarhammerForceUseMixin",
-    "WeaponHitSoundsMixin",
-    "config.DisableEnchantmentsInCreativeTabMixin",
-    "config.DisableEnchantmentsMixin"
+    "WeaponHitSoundsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

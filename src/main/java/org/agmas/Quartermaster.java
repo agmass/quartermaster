@@ -6,11 +6,14 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.impl.util.log.Log;
+import net.fabricmc.loader.impl.util.log.LogCategory;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.LayeredRegistryAccess;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.RegistryLayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -18,8 +21,11 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -273,6 +279,24 @@ public class Quartermaster implements ModInitializer {
 			}
 		});
 
+	}
+
+	public static boolean isAllowedItem(ItemStack itemStack, Enchantment enchantment) {
+		if (Quartermaster.registryAccess != null) {
+			Identifier id = Quartermaster.registryAccess.lookupOrThrow(Registries.ENCHANTMENT).getKey(enchantment);
+			if (id != null) {
+				if (id.equals(Identifier.withDefaultNamespace("fire_aspect"))) {
+					return itemStack.is(ModTags.ELEMENTAL_WEAPONS);
+				}
+				if (id.equals(Identifier.withDefaultNamespace("flame"))) {
+					return itemStack.is(ModTags.ELEMENTAL_RANGED_WEAPONS);
+				}
+				if (id.equals(QMIdentifier.of("enchancement", "frostbite").id)) { // Looks redundant; but needed for enchancement compat!
+					return itemStack.is(ModTags.ELEMENTAL_WEAPONS);
+				}
+			}
+		}
+		return false;
 	}
 
 	public static void shieldBash(LivingEntity player) {

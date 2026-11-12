@@ -1,7 +1,16 @@
 {
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:registry_contains",
+      "registry": "minecraft:item",
+      "values": [
+        "quartermaster:netherite_sickle"
+      ]
+    }
+  ],
   "type": "minecraft:smithing_transform",
   "addition": "#minecraft:netherite_tool_materials",
-  "base": "quartermaster:diamond_sickle",
+  "base": "quartermaster:netherite_sickle",
   "result": {
     "id": "quartermaster:netherite_sickle"
   },

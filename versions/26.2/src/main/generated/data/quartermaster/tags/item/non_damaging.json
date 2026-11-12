@@ -1,13 +1,44 @@
 {
   "values": [
-    "quartermaster:bamboo_greataxe",
-    "quartermaster:bamboo_warhammer",
-    "quartermaster:bamboo_cutlass",
-    "quartermaster:bamboo_estoc",
-    "quartermaster:bamboo_morningstar",
-    "quartermaster:bamboo_axe",
-    "quartermaster:bamboo_sword",
-    "quartermaster:bamboo_spear",
-    "quartermaster:bamboo_mace"
+    {
+      "id": "quartermaster:bamboo_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_estoc",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_sickle",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_morningstar",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_warhammer",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_sword",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_axe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_spear",
+      "required": false
+    }
   ]
 }

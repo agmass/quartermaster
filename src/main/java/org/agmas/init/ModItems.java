@@ -11,6 +11,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -167,7 +168,8 @@ public class ModItems {
                 Items.IRON_SPEAR,
                 Items.GOLDEN_SPEAR,
                 Items.DIAMOND_SPEAR,
-                Items.NETHERITE_SPEAR);
+                Items.NETHERITE_SPEAR,
+                Identifier.withDefaultNamespace("spear"));
 
         AXE = new QMWeapon(WeaponClass.HEAVY,
                 null,
@@ -178,7 +180,8 @@ public class ModItems {
                 Items.IRON_AXE,
                 Items.GOLDEN_AXE,
                 Items.DIAMOND_AXE,
-                Items.NETHERITE_AXE);
+                Items.NETHERITE_AXE,
+                Identifier.withDefaultNamespace("axe"));
 
         SWORD = new QMWeapon(WeaponClass.LIGHT,
                 null,
@@ -189,7 +192,8 @@ public class ModItems {
                 Items.IRON_SWORD,
                 Items.GOLDEN_SWORD,
                 Items.DIAMOND_SWORD,
-                Items.NETHERITE_SWORD);
+                Items.NETHERITE_SWORD,
+                Identifier.withDefaultNamespace("sword"));
 
         ModItemLists.weapons.add(SWORD);
         ModItemLists.weapons.add(AXE);
@@ -227,9 +231,10 @@ public class ModItems {
                     register("iron_"+name, (p)->generateConstructor(p,c,QMPToolMaterial.IRON), propertiesFunction.apply(QMPToolMaterial.IRON)),
                     register("golden_"+name, (p)->generateConstructor(p,c,QMPToolMaterial.GOLD), propertiesFunction.apply(QMPToolMaterial.GOLD)),
                     register("diamond_"+name, (p)->generateConstructor(p,c,QMPToolMaterial.DIAMOND), propertiesFunction.apply(QMPToolMaterial.DIAMOND)),
-                    register("netherite_"+name, (p)->generateConstructor(p,c,QMPToolMaterial.NETHERITE), propertiesFunction.apply(QMPToolMaterial.NETHERITE)));
+                    register("netherite_"+name, (p)->generateConstructor(p,c,QMPToolMaterial.NETHERITE), propertiesFunction.apply(QMPToolMaterial.NETHERITE)),
+                    QMIdentifier.of(name).id);
         } else {
-            w = new QMWeapon(weaponClass, relic, bamboo, null, null, null, null, null, null, null);
+            w = new QMWeapon(weaponClass, relic, bamboo, null, null, null, null, null, null, null,QMIdentifier.of(name).id);
         }
         ModItemLists.weapons.add(w);
         return w;
@@ -325,9 +330,11 @@ public class ModItems {
     }
 
     public record QMWeapon(WeaponClass weaponClass, Item relic, Item bamboo, Item wooden, Item stone,
-                         //? if >=1.21.10
-                         Item copper,
-                         Item iron, Item golden, Item diamond, Item netherite) {
+                           //? if >=1.21.10
+                           Item copper,
+                           Item iron, Item golden, Item diamond, Item netherite
+                           // used for resource conds
+                        , Identifier name) {
         public List<Item> asList() {
             ArrayList<Item> items = new ArrayList<>();
             if (relic != null) items.add(relic);

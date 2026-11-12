@@ -1,7 +1,24 @@
 {
   "values": [
-    "quartermaster:netherite_cutlass",
-    "quartermaster:netherite_estoc",
-    "minecraft:netherite_sword"
+    {
+      "id": "quartermaster:netherite_rapier",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_cutlass",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_estoc",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_sickle",
+      "required": false
+    },
+    {
+      "id": "minecraft:netherite_sword",
+      "required": false
+    }
   ]
 }

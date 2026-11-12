@@ -1,13 +1,40 @@
 {
   "values": [
-    "quartermaster:greataxe",
-    "quartermaster:wooden_greataxe",
-    "quartermaster:stone_greataxe",
-    "quartermaster:copper_greataxe",
-    "quartermaster:iron_greataxe",
-    "quartermaster:golden_greataxe",
-    "quartermaster:diamond_greataxe",
-    "quartermaster:netherite_greataxe",
-    "quartermaster:bamboo_greataxe"
+    {
+      "id": "quartermaster:greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:bamboo_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:wooden_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:stone_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:copper_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:iron_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:golden_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:diamond_greataxe",
+      "required": false
+    },
+    {
+      "id": "quartermaster:netherite_greataxe",
+      "required": false
+    }
   ]
 }

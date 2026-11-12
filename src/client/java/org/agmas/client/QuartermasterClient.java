@@ -166,8 +166,8 @@ public class QuartermasterClient implements ClientModInitializer {
 			}
 		});
 
-		ClientPlayConnectionEvents.JOIN.register((cpl,ps,minecraft)->{
-			Quartermaster.registryAccess = minecraft.level.registryAccess();
+		ClientTickEvents.END_WORLD_TICK.register((cpl)->{
+			Quartermaster.registryAccess = cpl.registryAccess();
 		});
 	}
 
