@@ -76,7 +76,7 @@ public class ModTagProviders {
             //? if >1.21.1
             addList(ModItems.SICKLES.asList(), net.minecraft.tags.ItemTags.SWEEPING_ENCHANTABLE);
             addList(ModItems.SICKLES.asList(), net.minecraft.tags.ItemTags.DURABILITY_ENCHANTABLE);
-            addList(ModItems.SICKLES.asList(), ModTags.RAPIERS);
+            addList(ModItems.SICKLES.asList(), ModTags.SICKLES);
 
             addList(ModItems.MORNINGSTAR.asList(), net.minecraft.tags.ItemTags.AXES);
             addList(ModItems.MORNINGSTAR.asList(), net.minecraft.tags.ItemTags.WEAPON_ENCHANTABLE);

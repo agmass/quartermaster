@@ -7,6 +7,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
@@ -31,6 +32,7 @@ import org.agmas.Quartermaster;
 import org.agmas.entity.GreataxeProjectileEntity;
 import org.agmas.init.*;
 import org.agmas.init.tag.ModTags;
+import org.agmas.item.util.CustomHitSounds;
 import org.agmas.porting.QMPToolMaterial;
 //? if >1.21.1 {
 import net.minecraft.world.item.ToolMaterial;
@@ -39,7 +41,7 @@ import org.jspecify.annotations.Nullable;
 //? }
 import java.awt.*;
 
-public class GreataxeItem extends EnchantableQMItem {
+public class GreataxeItem extends EnchantableQMItem implements CustomHitSounds {
     public GreataxeItem(QMPToolMaterial toolMaterial, Item.Properties properties) {
         super(toolMaterial, properties);
     }
@@ -241,5 +243,15 @@ public class GreataxeItem extends EnchantableQMItem {
     @Override
     public boolean canBeEnchantedWith(ItemStack stack, Holder<Enchantment> enchantment, EnchantingContext context) {
         return super.canBeEnchantedWith(stack, enchantment, context) && !enchantment.is(ModTags.EXCLUSIVE_SET_SHIELD_DISABLE);
+    }
+
+    @Override
+    public SoundEvent getCritHitSound() {
+        return ModSounds.HEAVY_WEAPON_CRIT;
+    }
+
+    @Override
+    public boolean playOriginalHitSounds(SoundEvent soundEvent) {
+        return true;
     }
 }

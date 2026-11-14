@@ -11,6 +11,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
@@ -201,11 +202,13 @@ public abstract class LivingEntityMixin extends Entity {
 		}
 	}
 
-	@Inject(method = "hurtServer", at = @At("TAIL"))
+	@Inject(method = "hurtServer", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;knockback(DDD)V"))
 	public void simulateSickleAlwayUpKB(ServerLevel serverLevel, DamageSource damageSource, float f, CallbackInfoReturnable<Boolean> cir) {
 		if (damageSource.getWeaponItem() != null) {
 			if (damageSource.getWeaponItem().getItem() instanceof SicklesItem) {
-				setDeltaMovement(getDeltaMovement().x, Math.min(0.4,  getDeltaMovement().y / 2.0 + 4.0), getDeltaMovement().z);
+				if (damageSource.getDirectEntity() instanceof LivingEntity le) {
+					setDeltaMovement(getDeltaMovement().x, Mth.lerp(SicklesItem.calculateFalloff(le, (LivingEntity) (Object) this), getDeltaMovement().y, Math.min(0.4, getDeltaMovement().y / 2.0 + 4.0)), getDeltaMovement().z);
+				}
 			}
 		}
 	}

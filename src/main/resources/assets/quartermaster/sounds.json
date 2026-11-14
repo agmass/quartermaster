@@ -3,6 +3,18 @@
     "subtitle": "subtitles.quartermaster.cutlass_crit",
     "sounds": ["quartermaster:cutlass_crit"]
   },
+  "cutlass_sprint_hit": {
+    "subtitle": "subtitles.quartermaster.cutlass_sprint_hit",
+    "sounds": ["quartermaster:cutlass_sprint_hit"]
+  },
+  "sickle_weak": {
+    "subtitle": "subtitles.quartermaster.sickle_weak",
+    "sounds": ["quartermaster:sickle_weak"]
+  },
+  "heavy_weapon_crit": {
+    "subtitle": "subtitles.quartermaster.heavy_weapon_crit",
+    "sounds": ["quartermaster:heavy_weapon_crit"]
+  },
   "strong_shield_break": {
     "subtitle": "subtitles.quartermaster.strong_shield_break",
     "sounds": ["quartermaster:strong_shield_break"]

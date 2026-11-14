@@ -103,6 +103,11 @@ public class CutlassItem extends EnchantableQMItem implements CustomHitSounds {
     }
 
     @Override
+    public SoundEvent getSprintHitSound() {
+        return ModSounds.CUTLASS_SPRINT_HIT;
+    }
+
+    @Override
     public boolean playOriginalHitSounds(SoundEvent soundEvent) {
         return true;
     }

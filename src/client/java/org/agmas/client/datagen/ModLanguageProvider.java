@@ -117,7 +117,7 @@ public class ModLanguageProvider extends FabricLanguageProvider {
         translationBuilder.add("enchantment.quartermaster.frost_aspect.desc", "Freezes enemies hit, making them slower and take damage over time.");
 
         translationBuilder.add("enchantment.quartermaster.earth_aspect", "Earth Aspect");
-        translationBuilder.add("enchantment.quartermaster.earth_aspect.desc", "Replaces abilities of Heavy-class weapons (excluding axes) with stuns. (eg. greataxe projectile now stuns rather than breaking shields, warhammers stun on right-click)");
+        translationBuilder.add("enchantment.quartermaster.earth_aspect.desc", "Adds stun abilities to Heavy-class weapons (excluding axes). (eg. greataxe projectile now stuns rather than breaking shields, warhammers stun on right-click)");
 
         translationBuilder.add("death.attack.wall_slam", "%1$s crashed against a wall");
         translationBuilder.add("death.attack.wall_slam.player", "%1$s was slammed against a wall by %2$s");

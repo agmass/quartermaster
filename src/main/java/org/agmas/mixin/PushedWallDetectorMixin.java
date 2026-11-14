@@ -84,7 +84,6 @@ public abstract class PushedWallDetectorMixin extends Entity {
 					hurtServer(serverLevel, damageSources().source(ModDamageTypes.WALL_IMPACT, getLastAttacker()), damage);
 					removeEffect(ModEffects.PUSHED);
 					setDeltaMovement(lastDeltaMovement.multiply(-2,-2,-2).add(0,-0.4,0));
-
 				}
 			}
 		}

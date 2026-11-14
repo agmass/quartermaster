@@ -80,12 +80,23 @@ public class SicklesItem extends EnchantableQMItem implements CustomHitSounds {
 
     @Override
     public SoundEvent getSweepHitSound() {
-        return ModSounds.CUTLASS_SWEEP;
+        return ModSounds.SICKLE_WEAK;
     }
+
 
     @Override
     public SoundEvent getCritHitSound() {
-        return ModSounds.CUTLASS_CRIT;
+        return ModSounds.SICKLE_WEAK;
+    }
+
+    @Override
+    public SoundEvent getSprintHitSound() {
+        return ModSounds.CUTLASS_SPRINT_HIT;
+    }
+
+    @Override
+    public SoundEvent getWeakSound() {
+        return  ModSounds.SICKLE_WEAK;
     }
 
     @Override

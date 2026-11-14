@@ -8,6 +8,9 @@ import org.agmas.porting.QMIdentifier;
 public class ModSounds {
     public static final SoundEvent CUTLASS_CRIT = registerSound("cutlass_crit");
     public static final SoundEvent CUTLASS_SWEEP = registerSound("cutlass_sweep");
+    public static final SoundEvent CUTLASS_SPRINT_HIT = registerSound("cutlass_sprint_hit");
+    public static final SoundEvent HEAVY_WEAPON_CRIT = registerSound("heavy_weapon_crit");
+    public static final SoundEvent SICKLE_WEAK = registerSound("sickle_weak");
 
     public static final SoundEvent STRONG_SHIELD_BREAK = registerSound("strong_shield_break");
 

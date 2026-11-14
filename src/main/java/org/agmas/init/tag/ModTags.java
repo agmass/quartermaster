@@ -13,6 +13,7 @@ public class ModTags {
     public static final TagKey<Item> MORNINGSTARS = TagKey.create(Registries.ITEM, QMIdentifier.of("morningstars").id);
     public static final TagKey<Item> ESTOCS = TagKey.create(Registries.ITEM, QMIdentifier.of("estocs").id);
     public static final TagKey<Item> GREATAXES = TagKey.create(Registries.ITEM, QMIdentifier.of("greataxes").id);
+    public static final TagKey<Item> SICKLES = TagKey.create(Registries.ITEM, QMIdentifier.of("sickles").id);
     public static final TagKey<Item> WARHAMMERS = TagKey.create(Registries.ITEM, QMIdentifier.of("warhammers").id);
     public static final TagKey<Item> RAPIERS = TagKey.create(Registries.ITEM, QMIdentifier.of("rapiers").id);
 

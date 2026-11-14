@@ -76,8 +76,11 @@ public abstract class PiercingWeaponMixin {
             if (hitEntitiesAlong.right().isPresent()) {
                 for (EntityHitResult entityHitResult : hitEntitiesAlong.right().get()) {
                     if (entityHitResult.getEntity() instanceof LivingEntity livingEntity1) {
-                        livingEntity1.addEffect(new MobEffectInstance(ModEffects.PUSHED, 60));
                         livingEntity1.setDeltaMovement(livingEntity.getViewVector(0f));
+                        if (livingEntity1 instanceof ServerPlayer player) {
+                            player.connection.send(new ClientboundSetEntityMotionPacket(player));
+                        }
+                        livingEntity1.addEffect(new MobEffectInstance(ModEffects.PUSHED, 8));
                     }
                 }
             }

@@ -1,6 +1,7 @@
 package org.agmas.item;
 
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -13,10 +14,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import org.agmas.Quartermaster;
 import org.agmas.init.*;
+import org.agmas.item.util.CustomHitSounds;
 import org.agmas.porting.QMPToolMaterial;
 
 
-public class MorningstarItem extends EnchantableQMItem {
+public class MorningstarItem extends EnchantableQMItem implements CustomHitSounds {
     public MorningstarItem(QMPToolMaterial toolMaterial, Properties properties) {
         super(toolMaterial, properties);
     }
@@ -70,5 +72,13 @@ public class MorningstarItem extends EnchantableQMItem {
                 .durability(material.durability());
     }
 
+    @Override
+    public SoundEvent getCritHitSound() {
+        return ModSounds.HEAVY_WEAPON_CRIT;
+    }
 
+    @Override
+    public boolean playOriginalHitSounds(SoundEvent soundEvent) {
+        return true;
+    }
 }
